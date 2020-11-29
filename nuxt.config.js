@@ -42,7 +42,12 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+
+  // don't need PWA `'@nuxtjs/pwa'`
+  modules: ['bootstrap-vue/nuxt'],
+  bootstrapVue: {
+    icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
+  },
 
   /*
    ** Set global info from sanity document

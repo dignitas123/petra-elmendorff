@@ -10,7 +10,12 @@
       </div>
       <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
     </header>
-
+    <section>
+      <p>Test Icons <BIcon /> <BIconArrowUp /> <BIconArrowDown /> </p>
+    </section>
+    <label for="example-datepicker">Choose a date</label>
+    <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
+    <p>Value: '{{ value }}'</p>
     <figure :v-if="info.image">
       <SanityImage
         :image="info.image"
@@ -35,6 +40,8 @@ import sanityClient from '../sanityClient'
 import SanityImage from '~/components/SanityImage'
 import SessionList from '~/components/SessionList'
 
+import { BIcon, BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
+
 const query = `
   {
     "info": *[_id == "eventInformation"] {
@@ -46,13 +53,17 @@ const query = `
 export default {
   components: {
     SanityImage,
-    SessionList
+    SessionList,
+    BIcon,
+    BIconArrowUp,
+    BIconArrowDown
   },
   filters: {
     dateFilter
   },
   data() {
     return {
+      value: '',
       program: this.$store.getters.getProgram
     }
   },
