@@ -1,30 +1,32 @@
-# Petra Elmendorff
+# web
 
-_Data-driven conference website in Vue.js. Speakers, sessions, and scheduling._
+> An event website powered by Nuxt and Sanity.io
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-nuxt-events).
+## Build Setup
 
-## What you have
+### Install dependencies
 
-- An event page with [Nuxt.js](https://nuxtjs.org/)
-- Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+``` bash
+npm install
+```
 
-## Quick start
+### serve with hot reload at localhost:3000
 
-1. Clone this repository
-2. `npm install` in the project root folder on local
-3. `npm run dev` to start the studio and frontend locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:3000](http://localhost:3000)
-4. `npm run build` to build to production locally
+``` bash
+npm run dev
+```
 
-## Deploy changes
+### build for production and launch server
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
+``` bash
+npm run build
+npm start
+```
 
-## Get help
+### generate static project
 
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
+``` bash
+npm run generate
+```
 
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io)
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

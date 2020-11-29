@@ -1,21 +1,44 @@
 {
-  "private": true,
-  "name": "sanity-nuxt-events",
+  "name": "sanity-nuxt-events-web",
   "version": "1.0.12",
+  "description": "An event website powered by Nuxt and Sanity.io",
+  "author": "Sanity.io",
+  "private": true,
   "scripts": {
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "start": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "build-studio": "lerna bootstrap && (cd studio && npm run build)",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^2.6.0",
+    "@sanity/client": "^2.0.0",
+    "@sanity/image-url": "^0.140.19",
+    "cross-env": "^5.2.0",
+    "groq": "^0.140.0",
+    "normalize.css": "^8.0.1",
+    "nuxt": "^2.6.2",
+    "sanity-blocks-vue-component": "^0.1.0",
+    "vue-date-fns": "^1.0.0"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.0.0",
-    "lerna": "^3.13.1"
+    "@nuxtjs/eslint-config": "^0.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-standard": ">=12.0.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": ">=2.16.0",
+    "eslint-plugin-jest": ">=22.4.1",
+    "eslint-plugin-node": ">=8.0.1",
+    "eslint-plugin-nuxt": ">=0.4.3",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": ">=4.1.1",
+    "eslint-plugin-standard": ">=4.0.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
   }
 }
