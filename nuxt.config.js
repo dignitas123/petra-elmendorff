@@ -9,6 +9,7 @@ const routesQuery = `
 `
 
 export default {
+  dev: process.env.NODE_ENV !== 'production',
   ssr: true,
 
   /*
