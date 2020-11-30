@@ -3,15 +3,15 @@ import sanityClient from '@sanity/client'
 export default sanityClient({
   // Find your project ID and dataset in `sanity.json` in your studio project
   // Pauls sanity project:
-  projectId: 'tyn9zovs',
-  dataset: 'production',
-  useCdn: false
+  // projectId: 'tyn9zovs',
+  // dataset: 'production',
+  // useCdn: false
 
 
   // Das ist Niklass sanity projekt:
-  // projectId: 'ie6m0uwl',
-  // dataset: 'production',
-  // useCdn: true
+  projectId: 'ie6m0uwl',
+  dataset: 'production',
+  useCdn: false
 
 
   // useCdn == true gives fast, cheap responses using a globally distributed cache.
