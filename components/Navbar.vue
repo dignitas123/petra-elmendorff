@@ -53,6 +53,10 @@ export default {
   font-family: var(--font-family-sans);
 }
 
+.navbar {
+  font-size: var(--font-large-size);
+}
+
 #petraelmendorff {
   font-size: 40px;
   font-weight: bold;
@@ -77,10 +81,6 @@ export default {
   margin-top: -16px;
 }
 
-#navcol-1 {
-  height: 20px;
-}
-
 .navbar-light .navbar-toggler {
   margin: 0 auto;
 }
@@ -95,9 +95,9 @@ export default {
 }
 
 .nav-item {
-  padding-right: 5px;
-  height: 25px;
-  padding-left: 5px;
+  padding-right: 10px;
+  height: 27px;
+  padding-left: 10px;
   & a {
     color: var(--color-dark-gray);
     text-decoration: none;
