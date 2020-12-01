@@ -96,6 +96,9 @@ iframe {
 
 .ktv2-submit-element-bg {
   background: var(--color-accent) !important;
+  .button-text {
+    width: 100% !important;
+  }
 }
 
 #FormSubmit {
