@@ -65,6 +65,7 @@ export default {
   font-size: var(--font-title1-size);
   color: var(--color-gray);
   margin: 19px 0 10px 0;
+  font-weight: bold;
 }
 
 #petraelmendorffSub {
@@ -98,7 +99,7 @@ export default {
 }
 
 .nav-item {
-  width: 190px;
+  max-width: 161px;
   padding-right: 10px;
   height: 27px;
   padding-left: 10px;
@@ -112,10 +113,7 @@ export default {
     }
   }
   .nuxt-link-exact-active {
-    font-weight: bold;
-    &:hover {
-      text-decoration: none;
-    }
+    text-decoration: underline;
   }
 }
 </style>

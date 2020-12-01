@@ -19,8 +19,8 @@ export default {
 </script>
 
 <style>
-@import '../styles/custom-media.css';
 @import '../styles/custom-properties.scss';
+@import '../styles/custom-media.css';
 
 /* html {
   font-family: var(--font-family-sans);
