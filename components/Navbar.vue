@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 id="petraelmendorff" class="text-center">
-      {{ title }}
+      <nuxt-link to="/">{{ title }}</nuxt-link>
     </h1>
     <div id="subHeaderText">
       <img id="chinesSign" src="~/assets/img/chinese_sign_jinshinjyutsu.png" />
@@ -17,16 +17,16 @@
         >
           <ul class="nav navbar-nav">
             <li class="nav-item">
-              <nuxt-link to="/">Jin Shin Jyutsu</nuxt-link>
+              <nuxt-link to="/JinShinJyutsu">Jin Shin Jyutsu</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link to="/">AstroMatrix</nuxt-link>
+              <nuxt-link to="/AstroMatrix">AstroMatrix</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link to="/">Kurse-Angebote</nuxt-link>
+              <nuxt-link to="/KurseAngebote">Kurse-Angebote</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link to="/">Über</nuxt-link>
+              <nuxt-link to="/About">Über</nuxt-link>
             </li>
           </ul>
         </div>
@@ -58,6 +58,10 @@ export default {
 }
 
 #petraelmendorff {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   font-size: 40px;
   font-weight: bold;
   color: var(--color-gray);
