@@ -113,7 +113,7 @@ export default {
     }
   }
   .nuxt-link-exact-active {
-    font-family: Times, sans-serif;
+    font-family: var(--font-family-sans-secondary);
     font-weight: bold;
     &:hover {
       text-decoration: none;
