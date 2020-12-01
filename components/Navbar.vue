@@ -99,7 +99,7 @@ export default {
 }
 
 .nav-item {
-  max-width: 161px;
+  max-width: 190px;
   padding-right: 10px;
   height: 27px;
   padding-left: 10px;
@@ -113,7 +113,11 @@ export default {
     }
   }
   .nuxt-link-exact-active {
-    text-decoration: underline;
+    font-family: Times, sans-serif;
+    font-weight: bold;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 </style>
