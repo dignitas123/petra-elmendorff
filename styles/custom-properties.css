@@ -1,13 +1,14 @@
 :root {
-  --font-family-sans: -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-sans: Quicksand, sans-serif;
 
   --color-black: #202123;
-  --color-dark-gray: #32373e;
-  --color-gray: #697a90;
+  --color-dark-gray: #626262;
+  --color-gray: #9d9c9f;
   --color-light-gray: #b4bcc7;
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
   --color-accent: #156dff;
+  --color-golden: #cdaf00;
 
   /* Typography */
   --unit: 16;
@@ -22,8 +23,8 @@
 
   --font-title3-size: calc(21 / var(--unit) * 1rem); /* 21px */
   --font-title3-line-height: calc(30 / 21); /* 30px */
-  --font-title2-size: calc(24 / var(--unit) * 1rem); /* 24px */
-  --font-title2-line-height: calc(33 / 24); /* 33px */
+  --font-title2-size: calc(27 / var(--unit) * 1rem); /* 27px */
+  --font-title2-line-height: calc(39 / 24); /* 39px */
   --font-title1-size: calc(49 / var(--unit) * 1rem); /* 49px */
   --font-title1-line-height: calc(57 / 49); /* 57px */
 

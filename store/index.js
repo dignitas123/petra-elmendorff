@@ -1,6 +1,6 @@
 export const state = () => ({
   eventInformation: {
-    title: 'This is the test title'
+    title: 'Petra Elmendorff'
   },
   program: {}
 })

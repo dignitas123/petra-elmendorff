@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Navbar
-      :title="$store.state.eventInformation.name"
-      :ticket-link="$store.state.eventInformation.ticket"
-    />
+    <Navbar title="Petra Elmendorff" />
     <nuxt />
     <Footer />
   </div>
@@ -25,7 +22,7 @@ export default {
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
-html {
+/* html {
   font-family: var(--font-family-sans);
   font-size: var(--font-base-size);
   line-height: var(--font-base-line-height);
@@ -36,7 +33,7 @@ body {
   background: var(--color-white);
   color: var(--color-black);
   margin: 0;
-}
+} */
 
 html,
 body,
