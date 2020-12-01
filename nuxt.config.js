@@ -9,6 +9,10 @@ const routesQuery = `
 `
 
 export default {
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false
+  },
   router: {
     linkActiveClass: 'active-link'
   },

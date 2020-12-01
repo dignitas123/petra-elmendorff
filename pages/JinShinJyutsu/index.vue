@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../../styles/custom-properties.css';
+@import '../../styles/custom-properties.scss';
 
 .container {
   text-align: center;

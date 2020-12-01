@@ -81,7 +81,7 @@ export default {
 
 <style scoped>
 @import '../../styles/custom-media.css';
-@import '../../styles/custom-properties.css';
+@import '../../styles/custom-properties.scss';
 
 .container {
   text-align: center;

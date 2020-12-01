@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../styles/custom-properties.css';
+@import '../styles/custom-properties.scss';
 
 .footer {
   padding: 1.5rem;

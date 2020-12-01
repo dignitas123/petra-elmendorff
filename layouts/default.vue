@@ -20,7 +20,7 @@ export default {
 
 <style>
 @import '../styles/custom-media.css';
-@import '../styles/custom-properties.css';
+@import '../styles/custom-properties.scss';
 
 /* html {
   font-family: var(--font-family-sans);

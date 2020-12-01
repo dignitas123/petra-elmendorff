@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
 @import '../../styles/custom-media.css';
-@import '../../styles/custom-properties.css';
+@import '../../styles/custom-properties.scss';
 
 .container {
   min-height: calc(100% - 72px - 216px);
