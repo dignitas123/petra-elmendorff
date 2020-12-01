@@ -62,8 +62,7 @@ export default {
     color: inherit;
     text-decoration: none;
   }
-  font-size: 40px;
-  font-weight: bold;
+  font-size: var(--font-title1-size);
   color: var(--color-gray);
   margin: 19px 0 10px 0;
 }
@@ -99,6 +98,7 @@ export default {
 }
 
 .nav-item {
+  width: 190px;
   padding-right: 10px;
   height: 27px;
   padding-left: 10px;
@@ -106,13 +106,16 @@ export default {
     color: var(--color-dark-gray);
     text-decoration: none;
     &:hover {
-      transition: text-shadow 0.5s ease;
-      text-shadow: 0 0 1px var(--color-dark-gray);
+      transition: text-decoration 0.5s ease;
+      // text-shadow: 0 0 1px var(--color-dark-gray);
+      text-decoration: underline;
     }
   }
-}
-
-.nuxt-link-active {
-  font-weight: bold;
+  .nuxt-link-exact-active {
+    font-weight: bold;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 </style>
