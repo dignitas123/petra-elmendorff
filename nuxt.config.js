@@ -9,6 +9,9 @@ const routesQuery = `
 `
 
 export default {
+  router: {
+    linkActiveClass: 'active-link'
+  },
   dev: process.env.NODE_ENV !== 'production',
   ssr: true,
 

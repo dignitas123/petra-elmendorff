@@ -112,7 +112,7 @@ export default {
   }
 }
 
-.active-link {
+.nuxt-link-active {
   font-weight: bold;
 }
 </style>
