@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.scss';
+@import '../styles/custom-properties.css';
 
 .header {
   font-family: var(--font-family-sans) !important;

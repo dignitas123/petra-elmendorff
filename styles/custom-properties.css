@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-
-$font-family-sans-serif: 'Quicksand', sans-serif;
-
-@import "bootstrap/scss/bootstrap.scss";
-@import "bootstrap-vue/src/index.scss";
-
 :root {
   --font-family-sans: Quicksand, sans-serif;
-  --font-family-sans-secondary: Times, sans-serif;
+  --font-family-sans-secondary: Arial, sans-serif;
 
   --color-black: #202123;
   --color-dark-gray: #626262;

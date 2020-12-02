@@ -19,7 +19,6 @@ export default {}
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.scss';
 iframe {
   border: none;
   box-shadow: none;

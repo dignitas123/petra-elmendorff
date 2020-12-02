@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.scss';
+@import '../styles/custom-properties.css';
 
 .social-media-icon {
   font-size: var(--font-title2-size);

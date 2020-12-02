@@ -57,7 +57,7 @@ export default {
 
 <style scoped>
 @import '../styles/custom-media.css';
-@import '../styles/custom-properties.scss';
+@import '../styles/custom-properties.css';
 
 li.session {
   display: block;

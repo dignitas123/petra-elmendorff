@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style scoped>
-@import '../styles/custom-properties.scss';
-
 .sessionList {
   margin: 0;
   padding: 0;

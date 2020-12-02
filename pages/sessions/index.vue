@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../../styles/custom-properties.scss';
+@import '../../styles/custom-properties.css';
 
 .container {
   padding: 1.5rem 0;

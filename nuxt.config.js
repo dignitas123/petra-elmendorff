@@ -1,7 +1,3 @@
-import {
-  faFacebookSquare,
-  faYoutubeSquare
-} from '@fortawesome/free-brands-svg-icons'
 import pkg from './package'
 import sanityClient from './sanityClient'
 
@@ -15,7 +11,8 @@ const routesQuery = `
 export default {
   bootstrapVue: {
     bootstrapCSS: false,
-    bootstrapVueCSS: false
+    bootstrapVueCSS: false,
+    icons: true
   },
   router: {
     linkActiveClass: 'active-link'
@@ -45,8 +42,11 @@ export default {
    ** Global CSS
    */
   css: [
+    // '@bootstrap/scss/bootstrap.scss',
+    // '@bootstrap-vue/src/index.scss',
     { src: 'normalize.css' },
-    '@fortawesome/fontawesome-svg-core/styles.css'
+    '@fortawesome/fontawesome-svg-core/styles.css',
+    '@/assets/scss/custom.scss'
   ],
 
   /*
@@ -60,9 +60,6 @@ export default {
 
   // don't need PWA `'@nuxtjs/pwa'`
   modules: ['bootstrap-vue/nuxt'],
-  bootstrapVue: {
-    icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
-  },
 
   /*
    ** Set global info from sanity document
@@ -92,7 +89,7 @@ export default {
   build: {
     postcss: {
       plugins: {
-        'postcss-import': {},
+        'postcss-import': {  },
         'postcss-preset-env': {
           stage: 3,
           features: {

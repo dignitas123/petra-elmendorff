@@ -31,7 +31,7 @@ export default {
 }
 </script>
 <style scoped>
-@import '../styles/custom-properties.scss';
+@import '../styles/custom-properties.css';
 
 .session .persons {
   margin: 1rem 0 0;

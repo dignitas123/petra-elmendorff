@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../styles/custom-properties.scss';
+@import '../styles/custom-properties.css';
 
 .sessionGrid {
   margin: 0;
