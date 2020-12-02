@@ -68,7 +68,7 @@ export default {
   methods: {
     appendStyleToThisShit() {
       // when iframe is loaded append styles
-      console.log('')
+      console.log('hallo')
     }
   }
 }
@@ -101,8 +101,14 @@ iframe {
   }
 }
 
-#FormSubmit {
+.ktv2-submit-element-bg.button-text {
   width: 100% !important;
+}
+
+.ktv2-submit-element-button {
+  .button-text {
+    width: 100% !important;
+  }
 }
 
 .ktv2 {
