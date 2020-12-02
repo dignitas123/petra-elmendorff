@@ -33,6 +33,7 @@ export default {
     SanityImage
   },
   async asyncData() {
+    console.log('sanity fetch speaker', query)
     return await sanityClient.fetch(query)
   }
 }

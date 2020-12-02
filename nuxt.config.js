@@ -65,6 +65,7 @@ export default {
    ** Set global info from sanity document
    */
   eventInformation: () => {
+    console.log('sanity fetch config info', '*[_id == "eventInformation"]')
     return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
   },
 
@@ -74,6 +75,7 @@ export default {
    */
   generate: {
     routes: () => {
+      console.log('sanity fetch config generate', routesQuery)
       return sanityClient.fetch(routesQuery).then(res => {
         return [
           ...res.sessions.map(item => `/sessions/${item._id}`),
@@ -89,7 +91,7 @@ export default {
   build: {
     postcss: {
       plugins: {
-        'postcss-import': {  },
+        'postcss-import': {},
         'postcss-preset-env': {
           stage: 3,
           features: {

@@ -61,6 +61,7 @@ export default {
     }
   },
   async asyncData({ params }) {
+    console.log('sanity fetch speaker', query)
     return await sanityClient.fetch(query, params)
   },
   head() {

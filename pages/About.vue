@@ -38,6 +38,7 @@ export default {
     }
   },
   async asyncData() {
+    console.log('sanity fetch about', query)
     return await sanityClient.fetch(query)
   }
 }

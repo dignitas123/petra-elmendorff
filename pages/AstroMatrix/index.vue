@@ -33,6 +33,7 @@ export default {
     SanityImage
   },
   async asyncData() {
+    console.log('sanity fetch', query)
     return await sanityClient.fetch(query)
   }
 }

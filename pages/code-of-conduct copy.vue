@@ -38,6 +38,7 @@ export default {
     }
   },
   async asyncData() {
+    console.log('sanity fetch coc', query)
     return await sanityClient.fetch(query)
   }
 }

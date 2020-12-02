@@ -71,6 +71,7 @@ export default {
     }
   },
   async asyncData() {
+    console.log('sanity fetch index', query)
     return await sanityClient.fetch(query)
   },
   head() {

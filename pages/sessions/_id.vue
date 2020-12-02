@@ -53,6 +53,7 @@ export default {
     }
   },
   async asyncData({ params }) {
+    console.log('sanity fetch sessions', query)
     return await sanityClient.fetch(query, params)
   }
 }

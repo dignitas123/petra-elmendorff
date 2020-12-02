@@ -40,6 +40,7 @@ function populateWithDates(program, from) {
 }
 
 export default ({ store }) => {
+  console.log('sanity fetch eventinfo', query)
   return sanityClient.fetch(query).then(({ eventInformation, program }) => {
     store.commit('setEventInformation', eventInformation)
     store.commit(
