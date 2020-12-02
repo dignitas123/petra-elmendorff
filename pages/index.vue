@@ -11,7 +11,7 @@
       <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
     </header>
     <section>
-      <p>Test Icons <BIcon /> <BIconArrowUp /> <BIconArrowDown /></p>
+      <p>Test Icons <BIconArrowUp /> <BIconArrowDown /></p>
     </section>
     <label for="example-datepicker">Choose a date</label>
     <b-form-datepicker
@@ -44,7 +44,7 @@ import sanityClient from '../sanityClient'
 import SanityImage from '~/components/SanityImage'
 import SessionList from '~/components/SessionList'
 
-import { BIcon, BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
+import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
 const query = `
   {
@@ -58,7 +58,6 @@ export default {
   components: {
     SanityImage,
     SessionList,
-    BIcon,
     BIconArrowUp,
     BIconArrowDown
   },

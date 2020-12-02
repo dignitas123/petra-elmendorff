@@ -1,3 +1,7 @@
+import {
+  faFacebookSquare,
+  faYoutubeSquare
+} from '@fortawesome/free-brands-svg-icons'
 import pkg from './package'
 import sanityClient from './sanityClient'
 
@@ -40,12 +44,15 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: 'normalize.css' }],
+  css: [
+    { src: 'normalize.css' },
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/eventInformation'],
+  plugins: ['~/plugins/eventInformation', '~/plugins/fontawesome.js'],
 
   /*
    ** Nuxt.js modules

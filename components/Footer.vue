@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <b-container class="container">
+    <b-container>
       <b-row>
         <b-col>
           <h3>Kontakt</h3>
@@ -15,28 +15,23 @@
           </ul></b-col
         >
         <b-col>
-          <a href="#"><i class="fa fa-facebook"></i></a
-          ><a href="#"><i class="icon ion-social-youtube"></i></a
-        ></b-col>
+          <h3>Social Media</h3>
+          <font-awesome-icon
+            class="social-media-icon"
+            :icon="['fab', 'youtube-square']"
+          />
+          <font-awesome-icon
+            class="social-media-icon"
+            :icon="['fab', 'facebook-square']"
+          />
+        </b-col>
         <b-col>
           <h3>Newsletter</h3>
           <ul>
             <li></li>
           </ul>
-          <div>
-            <script
-              type="text/javascript"
-              src="https://klicktipp.s3.amazonaws.com/userimages/80432/forms/224065/57vuz1un2z8z5052.js"
-            ></script>
-            <iframe
-              @load="appendStyleToThisShit"
-              class="ktv2"
-              src="https://klicktipp.s3.amazonaws.com/userimages/80432/forms/224065/57vuz1un2z8z5052.html"
-              width="350"
-              height="236"
-              scrolling="no"
-            ></iframe></div
-        ></b-col>
+          <NewsletterFooter
+        /></b-col>
       </b-row>
     </b-container>
     <div class="text-center mt-40">
@@ -56,19 +51,18 @@
 </template>
 
 <script>
+import NewsletterFooter from './NewsletterFooter.vue'
+
 export default {
+  components: {
+    NewsletterFooter
+  },
   data: data => {
     if (!data.$store.state) {
       return
     }
     return {
       year: new Date().getFullYear()
-    }
-  },
-  methods: {
-    appendStyleToThisShit() {
-      // when iframe is loaded append styles
-      console.log('hallo')
     }
   }
 }
@@ -77,45 +71,10 @@ export default {
 <style scoped lang="scss">
 @import '../styles/custom-properties.scss';
 
-// newsletter input
-.ktv2-form {
-  padding: none !important;
+.social-media-icon {
+  font-size: var(--font-title2-size);
 }
 
-.ktv2-form-body-border {
-  padding: 0;
-}
-
-iframe {
-  border: none !important;
-}
-
-.ktv2-submit-element-bg.button-text {
-  background-color: none;
-}
-
-.ktv2-submit-element-bg {
-  background: var(--color-accent) !important;
-  .button-text {
-    width: 100% !important;
-  }
-}
-
-.ktv2-submit-element-bg.button-text {
-  width: 100% !important;
-}
-
-.ktv2-submit-element-button {
-  .button-text {
-    width: 100% !important;
-  }
-}
-
-.ktv2 {
-  font-family: var(--font-family-sans);
-}
-
-// footer style
 .item {
   .text {
     margin-bottom: 0px;

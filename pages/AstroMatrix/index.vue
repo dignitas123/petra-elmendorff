@@ -66,7 +66,7 @@ export default {
   position: relative;
   margin-bottom: 4em;
 
-  @nest & > a {
+  /* @nest & > a {
     display: block;
     padding: 1.5rem;
   }
@@ -75,7 +75,7 @@ export default {
     font-weight: 600;
     font-size: var(--font-title3-size);
     line-height: var(--font-title3-line-height);
-  }
+  } */
 }
 
 .speaker a {
