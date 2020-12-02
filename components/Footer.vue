@@ -6,7 +6,8 @@
           <h3>Kontakt</h3>
           <ul>
             <li>Petra Elmendorff</li>
-            <li>Ekkeberstr. 8 | D-79117 Freiburg</li>
+            <li>Ekkeberstr. 8</li>
+            <li>D-79117 Freiburg</li>
             <li>
               <a href="mailto:elmendorff.jsj@gmail.com"
                 >elmendorff.jsj@gmail.com</a
@@ -15,15 +16,17 @@
           </ul></b-col
         >
         <b-col>
-          <h3>Social Media</h3>
-          <font-awesome-icon
-            class="social-media-icon"
-            :icon="['fab', 'youtube-square']"
-          />
-          <font-awesome-icon
-            class="social-media-icon"
-            :icon="['fab', 'facebook-square']"
-          />
+          <div class="text-center">
+            <h3 id="socialMediaText">Social Media</h3>
+            <font-awesome-icon
+              class="social-media-icon"
+              :icon="['fab', 'youtube-square']"
+            />
+            <font-awesome-icon
+              class="social-media-icon"
+              :icon="['fab', 'facebook-square']"
+            />
+          </div>
         </b-col>
         <b-col>
           <h3>Newsletter</h3>
@@ -173,22 +176,28 @@ export default {
 }
 
 @media (max-width: 767px) {
-  .footer .item:not(.social) {
-    text-align: center;
-    padding-bottom: 20px;
+  .footer {
+    padding-top: 20px;
+    .container {
+      padding-left: 5px;
+      padding-right: 5px;
+      max-width: 640px;
+    }
+    #socialMediaText {
+      display: none;
+    }
   }
 }
 
-@media (max-width: 767px) {
-  .footer .item.text {
-    margin-bottom: 0;
+@media (max-width: 657px) {
+  div.col:nth-child(2) {
+    max-width: 100px;
   }
 }
 
-@media (max-width: 991px) {
-  .footer .item.social {
-    text-align: center;
-    margin-top: 20px;
+@media (max-width: 509px) {
+  .copyright-text {
+    display: block ruby;
   }
 }
 </style>
