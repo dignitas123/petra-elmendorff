@@ -1,16 +1,57 @@
 <template>
   <div>
+    <div id="form-224136-wrapper">
+      <form
+        id="ktv2-form-224136"
+        accept-charset="UTF-8"
+        method="post"
+        action="https://app.klicktipp.com/api/subscriber/signin.html"
+      >
+        <input
+          type="hidden"
+          id="FormField_ApiKey"
+          name="apikey"
+          value="57xvz1un2z8z964c"
+        /><input
+          type="hidden"
+          id="FormField_Digit"
+          name="fields[fieldDigit]"
+          value=""
+        />
+        <div class="ktv2-form-element">
+          <input
+            type="text"
+            id="FormField_FirstName"
+            name="fields[fieldFirstName]"
+            value=""
+            placeholder="Dein Name"
+          />
+        </div>
+        <div class="ktv2-form-element">
+          <input
+            type="text"
+            id="FormField_EmailAddress"
+            name="email"
+            value=""
+            size="40"
+            placeholder="Deine Emailadresse"
+          />
+        </div>
+        <div>
+          <input
+            class="btn btn-secondary"
+            type="submit"
+            id="FormSubmit"
+            name="FormSubmit"
+            value="Eintragen"
+          />
+        </div>
+      </form>
+    </div>
     <script
       type="text/javascript"
-      src="https://klicktipp.s3.amazonaws.com/userimages/80432/forms/224065/57vuz1un2z8z5052.js"
+      src="https://klicktipp.s3.amazonaws.com/listbuildings/system/forms/scripts/protect.js"
     ></script>
-    <iframe
-      class="ktv2"
-      src="https://klicktipp.s3.amazonaws.com/userimages/80432/forms/224065/57vuz1un2z8z5052.html"
-      width="350"
-      height="236"
-      scrolling="no"
-    ></iframe>
   </div>
 </template>
 
@@ -19,9 +60,63 @@ export default {}
 </script>
 
 <style scoped lang="scss">
-iframe {
+@import '../styles/custom-properties.css';
+
+@mixin form-style {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  font-family: var(--font-family-sans-secondary);
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: white;
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: white;
+  opacity: 1;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+  opacity: 1;
+}
+
+.ktv2-form-element {
+  input {
+    @include form-style;
+    border: 2px solid white;
+    background: transparent;
+    padding-left: 4px;
+    color: white;
+
+    &:focus {
+      border: 2px solid var(--color-dark-gray);
+      caret-color: var(--color-dark-gray);
+      color: var(--color-dark-gray);
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+}
+
+input[type='submit'] {
+  @include form-style;
+  border-radius: 0;
+  background: var(--color-accent);
   border: none;
-  box-shadow: none;
-  height: 170px;
+  &:hover {
+    background: var(--color-background);
+    border: 2px solid white;
+  }
 }
 </style>
