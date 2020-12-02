@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxtjs/pwa": "^2.6.0",
-    "@sanity/client": "^2.0.0",
+    "@sanity/client": "^2.0.9",
     "@sanity/image-url": "^0.140.19",
     "add": "^2.0.6",
     "bootstrap-vue": "^2.19.0",
