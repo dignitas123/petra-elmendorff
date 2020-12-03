@@ -1,12 +1,12 @@
 <template>
   <header class="header">
     <h1 id="petraelmendorff" class="text-center">
-      <nuxt-link to="/">{{ title }}</nuxt-link>
+      <nuxt-link to="/">{{ sitetitle }}</nuxt-link>
     </h1>
     <div id="subHeaderText">
       <img id="chinesSign" src="~/assets/img/chinese_sign_jinshinjyutsu.png" />
       <h2 id="petraelmendorffSub" class="text-center">
-        Jin Shin Jyutsu &amp; AstroMatrix
+        {{ subheadertext }}
       </h2>
     </div>
     <nav class="navbar navbar-light navbar-expand-md">
@@ -41,6 +41,14 @@ export default {
     title: {
       type: String,
       default: 'Petra Elemendorff'
+    }
+  },
+  computed: {
+    sitetitle: function() {
+      return this.$store.state.eventInformation.name
+    },
+    subheadertext: function() {
+      return this.$store.state.eventInformation.description
     }
   }
 }

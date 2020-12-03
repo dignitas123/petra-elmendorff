@@ -1,8 +1,8 @@
 <template>
   <section class="container">
     <header class="header">
-      <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p>
+      <!-- <h1 class="title">{{ info.name }}</h1>
+      <p class="subtitle">{{ info.description }}</p> -->
       <div class="dates">
         {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
         &ndash;
