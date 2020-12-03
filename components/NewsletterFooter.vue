@@ -8,20 +8,20 @@
         action="https://app.klicktipp.com/api/subscriber/signin.html"
       >
         <input
-          type="hidden"
           id="FormField_ApiKey"
+          type="hidden"
           name="apikey"
           value="57xvz1un2z8z964c"
         /><input
-          type="hidden"
           id="FormField_Digit"
+          type="hidden"
           name="fields[fieldDigit]"
           value=""
         />
         <div class="ktv2-form-element">
           <input
-            type="text"
             id="FormField_FirstName"
+            type="text"
             name="fields[fieldFirstName]"
             value=""
             placeholder="Dein Name"
@@ -29,8 +29,8 @@
         </div>
         <div class="ktv2-form-element">
           <input
-            type="text"
             id="FormField_EmailAddress"
+            type="text"
             name="email"
             value=""
             size="40"
@@ -39,9 +39,9 @@
         </div>
         <div>
           <input
+            id="FormSubmit"
             class="btn btn-secondary"
             type="submit"
-            id="FormSubmit"
             name="FormSubmit"
             value="Eintragen"
           />

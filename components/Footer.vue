@@ -37,7 +37,7 @@
         /></b-col>
       </b-row>
     </b-container>
-    <div class="text-center mt-40">
+    <div class="mt-3">
       <h2 class="divider-style"></h2>
     </div>
     <p class="copyright">
@@ -92,6 +92,19 @@ export default {
   position: relative;
   margin-right: 40px;
   margin-left: 40px;
+  max-width: 1140px;
+  @media (max-width: 1199px) {
+    max-width: 950px;
+  }
+  @media (max-width: 991px) {
+    max-width: 730px;
+  }
+  @media (max-width: 769px) {
+    max-width: 95%;
+  }
+  left: 0;
+  right: 0;
+  margin: auto;
   span {
     background: #fff;
     padding: 0 20px;
@@ -198,6 +211,12 @@ export default {
 @media (max-width: 509px) {
   .copyright-text {
     display: block ruby;
+  }
+}
+
+@media (max-width: 509px) {
+  div.col:nth-child(3) {
+    margin-top: 30px;
   }
 }
 </style>
