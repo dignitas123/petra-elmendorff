@@ -2,6 +2,7 @@ export const state = () => ({
   eventInformation: {
     title: 'Petra Elmendorff'
   },
+  language: 'DE',
   program: {}
 })
 
@@ -11,6 +12,9 @@ export const getters = {
   },
   getProgram(state) {
     return state.program
+  },
+  getLangauge(state) {
+    return state.language
   }
 }
 
@@ -20,5 +24,8 @@ export const mutations = {
   },
   setProgram(state, program) {
     state.program = program
+  },
+  setLanguage(state, language) {
+    state.language = language
   }
 }

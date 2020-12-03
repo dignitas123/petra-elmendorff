@@ -66,7 +66,7 @@ export default {}
   width: 100%;
   height: 40px;
   margin-bottom: 10px;
-  font-family: var(--font-family-sans-secondary);
+  font-family: var(--font-family-sans);
 }
 
 ::-webkit-input-placeholder {

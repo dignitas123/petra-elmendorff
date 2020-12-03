@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-$font-family-sans-serif: 'Quicksand', sans-serif;
+//bootstrap default overrides before importing bootstrap
+$font-family-sans-serif: Arial, sans-serif;
+
+a {
+  color: #626262 !important;
+}
+
+$spacer: 1rem;
 
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';

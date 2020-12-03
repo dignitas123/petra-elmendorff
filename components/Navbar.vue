@@ -9,29 +9,65 @@
         {{ subheadertext }}
       </h2>
     </div>
-    <nav class="navbar navbar-light navbar-expand-md">
-      <div class="container-fluid">
-        <div
-          id="navcol-1"
-          class="collapse navbar-collapse justify-content-center show"
-        >
-          <ul class="nav navbar-nav">
-            <li class="nav-item">
-              <nuxt-link to="/JinShinJyutsu">Jin Shin Jyutsu</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link to="/AstroMatrix">AstroMatrix</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link to="/KurseAngebote">Kurse-Angebote</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link to="/About">Über</nuxt-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <b-navbar toggleable="lg" type="light" variant="sucess">
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="pl-20 ml-auto main-nav"
+          ><div>
+            <nuxt-link
+              class="nav-option border-right"
+              title="Jin Shin Jyutsu"
+              to="/JinShinJyutsu"
+              >Jin Shin Jyutsu</nuxt-link
+            >
+          </div>
+          <div>
+            <nuxt-link
+              class="nav-option border-right"
+              title="AstroMatrix"
+              to="/AstroMatrix"
+              >AstroMatrix</nuxt-link
+            >
+          </div>
+          <div>
+            <nuxt-link
+              class="nav-option border-right"
+              title="Kurse-Angebote"
+              to="/KurseAngebote"
+              >Kurse-Angebote</nuxt-link
+            >
+          </div>
+          <div>
+            <nuxt-link class="nav-option" title="Über" to="/About"
+              >Über</nuxt-link
+            >
+          </div>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="lang ml-auto pr-5">
+          <div>
+            <span
+              class="lang border-right"
+              :class="isLanguage('EN')"
+              right
+              @click="changeLanguage($event)"
+              >E</span
+            >
+          </div>
+          <div>
+            <span
+              class="lang"
+              :class="isLanguage('DE')"
+              right
+              @click="changeLanguage($event)"
+              >D</span
+            >
+          </div>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </header>
 </template>
 
@@ -40,7 +76,12 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Petra Elemendorff'
+      default: 'Petra Elmendorff'
+    }
+  },
+  data() {
+    return {
+      selLanguage: this.$store.state.language
     }
   },
   computed: {
@@ -50,6 +91,19 @@ export default {
     subheadertext: function() {
       return this.$store.state.eventInformation.description
     }
+  },
+  methods: {
+    changeLanguage: function(event) {
+      let lang = event.target.innerHTML
+      if (lang == 'D') {
+        this.selLanguage = 'DE'
+      } else {
+        this.selLanguage = 'EN'
+      }
+    },
+    isLanguage: function(lang) {
+      return lang == this.selLanguage ? 'underline' : ''
+    }
   }
 }
 </script>
@@ -57,12 +111,12 @@ export default {
 <style scoped lang="scss">
 @import '../styles/custom-properties.css';
 
-.header {
-  font-family: var(--font-family-sans) !important;
-}
-
 .navbar {
   font-size: var(--font-large-size);
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 #petraelmendorff {
@@ -77,9 +131,9 @@ export default {
 }
 
 #petraelmendorffSub {
+  font-family: var(--font-family-sans-secondary);
   font-size: var(--font-title2-size);
   display: inline-block;
-  padding-top: 5px;
   vertical-align: middle;
   color: var(--color-golden);
 }
@@ -102,30 +156,56 @@ export default {
   margin: 0 auto;
 }
 
-.nav-item:not(:last-child) {
-  border-right: 1px solid var(--color-dark-gray);
-}
-
-.nav-item {
-  max-width: 190px;
-  padding-right: 10px;
-  height: 27px;
-  padding-left: 10px;
-  & a {
-    color: var(--color-dark-gray);
-    text-decoration: none;
-    &:hover {
-      transition: text-decoration 0.5s ease;
-      // text-shadow: 0 0 1px var(--color-dark-gray);
-      text-decoration: underline;
+.main-nav {
+  padding-left: 80px;
+  div {
+    display: inline-block;
+    font-size: 0;
+    .border-right {
+      border-right: 1px solid var(--color-dark-gray);
     }
-  }
-  .nuxt-link-exact-active {
-    font-family: var(--font-family-sans-secondary);
-    font-weight: bold;
-    &:hover {
+    .nav-option {
+      display: inline-block;
+      padding-right: 10px;
+      padding-left: 10px;
+      text-align: center;
+      font: normal var(--font-title3-size) var(--font-family-sans-secondary);
+      .lang {
+        font-family: var(--font-family-sans);
+        font-weight: bold;
+      }
+      &:hover {
+        font-weight: bold;
+        text-decoration: none;
+      }
+      &::before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+    }
+    .nuxt-link-exact-active {
+      font-weight: bold;
       text-decoration: none;
     }
   }
+}
+
+.lang {
+  color: var(--color-dark-gray);
+  padding-right: 5px;
+  padding-left: 5px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.navbar-nav {
+  font-family: var(--font-family-sans);
+  font-weight: bold;
 }
 </style>

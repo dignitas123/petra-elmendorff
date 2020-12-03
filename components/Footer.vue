@@ -16,8 +16,8 @@
           </ul></b-col
         >
         <b-col>
-          <div class="text-center">
-            <h3 id="socialMediaText">Social Media</h3>
+          <h3 id="socialMediaText">Social Media</h3>
+          <div class="pl-5 social-media-buttons">
             <font-awesome-icon
               class="social-media-icon"
               :icon="['fab', 'youtube-square']"
@@ -189,6 +189,9 @@ export default {
 }
 
 @media (max-width: 767px) {
+  .social-media-buttons {
+    padding-left: 0 !important;
+  }
   .footer {
     padding-top: 20px;
     .container {
