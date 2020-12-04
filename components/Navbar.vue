@@ -228,6 +228,7 @@ export default {
   .language-mobile {
     top: 105px !important;
     left: 15px;
+    width: 200px;
   }
 }
 
