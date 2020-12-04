@@ -16,7 +16,7 @@
         <b-navbar-nav class="pl-20 ml-auto main-nav"
           ><div>
             <nuxt-link
-              class="nav-option border-right"
+              class="nav-option border-right-v"
               title="Jin Shin Jyutsu"
               to="/JinShinJyutsu"
               >Jin Shin Jyutsu</nuxt-link
@@ -24,7 +24,7 @@
           </div>
           <div>
             <nuxt-link
-              class="nav-option border-right"
+              class="nav-option border-right-v"
               title="AstroMatrix"
               to="/AstroMatrix"
               >AstroMatrix</nuxt-link
@@ -32,7 +32,7 @@
           </div>
           <div>
             <nuxt-link
-              class="nav-option border-right"
+              class="nav-option border-right-v"
               title="Kurse-Angebote"
               to="/KurseAngebote"
               >Kurse-Angebote</nuxt-link
@@ -49,7 +49,7 @@
         <b-navbar-nav class="lang ml-auto pr-5">
           <div>
             <span
-              class="lang border-right"
+              class="lang border-right-v"
               :class="isLanguage('EN')"
               right
               @click="changeLanguage($event)"
@@ -68,6 +68,14 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+    <div class="language-mobile">
+      <span :class="isLanguage('EN')" right @click="changeLanguage($event)"
+        >E</span
+      >
+      <span :class="isLanguage('DE')" right @click="changeLanguage($event)"
+        >D</span
+      >
+    </div>
   </header>
 </template>
 
@@ -111,6 +119,10 @@ export default {
 <style scoped lang="scss">
 @import '../styles/custom-properties.css';
 
+.language-mobile {
+  display: none;
+}
+
 .navbar {
   font-size: var(--font-large-size);
 }
@@ -139,7 +151,8 @@ export default {
 }
 
 #chinesSign {
-  height: 33px;
+  height: 40px;
+  padding-bottom: 5px;
 }
 
 #subHeaderText {
@@ -161,7 +174,7 @@ export default {
   div {
     display: inline-block;
     font-size: 0;
-    .border-right {
+    .border-right-v {
       border-right: 1px solid var(--color-dark-gray);
     }
     .nav-option {
@@ -204,8 +217,48 @@ export default {
   }
 }
 
-.navbar-nav {
-  font-family: var(--font-family-sans);
-  font-weight: bold;
+@media (max-width: 521px) {
+  #petraelmendorff {
+    padding-left: 20px;
+    font-size: var(--font-title2-size);
+  }
+  #petraelmendorffSub {
+    font-size: var(--font-title3-size);
+  }
+}
+
+@media (max-width: 991px) {
+  .main-nav {
+    padding-left: 0;
+  }
+  .navbar-nav {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    margin-top: 5px;
+    text-align: center;
+    div {
+      padding-bottom: 5px;
+      a {
+        border-right: none !important;
+      }
+    }
+  }
+  .lang {
+    display: none;
+  }
+
+  .language-mobile {
+    color: var(--color-dark-gray);
+    font-size: 21px;
+    display: block;
+    position: absolute;
+    top: 105px;
+    left: 15px;
+    span:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 }
 </style>

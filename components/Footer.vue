@@ -212,14 +212,11 @@ export default {
 }
 
 @media (max-width: 509px) {
-  .copyright-text {
-    display: block ruby;
-  }
-}
-
-@media (max-width: 509px) {
   div.col:nth-child(3) {
     margin-top: 30px;
+  }
+  .copyright-text {
+    display: block ruby;
   }
 }
 </style>
