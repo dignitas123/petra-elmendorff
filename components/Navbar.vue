@@ -225,6 +225,10 @@ export default {
   #petraelmendorffSub {
     font-size: var(--font-title3-size);
   }
+  .language-mobile {
+    top: 105px !important;
+    left: 15px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -253,8 +257,8 @@ export default {
     font-size: 21px;
     display: block;
     position: absolute;
-    top: 105px;
-    left: 15px;
+    top: 15px;
+    right: 25px;
     span:hover {
       cursor: pointer;
       text-decoration: underline;
