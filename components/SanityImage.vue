@@ -1,5 +1,17 @@
 <template>
-  <img :src="imageUrl" :alt="altFromImage || alt" />
+  <b-container>
+    <b-row>
+      <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
+        <div
+          class="maintxt"
+          :style="{ backgroundImage: `url(${imageUrl})` }"
+          :aria-label="altFromImage || alt"
+        >
+          {{ zitat }}
+        </div>
+      </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -14,9 +26,14 @@ export default {
       type: Object,
       required: true
     },
+    zitat: {
+      default: '',
+      type: String,
+      required: true
+    },
     alt: {
       type: String,
-      default: ''
+      default: 'Petra Elmendorff Bild - Home'
     },
     width: Number,
     height: Number,
@@ -43,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.maintxt {
+  background-size: cover;
+}
+</style>

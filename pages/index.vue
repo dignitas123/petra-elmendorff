@@ -3,14 +3,14 @@
     <header class="header">
       <!-- <h1 class="title">{{ info.name }}</h1>
       <p class="subtitle">{{ info.description }}</p> -->
-      <div class="dates">
+      <!-- <div class="dates">
         {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
         &ndash;
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
-      </div>
-      <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
+      </div> -->
+      <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
     </header>
-    <section>
+    <!-- <section>
       <p>Test Icons <BIconArrowUp /> <BIconArrowDown /></p>
     </section>
     <label for="example-datepicker">Choose a date</label>
@@ -19,15 +19,16 @@
       v-model="value"
       class="mb-2"
     ></b-form-datepicker>
-    <p>Value: '{{ value }}'</p>
-    <figure :v-if="info.image">
+    <p>Value: '{{ value }}'</p> -->
+    <figure>
       <SanityImage
-        :image="info.image"
+        :image="home.image"
+        :zitat="home.image.zitat"
         :width="1800"
         :height="500"
         class="mainImage"
       />
-      <figcaption>{{ info.image.caption }}</figcaption>
+      <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
     </figure>
 
     <div class="sessionListContainer">
@@ -44,12 +45,20 @@ import sanityClient from '../sanityClient'
 import SanityImage from '~/components/SanityImage'
 import SessionList from '~/components/SessionList'
 
-import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
+// import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
-const query = `
+/* const query = `
   {
     "info": *[_id == "eventInformation"] {
       ..., image { ..., asset->}
+    }[0]
+  }
+` */
+
+const query = `
+  {
+    "home": *[_id == "home"] {
+      image { ..., asset->}
     }[0]
   }
 `
@@ -57,9 +66,9 @@ const query = `
 export default {
   components: {
     SanityImage,
-    SessionList,
-    BIconArrowUp,
-    BIconArrowDown
+    SessionList
+    // BIconArrowUp,
+    // BIconArrowDown
   },
   filters: {
     dateFilter
