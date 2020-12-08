@@ -19,27 +19,6 @@
             >{{ link.title.de }}</nuxt-link
           >
         </div>
-        <div>
-          <nuxt-link
-            class="nav-option border-right-v"
-            title="AstroMatrix"
-            to="/AstroMatrix"
-            >AstroMatrix</nuxt-link
-          >
-        </div>
-        <div>
-          <nuxt-link
-            class="nav-option border-right-v"
-            title="Kurse-Angebote"
-            to="/KurseAngebote"
-            >Kurse-Angebote</nuxt-link
-          >
-        </div>
-        <div>
-          <nuxt-link class="nav-option" title="Über" to="/About"
-            >Über</nuxt-link
-          >
-        </div>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
