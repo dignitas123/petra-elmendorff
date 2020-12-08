@@ -11,12 +11,12 @@
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
       <b-navbar-nav class="pl-20 ml-auto main-nav"
-        ><div>
+        ><div v-for="link in headermenue" :key="link.slug">
           <nuxt-link
             class="nav-option border-right-v"
-            title="Jin Shin Jyutsu"
-            to="/JinShinJyutsu"
-            >Jin Shin Jyutsu</nuxt-link
+            :title="link.title.de"
+            :to="'/' + link.slug.current"
+            >{{ link.title.de }}</nuxt-link
           >
         </div>
         <div>
@@ -90,10 +90,13 @@ export default {
   },
   computed: {
     sitetitle: function() {
-      return this.$store.state.eventInformation.name
+      return this.$store.state.siteSettings.title
     },
     subheadertext: function() {
-      return this.$store.state.eventInformation.description
+      return this.$store.state.siteSettings.description.de
+    },
+    headermenue: function() {
+      return this.$store.state.siteSettings.headermenue
     }
   },
   methods: {

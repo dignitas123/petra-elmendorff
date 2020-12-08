@@ -2,6 +2,12 @@ import sanityClient from '~/sanityClient'
 import { addMinutes } from 'date-fns'
 
 const query = `{
+  "siteSettings": *[_id == "siteSettings"][0]{
+    ...,
+    headermenue[]->{ title, slug},
+    footermenue[]->{ title, slug}
+
+  },
   "eventInformation": *[_id == "eventInformation"][0],
   "program": *[_id == "program"][0] {
     ...,
@@ -41,11 +47,14 @@ function populateWithDates(program, from) {
 
 export default ({ store }) => {
   console.log('sanity fetch eventinfo', query)
-  return sanityClient.fetch(query).then(({ eventInformation, program }) => {
-    store.commit('setEventInformation', eventInformation)
-    store.commit(
-      'setProgram',
-      populateWithDates(program, new Date(eventInformation.schedule.from))
-    )
-  })
+  return sanityClient
+    .fetch(query)
+    .then(({ siteSettings, eventInformation, program }) => {
+      store.commit('setSiteSettings', siteSettings)
+      store.commit('setEventInformation', eventInformation)
+      store.commit(
+        'setProgram',
+        populateWithDates(program, new Date(eventInformation.schedule.from))
+      )
+    })
 }

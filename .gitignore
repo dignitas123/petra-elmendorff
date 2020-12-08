@@ -85,3 +85,4 @@ sw.*
 
 # VS Code
 .vscode
+*.code-workspace
