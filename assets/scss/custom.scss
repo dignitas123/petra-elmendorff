@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+// Quicksand Import
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
-//bootstrap default overrides before importing bootstrap
+// bootstrap default overrides before importing bootstrap
 $font-family-sans-serif: Arial, sans-serif;
 
 a {

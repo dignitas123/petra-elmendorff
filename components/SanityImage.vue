@@ -16,7 +16,7 @@ export default {
     },
     alt: {
       type: String,
-      default: 'Missing alternative text'
+      default: ''
     },
     width: Number,
     height: Number,
