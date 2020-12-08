@@ -10,9 +10,6 @@
       </h2>
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="pl-20 ml-auto main-nav"
           ><div>
             <nuxt-link
@@ -66,7 +63,6 @@
             >
           </div>
         </b-navbar-nav>
-      </b-collapse>
     </b-navbar>
     <div class="language-mobile">
       <span :class="isLanguage('EN')" right @click="changeLanguage($event)"
@@ -228,7 +224,7 @@ export default {
   .language-mobile {
     top: 105px !important;
     left: 15px;
-    width: 200px;
+    width: 100px;
   }
 }
 
