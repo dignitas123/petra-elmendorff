@@ -1,6 +1,16 @@
 <template>
   <section class="container">
     <header class="header">
+      <figure>
+        <SanityImage
+          :image="home.image"
+          :zitat="home.image.zitat"
+          :width="1800"
+          :height="500"
+          class="mainImage"
+        />
+        <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
+      </figure>
       <!-- <h1 class="title">{{ info.name }}</h1>
       <p class="subtitle">{{ info.description }}</p> -->
       <!-- <div class="dates">
@@ -20,17 +30,6 @@
       class="mb-2"
     ></b-form-datepicker>
     <p>Value: '{{ value }}'</p> -->
-    <figure>
-      <SanityImage
-        :image="home.image"
-        :zitat="home.image.zitat"
-        :width="1800"
-        :height="500"
-        class="mainImage"
-      />
-      <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
-    </figure>
-
     <div class="sessionListContainer">
       <h2 class="sessionListTitle">Schedule</h2>
       <SessionList :program="program" :info="info" />
@@ -117,8 +116,8 @@ export default {
 }
 
 .header {
-  padding: 0 1.5rem;
   text-align: center;
+  width: 100%;
 }
 
 .title + p + .dates {

@@ -10,59 +10,59 @@
       </h2>
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
-        <b-navbar-nav class="pl-20 ml-auto main-nav"
-          ><div>
-            <nuxt-link
-              class="nav-option border-right-v"
-              title="Jin Shin Jyutsu"
-              to="/JinShinJyutsu"
-              >Jin Shin Jyutsu</nuxt-link
-            >
-          </div>
-          <div>
-            <nuxt-link
-              class="nav-option border-right-v"
-              title="AstroMatrix"
-              to="/AstroMatrix"
-              >AstroMatrix</nuxt-link
-            >
-          </div>
-          <div>
-            <nuxt-link
-              class="nav-option border-right-v"
-              title="Kurse-Angebote"
-              to="/KurseAngebote"
-              >Kurse-Angebote</nuxt-link
-            >
-          </div>
-          <div>
-            <nuxt-link class="nav-option" title="Über" to="/About"
-              >Über</nuxt-link
-            >
-          </div>
-        </b-navbar-nav>
+      <b-navbar-nav class="pl-20 ml-auto main-nav"
+        ><div>
+          <nuxt-link
+            class="nav-option border-right-v"
+            title="Jin Shin Jyutsu"
+            to="/JinShinJyutsu"
+            >Jin Shin Jyutsu</nuxt-link
+          >
+        </div>
+        <div>
+          <nuxt-link
+            class="nav-option border-right-v"
+            title="AstroMatrix"
+            to="/AstroMatrix"
+            >AstroMatrix</nuxt-link
+          >
+        </div>
+        <div>
+          <nuxt-link
+            class="nav-option border-right-v"
+            title="Kurse-Angebote"
+            to="/KurseAngebote"
+            >Kurse-Angebote</nuxt-link
+          >
+        </div>
+        <div>
+          <nuxt-link class="nav-option" title="Über" to="/About"
+            >Über</nuxt-link
+          >
+        </div>
+      </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="lang ml-auto pr-5">
-          <div>
-            <span
-              class="lang border-right-v"
-              :class="isLanguage('EN')"
-              right
-              @click="changeLanguage($event)"
-              >E</span
-            >
-          </div>
-          <div>
-            <span
-              class="lang"
-              :class="isLanguage('DE')"
-              right
-              @click="changeLanguage($event)"
-              >D</span
-            >
-          </div>
-        </b-navbar-nav>
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="lang ml-auto pr-5">
+        <div>
+          <span
+            class="lang border-right-v"
+            :class="isLanguage('EN')"
+            right
+            @click="changeLanguage($event)"
+            >E</span
+          >
+        </div>
+        <div>
+          <span
+            class="lang"
+            :class="isLanguage('DE')"
+            right
+            @click="changeLanguage($event)"
+            >D</span
+          >
+        </div>
+      </b-navbar-nav>
     </b-navbar>
     <div class="language-mobile">
       <span :class="isLanguage('EN')" right @click="changeLanguage($event)"

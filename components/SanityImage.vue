@@ -1,13 +1,14 @@
 <template>
   <b-container>
     <b-row>
-      <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
-        <div
-          class="maintxt"
-          :style="{ backgroundImage: `url(${imageUrl})` }"
-          :aria-label="altFromImage || alt"
-        >
-          {{ zitat }}
+      <div
+        class="maintxt d-flex align-items-center"
+        :style="{ backgroundImage: `url(${imageUrl})` }"
+        :aria-label="altFromImage || alt"
+      >
+        <div class="text-center mt-3">
+          <h2>{{ zitat }}</h2>
+          - Petra Elmendorff
         </div>
       </div>
     </b-row>
@@ -63,6 +64,8 @@ export default {
 
 <style scoped>
 .maintxt {
+  height: 500px;
   background-size: cover;
+  background: center;
 }
 </style>
