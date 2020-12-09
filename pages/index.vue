@@ -2,11 +2,12 @@
   <section class="container">
     <header class="header">
       <figure>
-        <SanityImage
+        <BannerImage
           :image="home.image"
           :zitat="home.image.zitat"
           :width="1800"
           :height="500"
+          :author="sitetitle"
           class="mainImage"
         />
         <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
@@ -30,10 +31,10 @@
       class="mb-2"
     ></b-form-datepicker>
     <p>Value: '{{ value }}'</p> -->
-    <div class="sessionListContainer">
+    <!-- <div class="sessionListContainer">
       <h2 class="sessionListTitle">Schedule</h2>
       <SessionList :program="program" :info="info" />
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -41,8 +42,8 @@
 import { dateFilter } from 'vue-date-fns'
 
 import sanityClient from '../sanityClient'
-import SanityImage from '~/components/SanityImage'
-import SessionList from '~/components/SessionList'
+import BannerImage from '~/components/BannerImage'
+// import SessionList from '~/components/SessionList'
 
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
@@ -64,8 +65,8 @@ const query = `
 
 export default {
   components: {
-    SanityImage,
-    SessionList
+    BannerImage
+    // SessionList
     // BIconArrowUp,
     // BIconArrowDown
   },
@@ -74,8 +75,16 @@ export default {
   },
   data() {
     return {
-      value: '',
+      // value: '',
       program: this.$store.getters.getProgram
+    }
+  },
+  computed: {
+    sitetitle: function() {
+      return this.$store.state.siteSettings.title
+    },
+    selLanguage: function() {
+      return this.$store.state.language
     }
   },
   async asyncData() {
@@ -83,21 +92,22 @@ export default {
     return await sanityClient.fetch(query)
   },
   head() {
-    if (!this || !this.info) {
+    let siteSettings = this.$store.state.siteSettings
+    if (!this || !this.home) {
       return
     }
     return {
-      title: this.info.name,
+      title: this.$store.state.siteSettings.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.info.description
+          content: siteSettings.description
         },
         {
           hid: 'keywords',
           name: 'keywords',
-          content: this.info.keywords.join(',')
+          content: siteSettings.keywords
         }
       ]
     }

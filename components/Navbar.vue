@@ -11,12 +11,15 @@
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
       <b-navbar-nav class="pl-20 ml-auto main-nav"
-        ><div v-for="link in headermenue" :key="link.slug">
+        ><div v-for="(link, i) in headermenue" :key="i">
+          <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link
-            class="nav-option border-right-v"
-            :title="link.title.de"
+            class="nav-option"
+            :title="selLanguage == 'DE' ? link.title.de : link.title.en"
             :to="'/' + link.slug.current"
-            >{{ link.title.de }}</nuxt-link
+            >{{
+              selLanguage == 'DE' ? link.title.de : link.title.en
+            }}</nuxt-link
           >
         </div>
       </b-navbar-nav>
@@ -26,7 +29,7 @@
         <div>
           <span
             class="lang border-right-v"
-            :class="isLanguage('EN')"
+            :class="underlineIfLang('EN')"
             right
             @click="changeLanguage($event)"
             >E</span
@@ -35,7 +38,7 @@
         <div>
           <span
             class="lang"
-            :class="isLanguage('DE')"
+            :class="underlineIfLang('DE')"
             right
             @click="changeLanguage($event)"
             >D</span
@@ -44,10 +47,10 @@
       </b-navbar-nav>
     </b-navbar>
     <div class="language-mobile">
-      <span :class="isLanguage('EN')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('EN')" right @click="changeLanguage($event)"
         >E</span
       >
-      <span :class="isLanguage('DE')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('DE')" right @click="changeLanguage($event)"
         >D</span
       >
     </div>
@@ -72,7 +75,7 @@ export default {
       return this.$store.state.siteSettings.title
     },
     subheadertext: function() {
-      return this.$store.state.siteSettings.description.de
+      return this.$store.state.siteSettings.subheader
     },
     headermenue: function() {
       return this.$store.state.siteSettings.headermenue
@@ -81,13 +84,14 @@ export default {
   methods: {
     changeLanguage: function(event) {
       let lang = event.target.innerHTML
+      console.log('change language to', lang)
       if (lang == 'D') {
         this.selLanguage = 'DE'
       } else {
         this.selLanguage = 'EN'
       }
     },
-    isLanguage: function(lang) {
+    underlineIfLang: function(lang) {
       return lang == this.selLanguage ? 'underline' : ''
     }
   }
@@ -152,8 +156,10 @@ export default {
   div {
     display: inline-block;
     font-size: 0;
-    .border-right-v {
-      border-right: 1px solid var(--color-dark-gray);
+    &:not(:last-child) {
+      .nav-option {
+        border-right: 1px solid var(--color-dark-gray);
+      }
     }
     .nav-option {
       display: inline-block;
@@ -183,6 +189,10 @@ export default {
       text-decoration: none;
     }
   }
+}
+
+.border-right-v {
+  border-right: 1px solid var(--color-dark-gray);
 }
 
 .lang {

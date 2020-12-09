@@ -1,5 +1,18 @@
 <template>
-  <img :src="imageUrl" :alt="altFromImage || alt" />
+  <b-container>
+    <b-row>
+      <div
+        class="maintxt d-flex align-items-center"
+        :style="{ backgroundImage: `url(${imageUrl})` }"
+        :aria-label="altFromImage || alt"
+      >
+        <div class="text-center mt-3">
+          <h2>{{ zitat }}</h2>
+          - {{ author }}
+        </div>
+      </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -7,15 +20,26 @@
 import sanityClient from '~/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
 const builder = imageUrlBuilder(sanityClient)
+
 export default {
   props: {
     image: {
       type: Object,
       required: true
     },
+    zitat: {
+      default: '',
+      type: String,
+      required: true
+    },
+    author: {
+      default: '',
+      type: String,
+      required: true
+    },
     alt: {
       type: String,
-      default: 'Missing alternative text'
+      default: 'Petra Elmendorff Bild - Home'
     },
     width: Number,
     height: Number,
@@ -42,3 +66,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.maintxt {
+  height: 500px;
+  background-size: cover;
+  background: center;
+}
+</style>

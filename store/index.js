@@ -8,6 +8,9 @@ export const state = () => ({
 })
 
 export const getters = {
+  getSiteSettings(state) {
+    return state.siteSettings
+  },
   eventInformation(state) {
     return state.eventInformation
   },
