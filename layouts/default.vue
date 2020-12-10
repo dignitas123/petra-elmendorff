@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navbar title="Petra Elmendorff" />
+    <Navbar :title="title" :language="language" />
     <nuxt />
-    <Footer />
+    <Footer :title="title" :language="language" />
   </div>
 </template>
 
@@ -14,6 +14,14 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  computed: {
+    title: function() {
+      return this.$store.state.siteSettings.title
+    },
+    language: function() {
+      return this.$store.state.language
+    }
   }
 }
 </script>
@@ -37,9 +45,9 @@ body,
   margin-bottom: 0.25rem;
   padding-bottom: 0;
 
-  @nest & strong {
-    background: #fe0;
-  }
+  // @nest & strong {
+  //   background: #fe0;
+  // }
 
   @media (--media-min-medium) {
     font-size: var(--font-title1-size);

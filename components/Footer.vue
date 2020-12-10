@@ -4,17 +4,11 @@
       <b-row>
         <b-col>
           <h3>Kontakt</h3>
-          <ul>
-            <li>Petra Elmendorff</li>
-            <li>Ekkeberstr. 8</li>
-            <li>D-79117 Freiburg</li>
-            <li>
-              <a href="mailto:elmendorff.jsj@gmail.com"
-                >elmendorff.jsj@gmail.com</a
-              >
-            </li>
-          </ul></b-col
-        >
+          <!-- <p>{{ block.children[0] }}</p> -->
+          <PortableText :blocks="blocks" />
+          <!-- <SanityContent :blocks="block.children[0]" /> -->
+          <!-- <DivBlockContent v-for="block in blocks" :key="block._id" /> -->
+        </b-col>
         <b-col>
           <h3 id="socialMediaText">Social Media</h3>
           <div class="pl-5 social-media-buttons">
@@ -55,17 +49,27 @@
 
 <script>
 import NewsletterFooter from './NewsletterFooter.vue'
+import PortableText from 'sanity-blocks-vue-component'
 
 export default {
   components: {
-    NewsletterFooter
+    NewsletterFooter,
+    PortableText
   },
-  data: data => {
-    if (!data.$store.state) {
-      return
+  props: {
+    language: {
+      type: String,
+      default: 'DE'
     }
+  },
+  data() {
     return {
       year: new Date().getFullYear()
+    }
+  },
+  computed: {
+    blocks: function() {
+      return this.$store.state.siteSettings.footerAddress
     }
   }
 }

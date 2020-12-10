@@ -22,6 +22,16 @@ import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
 
+/* const query = groq`
+  *[_type == "page" && slug.current == $page] {
+        ...,
+        image {
+          ...,
+          asset->
+        }
+  }[0]
+` */
+
 const query = groq`
   *[_type == "page" && slug.current == $page] {
         ...,

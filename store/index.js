@@ -3,7 +3,7 @@ export const state = () => ({
     title: 'Petra Elmendorff'
   },
   siteSettings: {},
-  language: 'DE',
+  language: 'de',
   program: {}
 })
 

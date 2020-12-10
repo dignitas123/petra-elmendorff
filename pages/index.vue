@@ -44,7 +44,6 @@ import { dateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
 import BannerImage from '~/components/BannerImage'
 // import SessionList from '~/components/SessionList'
-
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
 /* const query = `
@@ -82,9 +81,6 @@ export default {
   computed: {
     sitetitle: function() {
       return this.$store.state.siteSettings.title
-    },
-    selLanguage: function() {
-      return this.$store.state.language
     }
   },
   async asyncData() {
@@ -92,22 +88,22 @@ export default {
     return await sanityClient.fetch(query)
   },
   head() {
-    let siteSettings = this.$store.state.siteSettings
+    let settings = this.$store.state.siteSettings
     if (!this || !this.home) {
       return
     }
     return {
-      title: this.$store.state.siteSettings.title,
+      title: settings.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: siteSettings.description
+          content: settings.description
         },
         {
           hid: 'keywords',
           name: 'keywords',
-          content: siteSettings.keywords
+          content: settings.keywords
         }
       ]
     }

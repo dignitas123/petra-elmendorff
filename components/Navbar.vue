@@ -1,11 +1,11 @@
 <template>
-  <header class="header">
-    <h1 id="petraelmendorff" class="text-center">
-      <nuxt-link to="/">{{ sitetitle }}</nuxt-link>
+  <header class="header text-center">
+    <h1 id="headerText">
+      <nuxt-link to="/">{{ title }}</nuxt-link>
     </h1>
     <div id="subHeaderText">
       <img id="chinesSign" src="~/assets/img/chinese_sign_jinshinjyutsu.png" />
-      <h2 id="petraelmendorffSub" class="text-center">
+      <h2 id="subHeaderTextHeading">
         {{ subheadertext }}
       </h2>
     </div>
@@ -15,10 +15,10 @@
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link
             class="nav-option"
-            :title="selLanguage == 'DE' ? link.title.de : link.title.en"
+            :title="selLanguage == 'en' ? link.title.de : link.title.en"
             :to="'/' + link.slug.current"
             >{{
-              selLanguage == 'DE' ? link.title.de : link.title.en
+              selLanguage == 'de' ? link.title.de : link.title.en
             }}</nuxt-link
           >
         </div>
@@ -29,7 +29,7 @@
         <div>
           <span
             class="lang border-right-v"
-            :class="underlineIfLang('EN')"
+            :class="underlineIfLang('en')"
             right
             @click="changeLanguage($event)"
             >E</span
@@ -38,7 +38,7 @@
         <div>
           <span
             class="lang"
-            :class="underlineIfLang('DE')"
+            :class="underlineIfLang('de')"
             right
             @click="changeLanguage($event)"
             >D</span
@@ -47,10 +47,10 @@
       </b-navbar-nav>
     </b-navbar>
     <div class="language-mobile">
-      <span :class="underlineIfLang('EN')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('en')" right @click="changeLanguage($event)"
         >E</span
       >
-      <span :class="underlineIfLang('DE')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('de')" right @click="changeLanguage($event)"
         >D</span
       >
     </div>
@@ -63,17 +63,18 @@ export default {
     title: {
       type: String,
       default: 'Petra Elmendorff'
+    },
+    language: {
+      type: String,
+      default: 'D'
     }
   },
-  data() {
+  data: function() {
     return {
-      selLanguage: this.$store.state.language
+      selLanguage: this.language
     }
   },
   computed: {
-    sitetitle: function() {
-      return this.$store.state.siteSettings.title
-    },
     subheadertext: function() {
       return this.$store.state.siteSettings.subheader
     },
@@ -83,16 +84,24 @@ export default {
   },
   methods: {
     changeLanguage: function(event) {
-      let lang = event.target.innerHTML
-      console.log('change language to', lang)
-      if (lang == 'D') {
-        this.selLanguage = 'DE'
+      if (event.target.innerHTML == 'D') {
+        this.$store.commit('setLanguage', 'de')
       } else {
-        this.selLanguage = 'EN'
+        this.$store.commit('setLanguage', 'en')
       }
     },
     underlineIfLang: function(lang) {
       return lang == this.selLanguage ? 'underline' : ''
+    },
+    kebabCase: string =>
+      string
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .replace(/\s+/g, '-')
+        .toLowerCase()
+  },
+  watch: {
+    '$store.state.language': function() {
+      this.selLanguage = this.$store.state.language
     }
   }
 }
@@ -113,7 +122,7 @@ export default {
   text-decoration: underline;
 }
 
-#petraelmendorff {
+#headerText {
   a {
     color: inherit;
     text-decoration: none;
@@ -124,7 +133,7 @@ export default {
   font-weight: bold;
 }
 
-#petraelmendorffSub {
+#subHeaderTextHeading {
   font-family: var(--font-family-sans-secondary);
   font-size: var(--font-title2-size);
   display: inline-block;
@@ -138,7 +147,6 @@ export default {
 }
 
 #subHeaderText {
-  text-align: center;
   margin-top: -16px;
 }
 
@@ -206,11 +214,11 @@ export default {
 }
 
 @media (max-width: 521px) {
-  #petraelmendorff {
+  #headerText {
     padding-left: 20px;
     font-size: var(--font-title2-size);
   }
-  #petraelmendorffSub {
+  #subHeaderText {
     font-size: var(--font-title3-size);
   }
   .language-mobile {
