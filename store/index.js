@@ -17,7 +17,7 @@ export const getters = {
   getProgram(state) {
     return state.program
   },
-  getLangauge(state) {
+  getLanguage(state) {
     return state.language
   }
 }

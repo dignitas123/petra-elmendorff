@@ -3,8 +3,10 @@
     <SanityImage v-if="image" :image="image" />
     <div class="content">
       <p class="sessionType">{{ sessionType }}</p>
-      <h1 class="sessionTitle">{{ title.de }}</h1>
-      <p class="summary">{{ summary.de }}</p>
+      <h1 class="sessionTitle">{{ title[selLanguage] }}</h1>
+      <p v-if="summary[selLanguage]" class="summary">
+        {{ summary[selLanguage] }}
+      </p>
       <!-- <div class="sessionContent">
         <BlockContent
           :blocks="description"
@@ -33,7 +35,7 @@ import SanityImage from '~/components/SanityImage'
 ` */
 
 const query = groq`
-  *[_type == "page" && slug.current == $page] {
+  *[_type == "page" && slug[$lang].current == $page] {
         ...,
         image {
           ...,
@@ -51,12 +53,25 @@ export default {
     return {
       serializers: {
         types: {}
-      }
+      },
+      selLanguage: '',
+      image: ''
+    }
+  },
+  mounted() {
+    this.selLanguage = this.$store.state.language
+  },
+  watch: {
+    '$store.state.language': function() {
+      this.selLanguage = this.$store.state.language
     }
   },
   async asyncData(kontext) {
     console.log('sanity fetch sessions', query, kontext)
-    return await sanityClient.fetch(query, kontext.params)
+    return await sanityClient.fetch(query, {
+      lang: kontext.store.getters.getLanguage,
+      page: kontext.params.page
+    })
   }
 }
 </script>
@@ -108,11 +123,11 @@ export default {
   margin: 0.5rem 0 2rem;
 }
 
-.sessionContent {
+/* .sessionContent {
   @nest & p {
     margin: 1rem 0;
   }
-}
+} */
 
 img {
   width: 100%;

@@ -15,11 +15,9 @@
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link
             class="nav-option"
-            :title="selLanguage == 'en' ? link.title.de : link.title.en"
-            :to="'/' + link.slug.current"
-            >{{
-              selLanguage == 'de' ? link.title.de : link.title.en
-            }}</nuxt-link
+            :title="link.title[selLanguage]"
+            :to="'/' + link.slug[selLanguage].current"
+            >{{ link.title[selLanguage] }}</nuxt-link
           >
         </div>
       </b-navbar-nav>
@@ -66,7 +64,7 @@ export default {
     },
     language: {
       type: String,
-      default: 'D'
+      default: 'de'
     }
   },
   data: function() {
@@ -82,8 +80,14 @@ export default {
       return this.$store.state.siteSettings.headermenue
     }
   },
+  watch: {
+    '$store.state.language': function() {
+      this.selLanguage = this.$store.state.language
+    }
+  },
   methods: {
     changeLanguage: function(event) {
+      console.log('changed language')
       if (event.target.innerHTML == 'D') {
         this.$store.commit('setLanguage', 'de')
       } else {
@@ -92,17 +96,12 @@ export default {
     },
     underlineIfLang: function(lang) {
       return lang == this.selLanguage ? 'underline' : ''
-    },
+    } /* ,
     kebabCase: string =>
       string
         .replace(/([a-z])([A-Z])/g, '$1-$2')
         .replace(/\s+/g, '-')
-        .toLowerCase()
-  },
-  watch: {
-    '$store.state.language': function() {
-      this.selLanguage = this.$store.state.language
-    }
+        .toLowerCase() */
   }
 }
 </script>
