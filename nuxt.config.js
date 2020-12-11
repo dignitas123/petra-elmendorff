@@ -51,10 +51,7 @@ export default {
    ** Global CSS
    */
   css: [
-    // '@bootstrap/scss/bootstrap.scss',
-    // '@bootstrap-vue/src/index.scss',
     { src: 'normalize.css' },
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/assets/scss/custom.scss'
   ],
 
