@@ -36,13 +36,11 @@
     </div>
     <p class="copyright">
       <span class="copyright-text">© {{ year }} Petra Elemendorff</span>
-      <span class="copyright-text"
-        ><nuxt-link to="/">Impressum</nuxt-link></span
-      >
-      <span class="copyright-text"
-        ><nuxt-link to="/">Datenschutz</nuxt-link></span
-      >
-      <span class="copyright-text"><nuxt-link to="/">Links</nuxt-link></span>
+      <span v-for="(link, i) in footermenue" :key="i" class="copyright-text">
+        <nuxt-link :to="'/' + link.slug[selLanguage].current">{{
+          link.title[selLanguage]
+        }}</nuxt-link>
+      </span>
     </p>
   </footer>
 </template>
@@ -70,6 +68,12 @@ export default {
   computed: {
     blocks: function() {
       return this.$store.state.siteSettings.footerAddress
+    },
+    footermenue: function() {
+      return this.$store.state.siteSettings.footermenue
+    },
+    selLanguage: function() {
+      return this.$store.state.language
     }
   }
 }
