@@ -1,11 +1,11 @@
 <template>
   <ul class="sessionList">
-    <SessionItem
+    <!-- <SessionItem
       v-for="(scheduleItem, index) in program.schedule"
       :key="scheduleItem._key"
       :index="index"
       :schedule-item="scheduleItem"
-    />
+    /> -->
   </ul>
 </template>
 <script>
@@ -23,14 +23,14 @@ export default {
         default: () => new Date()
       }
     },
-    program: {
-      type: Object,
-      default: () => {},
-      schedule: {
-        type: Array,
-        default: () => []
-      }
-    }
+    // program: {
+    //   type: Object,
+    //   default: () => {},
+    //   schedule: {
+    //     type: Array,
+    //     default: () => []
+    //   }
+    // }
   }
 }
 </script>

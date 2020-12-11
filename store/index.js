@@ -3,8 +3,8 @@ export const state = () => ({
     title: 'Petra Elmendorff'
   },
   siteSettings: {},
-  language: 'de',
-  program: {}
+  language: 'de'
+  // program: {}
 })
 
 export const getters = {
@@ -14,9 +14,9 @@ export const getters = {
   eventInformation(state) {
     return state.eventInformation
   },
-  getProgram(state) {
-    return state.program
-  },
+  // getProgram(state) {
+  //   return state.program
+  // },
   getLanguage(state) {
     return state.language
   }
@@ -29,9 +29,9 @@ export const mutations = {
   setEventInformation(state, info) {
     state.eventInformation = info
   },
-  setProgram(state, program) {
-    state.program = program
-  },
+  // setProgram(state, program) {
+  //   state.program = program
+  // },
   setLanguage(state, language) {
     state.language = language
   }

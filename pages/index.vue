@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       // value: '',
-      program: this.$store.getters.getProgram
+      // program: this.$store.getters.getProgram
     }
   },
   computed: {
