@@ -1,8 +1,8 @@
 {
-  "name": "sanity-nuxt-events-web",
+  "name": "petra-elmendorff",
   "version": "1.0.12",
-  "description": "An event website powered by Nuxt and Sanity.io",
-  "author": "Sanity.io",
+  "description": "Kurswebseite für Petra Elmendorff",
+  "author": "Niclas Hummel & Paul Kummetz",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -13,8 +13,6 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@sanity/client": "^2.0.0",
     "@sanity/image-url": "^0.140.19",
@@ -24,15 +22,12 @@
     "groq": "^0.140.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.7",
-    "nuxt-fontawesome": "^0.4.0",
     "sanity-blocks-vue-component": "^0.1.0",
     "vue-date-fns": "^1.0.0",
     "yarn": "^1.22.10"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@nuxtjs/eslint-config": "^0.0.1",
-    "@nuxtjs/fontawesome": "^1.1.2",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
