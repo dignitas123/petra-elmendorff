@@ -14,10 +14,15 @@ export default {
     bootstrapVueCSS: false,
     icons: true
   },
+  vue: {
+    config: {
+      devtools: false
+    }
+  },
   router: {
     linkActiveClass: 'active-link'
   },
-  dev: process.env.NODE_ENV !== 'production',
+  // dev: process.env.NODE_ENV !== 'production',
   ssr: true,
 
   /*
