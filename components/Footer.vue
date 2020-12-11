@@ -12,14 +12,8 @@
         <b-col>
           <h3 id="socialMediaText">Social Media</h3>
           <div class="pl-5 social-media-buttons">
-            <font-awesome-icon
-              class="social-media-icon"
-              :icon="['fab', 'youtube-square']"
-            />
-            <font-awesome-icon
-              class="social-media-icon"
-              :icon="['fab', 'facebook-square']"
-            />
+            <YouTubeCornered />
+            <FacebookCornered />
           </div>
         </b-col>
         <b-col>
@@ -48,11 +42,15 @@
 <script>
 import NewsletterFooter from './NewsletterFooter.vue'
 import PortableText from 'sanity-blocks-vue-component'
+import YouTubeCornered from './icons/YouTubeCornered.vue'
+import FacebookCornered from './icons/FacebookCornered.vue'
 
 export default {
   components: {
     NewsletterFooter,
-    PortableText
+    PortableText,
+    YouTubeCornered,
+    FacebookCornered
   },
   props: {
     language: {
