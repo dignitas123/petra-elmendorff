@@ -74,9 +74,9 @@ export default {
 .sessionGrid {
   margin: 0;
   padding: 0;
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  grid-gap: 3rem;
+  grid-gap: 3rem; */
 }
 
 h2.sessionTitle {
@@ -87,9 +87,10 @@ h2.sessionTitle {
   margin-top: 0.5rem;
 }
 
-.session {
-  display: flex;
-  flex-direction: column;
+li.session {
+  /* display: flex;
+  flex-direction: column; */
+  list-style: none;
 
   @nest & p {
     margin: 0.5rem 0;

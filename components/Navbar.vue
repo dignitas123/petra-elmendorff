@@ -24,6 +24,12 @@
             >{{ link.title[selLanguage] }}</nuxt-link
           >
         </div>
+        <div>
+          <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
+          <nuxt-link class="nav-option" title="home" to="/sessions"
+            >sessions</nuxt-link
+          >
+        </div>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->

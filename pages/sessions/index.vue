@@ -2,24 +2,22 @@
   <section class="container">
     <h1 class="title">Sessions</h1>
     <div class="sessionGridContainer">
-      <!-- <SessionGrid
-        v-if="sessionsWithoutBreak"
-        :sessions="sessionsWithoutBreak"
-      /> -->
+      <SessionGrid :sessions="sessions" />
     </div>
   </section>
 </template>
 
 <script>
-// import SessionGrid from '~/components/SessionGrid'
+import SessionGrid from '~/components/SessionGrid'
 
 export default {
   components: {
-    /* SessionGrid */
+    SessionGrid
   },
   data() {
     return {
       // program: this.$store.getters.getProgram
+      sessions: this.$store.state.sessions
     }
   },
   computed: {

@@ -62,18 +62,14 @@ export default {
   },
   data() {
     return {
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
+      footermenue: this.$store.state.siteSettings.footermenue,
+      selLanguage: this.$store.state.language
     }
   },
   computed: {
     blocks: function() {
       return this.$store.state.siteSettings.footerAddress
-    },
-    footermenue: function() {
-      return this.$store.state.siteSettings.footermenue
-    },
-    selLanguage: function() {
-      return this.$store.state.language
     }
   }
 }

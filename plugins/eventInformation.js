@@ -8,6 +8,9 @@ const query = `{
     footermenue[]->{ title, slug}
 
   },
+  "sessions": *[ _type == "session"]{
+    ...
+  },
 }
 `
 // "program": *[_id == "program"][0] {
@@ -45,15 +48,13 @@ const query = `{
 // }
 
 export default ({ store }) => {
-  console.log('sanity fetch eventinfo', query)
-  return sanityClient
-    .fetch(query)
-    .then(({ siteSettings, eventInformation }) => {
-      store.commit('setSiteSettings', siteSettings)
-      store.commit('setEventInformation', eventInformation)
-      // store.commit(
-      //   'setProgram',
-      //   populateWithDates(program, new Date(eventInformation.schedule.from))
-      // )
-    })
+  console.log('sanity fetch siteinfo', query)
+  return sanityClient.fetch(query).then(({ siteSettings, sessions }) => {
+    store.commit('setSiteSettings', siteSettings)
+    store.commit('setSessions', sessions)
+    // store.commit(
+    //   'setProgram',
+    //   populateWithDates(program, new Date(eventInformation.schedule.from))
+    // )
+  })
 }
