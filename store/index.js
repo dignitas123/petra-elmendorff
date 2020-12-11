@@ -29,6 +29,12 @@ export const mutations = {
   },
   setSessions(state, info) {
     state.sessions = info
+    // state.sessions.forEach(session => {
+    //   if (session.date) {
+    //     session.date.from = new Date(session.date.from)
+    //     session.date.to = new Date(session.date.to)
+    //   }
+    // })
   },
   // setProgram(state, program) {
   //   state.program = program
