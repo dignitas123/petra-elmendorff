@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^2.6.0",
-    "@sanity/client": "^2.0.0",
+    "@sanity/client": "^2.1.0",
     "@sanity/image-url": "^0.140.19",
     "add": "^2.0.6",
     "bootstrap-vue": "^2.19.0",
