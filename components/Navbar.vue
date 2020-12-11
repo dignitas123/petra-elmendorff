@@ -11,10 +11,9 @@
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
       <b-navbar-nav class="pl-20 ml-auto main-nav">
-        <div>
-          <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
+        <!-- <div>
           <nuxt-link class="nav-option" title="home" to="/">Home</nuxt-link>
-        </div>
+        </div> -->
         <div v-for="(link, i) in headermenue" :key="i">
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link
@@ -27,7 +26,7 @@
         <div>
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link class="nav-option" title="home" to="/sessions"
-            >sessions</nuxt-link
+            >Kurse</nuxt-link
           >
         </div>
       </b-navbar-nav>

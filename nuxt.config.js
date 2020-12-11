@@ -10,7 +10,7 @@ const routesQuery = `
 
 export default {
   server: {
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 5000,
     host: '0.0.0.0'
   },
   bootstrapVue: {
@@ -26,7 +26,7 @@ export default {
   router: {
     linkActiveClass: 'active-link'
   },
-  // dev: process.env.NODE_ENV !== 'production',
+  dev: process.env.NODE_ENV !== 'production',
   ssr: true,
 
   /*

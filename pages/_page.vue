@@ -2,7 +2,6 @@
   <section class="container">
     <SanityImage v-if="image" :image="image" />
     <div class="content">
-      <p class="sessionType">{{ sessionType }}</p>
       <h1 class="sessionTitle">{{ title[selLanguage] }}</h1>
       <p v-if="summary[selLanguage]" class="summary">
         {{ summary[selLanguage] }}

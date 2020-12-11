@@ -79,7 +79,7 @@ export default {
 @import '../styles/custom-properties.css';
 
 .social-media-icon {
-  font-size: var(--font-title2-size);
+  width: 30px;
 }
 
 .item {
