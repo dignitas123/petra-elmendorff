@@ -6,7 +6,7 @@
         :key="month"
         class="monthWrap"
       >
-        <div class="monthSign">{{ monthName(month) }}{{ year }}</div>
+        <div class="monthSign">{{ monthName(month) }} {{ year }}</div>
 
         <li
           v-for="session in sessionsOneMonth"
