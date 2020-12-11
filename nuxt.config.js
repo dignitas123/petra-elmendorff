@@ -9,16 +9,19 @@ const routesQuery = `
 `
 
 export default {
+  server: {
+    port: process.env.PORT || 8080,
+  },
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
     icons: true
   },
-  vue: {
-    config: {
-      devtools: false
-    }
-  },
+  // vue: {
+  //   config: {
+  //     devtools: true
+  //   }
+  // },
   router: {
     linkActiveClass: 'active-link'
   },
