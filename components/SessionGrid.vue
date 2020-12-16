@@ -6,7 +6,9 @@
         :key="month"
         class="monthWrap"
       >
-        <div class="monthSign">{{ monthName(month) }} {{ year }}</div>
+        <div class="monthSign">
+          {{ monthName[selLanguage][month - 1] }} {{ year }}
+        </div>
 
         <li
           v-for="session in sessionsOneMonth"
@@ -21,9 +23,9 @@
               </span>
               <span
                 class="time"
-                :title="session.fromTime | date('MMMM DD YYYY h:MM a')"
+                :title="session.date.from | date('MMMM DD h:MM a')"
               >
-                {{ session.fromTime | date('h:MM a') }}
+                {{ session.date.from | date('MMMM DD') }}
                 <p>
                   {{ session.summary }}
                 </p>
@@ -37,17 +39,54 @@
 </template>
 
 <script>
-import { dateFilter } from 'vue-date-fns'
+// import { dateFilter } from 'vue-date-fns'
+import { createDateFilter } from 'vue-date-fns'
+import { de } from 'date-fns/locale'
 
 export default {
   filters: {
-    date: dateFilter
+    date: createDateFilter('dd MMMM yyyy', { de })
   },
   components: {},
   props: {
     sessions: {
       type: Array,
       default: () => []
+    }
+  },
+  data: function() {
+    return {
+      selLanguage: this.$store.state.language,
+      monthName: {
+        en: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
+        ],
+        de: [
+          'Januar',
+          'Februar',
+          'März',
+          'April',
+          'Mai',
+          'Juni',
+          'Juli',
+          'August',
+          'September',
+          'Oktober',
+          'November',
+          'Dezember'
+        ]
+      }
     }
   },
   computed: {
@@ -77,7 +116,7 @@ export default {
     }
   },
   methods: {
-    monthName (m) {
+    calculatemonthName (m) {
       return new Date(null, m, null).toLocaleDateString('default', {
         month: 'long'
       })

@@ -19,6 +19,7 @@
     "add": "^2.0.6",
     "bootstrap-vue": "^2.19.0",
     "cross-env": "^5.2.0",
+    "date-fns": "^2.16.1",
     "groq": "^0.140.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.7",

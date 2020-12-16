@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navbar :title="title" :language="language" />
+    <Navbar />
     <nuxt />
-    <Footer :title="title" :language="language" />
+    <Footer />
   </div>
 </template>
 

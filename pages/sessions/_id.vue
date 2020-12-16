@@ -49,12 +49,21 @@ export default {
         types: {
           personReference: PersonBlock
         }
-      }
+      },
+      _id: "",
+      title: "",
+      summary: "",
+      sessionType: "",
+      image: "",
+      description: ''
     }
   },
   async asyncData(kontext) {
     console.log('sanity fetch sessions', query, kontext)
     return await sanityClient.fetch(query, kontext.params)
+  },
+  created() {
+    this.$store.commit('setCurrentSlug', false)
   }
 }
 </script>

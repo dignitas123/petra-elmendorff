@@ -6,7 +6,7 @@
     <div id="subHeaderText">
       <img id="chinesSign" src="~/assets/img/chinese_sign_jinshinjyutsu.png" />
       <h2 id="subHeaderTextHeading">
-        {{ subheadertext }}
+        {{ subheader }}
       </h2>
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
@@ -18,16 +18,16 @@
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
           <nuxt-link
             class="nav-option"
-            :title="link.title[selLanguage]"
-            :to="'/' + link.slug[selLanguage].current"
-            >{{ link.title[selLanguage] }}</nuxt-link
+            :title="link.title"
+            :to="'/' + link.slug.current"
+            >{{ link.title }}</nuxt-link
           >
         </div>
         <div>
           <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
-          <nuxt-link class="nav-option" title="home" to="/sessions"
-            >Kurse</nuxt-link
-          >
+          <nuxt-link class="nav-option" title="home" to="/sessions">{{
+            $t(courseLinkTitle)
+          }}</nuxt-link>
         </div>
       </b-navbar-nav>
 
@@ -38,7 +38,7 @@
             class="lang border-right-v"
             :class="underlineIfLang('en')"
             right
-            @click="changeLanguage($event)"
+            @click="changeLanguage('en')"
             >E</span
           >
         </div>
@@ -47,17 +47,17 @@
             class="lang"
             :class="underlineIfLang('de')"
             right
-            @click="changeLanguage($event)"
+            @click="changeLanguage('de')"
             >D</span
           >
         </div>
       </b-navbar-nav>
     </b-navbar>
     <div class="language-mobile">
-      <span :class="underlineIfLang('en')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('en')" right @click="changeLanguage('en')"
         >E</span
       >
-      <span :class="underlineIfLang('de')" right @click="changeLanguage($event)"
+      <span :class="underlineIfLang('de')" right @click="changeLanguage('de')"
         >D</span
       >
     </div>
@@ -65,52 +65,41 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     title: {
       type: String,
       default: 'Petra Elmendorff'
-    },
-    language: {
-      type: String,
-      default: 'de'
     }
   },
-  data: function() {
+  data: function () {
     return {
-      selLanguage: this.language
+      courseLinkTitle: {
+        en: 'course',
+        de: 'Kurs'
+      }
     }
   },
   computed: {
-    subheadertext: function() {
-      return this.$store.state.siteSettings.subheader
-    },
-    headermenue: function() {
-      return this.$store.state.siteSettings.headermenue
-    }
-  },
-  watch: {
-    '$store.state.language': function() {
-      this.selLanguage = this.$store.state.language
-    }
+    // auto include store getters 
+    ...mapGetters(['subheader','headermenue'])
   },
   methods: {
-    changeLanguage: function(event) {
+    changeLanguage: function (lang) {
       console.log('changed language')
-      if (event.target.innerHTML == 'D') {
-        this.$store.commit('setLanguage', 'de')
-      } else {
-        this.$store.commit('setLanguage', 'en')
+      this.$store.commit('setLanguage', lang)
+      if (this.$store.state.currentSlug){
+        // navigate to other right lang slug
+        this.$router.push({
+          path: '/' + this.$t(this.$store.state.currentSlug).current
+        })
       }
     },
-    underlineIfLang: function(lang) {
-      return lang == this.selLanguage ? 'underline' : ''
-    } /* ,
-    kebabCase: string =>
-      string
-        .replace(/([a-z])([A-Z])/g, '$1-$2')
-        .replace(/\s+/g, '-')
-        .toLowerCase() */
+    underlineIfLang: function (lang) {
+      return lang == this.$store.getters.getLanguage ? 'underline' : ''
+    }
   }
 }
 </script>

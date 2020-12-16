@@ -28,6 +28,15 @@ export default {
     //     )
     //   }
     // }
+  },
+  created() {
+    this.$store.commit(
+      'setCurrentSlug',
+      {
+        en: { current: "sessions" }, 
+        de: { current: "sessions" }
+      })
+        
   }
 }
 </script>
