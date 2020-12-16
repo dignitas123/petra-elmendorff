@@ -6,9 +6,9 @@
         :style="{ backgroundImage: `url(${imageUrl})` }"
         :aria-label="altFromImage || alt"
       >
-        <div class="text-center mt-3">
-          <h2>{{ zitat }}</h2>
-          - {{ author }}
+        <div class="text-center mt-3 quote-block">
+          <h2 id='mainQuote'>{{ zitat }}</h2>
+          - <i>{{ author }}</i>
         </div>
       </div>
     </b-row>
@@ -67,10 +67,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .maintxt {
   height: 500px;
   background-size: cover;
   background: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.quote-block {
+  text-shadow: 0px 0px 3px white;
+  font-size: 23px;
+  h2 {
+    text-shadow: 0px 0px 3px white;
+  }
 }
 </style>

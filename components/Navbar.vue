@@ -10,49 +10,57 @@
       </h2>
     </div>
     <b-navbar toggleable="lg" type="light" variant="sucess">
-      <b-navbar-nav class="pl-20 ml-auto main-nav">
-        <!-- <div>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="pl-20 ml-auto main-nav">
+          <!-- <div>
           <nuxt-link class="nav-option" title="home" to="/">Home</nuxt-link>
         </div> -->
-        <div v-for="link in headermenue" :key="link.slug.current">
-          <nuxt-link
-            class="nav-option"
-            :title="link.title"
-            :to="'/' + link.slug.current"
-            >{{ link.title }}</nuxt-link
-          >
-        </div>
-        <div>
-          <nuxt-link
-            class="nav-option"
-            :title="$t(courseLinkTitle)"
-            :to="$t(courseLinkSlug)"
-            >{{ $t(courseLinkTitle) }}</nuxt-link
-          >
-        </div>
-      </b-navbar-nav>
+          <li v-for="link in headermenue" :key="link.slug.current">
+            <div>
+              <nuxt-link
+                class="nav-option"
+                :title="link.title"
+                :to="'/' + link.slug.current"
+                >{{ link.title }}</nuxt-link
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <nuxt-link
+                class="nav-option"
+                :title="$t(courseLinkTitle)"
+                :to="$t(courseLinkSlug)"
+                >{{ $t(courseLinkTitle) }}</nuxt-link
+              >
+            </div>
+          </li>
+        </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="lang ml-auto pr-5">
-        <div>
-          <span
-            class="lang border-right-v"
-            :class="underlineIfLang('en')"
-            right
-            @click="changeLanguage('en')"
-            >E</span
-          >
-        </div>
-        <div>
-          <span
-            class="lang"
-            :class="underlineIfLang('de')"
-            right
-            @click="changeLanguage('de')"
-            >D</span
-          >
-        </div>
-      </b-navbar-nav>
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="lang ml-auto pr-5">
+          <div>
+            <span
+              class="lang border-right-v"
+              :class="underlineIfLang('en')"
+              right
+              @click="changeLanguage('en')"
+              >E</span
+            >
+          </div>
+          <div>
+            <span
+              class="lang"
+              :class="underlineIfLang('de')"
+              right
+              @click="changeLanguage('de')"
+              >D</span
+            >
+          </div>
+        </b-navbar-nav>
+      </b-collapse>
     </b-navbar>
     <div class="language-mobile">
       <span :class="underlineIfLang('en')" right @click="changeLanguage('en')"
@@ -164,7 +172,7 @@ export default {
 
 .main-nav {
   padding-left: 80px;
-  div {
+  li {
     display: inline-block;
     font-size: 0;
     &:not(:last-child) {
@@ -216,7 +224,7 @@ export default {
   }
 }
 
-@media (max-width: 521px) {
+@media (max-width: 542px) {
   #headerText {
     padding-left: 20px;
     font-size: var(--font-title2-size);
@@ -234,6 +242,9 @@ export default {
 @media (max-width: 991px) {
   .main-nav {
     padding-left: 0;
+    li {
+      display: block !important;
+    }
   }
   .navbar-nav {
     display: block;
@@ -241,10 +252,12 @@ export default {
     width: 200px;
     margin-top: 5px;
     text-align: center;
-    div {
-      padding-bottom: 5px;
-      a {
-        border-right: none !important;
+    li {
+      div {
+        padding-bottom: 5px;
+        a {
+          border-right: none !important;
+        }
       }
     }
   }

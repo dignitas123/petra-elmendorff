@@ -4,7 +4,7 @@
       <figure>
         <BannerImage
           :image="home.image"
-          :zitat="home.image.zitat"
+          :zitat="$t(home.image.zitat)"
           :width="1800"
           :height="500"
           :author="sitetitle"
