@@ -14,8 +14,7 @@
         <!-- <div>
           <nuxt-link class="nav-option" title="home" to="/">Home</nuxt-link>
         </div> -->
-        <div v-for="(link, i) in headermenue" :key="i">
-          <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
+        <div v-for="link in headermenue" :key="link.slug.current">
           <nuxt-link
             class="nav-option"
             :title="link.title"
@@ -24,10 +23,12 @@
           >
         </div>
         <div>
-          <!-- ><div v-for="link in headermenue" :key="link.slug">  error goes away -->
-          <nuxt-link class="nav-option" title="home" to="/sessions">{{
-            $t(courseLinkTitle)
-          }}</nuxt-link>
+          <nuxt-link
+            class="nav-option"
+            :title="$t(courseLinkTitle)"
+            :to="$t(courseLinkSlug)"
+            >{{ $t(courseLinkTitle) }}</nuxt-link
+          >
         </div>
       </b-navbar-nav>
 
@@ -65,7 +66,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   props: {
@@ -74,30 +75,35 @@ export default {
       default: 'Petra Elmendorff'
     }
   },
-  data: function () {
+  data: function() {
     return {
       courseLinkTitle: {
-        en: 'course',
-        de: 'Kurs'
+        en: 'Courses-Offers',
+        de: 'Kurse-Angebote'
+      },
+      courseLinkSlug: {
+        en: 'courses-offers',
+        de: 'kurse-angebote'
       }
     }
   },
   computed: {
-    // auto include store getters 
-    ...mapGetters(['subheader','headermenue','currentSlug'])
+    // auto include store getters
+    ...mapGetters(['subheader', 'headermenue', 'currentSlug'])
   },
   methods: {
-    changeLanguage: function (lang) {
+    changeLanguage: function(lang) {
       console.log('changed language', lang)
       this.$store.commit('setLanguage', lang)
-      if (this.currentSlug){
+      // this.setCurrentSlug(this.courseLinkSlug[this.$store.state.language])
+      if (this.currentSlug) {
         // navigate to other right lang slug
         this.$router.push({
           path: '/' + this.$t(this.currentSlug).current
         })
       }
     },
-    underlineIfLang: function (lang) {
+    underlineIfLang: function(lang) {
       return lang == this.$store.getters.getLanguage ? 'underline' : ''
     }
   }
@@ -215,12 +221,12 @@ export default {
     padding-left: 20px;
     font-size: var(--font-title2-size);
   }
-  #subHeaderText {
+  #subHeaderTextHeading {
     font-size: var(--font-title3-size);
   }
   .language-mobile {
     top: 105px !important;
-    left: 15px;
+    left: 0;
     width: 100px;
   }
 }

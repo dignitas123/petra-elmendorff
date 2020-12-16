@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <h3>Kontakt</h3>
+          <h3>{{ $t(kontakt) }}</h3>
           <!-- <p>{{ block.children[0] }}</p> -->
           <PortableText :blocks="blocks" />
           <!-- <SanityContent :blocks="block.children[0]" /> -->
@@ -31,8 +31,8 @@
     <p class="copyright">
       <span class="copyright-text">© {{ year }} Petra Elemendorff</span>
       <span v-for="(link, i) in footermenue" :key="i" class="copyright-text">
-        <nuxt-link :to="'/' + link.slug[selLanguage].current">{{
-          link.title[selLanguage]
+        <nuxt-link :to="'/' + $t(link.slug).current">{{
+          $t(link.title)
         }}</nuxt-link>
       </span>
     </p>
@@ -62,7 +62,11 @@ export default {
     return {
       year: new Date().getFullYear(),
       footermenue: this.$store.state.siteSettings.footermenue,
-      selLanguage: this.$store.state.language
+      selLanguage: this.$store.state.language,
+      kontakt: {
+        en: 'Contact',
+        de: 'Kontakt'
+      }
     }
   },
   computed: {

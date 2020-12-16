@@ -2,75 +2,76 @@
   <section class="container">
     <SanityImage v-if="image" :image="image" />
     <div class="content">
-      <h1 class="sessionTitle">{{ $t(title) }}</h1>
-      <p v-if="$t(summary)" class="summary">
-        {{ $t(summary) }}
-      </p>
-      <!-- <div class="sessionContent">
+      <p class="sessionType">{{ sessionType }}</p>
+      <h1 class="sessionTitle">{{ title }}</h1>
+      <p class="summary">{{ summary }}</p>
+      <div class="sessionContent">
         <BlockContent
           :blocks="description"
           :v-if="description"
           :serializers="serializers"
         />
-      </div> -->
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-// import BlockContent from 'sanity-blocks-vue-component'
+import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
+import PersonBlock from '~/components/blockContent/PersonBlock'
 
 const query = groq`
-  *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
+  *[_type == "session" && _id == $id] {
+    ...,
+    persons[] {
+      person-> {
         ...,
         image {
           ...,
           asset->
         }
+      }
+    }
   }[0]
 `
 
 export default {
   components: {
-    // BlockContent,
+    BlockContent,
     SanityImage
   },
   data() {
     return {
       serializers: {
-        types: {}
+        types: {
+          personReference: PersonBlock
+        }
       },
-      // selLanguage: '',
-      image: '',
-      slug: {}
+      _id: "",
+      title: "",
+      summary: "",
+      sessionType: "",
+      image: "",
+      description: ''
     }
   },
-  // mounted() {
-  //   this.selLanguage = this.$store.state.language
-  // },
-  // watch: {
-  //   '$store.state.language': function() {
-  //     this.selLanguage = this.$store.state.language
-  //   }
-  // },
   async asyncData(kontext) {
-    let params = {
-      lang: kontext.store.getters.getLanguage,
-      page: kontext.params.page
-    }
-    console.log('sanity fetch sessions', query, params)
-    return await sanityClient.fetch(query, params)
+    console.log('sanity fetch sessions', query, kontext)
+    return await sanityClient.fetch(query, kontext.params)
   },
   created() {
-    this.$store.commit('setCurrentSlug', this.slug)
+    this.$store.commit('setCurrentSlug', false)
   }
 }
 </script>
 
 <style scoped>
+@import '../../styles/custom-media.css';
+@import '../../styles/custom-properties.css';
+
 .container {
   min-height: calc(100% - 72px - 216px);
 }
@@ -117,11 +118,11 @@ export default {
   margin: 0.5rem 0 2rem;
 }
 
-/* .sessionContent {
+.sessionContent {
   @nest & p {
     margin: 1rem 0;
   }
-} */
+}
 
 img {
   width: 100%;

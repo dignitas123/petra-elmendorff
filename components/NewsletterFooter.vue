@@ -24,7 +24,7 @@
             type="text"
             name="fields[fieldFirstName]"
             value=""
-            placeholder="Dein Name"
+            :placeholder="$t(name)"
           />
         </div>
         <div class="ktv2-form-element">
@@ -34,7 +34,7 @@
             name="email"
             value=""
             size="40"
-            placeholder="Deine Emailadresse"
+            :placeholder="$t(email)"
           />
         </div>
         <div>
@@ -43,7 +43,7 @@
             class="btn btn-secondary"
             type="submit"
             name="FormSubmit"
-            value="Eintragen"
+            :value="$t(submitText)"
           />
         </div>
       </form>
@@ -56,7 +56,24 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      name: {
+        de: 'Dein Name',
+        en: 'Your Name'
+      },
+      email: {
+        de: 'Deine Emailadresse',
+        en: 'Your Emailaddress'
+      },
+      submitText: {
+        de: 'Eintragen',
+        en: 'Subscribe'
+      }
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

@@ -15,7 +15,7 @@
           :key="session._id"
           class="session"
         >
-          <nuxt-link :to="`/sessions/${session._id}`">
+          <nuxt-link :to="`/${currentSlug}/${session._id}`">
             <span class="top">
               <span>
                 <span class="type">{{ session.sessionType }}</span>
@@ -52,10 +52,18 @@ export default {
     sessions: {
       type: Array,
       default: () => []
+    },
+    currentSlug: {
+      type: String,
+      default: ''
     }
   },
   data: function() {
     return {
+      courseLinkTitle: {
+        en: 'Courses-Offers',
+        de: 'Kurse-Angebote'
+      },
       selLanguage: this.$store.state.language,
       monthName: {
         en: [

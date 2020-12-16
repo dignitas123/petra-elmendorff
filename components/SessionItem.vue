@@ -21,12 +21,13 @@
       <p>
         {{ scheduleItem.session.summary }}
       </p>
-      <PersonsList :persons="scheduleItem.session.persons" />
+      <!-- <PersonsList :persons="scheduleItem.session.persons" /> -->
     </div>
   </li>
 </template>
+
 <script>
-import PersonsList from '~/components/PersonsList'
+// import PersonsList from '~/components/PersonsList'
 import TimeCalc from '~/components/TimeCalc'
 export default {
   components: {

@@ -2,12 +2,13 @@
   <section class="container">
     <h1 class="title">Sessions</h1>
     <div class="sessionGridContainer">
-      <SessionGrid :sessions="sessions" />
+      <SessionGrid :sessions="sessions" :currentSlug="$t(currentSlug).current" />
     </div>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SessionGrid from '~/components/SessionGrid'
 
 export default {
@@ -28,15 +29,13 @@ export default {
     //     )
     //   }
     // }
+    ...mapGetters(['currentSlug'])
   },
   created() {
-    this.$store.commit(
-      'setCurrentSlug',
-      {
-        en: { current: "sessions" }, 
-        de: { current: "sessions" }
-      })
-        
+    this.$store.commit('setCurrentSlug', {
+      en: { current: 'courses-offers' },
+      de: { current: 'kurse-angebote' }
+    })
   }
 }
 </script>

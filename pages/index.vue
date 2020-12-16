@@ -40,6 +40,7 @@
 
 <script>
 import { dateFilter } from 'vue-date-fns'
+import { mapMutations } from 'vuex'
 
 import sanityClient from '../sanityClient'
 import BannerImage from '~/components/BannerImage'
@@ -83,6 +84,9 @@ export default {
       return this.$store.state.siteSettings.title
     }
   },
+  methods: {
+    ...mapMutations(['setCurrentSlug'])
+  },
   async asyncData() {
     console.log('sanity fetch index', query)
     return await sanityClient.fetch(query)
@@ -109,7 +113,7 @@ export default {
     }
   },
   created() {
-    this.$store.commit('setCurrentSlug',false)
+    this.setCurrentSlug(false)
   }
 }
 </script>
