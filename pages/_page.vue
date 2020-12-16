@@ -2,9 +2,9 @@
   <section class="container">
     <SanityImage v-if="image" :image="image" />
     <div class="content">
-      <h1 class="sessionTitle">{{ title[selLanguage] }}</h1>
-      <p v-if="summary[selLanguage]" class="summary">
-        {{ summary[selLanguage] }}
+      <h1 class="sessionTitle">{{ $t(title) }}</h1>
+      <p v-if="$t(summary)" class="summary">
+        {{ $t(summary) }}
       </p>
       <!-- <div class="sessionContent">
         <BlockContent
@@ -23,18 +23,8 @@ import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
 
-/* const query = groq`
-  *[_type == "page" && slug.current == $page] {
-        ...,
-        image {
-          ...,
-          asset->
-        }
-  }[0]
-` */
-
 const query = groq`
-  *[_type == "page" && slug[$lang].current == $page] {
+  *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
         ...,
         image {
           ...,
@@ -53,24 +43,29 @@ export default {
       serializers: {
         types: {}
       },
-      selLanguage: '',
-      image: ''
+      // selLanguage: '',
+      image: '',
+      slug: {}
     }
   },
-  mounted() {
-    this.selLanguage = this.$store.state.language
-  },
-  watch: {
-    '$store.state.language': function() {
-      this.selLanguage = this.$store.state.language
-    }
-  },
+  // mounted() {
+  //   this.selLanguage = this.$store.state.language
+  // },
+  // watch: {
+  //   '$store.state.language': function() {
+  //     this.selLanguage = this.$store.state.language
+  //   }
+  // },
   async asyncData(kontext) {
-    console.log('sanity fetch sessions', query, kontext)
-    return await sanityClient.fetch(query, {
+    let params = {
       lang: kontext.store.getters.getLanguage,
       page: kontext.params.page
-    })
+    }
+    console.log('sanity fetch sessions', query, params)
+    return await sanityClient.fetch(query, params)
+  },
+  created() {
+    this.$store.commit('setCurrentSlug',this.slug)
   }
 }
 </script>

@@ -1,6 +1,7 @@
 import pkg from './package'
 import sanityClient from './sanityClient'
 
+
 const routesQuery = `
   {
     "sessions": *[_type == "session"],
@@ -58,7 +59,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/eventInformation'],
+  plugins: [
+    '~/plugins/eventInformation',
+    '~/plugins/deepTranslate'
+  ],
 
   /*
    ** Nuxt.js modules
@@ -70,10 +74,10 @@ export default {
   /*
    ** Set global info from sanity document
    */
-  eventInformation: () => {
-    console.log('sanity fetch config info', '*[_id == "eventInformation"]')
-    return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
-  },
+  // eventInformation: () => {
+  //   console.log('sanity fetch config info', '*[_id == "eventInformation"]')
+  //   return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
+  // },
 
   /*
    ** Generate dynamic routes from data from sanity.
@@ -117,16 +121,16 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    // extend(config, ctx) {
+    //   // Run ESLint on save
+    //   if (ctx.isDev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/
+    //     })
+    //   }
+    // }
   }
 }

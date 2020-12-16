@@ -107,6 +107,9 @@ export default {
         }
       ]
     }
+  },
+  created() {
+    this.$store.commit('setCurrentSlug',false)
   }
 }
 </script>
