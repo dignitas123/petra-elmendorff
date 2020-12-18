@@ -20,7 +20,126 @@
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
       </div> -->
       <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
+      <DownArrow @arrow-click="scrollContent" />
     </header>
+    <div class="content">
+      <b-container class="content-preview">
+        <b-row>
+          <b-col
+            ><div>
+              <b-card
+                img-top
+                tag="article"
+                style="max-width: 16rem;"
+                class="mb-2 text-center"
+              >
+                <b-img
+                  rounded="circle"
+                  src="https://picsum.photos/600/300/?image=25"
+                  height="200px"
+                  width="200px"
+                  alt="Bottom-rounded image"
+                  class="border border-dark"
+                ></b-img>
+
+                <h1 class="mt-3">
+                  Title
+                </h1>
+                <b-card-text class="text-justify-inter-word">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                  <b-link href="#" variant="primary">mehr</b-link>
+                </b-card-text>
+              </b-card>
+            </div></b-col
+          >
+          <b-col
+            ><div>
+              <b-card
+                img-top
+                tag="article"
+                style="max-width: 16rem;"
+                class="mb-2 text-center"
+              >
+                <b-img
+                  rounded="circle"
+                  src="https://picsum.photos/600/300/?image=25"
+                  height="200px"
+                  width="200px"
+                  alt="Bottom-rounded image"
+                  class="border border-dark"
+                ></b-img>
+
+                <h1 class="mt-3">
+                  Title
+                </h1>
+                <b-card-text class="text-justify-inter-word">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                  <b-link href="#" variant="primary">mehr</b-link>
+                </b-card-text>
+              </b-card>
+            </div></b-col
+          >
+          <b-col
+            ><div>
+              <b-card
+                img-top
+                tag="article"
+                style="max-width: 16rem;"
+                class="mb-2 text-center"
+              >
+                <b-img
+                  rounded="circle"
+                  src="https://picsum.photos/600/300/?image=25"
+                  height="200px"
+                  width="200px"
+                  alt="Bottom-rounded image"
+                  class="border border-dark"
+                ></b-img>
+
+                <h1 class="mt-3">
+                  Title
+                </h1>
+                <b-card-text class="text-justify-inter-word">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                  <b-link href="#" variant="primary">mehr</b-link>
+                </b-card-text>
+              </b-card>
+            </div></b-col
+          >
+          <b-col
+            ><div>
+              <b-card
+                img-top
+                tag="article"
+                style="max-width: 16rem;"
+                class="mb-2 text-center"
+              >
+                <b-img
+                  rounded="circle"
+                  src="https://picsum.photos/600/300/?image=25"
+                  height="200px"
+                  width="200px"
+                  alt="Bottom-rounded image"
+                  class="border border-dark"
+                ></b-img>
+
+                <h1 class="mt-3">
+                  Title
+                </h1>
+                <b-card-text class="text-justify-inter-word">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                  <b-link href="#" variant="primary">mehr</b-link>
+                </b-card-text>
+              </b-card>
+            </div></b-col
+          >
+        </b-row>
+      </b-container>
+    </div>
     <!-- <section>
       <p>Test Icons <BIconArrowUp /> <BIconArrowDown /></p>
     </section>
@@ -44,6 +163,7 @@ import { mapMutations } from 'vuex'
 
 import sanityClient from '../sanityClient'
 import BannerImage from '~/components/BannerImage'
+import DownArrow from '../components/icons/DownArrow.vue'
 // import SessionList from '~/components/SessionList'
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
@@ -65,7 +185,8 @@ const query = `
 
 export default {
   components: {
-    BannerImage
+    BannerImage,
+    DownArrow
     // SessionList
     // BIconArrowUp,
     // BIconArrowDown
@@ -85,7 +206,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setCurrentSlug'])
+    ...mapMutations(['setCurrentSlug']),
+    scrollContent: function() {
+      console.log("CLICKED")
+      this.$scrollTo('.content')
+    }
   },
   async asyncData() {
     console.log('sanity fetch index', query)
@@ -131,6 +256,11 @@ export default {
 .header {
   text-align: center;
   width: 100%;
+  height: 100vh;
+}
+
+.content {
+  height: 100vh;
 }
 
 .title + p + .dates {

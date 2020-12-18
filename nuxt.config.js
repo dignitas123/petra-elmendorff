@@ -1,7 +1,6 @@
 import pkg from './package'
 import sanityClient from './sanityClient'
 
-
 const routesQuery = `
   {
     "sessions": *[_type == "session"],
@@ -52,25 +51,19 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    { src: 'normalize.css' },
-    '@/assets/scss/custom.scss'
-  ],
+  css: [{ src: 'normalize.css' }, '@/assets/scss/custom.scss'],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/eventInformation',
-    '~/plugins/deepTranslate'
-  ],
+  plugins: ['~/plugins/eventInformation', '~/plugins/deepTranslate'],
 
   /*
    ** Nuxt.js modules
    */
 
   // don't need PWA `'@nuxtjs/pwa'`
-  modules: ['bootstrap-vue/nuxt'],
+  modules: ['bootstrap-vue/nuxt', 'vue-scrollto/nuxt'],
 
   /*
    ** Set global info from sanity document
@@ -117,7 +110,7 @@ export default {
           }
         }
       }
-    },
+    }
 
     /*
      ** You can extend webpack config here
