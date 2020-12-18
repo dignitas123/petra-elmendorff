@@ -118,7 +118,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 

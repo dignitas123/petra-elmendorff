@@ -10,6 +10,7 @@ const routesQuery = `
 `
 
 export default {
+  // target: 'static',
   server: {
     port: process.env.PORT || 5000,
     host: '0.0.0.0'

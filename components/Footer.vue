@@ -1,41 +1,43 @@
 <template>
   <footer class="footer">
-    <b-container>
-      <b-row>
-        <b-col>
-          <h3>{{ $t(kontakt) }}</h3>
-          <!-- <p>{{ block.children[0] }}</p> -->
-          <PortableText :blocks="blocks" />
-          <!-- <SanityContent :blocks="block.children[0]" /> -->
-          <!-- <DivBlockContent v-for="block in blocks" :key="block._id" /> -->
-        </b-col>
-        <b-col>
-          <h3 id="socialMediaText">Social Media</h3>
-          <div class="pl-5 social-media-buttons">
-            <YouTubeCornered />
-            <FacebookCornered />
-          </div>
-        </b-col>
-        <b-col>
-          <h3>Newsletter</h3>
-          <ul>
-            <li></li>
-          </ul>
-          <NewsletterFooter
-        /></b-col>
-      </b-row>
-    </b-container>
+    <client-only>
+      <b-container>
+        <b-row>
+          <b-col>
+            <h3>{{ $t(kontakt) }}</h3>
+            <!-- <p>{{ block.children[0] }}</p> -->
+            <PortableText :blocks="blocks" />
+            <!-- <SanityContent :blocks="block.children[0]" /> -->
+            <!-- <DivBlockContent v-for="block in blocks" :key="block._id" /> -->
+          </b-col>
+          <b-col>
+            <h3 id="socialMediaText">Social Media</h3>
+            <div class="pl-5 social-media-buttons">
+              <YouTubeCornered />
+              <FacebookCornered />
+            </div>
+          </b-col>
+          <b-col>
+            <h3>Newsletter</h3>
+            <ul>
+              <li></li>
+            </ul>
+            <NewsletterFooter
+          /></b-col>
+        </b-row>
+      </b-container>
+    </client-only>
     <div class="mt-3">
       <h2 class="divider-style"></h2>
     </div>
-    <p class="copyright">
+    <div class="copyright">
       <span class="copyright-text">© {{ year }} Petra Elemendorff</span>
       <span v-for="(link, i) in footermenue" :key="i" class="copyright-text">
         <nuxt-link :to="'/' + $t(link.slug).current">{{
           $t(link.title)
         }}</nuxt-link>
       </span>
-    </p>
+    </div>
   </footer>
 </template>
 

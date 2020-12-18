@@ -7,7 +7,7 @@
         :aria-label="altFromImage || alt"
       >
         <div class="text-center mt-3 quote-block">
-          <h2 id='mainQuote'>{{ zitat }}</h2>
+          <h2 id="mainQuote">'{{ zitat }}'</h2>
           - <i>{{ author }}</i>
         </div>
       </div>
@@ -69,18 +69,20 @@ export default {
 
 <style scoped lang="scss">
 .maintxt {
+  margin: 0 auto;
   height: 500px;
   background-size: cover;
   background: center;
   padding-right: 15px;
   padding-left: 15px;
+  color: white;
 }
 
 .quote-block {
-  text-shadow: 0px 0px 3px white;
+  text-shadow: 0px 0px 3px black;
   font-size: 23px;
   h2 {
-    text-shadow: 0px 0px 3px white;
+    text-shadow: 0px 0px 3px black;
   }
 }
 </style>
