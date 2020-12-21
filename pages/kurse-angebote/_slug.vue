@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <SanityImage v-if="image" :image="image" />
+    <!-- <SanityImage v-if="image" :image="image" />
     <div class="content">
       <p class="sessionType">{{ sessionType }}</p>
       <h1 class="sessionTitle">{{ title }}</h1>
@@ -12,7 +12,19 @@
           :serializers="serializers"
         />
       </div>
-    </div>
+    </div> -->
+    <h1>{{ title }}</h1>
+    <block-content
+      v-if="$t(content)"
+      :blocks="$t(content)"
+      :serializers="serializers"
+      projectId="ie6m0uwl"
+      dataset="production"
+    />
+    {{ courseLink }}<br />
+    {{ date.from }} to {{ date.to }}<br />
+    {{ ort }} / Preis: {{ $t(price) }}<br />
+    {{ sessionType }}
   </section>
 </template>
 
@@ -24,17 +36,8 @@ import SanityImage from '~/components/SanityImage'
 import PersonBlock from '~/components/blockContent/PersonBlock'
 
 const query = groq`
-  *[_type == "session" && _id == $id] {
-    ...,
-    persons[] {
-      person-> {
-        ...,
-        image {
-          ...,
-          asset->
-        }
-      }
-    }
+  *[_type == "session" && slug.current == $slug] {
+    ...
   }[0]
 `
 
@@ -49,26 +52,24 @@ export default {
         types: {
           personReference: PersonBlock
         }
-      },
-      _id: "",
-      title: "",
-      summary: "",
-      sessionType: "",
-      image: "",
-      description: ''
+      }
     }
   },
   async asyncData(kontext) {
     console.log('sanity fetch sessions', query, kontext)
+    let _this = this
     return await sanityClient.fetch(query, kontext.params)
+    // .then(function() {
+    //   _this.$store.commit('setCurrentSlug', title)
+    // })
   },
-  created() {
-    this.$store.commit('setCurrentSlug', false)
+  mounted() {
+    this.$store.commit('setCurrentSlug', 'xxx')
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import '../../styles/custom-media.css';
 @import '../../styles/custom-properties.css';
 
@@ -118,11 +119,11 @@ export default {
   margin: 0.5rem 0 2rem;
 }
 
-.sessionContent {
-  @nest & p {
-    margin: 1rem 0;
-  }
-}
+// .sessionContent {
+//   @nest & p {
+//     margin: 1rem 0;
+//   }
+// }
 
 img {
   width: 100%;

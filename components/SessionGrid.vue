@@ -15,7 +15,8 @@
           :key="session._id"
           class="session"
         >
-          <nuxt-link :to="`/${currentSlug}/${session._id}`">
+        {{ session }}
+          <nuxt-link :to="`/${currentSlug}/${session.slug.current}`">
             <span class="top">
               <span>
                 <span class="type">{{ session.sessionType }}</span>
