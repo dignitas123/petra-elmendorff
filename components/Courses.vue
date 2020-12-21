@@ -1,10 +1,8 @@
 <template>
-  <section class="container">
-    <!-- <h1 class="title">Sessions</h1> -->
-    <div class="sessionGridContainer">
-      <SessionGrid :sessions="sessions" :currentSlug="$t(currentSlug).current" />
-    </div>
-  </section>
+  <!-- <h1 class="title">Sessions</h1> -->
+  <div class="sessionGridContainer">
+    <SessionGrid :sessions="sessions" :currentSlug="$t(currentSlug).current" />
+  </div>
 </template>
 
 <script>
@@ -29,7 +27,10 @@ export default {
     //     )
     //   }
     // }
-    ...mapGetters(['currentSlug'])
+    ...mapGetters(['currentSlug']),
+    console: function() {
+      console.log('Courses rendered')
+    }
   },
   created() {
     this.$store.commit('setCurrentSlug', {
@@ -39,25 +40,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-@import '../../styles/custom-properties.css';
-
-.container {
-  padding: 1.5rem 0;
-  box-sizing: border-box;
-  min-height: calc(100% - 72px - 216px);
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.sessionGridContainer {
-  max-width: var(--width-medium);
-  padding: 0 1.5rem;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-</style>

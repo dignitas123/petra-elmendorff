@@ -1,42 +1,12 @@
 <template>
   <section class="container">
-    <header class="header">
-      <figure>
-        <BannerImage
-          v-if="image"
-          :image="image"
-          :zitat="$t(image.zitat)"
-          :width="1800"
-          :height="500"
-          :author="image.zitatsource"
-          class="mainImage"
-        />
-        <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
-      </figure>
-      <!-- <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p> -->
-      <!-- <div class="dates">
-        {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
-        &ndash;
-        {{ new Date(info.schedule.to) | dateFilter('ha') }}
-      </div> -->
-      <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
-    </header>
-    <div class="content">
-      <!-- <h1 class="sessionTitle">{{ $t(title) }}</h1> -->
-      <!-- <p v-if="$t(summary)" class="summary">
-        {{ $t(summary) }}
-      </p> -->
-      <div class="sessionContent">
-        <BlockContent
-          :v-if="$t(content)"
-          :blocks="$t(content)"
-          :serializers="serializers"
-          projectId="ie6m0uwl"
-          dataset="production"
-        />
-      </div>
-    </div>
+    <Courses
+      v-if="
+        $route.params.page == 'kurse-angebote' ||
+          $route.params.page == 'courses-offers'
+      "
+    />
+    <Page v-else :content="content" />
   </section>
 </template>
 
@@ -45,7 +15,8 @@ import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 // import SanityImage from '~/components/SanityImage'
-import BannerImage from '~/components/BannerImage'
+import Courses from '~/components/Courses'
+import Page from '~/components/Page'
 
 const query = groq`
   *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
@@ -59,27 +30,27 @@ const query = groq`
 
 export default {
   components: {
-    BlockContent,
-    // SanityImage,
-    BannerImage
+    Courses,
+    Page
   },
   data() {
     return {
       serializers: {
         types: {}
       },
-      // selLanguage: '',
       image: '',
-      slug: {}
+      slug: {},
+      coursesPage: false
     }
   },
-  // mounted() {
-  //   this.selLanguage = this.$store.state.language
-  // },
-  // watch: {
-  //   '$store.state.language': function() {
-  //     this.selLanguage = this.$store.state.language
-  //   }
+  // fetch({ route }) {
+  //   let _this = this
+  //   if (
+  //     route.params.page == 'kurse-angebote' ||
+  //     route.params.page == 'courses-offers'
+  //   )
+  //     this.coursesPage = true
+  //   else this.coursesPage = false
   // },
   async asyncData(kontext) {
     let params = {
@@ -96,12 +67,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-media.css';
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-media';
+@import '~/styles/custom-properties';
 
 .sessionContent {
   max-width: 900px;
   margin: auto;
+  text-align: center;
   figure {
     text-align: center;
   }

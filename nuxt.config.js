@@ -9,6 +9,7 @@ const routesQuery = `
 `
 
 export default {
+  components: true,
   // target: 'static',
   server: {
     port: process.env.PORT || 5000,
