@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h1 class="title">Sessions</h1>
+    <!-- <h1 class="title">Sessions</h1> -->
     <div class="sessionGridContainer">
       <SessionGrid :sessions="sessions" :currentSlug="$t(currentSlug).current" />
     </div>

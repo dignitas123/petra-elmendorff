@@ -25,118 +25,34 @@
     <div class="content">
       <b-container class="content-preview">
         <b-row>
-          <b-col
-            ><div>
-              <b-card
-                img-top
-                tag="article"
-                style="max-width: 16rem;"
-                class="mb-2 text-center"
-              >
-                <b-img
-                  rounded="circle"
-                  src="https://picsum.photos/600/300/?image=25"
-                  height="200px"
-                  width="200px"
-                  alt="Bottom-rounded image"
-                  class="border border-dark"
-                ></b-img>
+          <template v-for="preview in previews">
+            <b-col :key="preview.title.de"
+              ><div>
+                <b-card
+                  tag="article"
+                  style="max-width: 16rem; border: none;"
+                  class="mb-2 text-center"
+                >
+                  <circle-image
+                    :image="preview.previewImage"
+                    :width="200"
+                    :height="200"
+                    fit="crop"
+                  />
 
-                <h1 class="mt-3">
-                  Title
-                </h1>
-                <b-card-text class="text-justify-inter-word">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <b-link href="#" variant="primary">mehr</b-link>
-                </b-card-text>
-              </b-card>
-            </div></b-col
-          >
-          <b-col
-            ><div>
-              <b-card
-                img-top
-                tag="article"
-                style="max-width: 16rem;"
-                class="mb-2 text-center"
-              >
-                <b-img
-                  rounded="circle"
-                  src="https://picsum.photos/600/300/?image=25"
-                  height="200px"
-                  width="200px"
-                  alt="Bottom-rounded image"
-                  class="border border-dark"
-                ></b-img>
-
-                <h1 class="mt-3">
-                  Title
-                </h1>
-                <b-card-text class="text-justify-inter-word">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <b-link href="#" variant="primary">mehr</b-link>
-                </b-card-text>
-              </b-card>
-            </div></b-col
-          >
-          <b-col
-            ><div>
-              <b-card
-                img-top
-                tag="article"
-                style="max-width: 16rem;"
-                class="mb-2 text-center"
-              >
-                <b-img
-                  rounded="circle"
-                  src="https://picsum.photos/600/300/?image=25"
-                  height="200px"
-                  width="200px"
-                  alt="Bottom-rounded image"
-                  class="border border-dark"
-                ></b-img>
-
-                <h1 class="mt-3">
-                  Title
-                </h1>
-                <b-card-text class="text-justify-inter-word">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <b-link href="#" variant="primary">mehr</b-link>
-                </b-card-text>
-              </b-card>
-            </div></b-col
-          >
-          <b-col
-            ><div>
-              <b-card
-                img-top
-                tag="article"
-                style="max-width: 16rem;"
-                class="mb-2 text-center"
-              >
-                <b-img
-                  rounded="circle"
-                  src="https://picsum.photos/600/300/?image=25"
-                  height="200px"
-                  width="200px"
-                  alt="Bottom-rounded image"
-                  class="border border-dark"
-                ></b-img>
-
-                <h1 class="mt-3">
-                  Title
-                </h1>
-                <b-card-text class="text-justify-inter-word">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <b-link href="#" variant="primary">mehr</b-link>
-                </b-card-text>
-              </b-card>
-            </div></b-col
-          >
+                  <h4 class="mt-3 color-gold">
+                    {{ $t(preview.title) }}
+                  </h4>
+                  <b-card-text class="text-justify">
+                    {{ $t(preview.summary) }}
+                    <nuxt-link :to="'/' + $t(preview.slug).current" variant="primary" class="float-right"
+                      >mehr</nuxt-link
+                    >
+                  </b-card-text>
+                </b-card>
+              </div></b-col
+            >
+          </template>
         </b-row>
       </b-container>
     </div>
@@ -164,29 +80,49 @@ import { mapMutations } from 'vuex'
 import sanityClient from '../sanityClient'
 import BannerImage from '~/components/BannerImage'
 import DownArrow from '../components/icons/DownArrow.vue'
+import CircleImage from '~/components/CircleImage'
 // import SessionList from '~/components/SessionList'
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
-/* const query = `
-  {
-    "info": *[_id == "eventInformation"] {
-      ..., image { ..., asset->}
-    }[0]
-  }
-` */
-
 const query = `
-  {
-    "home": *[_id == "home"] {
-      image { ..., asset->}
-    }[0]
-  }
+{
+  "home": *[_id == "home"] {
+    image { ..., asset->}
+  }[0],
+  "previews": [
+    *[_type == "page" && slug.de.current == "jin-shin-jyutsu"] {
+      previewImage { ..., asset->},
+      slug {...},
+      summary {...},
+      title {...}
+    }[0],
+    *[_type == "page" && slug.de.current == "astromatrix"] {
+      previewImage { ..., asset->},
+      slug {...},
+      summary {...},
+      title {...}
+    }[0],
+    *[_type == "page" && slug.de.current == "kurse"] {
+      previewImage { ..., asset->},
+      slug {...},
+      summary {...},
+      title {...}
+    }[0],
+    *[_type == "page" && slug.de.current == "ueber"] {
+      previewImage { ..., asset->},
+      slug {...},
+      summary {...},
+      title {...}
+    }[0],
+  ]
+}
 `
 
 export default {
   components: {
     BannerImage,
-    DownArrow
+    DownArrow,
+    CircleImage
     // SessionList
     // BIconArrowUp,
     // BIconArrowDown
@@ -208,7 +144,6 @@ export default {
   methods: {
     ...mapMutations(['setCurrentSlug']),
     scrollContent: function() {
-      console.log("CLICKED")
       this.$scrollTo('.content')
     }
   },
@@ -247,6 +182,10 @@ export default {
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
+.color-gold {
+  color: #c39e00;
+}
+
 .container {
   padding: 1.5rem 0;
   box-sizing: border-box;
@@ -260,7 +199,7 @@ export default {
 }
 
 .content {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .title + p + .dates {
@@ -309,3 +248,6 @@ figcaption {
   box-sizing: border-box;
 }
 </style>
+
+
+
