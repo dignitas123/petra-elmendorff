@@ -6,34 +6,80 @@
         :key="month"
         class="monthWrap"
       >
-        <div class="monthSign">
-          {{ monthName[selLanguage][month - 1] }} {{ year }}
-        </div>
+        <div class="monthSign">{{ $t(monthName)[month - 1] }} {{ year }}</div>
 
-        <li
-          v-for="session in sessionsOneMonth"
-          :key="session._id"
-          class="session"
-        >
-          <nuxt-link :to="`/${currentSlug}/${session.sessionType}e/${session.slug.current}`">
-            <span class="top">
-              <span>
-                <span class="type">{{ session.sessionType }}</span>
-                <h2 class="sessionTitle">{{ session.title }}</h2>
-              </span>
-              <span
-                class="time"
-                :title="session.date.from | date('MMMM DD h:MM a')"
-              >
-                {{ session.date.from | date('MMMM DD') }}
-                <p>
-                  {{ session.summary }}
-                </p>
-              </span>
-            </span>
-          </nuxt-link>
-        </li>
+        <ul class="list-unstyled">
+          <b-media
+            v-for="session in sessionsOneMonth"
+            :key="session._id"
+            tag="li"
+            class="mb-2"
+          >
+            <template #aside>
+              <b-img
+                :src="courseThumbnail[session.sessionType]"
+                class="border border-dark"
+                rounded="circle"
+                width="64"
+                alt="placeholder"
+              ></b-img>
+            </template>
+            <nuxt-link
+              :to="
+                `/${currentSlug}/${session.sessionType}/${session.slug.current}`
+              "
+            >
+              <h5 class="mt-0 mb-1">{{ session.title }}</h5>
+              <p class="mb-0">
+                {{ session.summary }}
+                <span v-if="session.ort"
+                  >{{ $t(place) }}: {{ session.ort }}</span
+                >
+                <span v-if="session.date && selLanguage == 'de'">{{
+                  session.date.from | de
+                }}</span>
+                <span v-else-if="selLanguage == 'en'">{{
+                  session.date.from | en
+                }}</span>
+              </p>
+            </nuxt-link>
+          </b-media>
+        </ul>
       </div>
+    </div>
+    <div v-if="videoCourses.length > 0" class="yearWrap">
+      <div class="monthSign">
+        {{ $t(videoCourseTitle) }}
+      </div>
+      <ul class="list-unstyled">
+        <b-media
+          v-for="session in videoCourses"
+          :key="session._id"
+          tag="li"
+          class="mb-2"
+        >
+          <template #aside>
+            <b-img
+              :src="courseThumbnail[session.sessionType]"
+              class="border border-dark"
+              rounded="circle"
+              width="64"
+              alt="placeholder"
+            ></b-img>
+          </template>
+          <nuxt-link
+            :to="
+              `/${currentSlug}/${session.sessionType}/${session.slug.current}`
+            "
+          >
+            <h5 class="mt-0 mb-1">{{ session.title }}</h5>
+            <p class="mb-0">
+              {{ session.summary }}
+              <span v-if="session.ort">Ort: {{ session.ort }}</span>
+            </p>
+          </nuxt-link>
+        </b-media>
+      </ul>
     </div>
   </ul>
 </template>
@@ -41,13 +87,12 @@
 <script>
 // import { dateFilter } from 'vue-date-fns'
 import { createDateFilter } from 'vue-date-fns'
-import { de } from 'date-fns/locale'
 
 export default {
   filters: {
-    date: createDateFilter('dd MMMM yyyy', { de })
+    de: createDateFilter('DD.MM.YYYY'),
+    en: createDateFilter('MM/DD/YYYY')
   },
-  components: {},
   props: {
     sessions: {
       type: Array,
@@ -60,11 +105,29 @@ export default {
   },
   data: function() {
     return {
+      selLanguage: this.$store.state.language,
       courseLinkTitle: {
         en: 'Courses-Offers',
         de: 'Kurse-Angebote'
       },
-      selLanguage: this.$store.state.language,
+      videoCourseTitle: {
+        en: 'Video Courses',
+        de: 'Video Kurse'
+      },
+      place: {
+        de: 'Ort',
+        en: 'Place'
+      },
+      courseThumbnail: {
+        'online-kurse':
+          'https://cdn.sanity.io/images/ie6m0uwl/production/4ce5d6fcdb6f31ee4d4b3b0a32d2ae2df62c1d3f-169x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format',
+        'online-seminare':
+          'https://cdn.sanity.io/images/ie6m0uwl/production/4ce5d6fcdb6f31ee4d4b3b0a32d2ae2df62c1d3f-169x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format',
+        astromatrix:
+          'https://cdn.sanity.io/images/ie6m0uwl/production/a3c532c4fa153a1367899ca8312aba5e2ca09abc-170x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format',
+        'jin-shin-jyutsu':
+          'https://cdn.sanity.io/images/ie6m0uwl/production/e1a2800e04c2d36dd15bc1bf8cff4e4554c3867e-252x257.png?rect=0,2,252,252&w=64&h=64&fit=crop&auto=format'
+      },
       monthName: {
         en: [
           'January',
@@ -103,9 +166,8 @@ export default {
     },
     sessionsByMonth: props => {
       let months = {}
-      /* eslint-disable */
       props.sessions.forEach(session => {
-        if (session.date) {
+        if (session.date && session.showInCal) {
           // sort sessions by month and year
           let fromDate = session.date.from.split('T')[0].split('-')
           let year = fromDate[0]
@@ -116,15 +178,19 @@ export default {
           } else {
             months[year] = {}
             months[year][month] = [session]
-            // console.log(months)
           }
         }
       })
       return months
+    },
+    videoCourses: props => {
+      return props.sessions.filter(
+        session => session.sessionType == 'online-kurse'
+      )
     }
   },
   methods: {
-    calculatemonthName (m) {
+    calculatemonthName(m) {
       return new Date(null, m, null).toLocaleDateString('default', {
         month: 'long'
       })
@@ -134,7 +200,12 @@ export default {
 </script>
 
 <style scoped>
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-properties';
+
+.border {
+  border-width: 2px !important;
+  border-color: #c39e00 !important;
+}
 
 .sessionGrid {
   margin: 0;
@@ -171,11 +242,6 @@ li.session {
   text-decoration: inherit;
 }
 
-/* .session .top {
-  display: flex;
-  justify-content: space-between;
-} */
-
 .sessionGrid a > span {
   display: block;
 }
@@ -187,6 +253,7 @@ span.type {
   text-align: center;
   margin: 10px;
 }
+
 .sessionGrid h2 {
   display: inline-block;
 }

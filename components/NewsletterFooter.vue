@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-properties';
 
 @mixin form-style {
   width: 100%;

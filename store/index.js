@@ -13,7 +13,7 @@ export const getters = {
     return state.siteSettings
   },
   getSessions (state) {
-    return state.siteSettings
+    return state.sessions
   },
   // getProgram(state) {
   //   return state.program

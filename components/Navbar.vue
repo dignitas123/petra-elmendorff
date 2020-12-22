@@ -32,7 +32,7 @@
               <nuxt-link
                 class="nav-option"
                 :title="$t(courseLinkTitle)"
-                :to="$t(courseLinkSlug)"
+                :to="'/' + $t(courseLinkSlug)"
                 >{{ $t(courseLinkTitle) }}</nuxt-link
               >
             </div>
