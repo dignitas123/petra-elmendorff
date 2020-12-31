@@ -1,73 +1,50 @@
 <template>
-  <header class="header text-center">
-    <h1 id="headerText">
-      <nuxt-link to="/">{{ title }}</nuxt-link>
-    </h1>
-    <div id="subHeaderText">
-      <img id="chinesSign" src="~/assets/img/chinese_sign_jinshinjyutsu.png" />
-      <h2 id="subHeaderTextHeading">
-        {{ subheader }}
+  <header class="nav-header text-center position-relative">
+    <div class="brand-sign">
+      <h1 id="headerText">
+        <nuxt-link to="/">{{ title }}</nuxt-link>
+      </h1>
+      <h2 id="subHeaderText">
+        <img
+          id="chineseSign"
+          src="~/assets/img/chinese_sign_jinshinjyutsu.png"
+          class="float-left"
+        />
+        <h2 id="subHeaderTextHeading" class="float-left">
+          Jin Shin Jyutsu <span class="smaller-unit">&amp;</span> AstroMatrix
+        </h2>
       </h2>
     </div>
-    <b-navbar toggleable="lg" type="light" variant="sucess">
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="pl-20 ml-auto main-nav">
-          <!-- <div>
-          <nuxt-link class="nav-option" title="home" to="/">Home</nuxt-link>
-        </div> -->
-          <li v-for="link in headermenue" :key="link.slug.current">
-            <div>
-              <nuxt-link
-                class="nav-option"
-                :title="link.title"
-                :to="'/' + link.slug.current"
-                >{{ link.title }}</nuxt-link
-              >
-            </div>
-          </li>
-          <li>
-            <div>
-              <nuxt-link
-                class="nav-option"
-                :title="$t(courseLinkTitle)"
-                :to="'/' + $t(courseLinkSlug)"
-                >{{ $t(courseLinkTitle) }}</nuxt-link
-              >
-            </div>
-          </li>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="lang ml-auto pr-5">
-          <div>
-            <span
-              class="lang border-right-v"
-              :class="underlineIfLang('en')"
-              right
-              @click="changeLanguage('en')"
-              >E</span
-            >
-          </div>
-          <div>
-            <span
-              class="lang"
-              :class="underlineIfLang('de')"
-              right
-              @click="changeLanguage('de')"
-              >D</span
-            >
-          </div>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    <div class="menue-container position-absolute">
+      <DoubleCheeseBurger />
+      <div class="language-switch mt-2">
+        <span
+          class="lang d-inline-block mr-2"
+          :class="underlineIfLang('de')"
+          right
+          @click="changeLanguage('de')"
+          >D</span
+        >
+        <div
+          style="height: 13px; width: 1px; background: #593f4c;"
+          class="d-inline-block"
+        ></div>
+        <span
+          class="lang d-inline-block ml-1"
+          :class="underlineIfLang('en')"
+          right
+          @click="changeLanguage('en')"
+          >E</span
+        >
+      </div>
+    </div>
+    <NavCard :display="displayNavbar" :menuelinks="headermenue" />
     <div class="language-mobile">
-      <span :class="underlineIfLang('en')" right @click="changeLanguage('en')"
-        >E</span
-      >
       <span :class="underlineIfLang('de')" right @click="changeLanguage('de')"
         >D</span
+      >
+      <span :class="underlineIfLang('en')" right @click="changeLanguage('en')"
+        >E</span
       >
     </div>
   </header>
@@ -75,8 +52,11 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import DoubleCheeseBurger from './icons/DoubleCheeseBurger.vue'
+import NavCard from '~/components/NavCard.vue'
 
 export default {
+  components: { DoubleCheeseBurger, NavCard },
   props: {
     title: {
       type: String,
@@ -85,41 +65,52 @@ export default {
   },
   data: function() {
     return {
-      courseLinkTitle: {
-        en: 'Courses-Offers',
-        de: 'Kurse-Angebote'
-      },
-      courseLinkSlug: {
-        en: 'courses-offers',
-        de: 'kurse-angebote'
-      }
+      displayNavbar: false
     }
   },
   computed: {
     // auto include store getters
-    ...mapGetters(['subheader', 'headermenue', 'currentSlug'])
+    ...mapGetters(['headermenue', 'currentSlug'])
   },
   methods: {
     changeLanguage: function(lang) {
       console.log('changed language', lang)
       this.$store.commit('setLanguage', lang)
-      // this.setCurrentSlug(this.courseLinkSlug[this.$store.state.language])
       if (this.currentSlug) {
-        // navigate to other right lang slug
         this.$router.push({
           path: '/' + this.$t(this.currentSlug).current
         })
       }
     },
     underlineIfLang: function(lang) {
-      return lang == this.$store.getters.getLanguage ? 'underline' : ''
+      return lang == this.$store.getters.getLanguage ? 'bolder' : ''
     }
+  },
+  created() {
+    this.$nuxt.$on('menu-hover', () => {
+      this.displayNavbar = true
+    }),
+    this.$nuxt.$on('nav-card-out', () => {
+      this.displayNavbar = false
+    })
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-properties';
+
+.nav-card {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.language-switch {
+  font-size: 16px;
+  font-weight: 100;
+}
 
 .language-mobile {
   display: none;
@@ -129,8 +120,8 @@ export default {
   font-size: var(--font-large-size);
 }
 
-.underline {
-  text-decoration: underline;
+.bolder {
+  font-family: var(--font-family-sans-bold) !important;
 }
 
 #headerText {
@@ -138,23 +129,27 @@ export default {
     color: inherit;
     text-decoration: none;
   }
-  font-size: var(--font-title1-size);
+  font-size: var(--font-logo-size);
   color: var(--color-gray);
-  margin: 19px 0 10px 0;
   font-weight: bold;
+  letter-spacing: 5px;
+  text-align: left;
 }
 
 #subHeaderTextHeading {
-  font-family: var(--font-family-sans-secondary);
-  font-size: var(--font-title2-size);
+  font-family: var(--font-family-sans-thin);
+  font-size: var(--font-title1-size);
   display: inline-block;
   vertical-align: middle;
   color: var(--color-golden);
+  margin-top: -10px;
+  margin-left: 5px;
 }
 
-#chinesSign {
-  height: 40px;
+#chineseSign {
+  height: 90px;
   padding-bottom: 5px;
+  margin-top: -25px;
 }
 
 #subHeaderText {
@@ -170,112 +165,50 @@ export default {
   margin: 0 auto;
 }
 
-.main-nav {
-  padding-left: 80px;
-  li {
-    display: inline-block;
-    font-size: 0;
-    &:not(:last-child) {
-      .nav-option {
-        border-right: 1px solid var(--color-dark-gray);
-      }
-    }
-    .nav-option {
-      display: inline-block;
-      padding-right: 10px;
-      padding-left: 10px;
-      text-align: center;
-      font: normal var(--font-title3-size) var(--font-family-sans-secondary);
-      .lang {
-        font-family: var(--font-family-sans);
-        font-weight: bold;
-      }
-      &:hover {
-        font-weight: bold;
-        text-decoration: none;
-      }
-      &::before {
-        display: block;
-        content: attr(title);
-        font-weight: bold;
-        height: 0;
-        overflow: hidden;
-        visibility: hidden;
-      }
-    }
-    .nuxt-link-exact-active {
-      font-weight: bold;
-      text-decoration: none;
-    }
+.menue-container {
+  right: 20px;
+  top: 0;
+  font-size: 8px;
+  &:hover {
+    cursor: pointer;
   }
 }
 
-.border-right-v {
-  border-right: 1px solid var(--color-dark-gray);
+.brand-sign {
+  margin-top: 75px;
+  margin-left: 12%;
 }
+
+.smaller-unit {
+  font-size: var(--font-title2-size);
+}
+
+// .border-right-v {
+//   border-right: 1px solid var(--color-dark-gray);
+// }
 
 .lang {
   color: var(--color-dark-gray);
   padding-right: 5px;
   padding-left: 5px;
+  font-family: var(--font-family-sans-light);
+  width: 20px;
   &:hover {
     cursor: pointer;
-    text-decoration: underline;
+    font-family: var(--font-family-sans-bold);
   }
 }
 
 @media (max-width: 542px) {
   #headerText {
-    padding-left: 20px;
+    padding-left: 25px;
     font-size: var(--font-title2-size);
-  }
-  #subHeaderTextHeading {
-    font-size: var(--font-title3-size);
-  }
-  .language-mobile {
-    top: 105px !important;
-    left: 0;
-    width: 100px;
   }
 }
 
 @media (max-width: 991px) {
-  .main-nav {
-    padding-left: 0;
-    li {
-      display: block !important;
-    }
-  }
-  .navbar-nav {
-    display: block;
-    margin: 0 auto;
-    width: 200px;
-    margin-top: 5px;
-    text-align: center;
-    li {
-      div {
-        padding-bottom: 5px;
-        a {
-          border-right: none !important;
-        }
-      }
-    }
-  }
   .lang {
     display: none;
-  }
-
-  .language-mobile {
-    color: var(--color-dark-gray);
-    font-size: 21px;
-    display: block;
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    span:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
   }
 }
 </style>

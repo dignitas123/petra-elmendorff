@@ -1,16 +1,17 @@
 :root {
-  --font-family-sans: Arial, sans-serif;
-  --font-family-sans-secondary: 'Quicksand', sans-serif;
+  --font-family-sans: 'GillSans';
+  --font-family-sans-thin: 'GillSansLight';
+  --font-family-sans-bold: 'GillSansBold';
 
   --color-black: #202123;
-  --color-dark-gray: #626262;
+  --color-dark-gray: #593f4c;
   --color-gray: #9d9c9f;
   --color-light-gray: #b4bcc7;
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
   --color-accent: #ae5f87;
   --color-background: #d5bccc;
-  --color-golden: #cdaf00;
+  --color-golden: #a5831d;
 
   /* Typography */
   --unit: 16;
@@ -30,6 +31,8 @@
   --font-title2-line-height: calc(39 / 24); /* 39px */
   --font-title1-size: calc(49 / var(--unit) * 1rem); /* 49px */
   --font-title1-line-height: calc(57 / 49); /* 57px */
+
+  --font-logo-size: calc(80 / var(--unit) * 1rem); /* 67px */
 
   /* Widths */
   --width-x-small: 20em;

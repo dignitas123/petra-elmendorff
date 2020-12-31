@@ -1,11 +1,28 @@
 // Quicksand Import
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
+@font-face {
+  font-family: 'GillSans';
+  src: url('~assets/fonts/GillSans.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GillSansLight';
+  src: url('~assets/fonts/GillSansLight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GillSansBold';
+  font-weight: 300;
+  src: url('~assets/fonts/GillSansBold.otf') format('opentype');
+}
+
+
 // bootstrap default overrides before importing bootstrap
-$font-family-sans-serif: Arial, sans-serif;
+$font-family-sans-serif: 'GillSans';
 
 a {
-  color: #626262 !important;
+  color: #593f4c !important;
 }
 
 $spacer: 1rem;

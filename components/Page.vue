@@ -2,7 +2,7 @@
   <div>
     <header class="header">
       <figure>
-        <BannerImage
+        <SanityImage
           v-if="image"
           :image="image"
           :zitat="$t(image.zitat)"
@@ -42,7 +42,6 @@
 
 <script>
 import BlockContent from 'sanity-blocks-vue-component'
-import BannerImage from '~/components/BannerImage'
 
 export default {
   props: {
@@ -53,7 +52,6 @@ export default {
   },
   components: {
     BlockContent,
-    BannerImage
   },
   data() {
     return {
@@ -71,5 +69,9 @@ export default {
 <style scoped>
 h1, figure {
     text-align: center;
+}
+
+.content {
+  margin-top: 100px;
 }
 </style>

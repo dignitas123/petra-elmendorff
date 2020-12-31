@@ -1,5 +1,4 @@
 <template>
-  <!-- <h1 class="title">Sessions</h1> -->
   <div class="sessionGridContainer">
     <b-container class="filter pictures mb-3 text-center">
       <b-row>
@@ -153,5 +152,9 @@ export default {
   &:hover {
     cursor: pointer;
   }
+}
+
+.sessionGridContainer {
+  margin-top: 100px;
 }
 </style>

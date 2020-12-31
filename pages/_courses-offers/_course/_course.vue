@@ -1,5 +1,6 @@
 <template>
   <section class="container mb-3">
+    <b-breadcrumb :items="$t(items)"></b-breadcrumb>
     <h1>{{ title }}</h1>
     <block-content
       v-if="$t(content)"
@@ -64,6 +65,9 @@ export default {
       }
     }
   },
+  // fetch({ params }) {
+  //   console.log("PARAAAAAAAAAAAAAAAAAAAAAAAAAMS", params)
+  // },
   async asyncData(kontext) {
     console.log('sanity fetch sessions', query, kontext)
     let _this = this
@@ -74,7 +78,6 @@ export default {
   },
   computed: {
     dateForReal: () => {
-      console.log('WTHFDKSFJDSF')
       if (typeof this.date != 'undefined') {
         return this.date
       } else {
@@ -92,6 +95,38 @@ export default {
     dasDatum: function() {
       if (typeof this.date == 'undefined') return ''
       else return this.date
+    },
+    items: function() {
+      return {
+        de: [
+          {
+            text: 'Alle Kurse',
+            href: '/kurse-angebote'
+          },
+          {
+            text: this.sessionType.replace(/-/g, ' '),
+            href: '/kurse-angebote/' + this.sessionType
+          },
+          {
+            text: this.title,
+            active: true
+          }
+        ],
+        en: [
+          {
+            text: 'All Courses',
+            href: '/courses-offers'
+          },
+          {
+            text: this.sessionType.replace(/-/g, ' '),
+            href: '/kurse-angebote/' + this.sessionType
+          },
+          {
+            text: this.title,
+            active: true
+          }
+        ]
+      }
     }
   }
 }
@@ -100,6 +135,10 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
+
+.breadcrumb {
+  text-transform: capitalize;
+}
 
 .container {
   min-height: calc(100% - 72px - 216px);

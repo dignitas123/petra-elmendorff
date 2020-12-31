@@ -210,9 +210,6 @@ export default {
 .sessionGrid {
   margin: 0;
   padding: 0;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  grid-gap: 3rem; */
 }
 
 h2.sessionTitle {

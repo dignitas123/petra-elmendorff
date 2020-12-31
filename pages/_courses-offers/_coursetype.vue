@@ -1,13 +1,7 @@
 <template>
   <section class="container">
-    <Navbar />
-    <Courses
-      v-if="
-        $route.params.page == 'kurse-angebote' ||
-          $route.params.page == 'courses-offers'
-      "
-    />
-    <Page v-else :content="content" />
+    <b-breadcrumb :items="$t(items)"></b-breadcrumb>
+    <Courses :filterCat="$router.history.current.params.coursetype" />
   </section>
 </template>
 
@@ -18,16 +12,17 @@ import sanityClient from '~/sanityClient'
 // import SanityImage from '~/components/SanityImage'
 import Courses from '~/components/Courses'
 import Page from '~/components/Page'
+import { mapGetters } from 'vuex'
 
-const query = groq`
-  *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
-        ...,
-        image {
-          ...,
-          asset->
-        }
-  }[0]
-`
+// const query = groq`
+//   *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
+//         ...,
+//         image {
+//           ...,
+//           asset->
+//         }
+//   }[0]
+// `
 
 export default {
   components: {
@@ -44,6 +39,43 @@ export default {
       coursesPage: false
     }
   },
+  computed: {
+    ...mapGetters(['currentSlug']),
+    items: function() {
+      return {
+        de: [
+          {
+            text: 'Alle Kurse',
+            href: '/kurse-angebote'
+          },
+          {
+            text: this.$router.history.current.params.coursetype
+              .replace(/-/g, ' ')
+              .replace(/(?:^|\s)\S/g, function(a) {
+                return a.toUpperCase()
+              }),
+            href: '/kurse-angebote/' + this.slug,
+            active: true
+          }
+        ],
+        en: [
+          {
+            text: 'All Courses',
+            href: '/courses-offers'
+          },
+          {
+            text: this.$router.history.current.params.coursetype
+              .replace(/-/g, ' ')
+              .replace(/(?:^|\s)\S/g, function(a) {
+                return a.toUpperCase()
+              }),
+            href: '/kurse-angebote/' + this.slug,
+            active: true
+          }
+        ]
+      }
+    }
+  },
   // fetch({ route }) {
   //   let _this = this
   //   if (
@@ -53,14 +85,6 @@ export default {
   //     this.coursesPage = true
   //   else this.coursesPage = false
   // },
-  async asyncData(kontext) {
-    let params = {
-      lang: kontext.store.getters.getLanguage,
-      page: kontext.params.page
-    }
-    console.log('sanity fetch sessions', query, params)
-    return await sanityClient.fetch(query, params)
-  },
   created() {
     this.$store.commit('setCurrentSlug', this.slug)
   }

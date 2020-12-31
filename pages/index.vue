@@ -1,17 +1,18 @@
 <template>
   <section class="container">
+    <Navbar />
     <header class="header">
-      <figure>
-        <BannerImage
-          :image="home.image"
-          :zitat="$t(home.image.zitat)"
-          :width="1800"
-          :height="500"
-          :author="sitetitle"
-          class="mainImage"
-        />
-        <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
-      </figure>
+      <SanityImage
+        :image="home.image"
+        :width="1563"
+        :height="470"
+        class="mainImage"
+      />
+      <hr class="image-sep" />
+      <div class="text-center mt-3 quote-block">
+        <h3 class="mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
+        <!-- - <i>{{ author }}</i> -->
+      </div>
       <!-- <h1 class="title">{{ info.name }}</h1>
       <p class="subtitle">{{ info.description }}</p> -->
       <!-- <div class="dates">
@@ -20,7 +21,7 @@
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
       </div> -->
       <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
-      <DownArrow @arrow-click="scrollContent" />
+      <ZodiacSign @arrow-click="scrollContent" />
     </header>
     <div class="content">
       <b-container class="content-preview">
@@ -40,12 +41,15 @@
                     fit="crop"
                   />
 
-                  <h4 class="mt-3 color-gold">
+                  <h4 class="mt-3">
                     {{ $t(preview.title) }}
                   </h4>
                   <b-card-text class="text-justify">
                     {{ $t(preview.summary) }}
-                    <nuxt-link :to="'/' + $t(preview.slug).current" variant="primary" class="float-right"
+                    <nuxt-link
+                      :to="'/' + $t(preview.slug).current"
+                      variant="primary"
+                      class="float-right"
                       >mehr</nuxt-link
                     >
                   </b-card-text>
@@ -78,9 +82,10 @@ import { dateFilter } from 'vue-date-fns'
 import { mapMutations } from 'vuex'
 
 import sanityClient from '../sanityClient'
-import BannerImage from '~/components/BannerImage'
-import DownArrow from '../components/icons/DownArrow.vue'
+import DownArrow from '~/components/icons/DownArrow'
+import ZodiacSign from '~/components/icons/ZodiacSign'
 import CircleImage from '~/components/CircleImage'
+import Navbar from '~/components/Navbar'
 // import SessionList from '~/components/SessionList'
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 
@@ -120,9 +125,10 @@ const query = `
 
 export default {
   components: {
-    BannerImage,
     DownArrow,
-    CircleImage
+    ZodiacSign,
+    CircleImage,
+    Navbar
     // SessionList
     // BIconArrowUp,
     // BIconArrowDown
@@ -182,8 +188,10 @@ export default {
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
-.color-gold {
-  color: #c39e00;
+.image-sep {
+  border: 0;
+  height: 8px;
+  background: #dacf3d;
 }
 
 .container {
@@ -196,6 +204,7 @@ export default {
   text-align: center;
   width: 100%;
   height: 100vh;
+  margin-top: 100px;
 }
 
 .content {
@@ -248,6 +257,3 @@ figcaption {
   box-sizing: border-box;
 }
 </style>
-
-
-
