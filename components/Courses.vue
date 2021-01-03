@@ -1,16 +1,16 @@
 <template>
   <div class="sessionGridContainer">
-    <b-container class="filter pictures mb-3 text-center">
+    <b-container class="filter pictures mb-3 text-center d-inline-block">
       <b-row>
         <b-col>
           <figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/astromatrix'">
               <b-img
                 src="https://cdn.sanity.io/images/ie6m0uwl/production/a3c532c4fa153a1367899ca8312aba5e2ca09abc-170x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format"
-                class="border border-dark"
+                class="border border-dark float"
                 rounded="circle"
                 width="120"
-                alt="placeholder"
+                alt="Astromatrix"
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
@@ -26,7 +26,7 @@
                 class="border border-dark"
                 rounded="circle"
                 width="120"
-                alt="placeholder"
+                alt="Jin Shin Jyutsu"
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
@@ -42,7 +42,7 @@
                 class="border border-dark"
                 rounded="circle"
                 width="120"
-                alt="placeholder"
+                alt="Online Seminare"
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
@@ -156,5 +156,7 @@ export default {
 
 .sessionGridContainer {
   margin-top: 100px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 </style>

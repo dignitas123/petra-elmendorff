@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-content">
     <header class="header">
       <figure>
         <SanityImage
@@ -67,6 +67,11 @@ export default {
 </script>
 
 <style scoped>
+.page-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 h1, figure {
     text-align: center;
 }

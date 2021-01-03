@@ -1,30 +1,72 @@
 <template>
   <section class="container">
-    <Navbar />
-    <header class="header">
-      <SanityImage
-        :image="home.image"
-        :width="1563"
-        :height="470"
-        class="mainImage"
-      />
-      <hr class="image-sep" />
-      <div class="text-center mt-3 quote-block">
-        <h3 class="mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
-        <!-- - <i>{{ author }}</i> -->
-      </div>
-      <!-- <h1 class="title">{{ info.name }}</h1>
+    <section class="landing-page">
+      <Navbar />
+      <div class="header-content">
+        <SanityImage
+          :image="home.image"
+          :width="1563"
+          :height="470"
+          class="mainImage"
+        />
+        <hr class="image-sep" />
+        <div class="text-center mt-3 quote-block">
+          <h3 class="mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
+          <!-- - <i>{{ author }}</i> -->
+        </div>
+        <!-- <h1 class="title">{{ info.name }}</h1>
       <p class="subtitle">{{ info.description }}</p> -->
-      <!-- <div class="dates">
+        <!-- <div class="dates">
         {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
         &ndash;
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
       </div> -->
-      <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
-      <ZodiacSign @arrow-click="scrollContent" />
-    </header>
-    <div class="content">
-      <b-container class="content-preview">
+        <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
+        <ZodiacSign @arrow-click="scrollContent" />
+      </div>
+    </section>
+    <section class="content">
+      <b-container class="container1">
+        <b-row class="text-center">
+          <template v-for="preview in previews">
+            <b-col :key="$t(preview.title)" class="image-container">
+              <nuxt-link :to="'/' + slugLink($t(preview.slug).current)">
+                <SanityImage
+                  :image="preview.previewImage2"
+                  :alt="$t(preview.previewImage2.alt)"
+                  class="grid-image m-5"
+                />
+                <div class="middle">
+                  <div class="text">{{ $t(preview.title) }}</div>
+                  <div><Plus /></div>
+                </div>
+              </nuxt-link>
+            </b-col>
+          </template>
+        </b-row>
+      </b-container>
+      <b-container class="container2">
+        <b-row>
+          <b-col>
+            <h1 class="aktuelle-termine">{{ $t(termine) }}</h1>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            1
+          </b-col>
+          <b-col>
+            2
+          </b-col>
+          <b-col>
+            3
+          </b-col>
+          <b-col>
+            4
+          </b-col>
+        </b-row>
+      </b-container>
+      <!-- <b-container class="content-preview">
         <b-row>
           <template v-for="preview in previews">
             <b-col :key="preview.title.de"
@@ -58,8 +100,8 @@
             >
           </template>
         </b-row>
-      </b-container>
-    </div>
+      </b-container> -->
+    </section>
     <!-- <section>
       <p>Test Icons <BIconArrowUp /> <BIconArrowDown /></p>
     </section>
@@ -84,10 +126,12 @@ import { mapMutations } from 'vuex'
 import sanityClient from '../sanityClient'
 import DownArrow from '~/components/icons/DownArrow'
 import ZodiacSign from '~/components/icons/ZodiacSign'
-import CircleImage from '~/components/CircleImage'
+import SanityImage from '~/components/SanityImage'
+// import CircleImage from '~/components/CircleImage'
 import Navbar from '~/components/Navbar'
 // import SessionList from '~/components/SessionList'
 // import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
+import Plus from '~/components/icons/Plus'
 
 const query = `
 {
@@ -96,25 +140,25 @@ const query = `
   }[0],
   "previews": [
     *[_type == "page" && slug.de.current == "jin-shin-jyutsu"] {
-      previewImage { ..., asset->},
+      previewImage2 { ..., asset->},
       slug {...},
       summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "astromatrix"] {
-      previewImage { ..., asset->},
+      previewImage2 { ..., asset->},
       slug {...},
       summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "kurse"] {
-      previewImage { ..., asset->},
+      previewImage2 { ..., asset->},
       slug {...},
       summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "ueber"] {
-      previewImage { ..., asset->},
+      previewImage2 { ..., asset->},
       slug {...},
       summary {...},
       title {...}
@@ -127,30 +171,35 @@ export default {
   components: {
     DownArrow,
     ZodiacSign,
-    CircleImage,
-    Navbar
-    // SessionList
-    // BIconArrowUp,
-    // BIconArrowDown
+    Navbar,
+    SanityImage,
+    Plus
   },
   filters: {
     dateFilter
-  },
-  data() {
-    return {
-      // value: '',
-      // program: this.$store.getters.getProgram
-    }
   },
   computed: {
     sitetitle: function() {
       return this.$store.state.siteSettings.title
     }
   },
+  data() {
+    return {
+      termine: {
+        de: 'Aktuelle Termine',
+        en: 'Upcoming Events'
+      }
+    }
+  },
   methods: {
     ...mapMutations(['setCurrentSlug']),
     scrollContent: function() {
       this.$scrollTo('.content')
+    },
+    slugLink(slug) {
+      if (slug === 'kurse') return 'kurse-angebote'
+      if (slug === 'courses') return 'courses-offers'
+      return slug
     }
   },
   async asyncData() {
@@ -188,6 +237,46 @@ export default {
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
+.image-container {
+  position: relative;
+  width: 50%;
+}
+
+.text {
+  color: var(--color-dark-gray);
+  font-size: var(--font-title2-size);
+}
+
+.image-container:hover .grid-image {
+  opacity: 0.3;
+}
+
+.image-container:hover .middle {
+  opacity: 1;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.grid-image {
+  opacity: 1;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.container2 {
+  background: white;
+}
+
 .image-sep {
   border: 0;
   height: 8px;
@@ -200,15 +289,23 @@ export default {
   min-height: calc(100% - 72px - 216px);
 }
 
-.header {
+.landing-page {
+  height: 91vh;
+}
+
+.header-content {
   text-align: center;
   width: 100%;
-  height: 100vh;
   margin-top: 100px;
 }
 
+.aktuelle-termine {
+  color: #e0d7d6;
+  font-weight: bold;
+}
+
 .content {
-  min-height: 100vh;
+  background: #f3efee;
 }
 
 .title + p + .dates {
