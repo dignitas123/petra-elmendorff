@@ -22,19 +22,19 @@
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
       </div> -->
         <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
-        <ZodiacSign @arrow-click="scrollContent" />
+        <DownArrow @arrow-click="scrollContent" />
       </div>
     </section>
     <section class="content">
       <b-container class="container1">
-        <b-row class="text-center">
+        <b-row class="text-center grid-row" cols-sm="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
               <nuxt-link :to="'/' + slugLink($t(preview.slug).current)">
                 <SanityImage
                   :image="preview.previewImage2"
                   :alt="$t(preview.previewImage2.alt)"
-                  class="grid-image m-5"
+                  class="grid-image mb-5"
                 />
                 <div class="middle">
                   <div class="text">{{ $t(preview.title) }}</div>
@@ -51,18 +51,31 @@
             <h1 class="aktuelle-termine">{{ $t(termine) }}</h1>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            1
-          </b-col>
-          <b-col>
-            2
-          </b-col>
-          <b-col>
-            3
-          </b-col>
-          <b-col>
-            4
+        <b-row cols-sm="1" cols-md="2" cols-xl="4">
+          <b-col v-for="course in home.courses" v-bind:key="course.title" class="mb-3">
+            <nuxt-link :to="$t(angebote) + `/${course.sessionType}/${course.slug.current}`" class="text-dec-none">
+              <div class="text-center color-dark-grey">
+                <h4>{{ course.title }}</h4>
+              </div>
+              <h4 class="text-center color-grey">
+                <div>
+                  {{ $t(course.ort) }}
+                </div>
+                <span v-if="course.date && selLanguage == 'de'">{{
+                  course.date.from | de
+                }}</span>
+                <span v-else-if="selLanguage == 'en'">{{
+                  course.date.from | en
+                }}</span>
+                -
+                <span v-if="course.date && selLanguage == 'de'">{{
+                  course.date.to | de
+                }}</span>
+                <span v-else-if="selLanguage == 'en'">{{
+                  course.date.to | en
+                }}</span>
+              </h4>
+            </nuxt-link>
           </b-col>
         </b-row>
       </b-container>
@@ -122,10 +135,11 @@
 <script>
 import { dateFilter } from 'vue-date-fns'
 import { mapMutations } from 'vuex'
-
+// import { dateFilter } from 'vue-date-fns'
+import { createDateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
 import DownArrow from '~/components/icons/DownArrow'
-import ZodiacSign from '~/components/icons/ZodiacSign'
+// import ZodiacSign from '~/components/icons/ZodiacSign'
 import SanityImage from '~/components/SanityImage'
 // import CircleImage from '~/components/CircleImage'
 import Navbar from '~/components/Navbar'
@@ -136,31 +150,34 @@ import Plus from '~/components/icons/Plus'
 const query = `
 {
   "home": *[_id == "home"] {
-    image { ..., asset->}
+    image { ..., asset->},
+		"courses": currentCourses[]->{
+      title,
+      ort,
+      date,
+      sessionType,
+      slug { current, }
+    }
   }[0],
   "previews": [
     *[_type == "page" && slug.de.current == "jin-shin-jyutsu"] {
       previewImage2 { ..., asset->},
       slug {...},
-      summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "astromatrix"] {
       previewImage2 { ..., asset->},
       slug {...},
-      summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "kurse"] {
       previewImage2 { ..., asset->},
       slug {...},
-      summary {...},
       title {...}
     }[0],
     *[_type == "page" && slug.de.current == "ueber"] {
       previewImage2 { ..., asset->},
       slug {...},
-      summary {...},
       title {...}
     }[0],
   ]
@@ -170,13 +187,15 @@ const query = `
 export default {
   components: {
     DownArrow,
-    ZodiacSign,
+    // ZodiacSign,
     Navbar,
     SanityImage,
     Plus
   },
   filters: {
-    dateFilter
+    dateFilter,
+    de: createDateFilter('DD.MM.YYYY'),
+    en: createDateFilter('MM/DD/YYYY')
   },
   computed: {
     sitetitle: function() {
@@ -185,9 +204,14 @@ export default {
   },
   data() {
     return {
+      selLanguage: this.$store.state.language,
       termine: {
         de: 'Aktuelle Termine',
         en: 'Upcoming Events'
+      },
+      angebote: {
+        de: 'kurse-angebote',
+        en: 'courses-offers'
       }
     }
   },
@@ -266,11 +290,28 @@ export default {
   text-align: center;
 }
 
+.color-dark-grey {
+  color: var(--color-dark-gray);
+}
+
+.color-grey {
+  color: var(--color-gray);
+}
+
+.grid-row {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .grid-image {
   opacity: 1;
   height: auto;
   transition: 0.5s ease;
   backface-visibility: hidden;
+}
+
+.fixed-width-wide {
+  width: 500px !important;
 }
 
 .container2 {
@@ -352,5 +393,9 @@ figcaption {
   margin: 0 auto;
   padding: 0 1.5rem;
   box-sizing: border-box;
+}
+
+.text-dec-none:hover {
+  text-decoration: none;
 }
 </style>

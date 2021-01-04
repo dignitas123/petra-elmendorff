@@ -2,7 +2,7 @@
   <header class="nav-header text-center position-relative">
     <div class="brand-sign">
       <h1 id="headerText">
-        <nuxt-link to="/">{{ title }}</nuxt-link>
+        <nuxt-link to="/">Petra Elmendo<span class="wider-ls">rff</span></nuxt-link>
       </h1>
       <h2 id="subHeaderText">
         <img
@@ -132,17 +132,16 @@ export default {
   font-size: var(--font-logo-size);
   color: var(--color-gray);
   font-weight: bold;
-  letter-spacing: 5px;
   text-align: left;
 }
 
 #subHeaderTextHeading {
   font-family: var(--font-family-sans-thin);
-  font-size: var(--font-title1-size);
+  font-size: calc(44 / var(--unit) * 1rem);
   display: inline-block;
   vertical-align: middle;
   color: var(--color-golden);
-  margin-top: -10px;
+  margin-top: -6px;
   margin-left: 5px;
 }
 
@@ -163,6 +162,10 @@ export default {
 .navbar.navbar-light.navbar-expand-md {
   text-align: center;
   margin: 0 auto;
+}
+
+.wider-ls {
+  letter-spacing: 5px;
 }
 
 .menue-container {

@@ -1,25 +1,28 @@
 <template>
   <section class="container mb-3">
-    <b-breadcrumb :items="$t(items)"></b-breadcrumb>
-    <h1>{{ title }}</h1>
-    <block-content
-      v-if="$t(content)"
-      :blocks="$t(content)"
-      :serializers="serializers"
-      projectId="ie6m0uwl"
-      dataset="production"
-    />
-    <div v-if="dasDatum" class="mb-3">
-      <span v-if="selLanguage == 'de'">Datum: {{ dasDatum.from | de }}</span>
-      <span v-else>Date: {{ dasDatum.from | en }}</span
-      ><span v-if="derOrt"> | {{ $t(place) }}: {{ derOrt }}</span>
-    </div>
-    <div class="d-flex">
-      <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
-      <div class="ml-auto">
-        <a :href="courseLink" class="float-right">
-          <input class="btn btn-secondary" :value="$t(anmelden)"
-        /></a>
+    <Navbar />
+    <div class="container-text">
+      <b-breadcrumb :items="$t(items)" class="breadcrumb"></b-breadcrumb>
+      <h1>{{ title }}</h1>
+      <block-content
+        v-if="$t(content)"
+        :blocks="$t(content)"
+        :serializers="serializers"
+        projectId="ie6m0uwl"
+        dataset="production"
+      />
+      <div v-if="dasDatum" class="mb-3">
+        <span v-if="selLanguage == 'de'">Datum: {{ dasDatum.from | de }}</span>
+        <span v-else>Date: {{ dasDatum.from | en }}</span
+        ><span v-if="derOrt"> | {{ $t(place) }}: {{ derOrt }}</span>
+      </div>
+      <div class="d-flex">
+        <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
+        <div class="ml-auto">
+          <a :href="courseLink" class="float-right">
+            <input class="btn btn-secondary" :value="$t(anmelden)"
+          /></a>
+        </div>
       </div>
     </div>
   </section>
@@ -138,15 +141,22 @@ export default {
 
 .breadcrumb {
   text-transform: capitalize;
+  max-width: 800px;
+  width: 100%;
 }
 
 .container {
   min-height: calc(100% - 72px - 216px);
+}
+
+.container-text {
   max-width: 700px;
   h1 {
     text-align: center;
   }
+  margin: 0 auto;
 }
+
 .content {
   max-width: var(--width-small);
   margin: 0 auto;

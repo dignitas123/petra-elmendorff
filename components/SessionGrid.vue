@@ -33,7 +33,7 @@
               <p class="mb-0">
                 {{ session.summary }}
                 <span v-if="session.ort"
-                  >{{ $t(place) }}: {{ session.ort }}</span
+                  ><b>{{ $t(session.ort) }}</b></span
                 >
                 <span v-if="session.date && selLanguage == 'de'">{{
                   session.date.from | de
@@ -75,7 +75,7 @@
             <h5 class="mt-0 mb-1">{{ session.title }}</h5>
             <p class="mb-0">
               {{ session.summary }}
-              <span v-if="session.ort">Ort: {{ session.ort }}</span>
+              <span v-if="session.ort"><b>{{ $t(session.ort) }}</b></span>
             </p>
           </nuxt-link>
         </b-media>
@@ -267,5 +267,9 @@ span.type {
   line-height: var(--font-small-line-height);
   margin-top: 0;
   color: var(--color-gray);
+}
+
+.media-body {
+  transform: translateY(0.5rem);
 }
 </style>

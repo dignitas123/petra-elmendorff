@@ -1,6 +1,7 @@
 <template>
   <section class="container">
-    <b-breadcrumb :items="$t(items)"></b-breadcrumb>
+    <Navbar />
+    <b-breadcrumb :items="$t(items)" class="mt-5 breadcrumb"></b-breadcrumb>
     <Courses :filterCat="$router.history.current.params.coursetype" />
   </section>
 </template>
@@ -94,6 +95,11 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
+
+.breadcrumb {
+  max-width: 800px;
+  width: 100%;
+}
 
 .sessionContent {
   max-width: 900px;
