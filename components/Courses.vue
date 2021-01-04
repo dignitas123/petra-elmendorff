@@ -54,8 +54,15 @@
     </b-container>
     <!-- <b-breadcrumb :items="$t(items)"></b-breadcrumb> -->
     <SessionGrid
-      :sessions="filterCourseType(getSessions, filterCat)"
+      :sessions="filterTime(filterCourseType(getSessions, filterCat), false, true, true, true)"
       :currentSlug="$t(currentSlug).current"
+    />
+
+    <SessionGrid
+      :sessions="filterTime(filterCourseType(getSessions, filterCat), true, false, false, false)"
+      :currentSlug="$t(currentSlug).current"
+      :onlyPast=true
+      class="pastCourses"
     />
   </div>
 </template>
@@ -120,7 +127,7 @@ export default {
     }
   },
   methods: {
-    filterCourseType(sessions, coursetype) {
+    filterCourseType: function(sessions, coursetype) {
       if (coursetype) {
         // console.log(
         //   'RETURN',
@@ -134,6 +141,23 @@ export default {
           return session.sessionType === coursetype
         })
       } else return sessions
+    },
+    filterTime: function(sessions, past, ongoing, future, noDate) {
+      let now = new Date();
+      return sessions.filter(session => {
+        if (!session.date.from) return noDate
+
+        let from = new Date(session.date.from.split('T')[0].split('-'))
+        let to = session.date.to ? new Date(session.date.to.split('T')[0].split('-')) : from
+        
+        let isPast = to < now
+        let isOngoing = to > now && from < now
+        let isFuture = from > now
+        session.dateDif = isPast ? 'past' : isOngoing ? 'ongoing' : isFuture ? 'future' : undefined
+        // console.log("SESSION dATE", session.title, isPast, isOngoing, isFuture)
+
+        return (past && isPast) || (ongoing && isOngoing) || (future && isFuture)
+      })
     }
   },
   created() {
@@ -158,5 +182,16 @@ export default {
   margin-top: 100px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.sessionGrid.pastCourses {
+  filter: grayscale(100%) brightness(70%) contrast(2);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: gray;
+  -webkit-filter: grayscale(1);
+  opacity: 0.9;
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
-  <ul v-if="sessionsByMonth" class="sessionGrid">
-    <div v-for="(months, year) in sessionsByMonth" :key="year" class="yearWrap">
+  <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
+    <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
+    <div v-for="year in Object.keys( this.sessionsByMonth ).sort()" :key="year" class="yearWrap">
       <div
-        v-for="(sessionsOneMonth, month) in months"
+        v-for="month in Object.keys( sessionsByMonth[year] ).sort()"
         :key="month"
         class="monthWrap"
       >
@@ -10,7 +11,7 @@
 
         <ul class="list-unstyled">
           <b-media
-            v-for="session in sessionsOneMonth"
+            v-for="session in sessionsByMonth[year][month]"
             :key="session._id"
             tag="li"
             class="mb-2"
@@ -101,6 +102,10 @@ export default {
     currentSlug: {
       type: String,
       default: ''
+    },
+    onlyPast: {
+      type: Boolean,
+      default: false
     }
   },
   data: function() {
@@ -117,6 +122,10 @@ export default {
       place: {
         de: 'Ort',
         en: 'Place'
+      },
+      pastCoursesTitle: {
+        de: 'Vergangene Kurse',
+        en: 'past Courses'
       },
       courseThumbnail: {
         'online-kurse':
@@ -164,11 +173,12 @@ export default {
     filteredSessions: props => {
       return props.sessions
     },
+    // courses packed like obj[year][month] (unsorted obj keys)
     sessionsByMonth: props => {
       let months = {}
       props.sessions.forEach(session => {
         if (session.date && session.showInCal) {
-          // sort sessions by month and year
+          // pack sessions by month and year
           let fromDate = session.date.from.split('T')[0].split('-')
           let year = fromDate[0]
           let month = fromDate[1]
@@ -272,4 +282,10 @@ span.type {
 .media-body {
   transform: translateY(0.5rem);
 }
+
+h3 {
+  margin: 30px 0px 15px 0px;
+  color: rgb(53, 53, 53);
+}
+
 </style>
