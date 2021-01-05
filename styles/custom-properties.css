@@ -10,7 +10,7 @@
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
   --color-accent: #ae5f87;
-  --color-background: #d5bccc;
+  --color-background: #d6c9c9;
   --color-golden: #a5831d;
 
   /* Typography */
@@ -40,4 +40,12 @@
   --width-medium: 60em;
   --width-large: 80em;
   --width-x-large: 100em;
+}
+
+.btn {
+  padding-top: 10px;
+}
+
+.btn:hover {
+  padding-top: 10px;
 }

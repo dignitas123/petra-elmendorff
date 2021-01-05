@@ -18,7 +18,7 @@
       </div>
       <div class="d-flex">
         <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
-        <div class="ml-auto">
+        <div v-if="derAnmeldelink" class="ml-auto">
           <a :href="courseLink" class="float-right">
             <input class="btn btn-secondary" :value="$t(anmelden)"
           /></a>
@@ -94,6 +94,10 @@ export default {
     derPreis: function() {
       if (typeof this.price == 'undefined') return ''
       else return this.price
+    },
+    derAnmeldelink: function() {
+      if (typeof this.courseLink == 'undefined') return ''
+      else return this.courseLink
     },
     dasDatum: function() {
       if (typeof this.date == 'undefined') return ''
