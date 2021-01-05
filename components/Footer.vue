@@ -3,21 +3,22 @@
     <client-only>
       <b-container>
         <b-row>
-          <b-col>
+          <!-- <b-col>
             <h3>{{ $t(kontakt) }}</h3>
-            <!-- <p>{{ block.children[0] }}</p> -->
+            <p>{{ block.children[0] }}</p>
             <PortableText :blocks="blocks" />
-            <!-- <SanityContent :blocks="block.children[0]" /> -->
-            <!-- <DivBlockContent v-for="block in blocks" :key="block._id" /> -->
-          </b-col>
+            <SanityContent :blocks="block.children[0]" />
+            <DivBlockContent v-for="block in blocks" :key="block._id" />
+          </b-col> -->
           <b-col>
-            <h3 id="socialMediaText">Social Media</h3>
+            <!-- <h3 id="socialMediaText">Social Media</h3> -->
             <div class="pl-5 social-media-buttons">
               <YouTubeCornered />
               <FacebookCornered />
+              <Email />
             </div>
           </b-col>
-          <b-col>
+          <b-col style="max-width: 300px;">
             <h3>Newsletter</h3>
             <ul>
               <li></li>
@@ -31,7 +32,7 @@
       <h2 class="divider-style"></h2>
     </div>
     <div class="copyright">
-      <span class="copyright-text">© {{ year }} Petra Elemendorff</span>
+      <!-- <span class="copyright-text"> Petra Elemendorff</span> -->
       <span v-for="(link, i) in footermenue" :key="i" class="copyright-text">
         <nuxt-link :to="'/' + $t(link.slug).current">{{
           $t(link.title)
@@ -46,13 +47,15 @@ import NewsletterFooter from './NewsletterFooter.vue'
 import PortableText from 'sanity-blocks-vue-component'
 import YouTubeCornered from './icons/YouTubeCornered.vue'
 import FacebookCornered from './icons/FacebookCornered.vue'
+import Email from './icons/Email.vue'
 
 export default {
   components: {
     NewsletterFooter,
     PortableText,
     YouTubeCornered,
-    FacebookCornered
+    FacebookCornered,
+    Email
   },
   props: {
     language: {
@@ -64,18 +67,18 @@ export default {
     return {
       year: new Date().getFullYear(),
       footermenue: this.$store.state.siteSettings.footermenue,
-      selLanguage: this.$store.state.language,
-      kontakt: {
-        en: 'Contact',
-        de: 'Kontakt'
-      }
-    }
-  },
-  computed: {
-    blocks: function() {
-      return this.$store.state.siteSettings.footerAddress
+      selLanguage: this.$store.state.language
+      // kontakt: {
+      //   en: 'Contact',
+      //   de: 'Kontakt'
+      // }
     }
   }
+  // computed: {
+  //   blocks: function() {
+  //     return this.$store.state.siteSettings.footerAddress
+  //   }
+  // }
 }
 </script>
 
@@ -132,10 +135,13 @@ export default {
 }
 
 .footer {
-  padding: 50px 0;
+  padding: 15px 100px;
   color: var(--color-dark-gray);
   background-color: var(--color-background);
-  h3 {
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100% h3 {
     margin-top: 0;
     margin-bottom: 12px;
   }
@@ -201,7 +207,7 @@ export default {
     padding-left: 0 !important;
   }
   .footer {
-    padding-top: 20px;
+    padding: 15px 0;
     .container {
       padding-left: 5px;
       padding-right: 5px;

@@ -27,7 +27,7 @@
     </section>
     <section class="content">
       <b-container class="container1">
-        <b-row class="text-center grid-row" cols-sm="1" cols-md="2">
+        <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
               <nuxt-link :to="'/' + slugLink($t(preview.slug).current)">
@@ -46,14 +46,33 @@
         </b-row>
       </b-container>
       <b-container class="container2">
-        <b-row>
+        <b-row align-h="between">
           <b-col>
             <h1 class="aktuelle-termine">{{ $t(termine) }}</h1>
           </b-col>
+          <b-col>
+            <nuxt-link :to="$t(angebote)">
+              <h2 class="kalender color-dark-grey float-right">
+                {{ $t(kalender)
+                }}<span class="plus-calendar d-block ml-1 float-right"
+                  ><Plus width="15"
+                /></span>
+              </h2>
+            </nuxt-link>
+          </b-col>
         </b-row>
-        <b-row cols-sm="1" cols-md="2" cols-xl="4">
-          <b-col v-for="course in home.courses" v-bind:key="course.title" class="mb-3">
-            <nuxt-link :to="$t(angebote) + `/${course.sessionType}/${course.slug.current}`" class="text-dec-none">
+        <b-row cols="1" cols-md="2" cols-xl="4">
+          <b-col
+            v-for="course in home.courses"
+            v-bind:key="course.title"
+            class="mb-3"
+          >
+            <nuxt-link
+              :to="
+                $t(angebote) + `/${course.sessionType}/${course.slug.current}`
+              "
+              class="text-dec-none"
+            >
               <div class="text-center color-dark-grey">
                 <h4>{{ course.title }}</h4>
               </div>
@@ -212,6 +231,10 @@ export default {
       angebote: {
         de: 'kurse-angebote',
         en: 'courses-offers'
+      },
+      kalender: {
+        de: 'Kalender',
+        en: 'Calendar'
       }
     }
   },
@@ -277,6 +300,10 @@ export default {
 
 .image-container:hover .middle {
   opacity: 1;
+}
+
+.kalender {
+  font-weight: bold;
 }
 
 .middle {
@@ -347,6 +374,10 @@ export default {
 
 .content {
   background: #f3efee;
+}
+
+.plus-calendar svg {
+  margin-bottom: 5px;
 }
 
 .title + p + .dates {

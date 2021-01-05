@@ -1,11 +1,11 @@
-<template functional>
+<template>
   <svg
     aria-hidden="true"
     focusable="false"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 448"
-    width="25px"
+    :width="`${width}px`"
   >
     <path
       fill="#a5831d"
@@ -13,3 +13,14 @@
     />
   </svg>
 </template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: String,
+      default: '25'
+    }
+  }
+}
+</script>

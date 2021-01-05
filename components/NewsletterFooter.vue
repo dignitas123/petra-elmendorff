@@ -113,7 +113,7 @@ export default {
     border: 2px solid white;
     background: transparent;
     padding-left: 4px;
-    color: white;
+    color: var(--color-dark-gray);
 
     &:focus {
       border: 2px solid var(--color-dark-gray);
@@ -135,5 +135,17 @@ input[type='submit'] {
     background: var(--color-background);
     border: 2px solid white;
   }
+}
+
+input::-webkit-input-placeholder {
+  color: var(--color-dark-gray);
+}
+
+input::-ms-input-placeholder {
+  color: var(--color-dark-gray);
+}
+
+input:-ms-input-placeholder {
+  color: var(--color-dark-gray);
 }
 </style>
