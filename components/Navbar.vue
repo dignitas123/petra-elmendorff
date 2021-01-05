@@ -215,5 +215,54 @@ export default {
   .lang {
     display: none;
   }
+  .brand-sign {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #headerText {
+    font-size: 55px;
+  }
+  #subHeaderTextHeading {
+    font-size: 28px;
+  }
+  #chineseSign {
+    height: 60px;
+    margin-top: -15px;
+  }
+}
+
+@media (max-width: 542px) {
+  #headerText {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 482px) {
+  #headerText {
+    font-size: 35px;
+  }
+  .wider-ls {
+    letter-spacing: 2px;
+  }
+  #subHeaderTextHeading {
+    font-size: 19px;
+    margin-top: 4px;
+  }
+  #chineseSign {
+    height: 40px;
+    margin-top: -5px;
+  }
+  .smaller-unit {
+    font-size: 15px;
+  }
+  .menue-container {
+    right: 5px;
+  }
+  #headerText {
+    padding-top: 5px;
+  }
 }
 </style>

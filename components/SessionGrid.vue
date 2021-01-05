@@ -1,9 +1,13 @@
 <template>
   <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
     <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
-    <div v-for="year in Object.keys( this.sessionsByMonth ).sort()" :key="year" class="yearWrap">
+    <div
+      v-for="year in Object.keys(this.sessionsByMonth).sort()"
+      :key="year"
+      class="yearWrap"
+    >
       <div
-        v-for="month in Object.keys( sessionsByMonth[year] ).sort()"
+        v-for="month in Object.keys(sessionsByMonth[year]).sort()"
         :key="month"
         class="monthWrap"
       >
@@ -233,11 +237,12 @@ h2.sessionTitle {
 }
 
 div.monthSign {
-  background: #f4e0ed;
+  background: #d6c9c9;
   padding: 9px 17px 10px 16px;
   margin: 5px 0px 10px 0px;
-  color: rgb(146, 24, 99);
+  color: #593f4c;
   font-family: var(--font-family-sans);
+  padding-bottom: 5px;
 }
 
 li.session {
@@ -289,5 +294,4 @@ h3 {
   margin: 30px 0px 15px 0px;
   color: rgb(53, 53, 53);
 }
-
 </style>
