@@ -114,7 +114,6 @@ export default {
     background: transparent;
     padding-left: 4px;
     color: var(--color-dark-gray);
-
     &:focus {
       border: 2px solid var(--color-dark-gray);
       caret-color: var(--color-dark-gray);
@@ -129,23 +128,31 @@ export default {
 input[type='submit'] {
   @include form-style;
   border-radius: 0;
-  background: var(--color-accent);
+  background: var(--color-dark-gray);
   border: none;
   &:hover {
-    background: var(--color-background);
+    color: var(--color-dark-gray);
+    background: transparent;
     border: 2px solid white;
+    padding-top: 8px;
   }
 }
 
 input::-webkit-input-placeholder {
   color: var(--color-dark-gray);
+  font-size: 18px;
+  transform: translateY(2px);
 }
 
 input::-ms-input-placeholder {
   color: var(--color-dark-gray);
+  font-size: 18px;
+  transform: translateY(2px);
 }
 
 input:-ms-input-placeholder {
   color: var(--color-dark-gray);
+  font-size: 18px;
+  transform: translateY(2px);
 }
 </style>

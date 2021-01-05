@@ -41,3 +41,11 @@
   --width-large: 80em;
   --width-x-large: 100em;
 }
+
+.btn {
+  padding-top: 10px;
+}
+
+.btn:hover {
+  padding-top: 10px;
+}

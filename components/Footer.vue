@@ -2,7 +2,7 @@
   <footer class="footer">
     <client-only>
       <b-container>
-        <b-row>
+        <b-row class="align-items-center">
           <!-- <b-col>
             <h3>{{ $t(kontakt) }}</h3>
             <p>{{ block.children[0] }}</p>
@@ -12,10 +12,16 @@
           </b-col> -->
           <b-col>
             <!-- <h3 id="socialMediaText">Social Media</h3> -->
-            <div class="pl-5 social-media-buttons">
-              <YouTubeCornered />
-              <FacebookCornered />
-              <Email />
+            <div class="social-media-buttons align-items-center text-center">
+              <a :href="youtubeLink">
+                <YouTubeCornered />
+              </a>
+              <a :href="facebookLink">
+                <FacebookCornered />
+              </a>
+              <a :href="`mailto:${emailAddress}`">
+                <Email />
+              </a>
             </div>
           </b-col>
           <b-col style="max-width: 300px;">
@@ -67,7 +73,10 @@ export default {
     return {
       year: new Date().getFullYear(),
       footermenue: this.$store.state.siteSettings.footermenue,
-      selLanguage: this.$store.state.language
+      selLanguage: this.$store.state.language,
+      youtubeLink: this.$store.state.siteSettings.youtube,
+      facebookLink: this.$store.state.siteSettings.facebook,
+      emailAddress: this.$store.state.siteSettings.email
       // kontakt: {
       //   en: 'Contact',
       //   de: 'Kontakt'
@@ -83,10 +92,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-properties';
 
 .social-media-icon {
-  width: 30px;
+  width: 37px;
 }
 
 .item {
@@ -125,7 +134,7 @@ export default {
   &::before {
     content: '';
     display: block;
-    border-top: solid 2px var(--color-dark-gray);
+    border-top: solid 2px var(--color-golden);
     width: 100%;
     height: 2px;
     position: absolute;
@@ -232,5 +241,9 @@ export default {
   .copyright-text {
     display: block ruby;
   }
+}
+
+svg:hover {
+  color: white;
 }
 </style>

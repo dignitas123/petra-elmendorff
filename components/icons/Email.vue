@@ -3,7 +3,7 @@
     focusable="false"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 550.795 550.795"
+    viewBox="0 0 448 512"
     class="social-media-icon"
   >
     <path
