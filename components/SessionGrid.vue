@@ -125,7 +125,7 @@ export default {
       },
       pastCoursesTitle: {
         de: 'Vergangene Kurse',
-        en: 'past Courses'
+        en: 'Past Courses'
       },
       courseThumbnail: {
         'online-kurse':
