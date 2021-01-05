@@ -2,7 +2,9 @@
   <header class="nav-header text-center position-relative">
     <div class="brand-sign">
       <h1 id="headerText">
-        <nuxt-link to="/">Petra Elmendo<span class="wider-ls">rff</span></nuxt-link>
+        <nuxt-link to="/"
+          >Petra Elmendo<span class="wider-ls">rff</span></nuxt-link
+        >
       </h1>
       <h2 id="subHeaderText">
         <img
@@ -90,9 +92,9 @@ export default {
     this.$nuxt.$on('menu-hover', () => {
       this.displayNavbar = true
     }),
-    this.$nuxt.$on('nav-card-out', () => {
-      this.displayNavbar = false
-    })
+      this.$nuxt.$on('nav-card-out', () => {
+        this.displayNavbar = false
+      })
   }
 }
 </script>

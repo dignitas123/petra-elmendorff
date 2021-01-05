@@ -75,7 +75,9 @@
             <h5 class="mt-0 mb-1">{{ session.title }}</h5>
             <p class="mb-0">
               {{ session.summary }}
-              <span v-if="session.ort"><b>{{ $t(session.ort) }}</b></span>
+              <span v-if="session.ort"
+                ><b>{{ $t(session.ort) }}</b></span
+              >
             </p>
           </nuxt-link>
         </b-media>
