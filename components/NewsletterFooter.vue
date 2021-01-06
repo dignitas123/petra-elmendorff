@@ -150,7 +150,7 @@ input::-ms-input-placeholder {
   transform: translateY(2px);
 }
 
-input:-ms-input-placeholder {
+input::-moz-placeholder {
   color: var(--color-dark-gray);
   font-size: 18px;
   transform: translateY(2px);

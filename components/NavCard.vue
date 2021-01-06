@@ -7,7 +7,7 @@
       @mouseleave="$nuxt.$emit('nav-card-out')"
     >
       <b-row no-gutters>
-        <b-col md="3" class="mt-2">
+        <b-col md="3" class="mt-2 image-col">
           <nuxt-link to="/">
             <b-card-img
               src="~/assets/img/navCardLotusBackgroundPetraElmendorff.png"
@@ -101,5 +101,11 @@ export default {
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .image-col {
+    display: none;
+  }
 }
 </style>

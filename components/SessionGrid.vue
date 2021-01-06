@@ -286,6 +286,12 @@ span.type {
   color: var(--color-gray);
 }
 
+.media:hover {
+  box-shadow: 0px 0px 20px black;
+  background: rgb(195, 158, 1, 0.2);
+  border-radius: 40px;
+}
+
 .media-body {
   transform: translateY(0.5rem);
 }
@@ -293,5 +299,11 @@ span.type {
 h3 {
   margin: 30px 0px 15px 0px;
   color: rgb(53, 53, 53);
+}
+
+@media (max-width: 576px) {
+  .yearWrap {
+    margin: 5px;
+  }
 }
 </style>

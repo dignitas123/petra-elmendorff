@@ -11,22 +11,9 @@
           :author="image.zitatsource"
           class="mainImage"
         />
-        <!-- <figcaption>{{ info.image.caption }}</figcaption> -->
       </figure>
-      <!-- <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p> -->
-      <!-- <div class="dates">
-        {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
-        &ndash;
-        {{ new Date(info.schedule.to) | dateFilter('ha') }}
-      </div> -->
-      <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
     </header>
     <div class="content">
-      <!-- <h1 class="sessionTitle">{{ $t(title) }}</h1> -->
-      <!-- <p v-if="$t(summary)" class="summary">
-        {{ $t(summary) }}
-      </p> -->
       <div class="sessionContent">
         <BlockContent
           :v-if="$t(content)"
@@ -78,5 +65,15 @@ h1, figure {
 
 .content {
   margin-top: 100px;
+}
+
+@media (max-width: 657px) {
+  figure > img {
+    width: 100%;
+  }
+  .content {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
 </style>

@@ -13,8 +13,14 @@
       />
       <div v-if="dasDatum" class="mb-3">
         <span v-if="selLanguage == 'de'">Datum: {{ dasDatum.from | de }}</span>
-        <span v-else>Date: {{ dasDatum.from | en }}</span
-        ><span v-if="derOrt"> | {{ $t(place) }}: {{ derOrt }}</span>
+        <span v-else>Date: {{ dasDatum.from | en }}</span> -
+        <span v-if="selLanguage == 'de' && dasDatum.to">{{
+          dasDatum.to | de
+        }}</span>
+        <span v-else>{{ dasDatum.to | en }}</span>
+        <span v-if="derOrt">
+          | <b> {{ $t(derOrt) }}</b></span
+        >
       </div>
       <div class="d-flex">
         <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
@@ -68,16 +74,10 @@ export default {
       }
     }
   },
-  // fetch({ params }) {
-  //   console.log("PARAAAAAAAAAAAAAAAAAAAAAAAAAMS", params)
-  // },
   async asyncData(kontext) {
     console.log('sanity fetch sessions', query, kontext)
     let _this = this
     return await sanityClient.fetch(query, kontext.params)
-    // .then(function() {
-    //   _this.$store.commit('setCurrentSlug', title)
-    // })
   },
   computed: {
     dateForReal: () => {
@@ -255,6 +255,16 @@ input {
     color: var(--color-accent);
     background: transparent;
     border: 2px solid var(--color-accent);
+  }
+}
+
+@media (max-width: 482px) {
+  .breadcrumb {
+    font-size: 12px;
+    margin-top: 80px;
+  }
+  .ml-auto {
+    margin: 0 auto;
   }
 }
 </style>

@@ -12,16 +12,7 @@
         <hr class="image-sep" />
         <div class="text-center mt-3 quote-block">
           <h3 class="mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
-          <!-- - <i>{{ author }}</i> -->
         </div>
-        <!-- <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p> -->
-        <!-- <div class="dates">
-        {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
-        &ndash;
-        {{ new Date(info.schedule.to) | dateFilter('ha') }}
-      </div> -->
-        <!-- <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div> -->
         <DownArrow @arrow-click="scrollContent" />
       </div>
     </section>
@@ -98,72 +89,18 @@
           </b-col>
         </b-row>
       </b-container>
-      <!-- <b-container class="content-preview">
-        <b-row>
-          <template v-for="preview in previews">
-            <b-col :key="preview.title.de"
-              ><div>
-                <b-card
-                  tag="article"
-                  style="max-width: 16rem; border: none;"
-                  class="mb-2 text-center"
-                >
-                  <circle-image
-                    :image="preview.previewImage"
-                    :width="200"
-                    :height="200"
-                    fit="crop"
-                  />
-
-                  <h4 class="mt-3">
-                    {{ $t(preview.title) }}
-                  </h4>
-                  <b-card-text class="text-justify">
-                    {{ $t(preview.summary) }}
-                    <nuxt-link
-                      :to="'/' + $t(preview.slug).current"
-                      variant="primary"
-                      class="float-right"
-                      >mehr</nuxt-link
-                    >
-                  </b-card-text>
-                </b-card>
-              </div></b-col
-            >
-          </template>
-        </b-row>
-      </b-container> -->
     </section>
-    <!-- <section>
-      <p>Test Icons <BIconArrowUp /> <BIconArrowDown /></p>
-    </section>
-    <label for="example-datepicker">Choose a date</label>
-    <b-form-datepicker
-      id="example-datepicker"
-      v-model="value"
-      class="mb-2"
-    ></b-form-datepicker>
-    <p>Value: '{{ value }}'</p> -->
-    <!-- <div class="sessionListContainer">
-      <h2 class="sessionListTitle">Schedule</h2>
-      <SessionList :program="program" :info="info" />
-    </div> -->
   </section>
 </template>
 
 <script>
 import { dateFilter } from 'vue-date-fns'
 import { mapMutations } from 'vuex'
-// import { dateFilter } from 'vue-date-fns'
 import { createDateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
 import DownArrow from '~/components/icons/DownArrow'
-// import ZodiacSign from '~/components/icons/ZodiacSign'
 import SanityImage from '~/components/SanityImage'
-// import CircleImage from '~/components/CircleImage'
 import Navbar from '~/components/Navbar'
-// import SessionList from '~/components/SessionList'
-// import { BIconArrowUp, BIconArrowDown } from 'bootstrap-vue'
 import Plus from '~/components/icons/Plus'
 
 const query = `
@@ -206,7 +143,6 @@ const query = `
 export default {
   components: {
     DownArrow,
-    // ZodiacSign,
     Navbar,
     SanityImage,
     Plus
@@ -281,8 +217,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../styles/custom-media.css';
-@import '../styles/custom-properties.css';
+@import '~/styles/custom-media';
+@import '~/styles/custom-properties';
 
 .image-container {
   position: relative;
@@ -310,7 +246,8 @@ export default {
   transition: 0.5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
+  width: 300px;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -352,7 +289,7 @@ export default {
 }
 
 .container {
-  padding: 1.5rem 0;
+  padding-top: 2rem;
   box-sizing: border-box;
   min-height: calc(100% - 72px - 216px);
 }

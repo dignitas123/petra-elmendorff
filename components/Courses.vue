@@ -6,7 +6,7 @@
           <figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/astromatrix'">
               <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/a3c532c4fa153a1367899ca8312aba5e2ca09abc-170x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/e910a16b397f52b40b96b9294bbf867fd3193ff4-152x152.png?h=128"
                 class="border border-dark float"
                 rounded="circle"
                 width="120"
@@ -22,7 +22,7 @@
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
               <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/e1a2800e04c2d36dd15bc1bf8cff4e4554c3867e-252x257.png?rect=0,2,252,252&w=64&h=64&fit=crop&auto=format"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/65d1025347292caa979fb48ebca45097fdb4a150-242x229.png?h=128"
                 class="border border-dark"
                 rounded="circle"
                 width="120"
@@ -38,7 +38,7 @@
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/online-seminare'"
               ><b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/4ce5d6fcdb6f31ee4d4b3b0a32d2ae2df62c1d3f-169x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/f939f6d0741e0cd65d59c86429ae9c899fde2cc5-3338x3240.jpg?h=128"
                 class="border border-dark"
                 rounded="circle"
                 width="120"
@@ -54,14 +54,30 @@
     </b-container>
     <!-- <b-breadcrumb :items="$t(items)"></b-breadcrumb> -->
     <SessionGrid
-      :sessions="filterTime(filterCourseType(getSessions, filterCat), false, true, true, true)"
+      :sessions="
+        filterTime(
+          filterCourseType(getSessions, filterCat),
+          false,
+          true,
+          true,
+          true
+        )
+      "
       :currentSlug="$t(currentSlug).current"
     />
 
     <SessionGrid
-      :sessions="filterTime(filterCourseType(getSessions, filterCat), true, false, false, false)"
+      :sessions="
+        filterTime(
+          filterCourseType(getSessions, filterCat),
+          true,
+          false,
+          false,
+          false
+        )
+      "
       :currentSlug="$t(currentSlug).current"
-      :onlyPast=true
+      :onlyPast="true"
       class="pastCourses"
     />
   </div>
@@ -143,20 +159,30 @@ export default {
       } else return sessions
     },
     filterTime: function(sessions, past, ongoing, future, noDate) {
-      let now = new Date();
+      let now = new Date()
       return sessions.filter(session => {
         if (!session.date.from) return noDate
 
         let from = new Date(session.date.from.split('T')[0].split('-'))
-        let to = session.date.to ? new Date(session.date.to.split('T')[0].split('-')) : from
-        
+        let to = session.date.to
+          ? new Date(session.date.to.split('T')[0].split('-'))
+          : from
+
         let isPast = to < now
         let isOngoing = to > now && from < now
         let isFuture = from > now
-        session.dateDif = isPast ? 'past' : isOngoing ? 'ongoing' : isFuture ? 'future' : undefined
+        session.dateDif = isPast
+          ? 'past'
+          : isOngoing
+          ? 'ongoing'
+          : isFuture
+          ? 'future'
+          : undefined
         // console.log("SESSION dATE", session.title, isPast, isOngoing, isFuture)
 
-        return (past && isPast) || (ongoing && isOngoing) || (future && isFuture)
+        return (
+          (past && isPast) || (ongoing && isOngoing) || (future && isFuture)
+        )
       })
     }
   },
@@ -170,6 +196,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.border:hover {
+  box-shadow: 0px 0px 20px black;
+}
+
+@media (max-width: 767px) {
+  .filter {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 482px) {
+  .filter {
+    margin-top: 60px;
+  }
+  .border {
+    width: 70px;
+  }
+}
+
 .border {
   border-width: 3px !important;
   border-color: #c39e00 !important;
