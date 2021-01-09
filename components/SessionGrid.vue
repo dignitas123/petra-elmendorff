@@ -1,21 +1,65 @@
 <template>
-  <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
-    <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
-    <div
-      v-for="year in Object.keys(this.sessionsByMonth).sort()"
-      :key="year"
-      class="yearWrap"
-    >
+  <transition name="fade">
+    <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
+      <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
       <div
-        v-for="month in Object.keys(sessionsByMonth[year]).sort()"
-        :key="month"
-        class="monthWrap"
+        v-for="year in Object.keys(this.sessionsByMonth).sort()"
+        :key="year"
+        class="yearWrap"
       >
-        <div class="monthSign">{{ $t(monthName)[month - 1] }} {{ year }}</div>
+        <div
+          v-for="month in Object.keys(sessionsByMonth[year]).sort()"
+          :key="month"
+          class="monthWrap"
+        >
+          <div class="monthSign">{{ $t(monthName)[month - 1] }} {{ year }}</div>
 
+          <ul class="list-unstyled">
+            <b-media
+              v-for="session in sessionsByMonth[year][month]"
+              :key="session._id"
+              tag="li"
+              class="mb-2"
+            >
+              <template #aside>
+                <b-img
+                  :src="courseThumbnail[session.sessionType]"
+                  class="border border-dark"
+                  rounded="circle"
+                  width="64"
+                  alt="placeholder"
+                ></b-img>
+              </template>
+              <nuxt-link
+                :to="
+                  `/${currentSlug}/${session.sessionType}/${session.slug.current}`
+                "
+              >
+                <h5 class="mt-0 mb-1">{{ session.title }}</h5>
+                <p class="mb-0">
+                  {{ session.summary }}
+                  <span v-if="session.ort"
+                    ><b>{{ $t(session.ort) }}</b></span
+                  >
+                  <span v-if="session.date && selLanguage == 'de'">{{
+                    session.date.from | de
+                  }}</span>
+                  <span v-else-if="selLanguage == 'en'">{{
+                    session.date.from | en
+                  }}</span>
+                </p>
+              </nuxt-link>
+            </b-media>
+          </ul>
+        </div>
+      </div>
+      <div v-if="videoCourses.length > 0" class="yearWrap">
+        <div class="monthSign">
+          {{ $t(videoCourseTitle) }}
+        </div>
         <ul class="list-unstyled">
           <b-media
-            v-for="session in sessionsByMonth[year][month]"
+            v-for="session in videoCourses"
             :key="session._id"
             tag="li"
             class="mb-2"
@@ -40,55 +84,13 @@
                 <span v-if="session.ort"
                   ><b>{{ $t(session.ort) }}</b></span
                 >
-                <span v-if="session.date && selLanguage == 'de'">{{
-                  session.date.from | de
-                }}</span>
-                <span v-else-if="selLanguage == 'en'">{{
-                  session.date.from | en
-                }}</span>
               </p>
             </nuxt-link>
           </b-media>
         </ul>
       </div>
-    </div>
-    <div v-if="videoCourses.length > 0" class="yearWrap">
-      <div class="monthSign">
-        {{ $t(videoCourseTitle) }}
-      </div>
-      <ul class="list-unstyled">
-        <b-media
-          v-for="session in videoCourses"
-          :key="session._id"
-          tag="li"
-          class="mb-2"
-        >
-          <template #aside>
-            <b-img
-              :src="courseThumbnail[session.sessionType]"
-              class="border border-dark"
-              rounded="circle"
-              width="64"
-              alt="placeholder"
-            ></b-img>
-          </template>
-          <nuxt-link
-            :to="
-              `/${currentSlug}/${session.sessionType}/${session.slug.current}`
-            "
-          >
-            <h5 class="mt-0 mb-1">{{ session.title }}</h5>
-            <p class="mb-0">
-              {{ session.summary }}
-              <span v-if="session.ort"
-                ><b>{{ $t(session.ort) }}</b></span
-              >
-            </p>
-          </nuxt-link>
-        </b-media>
-      </ul>
-    </div>
-  </ul>
+    </ul>
+  </transition>
 </template>
 
 <script>

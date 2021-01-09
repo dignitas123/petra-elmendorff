@@ -12,9 +12,9 @@
           src="~/assets/img/chinese_sign_jinshinjyutsu.png"
           class="float-left"
         />
-        <h2 id="subHeaderTextHeading" class="float-left">
-          Jin Shin Jyutsu <span class="smaller-unit">&amp;</span> AstroMatrix
-        </h2>
+      </h2>
+      <h2 id="subHeaderTextHeading" class="float-left">
+        Jin Shin Jyutsu <span class="smaller-unit">&amp;</span> AstroMatrix
       </h2>
     </div>
     <div class="menue-container position-absolute">

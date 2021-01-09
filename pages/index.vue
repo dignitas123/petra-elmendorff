@@ -294,10 +294,6 @@ export default {
   min-height: calc(100% - 72px - 216px);
 }
 
-.landing-page {
-  height: 91vh;
-}
-
 .header-content {
   text-align: center;
   width: 100%;

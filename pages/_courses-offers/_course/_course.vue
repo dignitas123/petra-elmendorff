@@ -154,7 +154,7 @@ export default {
 }
 
 .container-text {
-  max-width: 700px;
+  max-width: 800px;
   h1 {
     text-align: center;
   }

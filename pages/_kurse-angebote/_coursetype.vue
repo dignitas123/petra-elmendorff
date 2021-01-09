@@ -1,9 +1,11 @@
 <template>
-  <section class="container">
-    <Navbar />
-    <b-breadcrumb :items="$t(items)" class="mt-5 breadcrumb"></b-breadcrumb>
-    <Courses :filterCat="$router.history.current.params.coursetype" />
-  </section>
+  <transition name="fade">
+    <section class="container">
+      <Navbar />
+      <b-breadcrumb :items="$t(items)" class="mt-5 breadcrumb"></b-breadcrumb>
+      <Courses :filterCat="$router.history.current.params.coursetype" />
+    </section>
+  </transition>
 </template>
 
 <script>
@@ -95,6 +97,18 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
+
+.fade-enter-active {
+  transition: opacity 1s;
+}
+
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
 .breadcrumb {
   max-width: 800px;
