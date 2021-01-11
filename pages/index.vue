@@ -264,7 +264,6 @@ export default {
 }
 
 .grid-row {
-  max-width: 700px;
   margin: 0 auto;
 }
 
