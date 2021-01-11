@@ -61,7 +61,7 @@ export default {
         ],
         en: [
           {
-            text: 'All Courses',
+            text: 'All Classes',
             href: '/courses-offers'
           },
           {

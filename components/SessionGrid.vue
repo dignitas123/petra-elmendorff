@@ -120,11 +120,11 @@ export default {
     return {
       selLanguage: this.$store.state.language,
       courseLinkTitle: {
-        en: 'Courses-Offers',
+        en: 'Classes-Offers',
         de: 'Kurse-Angebote'
       },
       videoCourseTitle: {
-        en: 'Video Courses',
+        en: 'Video Classes',
         de: 'Video Kurse'
       },
       place: {
@@ -133,7 +133,7 @@ export default {
       },
       pastCoursesTitle: {
         de: 'Vergangene Kurse',
-        en: 'Past Courses'
+        en: 'Past Classes'
       },
       courseThumbnail: {
         'online-kurse':

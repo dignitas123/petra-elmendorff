@@ -100,11 +100,11 @@ export default {
   data() {
     return {
       courseTranslation: {
-        en: 'Courses',
+        en: 'Classes',
         de: 'Kurse'
       },
       seminarTranslation: {
-        en: 'Online Seminars & Video Courses',
+        en: 'Online Seminars & Video Classes',
         de: 'Online Seminare & Video Kurse'
       },
       courseLinkSlug: {
@@ -134,7 +134,7 @@ export default {
         ],
         en: [
           {
-            text: 'All Courses',
+            text: 'All Classes',
             href: '/courses-offers',
             active: true
           }

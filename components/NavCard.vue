@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       courseLinkTitle: {
-        en: 'Courses-Offers',
+        en: 'Classes-Offers',
         de: 'Kurse-Angebote'
       },
       courseLinkSlug: {
