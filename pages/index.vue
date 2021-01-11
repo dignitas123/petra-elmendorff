@@ -55,7 +55,7 @@
         </b-row>
         <b-row cols="1" cols-md="2" cols-xl="4">
           <b-col
-            v-for="course in home.courses"
+            v-for="course in previewCourses"
             v-bind:key="course.title"
             class="mb-3"
           >
@@ -111,7 +111,7 @@ const query = `
 		"courses": currentCourses[]->{
       title,
       ort,
-      date,
+      dates,
       sessionType,
       slug { current, }
     }
@@ -156,7 +156,14 @@ export default {
   computed: {
     sitetitle: function() {
       return this.$store.state.siteSettings.title
-    }
+    },
+    previewCourses: function() {
+      return this.home.courses.map(course => {
+        // preview immer zum ersten termin, ist leider etwas doof
+        course.date = course.dates[0]
+        return course
+      })
+    },
   },
   data() {
     return {

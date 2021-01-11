@@ -185,7 +185,7 @@ export default {
     sessionsByMonth: props => {
       let months = {}
       props.sessions.forEach(session => {
-        if (session.date && session.showInCal) {
+        if (session.date) {
           // pack sessions by month and year
           let fromDate = session.date.from.split('T')[0].split('-')
           let year = fromDate[0]

@@ -56,7 +56,7 @@
     <SessionGrid
       :sessions="
         filterTime(
-          filterCourseType(getSessions, filterCat),
+          sessionsToShow,
           false,
           true,
           true,
@@ -69,7 +69,7 @@
     <SessionGrid
       :sessions="
         filterTime(
-          filterCourseType(getSessions, filterCat),
+          sessionsToShow,
           true,
           false,
           false,
@@ -121,8 +121,7 @@ export default {
     //     )
     //   }
     // }
-    ...mapGetters(['currentSlug']),
-    ...mapGetters(['getSessions']),
+    ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
     items: function() {
       return {
         de: [
@@ -140,9 +139,22 @@ export default {
           }
         ]
       }
+    },
+    sessionsWithShowinCalTag: function() {
+      return this.getDates.filter( session => session.showInCal)
+    },
+    sessionsToShow: function() {
+      return this.filterCourseType(this.filterLang(this.sessionsWithShowinCalTag, this.getLanguage), this.filterCat)
     }
   },
   methods: {
+    filterLang: function(sessions, lang) {
+      if (lang) {
+        return sessions.filter(session => {
+          return session.sessionLang === lang
+        })
+      } else return sessions
+    },
     filterCourseType: function(sessions, coursetype) {
       if (coursetype) {
         // console.log(

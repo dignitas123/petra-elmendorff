@@ -3,7 +3,7 @@ export const state = () => ({
     title: 'Petra Elmendorff'
   },
   siteSettings: {},
-  sessions: {},
+  kurse: {},
   language: 'de',
   currentSlug: {} // save both langs of current slug/route hier
 })
@@ -14,6 +14,23 @@ export const getters = {
   },
   getSessions (state) {
     return state.sessions
+  },
+  // get Sessions split up by Dates (sessions with multiple dates get shallowcopied)
+  getDates (state) {
+    let dates = []
+    state.sessions.forEach(sessi => {
+      // split up sessions by dates
+      if (sessi.dates) {
+        sessi.dates.forEach(function(otherDate){
+          //copy session object
+          let dummySession = Object.assign({}, sessi) 
+          // set old api stzle date
+          dummySession.date = otherDate
+          dates.push(dummySession)
+        })
+      }
+    })
+    return dates
   },
   // getProgram(state) {
   //   return state.program
