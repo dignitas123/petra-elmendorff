@@ -12,14 +12,14 @@
           :key="month"
           class="monthWrap"
         >
-          <div class="monthSign">{{ $t(monthName)[month - 1] }} {{ year }}</div>
+          <div class="monthSign mb-3">{{ $t(monthName)[month - 1] }} {{ year }}</div>
 
           <ul class="list-unstyled">
             <b-media
               v-for="session in sessionsByMonth[year][month]"
               :key="session._id"
               tag="li"
-              class="mb-2"
+              class="mb-3"
             >
               <template #aside>
                 <b-img
@@ -62,7 +62,7 @@
             v-for="session in videoCourses"
             :key="session._id"
             tag="li"
-            class="mb-2"
+            class="mb-3"
           >
             <template #aside>
               <b-img
@@ -239,18 +239,21 @@ h2.sessionTitle {
 }
 
 div.monthSign {
-  background: #d6c9c9;
-  padding: 9px 17px 10px 16px;
-  margin: 5px 0px 10px 0px;
-  color: #593f4c;
-  font-family: var(--font-family-sans);
-  padding-bottom: 5px;
+    background: #d6c9c970;
+    padding: 11px 17px 10px 17px;
+    /* margin: 15px 0px; */
+    color: #593f4c;
+    font-family: 'GillSans';
+    /* padding-bottom: 5px; */
+    border-radius: 12px;
+
 }
 
 li.session {
   /* display: flex;
   flex-direction: column; */
   list-style: none;
+  margin: 1rem 0.5rem !important;
 }
 
 .sessionGrid a {
@@ -288,9 +291,15 @@ span.type {
   color: var(--color-gray);
 }
 
+.media {
+  transition: all 0.2s cubic-bezier(0, 0.7, 0.38, 1.06);
+}
+
 .media:hover {
-  box-shadow: 0px 0px 20px black;
-  background: rgb(195, 158, 1, 0.2);
+  /* box-shadow: 0px 0px 20px black;
+  background: rgb(195, 158, 1, 0.2); */
+  box-shadow: 0px 0px 20px rgb(41 33 0 / 7%);
+  background: rgb(195 158 1 / 20%);
   border-radius: 40px;
 }
 

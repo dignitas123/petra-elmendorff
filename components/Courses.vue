@@ -1,6 +1,6 @@
 <template>
   <div class="sessionGridContainer">
-    <b-container class="filter pictures mb-3 text-center d-inline-block">
+    <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
       <b-row>
         <b-col>
           <figure class="figure">
