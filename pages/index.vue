@@ -11,7 +11,7 @@
         />
         <hr class="image-sep" />
         <div class="text-center mt-3 quote-block">
-          <h3 class="mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
+          <h3 class="quote mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
         </div>
         <DownArrow @arrow-click="scrollContent" />
       </div>
@@ -22,6 +22,7 @@
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
               <nuxt-link :to="'/' + slugLink($t(preview.slug).current)">
+                <div class="grid-image-caption">{{ $t(preview.title) }}</div>
                 <SanityImage
                   :image="preview.previewImage2"
                   :alt="$t(preview.previewImage2.alt)"
@@ -361,5 +362,43 @@ figcaption {
 
 .text-dec-none:hover {
   text-decoration: none;
+}
+
+.grid-image-caption {
+  display: none;
+}
+
+@media (max-width: 972px) {
+  .quote {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .quote {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 450px) {
+  .quote {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 766px) {
+  .grid-image-caption {
+    display: block;
+    font-size: 30px;
+  }
+  .header-content {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 393px) {
+  .grid-image {
+    width: 100%;
+  }
 }
 </style>

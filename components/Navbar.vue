@@ -216,26 +216,6 @@ export default {
     padding-left: 25px;
     font-size: var(--font-title2-size);
   }
-  .menue-content-mobile {
-    display: block;
-  }
-  .menue-content {
-    display: none;
-  }
-  .language-switch {
-    font-size: 12px;
-    font-weight: 100;
-    margin-top: -5px !important;
-  }
-  .lang {
-    padding-right: 1px;
-    padding-left: 1px;
-    width: 10px;
-  }
-  #langSeperator {
-    height: 8px;
-    width: 1px;
-  }
 }
 
 @media (max-width: 991px) {
@@ -258,6 +238,26 @@ export default {
   #chineseSign {
     height: 60px;
     margin-top: -15px;
+  }
+  .menue-content-mobile {
+    display: block;
+  }
+  .menue-content {
+    display: none;
+  }
+  .language-switch {
+    font-size: 12px;
+    font-weight: 100;
+    margin-top: -5px !important;
+  }
+  .lang {
+    padding-right: 1px;
+    padding-left: 1px;
+    width: 10px;
+  }
+  #langSeperator {
+    height: 8px;
+    width: 1px;
   }
 }
 
