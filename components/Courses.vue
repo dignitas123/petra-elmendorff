@@ -196,9 +196,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.border:hover {
-  box-shadow: 0px 0px 20px black;
-}
 
 @media (max-width: 767px) {
   .filter {
@@ -218,8 +215,11 @@ export default {
 .border {
   border-width: 3px !important;
   border-color: #c39e00 !important;
+  transition: box-shadow 0.2s cubic-bezier(0, 0.7, 0.38, 1.06);
   &:hover {
     cursor: pointer;
+    // box-shadow: 0px 0px 20px black;
+    box-shadow: 0 0 15px 0px #00000047;
   }
 }
 
