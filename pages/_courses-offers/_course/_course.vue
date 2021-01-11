@@ -11,17 +11,18 @@
         projectId="ie6m0uwl"
         dataset="production"
       />
-      <div v-if="dasDatum" class="mb-3">
-        <span v-if="selLanguage == 'de'">Datum: {{ dasDatum.from | de }}</span>
-        <span v-else>Date: {{ dasDatum.from | en }}</span> -
-        <span v-if="selLanguage == 'de' && dasDatum.to">{{
-          dasDatum.to | de
-        }}</span>
-        <span v-else>{{ dasDatum.to | en }}</span>
+      <div v-if="dieTermine" class="mb-3">
+        <div v-for="dasDatum in dieTermine" v-bind:key='dasDatum.from'>
+          <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{ dasDatum.desc }}</span>
+          <span v-if="selLanguage == 'de'">{{ dasDatum.from | de }}</span>
+          <span v-else>{{ dasDatum.from | en }}</span>
+          <span v-if="selLanguage == 'de' && dasDatum.to"> - {{ dasDatum.to | de}}</span>
+          <span v-if="selLanguage == 'en' && dasDatum.to"> - {{ dasDatum.to | en }}</span>
+        </div>
+      </div>
         <span v-if="derOrt">
           | <b> {{ $t(derOrt) }}</b></span
         >
-      </div>
       <div class="d-flex">
         <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
         <div v-if="derAnmeldelink" class="ml-auto">
@@ -102,6 +103,10 @@ export default {
     dasDatum: function() {
       if (typeof this.date == 'undefined') return ''
       else return this.date
+    },
+    dieTermine: function() {
+      if (!Array.isArray(this.dates)) return false
+      else return this.dates
     },
     items: function() {
       return {

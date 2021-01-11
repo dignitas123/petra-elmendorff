@@ -35,7 +35,10 @@
                   `/${currentSlug}/${session.sessionType}/${session.slug.current}`
                 "
               >
-                <h5 class="mt-0 mb-1">{{ session.title }}</h5>
+                <h5 class="mt-0 mb-1">
+                  {{ session.title }}
+                  <span v-if="session.date && session.date.desc"class="termintitel"> - {{ session.date.desc }}</span>
+                  </h5>
                 <p class="mb-0">
                   {{ session.summary }}
                   <span v-if="session.ort"
