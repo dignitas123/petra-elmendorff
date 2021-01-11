@@ -35,6 +35,7 @@ body,
 #__layout,
 #__layout > div {
   height: 100%;
+  letter-spacing: 0.03rem;
 }
 
 .title {

@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     altFromImage: function() {
-      return this.image.alt
+      return this.image.alt[this.$store.state.language]
     },
     imageUrl: function() {
       return builder
