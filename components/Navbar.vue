@@ -19,6 +19,7 @@
     </div>
     <div class="menue-container position-absolute">
       <DoubleCheeseBurger />
+      <DoubleCheeseBurgerSmall />
       <div class="language-switch mt-2">
         <span
           class="lang d-inline-block mr-2"
@@ -27,10 +28,7 @@
           @click="changeLanguage('de')"
           >D</span
         >
-        <div
-          style="height: 13px; width: 1px; background: #593f4c;"
-          class="d-inline-block"
-        ></div>
+        <div id="langSeperator" class="d-inline-block"></div>
         <span
           class="lang d-inline-block ml-1"
           :class="underlineIfLang('en')"
@@ -101,6 +99,16 @@ export default {
 
 <style scoped lang="scss">
 @import '~/styles/custom-properties';
+
+#langSeperator {
+  height: 13px;
+  width: 1px;
+  background: #593f4c;
+}
+
+.menue-content-mobile {
+  display: none;
+}
 
 .nav-card {
   z-index: 3;
@@ -173,7 +181,6 @@ export default {
 .menue-container {
   right: 20px;
   top: 0;
-  font-size: 8px;
   &:hover {
     cursor: pointer;
   }
@@ -208,6 +215,26 @@ export default {
   #headerText {
     padding-left: 25px;
     font-size: var(--font-title2-size);
+  }
+  .menue-content-mobile {
+    display: block;
+  }
+  .menue-content {
+    display: none;
+  }
+  .language-switch {
+    font-size: 12px;
+    font-weight: 100;
+    margin-top: -5px !important;
+  }
+  .lang {
+    padding-right: 1px;
+    padding-left: 1px;
+    width: 10px;
+  }
+  #langSeperator {
+    height: 8px;
+    width: 1px;
   }
 }
 
