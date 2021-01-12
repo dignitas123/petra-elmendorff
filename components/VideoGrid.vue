@@ -1,9 +1,9 @@
 <template>
   <transition name="fade">
-    <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
+    <ul v-if="" class="sessionGrid videoGrid">
       <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
       <h3 v-if="onlyVideoCourses">{{ $t(onlyVideoCoursesTitle) }}</h3>
-      <div
+      <!-- <div
         v-for="year in Object.keys(this.sessionsByMonth).sort()"
         :key="year"
         class="yearWrap"
@@ -12,14 +12,14 @@
           v-for="month in Object.keys(sessionsByMonth[year]).sort()"
           :key="month"
           class="monthWrap"
-        >
+        > -->
           <!-- <div class="monthSign mb-3">
             {{ $t(monthName)[month - 1] }} {{ year }}
           </div> -->
 
           <b-container>
             <b-row
-              v-for="session in sessionsByMonth[year][month]"
+              v-for="session in sessions"
               :key="session._id"
               class="mb-3"
             >
@@ -82,8 +82,8 @@
               </b-col>
             </b-row>
           </b-container>
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
       <!-- <div v-if="videoCourses.length > 0" class="yearWrap">
         <div class="monthSign">
           {{ $t(videoCourseTitle) }}

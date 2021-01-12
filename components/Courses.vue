@@ -59,13 +59,6 @@
     </b-container>
     <!-- <b-breadcrumb :items="$t(items)"></b-breadcrumb> -->
 
-    <!-- 
-    <SessionGrid
-      :sessions="filterTime(filterCourseType(sessionsToShow, 'online-kurse'), true, false, false, false)"
-      :currentSlug="$t(currentSlug).current"
-      :onlyVideoCourses="true"
-    /> -->
-
     <SessionGrid
       :sessions="filterTime(sessionsToShow, false, true, true, true)"
       :currentSlug="$t(currentSlug).current"
@@ -77,12 +70,19 @@
       :onlyPast="true"
       class="pastCourses"
     />
+
+    <VideoGrid
+      :sessions="filterCourseType(getSessions, 'online-kurse')"
+      :currentSlug="$t(currentSlug).current"
+      :onlyVideoCourses="true"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import SessionGrid from '~/components/SessionGrid'
+import VideoGrid from '~/components/VideoGrid'
 
 export default {
   components: {
@@ -122,7 +122,7 @@ export default {
     //     )
     //   }
     // }
-    ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
+    ...mapGetters(['currentSlug', 'getDates', 'getSessions', 'getLanguage']),
     items: function() {
       return {
         de: [
