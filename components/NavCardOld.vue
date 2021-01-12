@@ -1,33 +1,26 @@
 <template>
   <transition name="fade">
+    <!-- v-if="display" -->
     <b-card
-      v-if="display"
       no-body
       border-variant="light"
-      style="max-width: 290px; float: right; position: absolute; right: 0; background: #f4f1f0;"
+      style="max-width: 310px; float: right; position: absolute; right: 0; background: #f4f1f0;"
       class="nav-card overflow-hidden"
       @mouseleave="$nuxt.$emit('nav-card-out')"
     >
       <b-row no-gutters>
-        <b-col class="px-5 py-2">
-          <b-card-body class="text-left">
-            <div
-              class="close-button position-absolute"
-              style="right: 30px; top: 15px; font-size: 30px"
-              @click="$nuxt.$emit('nav-card-out')"
-            >
-              <b>x</b>
-            </div>
+        <b-col>
+          <b-card-body class="text-center">
             <b-card-text>
               <b-list-group>
-                <nuxt-link class="nav-option" to="/">
-                  Home
-                </nuxt-link>
-                <nuxt-link class="nav-option" to="/jin-shin-jyutsu">
-                  Jin Shin Jyutsu
-                </nuxt-link>
-                <nuxt-link class="nav-option" to="/astromatrix">
-                  AstroMatrix
+                <nuxt-link
+                  v-for="link in menuelinks"
+                  :key="link.slug.current"
+                  class="nav-option"
+                  :title="link.title"
+                  :to="'/' + link.slug.current"
+                >
+                  {{ link.title }}
                 </nuxt-link>
                 <nuxt-link
                   class="nav-option"
@@ -35,9 +28,6 @@
                   :to="'/' + $t(courseLinkSlug)"
                   >{{ $t(courseLinkTitle) }}</nuxt-link
                 >
-                <nuxt-link class="nav-option" to="/about">
-                  {{ $t(about) }}
-                </nuxt-link>
               </b-list-group>
             </b-card-text>
           </b-card-body>
@@ -62,16 +52,12 @@ export default {
   data() {
     return {
       courseLinkTitle: {
-        en: 'Calendar',
-        de: 'Kalender'
+        en: 'Classes-Offers',
+        de: 'Kurse-Angebote'
       },
       courseLinkSlug: {
         en: 'courses-offers',
         de: 'kurse-angebote'
-      },
-      about: {
-        en: 'About',
-        de: 'Über'
       }
     }
   }
@@ -81,10 +67,6 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-properties';
 
-.nav-card {
-  font-size: 25px;
-}
-
 .nav-card:hover {
   cursor: pointer;
 }
@@ -93,7 +75,9 @@ export default {
   text-decoration: none;
 }
 
-.nav-option:hover {
+.nav-option div:hover {
+  background: var(--color-golden) !important;
+  color: white;
   font-weight: bold;
 }
 
