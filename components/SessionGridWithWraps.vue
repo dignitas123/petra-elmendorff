@@ -2,7 +2,6 @@
   <transition name="fade">
     <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
       <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
-      <h3 v-if="onlyVideoCourses">{{ $t(onlyVideoCoursesTitle) }}</h3>
       <div
         v-for="year in Object.keys(this.sessionsByMonth).sort()"
         :key="year"
@@ -13,9 +12,9 @@
           :key="month"
           class="monthWrap"
         >
-          <!-- <div class="monthSign mb-3">
+          <div class="monthSign mb-3">
             {{ $t(monthName)[month - 1] }} {{ year }}
-          </div> -->
+          </div>
 
           <b-container>
             <b-row
@@ -73,7 +72,7 @@
                   > -->
                   </h3>
                   <div v-if="session.title.untertitel">
-                    <h5 class="untertitle">{{ session.title.untertitel }}</h5>
+                    <h5>{{ session.title.untertitel }}</h5>
                   </div>
                   <!-- <p class="mb-0">
                   {{ session.summary }}
@@ -127,7 +126,7 @@
 <script>
 // import { dateFilter } from 'vue-date-fns'
 import { createDateFilter } from 'vue-date-fns'
-import { de } from 'date-fns/locale'
+import { de } from "date-fns/locale";
 
 export default {
   filters: {
@@ -144,10 +143,6 @@ export default {
       default: ''
     },
     onlyPast: {
-      type: Boolean,
-      default: false
-    },
-    onlyVideoCourses: {
       type: Boolean,
       default: false
     }
@@ -170,10 +165,6 @@ export default {
       pastCoursesTitle: {
         de: 'Vergangene Kurse',
         en: 'Past Classes'
-      },
-      onlyVideoCoursesTitle: {
-        de: 'Online Video Kurse',
-        en: 'Online Video Classes'
       },
       courseThumbnail: {
         'online-kurse':
@@ -287,33 +278,22 @@ div.monthSign {
 
 .color-grey {
   color: #626364;
-  font-weight: bold;
-}
-
-.course-text {
-  background: #f4f1f0;
 }
 
 .course-text:hover {
-  background: #a5831d;
-  a {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  h3 {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  transition: background 1s;
+  background: #d6c9c970;
+  background-size: contain;
 }
 
 li.session {
+  /* display: flex;
+  flex-direction: column; */
   list-style: none;
   margin: 1rem 0.5rem !important;
 }
 
 .date {
-  font-family: 'GillSansMedium';
+  font-family: "GillSansMedium";
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   color: #593f4c;
@@ -321,7 +301,7 @@ li.session {
 
 .color-normal {
   color: #593f4c;
-  font-family: 'GillSansMedium';
+  font-family: "GillSansMedium";
 }
 
 .sessionGrid a {
@@ -375,48 +355,6 @@ h3 {
 @media (max-width: 576px) {
   .yearWrap {
     margin: 5px;
-  }
-  .date {
-    font-size: 15px;
-  }
-  .color-normal {
-    font-size: 15px;
-  }
-  .untertitle {
-    font-size: 15px;
-  }
-  .color-grey {
-    font-size: 15px;
-  }
-  .max-width-class {
-    max-width: 90px;
-  }
-  .container {
-    padding-left: 3px;
-  }
-}
-
-@media (max-width: 337px) {
-  .date {
-    font-size: 12px;
-  }
-  .color-normal {
-    font-size: 12px;
-  }
-  .untertitle {
-    font-size: 12px;
-  }
-  .color-grey {
-    font-size: 12px;
-  }
-  .max-width-class {
-    max-width: 70px;
-  }
-  .container {
-    padding-left: 3px;
-  }
-  .figure-caption {
-    font-size: 8px;
   }
 }
 </style>

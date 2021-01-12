@@ -17,6 +17,11 @@
   src: url('~assets/fonts/GillSansBold.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'GillSansMedium';
+  src: url('~assets/fonts/GillSansMedium.otf') format('opentype');
+}
+
 
 // bootstrap default overrides before importing bootstrap
 $font-family-sans-serif: 'GillSans';

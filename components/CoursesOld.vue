@@ -3,39 +3,34 @@
     <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
       <b-row>
         <b-col>
-          <h1 class="kalendar">{{ $t(kalender) }}</h1>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col
-          ><figure class="figure">
-            <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
-              <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/d7b7aa64c770be829f9b2ab5be077eefe1ca542a-308x308.png?h=128"
-                class="border border-dark"
-                width="150"
-                alt="Jin Shin Jyutsu"
-              ></b-img
-            ></router-link>
-            <figcaption class="figure-caption mt-2">
-              Jin Shin Jyutsu
-              <!--{{ $t(courseTranslation) }} -->
-            </figcaption>
-          </figure></b-col
-        >
-        <b-col>
           <figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/astromatrix'">
               <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/e1679f6501ac1192b2e034eaed2c487873833401-308x308.png?h=128"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/e910a16b397f52b40b96b9294bbf867fd3193ff4-152x152.png?h=128"
                 class="border border-dark float"
-                width="150"
+                rounded="circle"
+                width="120"
                 alt="Astromatrix"
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
-              Astromatrix
-              <!--{{ $t(courseTranslation) }} -->
+              Astromatrix {{ $t(courseTranslation) }}
+            </figcaption>
+          </figure></b-col
+        >
+        <b-col
+          ><figure class="figure">
+            <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
+              <b-img
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/65d1025347292caa979fb48ebca45097fdb4a150-242x229.png?h=128"
+                class="border border-dark"
+                rounded="circle"
+                width="120"
+                alt="Jin Shin Jyutsu"
+              ></b-img
+            ></router-link>
+            <figcaption class="figure-caption mt-2">
+              Jin Shin Jyutsu {{ $t(courseTranslation) }}
             </figcaption>
           </figure></b-col
         >
@@ -43,36 +38,44 @@
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/online-seminare'"
               ><b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/3a6d02a99b9df315d7ecef8d28efa159797f0e83-308x308.jpg?h=128"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/f939f6d0741e0cd65d59c86429ae9c899fde2cc5-3338x3240.jpg?h=128"
                 class="border border-dark"
-                width="150"
+                rounded="circle"
+                width="120"
                 alt="Online Seminare"
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
-              <!-- {{ $t(seminarTranslation) }} -->
-              Online
+              {{ $t(seminarTranslation) }}
             </figcaption>
           </figure></b-col
         >
       </b-row>
     </b-container>
     <!-- <b-breadcrumb :items="$t(items)"></b-breadcrumb> -->
-
-    <!-- 
     <SessionGrid
-      :sessions="filterTime(filterCourseType(sessionsToShow, 'online-kurse'), true, false, false, false)"
-      :currentSlug="$t(currentSlug).current"
-      :onlyVideoCourses="true"
-    /> -->
-
-    <SessionGrid
-      :sessions="filterTime(sessionsToShow, false, true, true, true)"
+      :sessions="
+        filterTime(
+          filterCourseType(getSessions, filterCat),
+          false,
+          true,
+          true,
+          true
+        )
+      "
       :currentSlug="$t(currentSlug).current"
     />
 
     <SessionGrid
-      :sessions="filterTime(sessionsToShow, true, false, false, false)"
+      :sessions="
+        filterTime(
+          filterCourseType(getSessions, filterCat),
+          true,
+          false,
+          false,
+          false
+        )
+      "
       :currentSlug="$t(currentSlug).current"
       :onlyPast="true"
       class="pastCourses"
@@ -101,16 +104,12 @@ export default {
         de: 'Kurse'
       },
       seminarTranslation: {
-        // en: 'Online Seminars & Video Classes',
-        // de: 'Online Seminare & Video Kurse'
+        en: 'Online Seminars & Video Classes',
+        de: 'Online Seminare & Video Kurse'
       },
       courseLinkSlug: {
         en: 'courses-offers',
         de: 'kurse-angebote'
-      },
-      kalender: {
-        de: 'Kalender',
-        en: 'Calendar'
       }
     }
   },
@@ -122,7 +121,8 @@ export default {
     //     )
     //   }
     // }
-    ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
+    ...mapGetters(['currentSlug']),
+    ...mapGetters(['getSessions']),
     items: function() {
       return {
         de: [
@@ -140,25 +140,9 @@ export default {
           }
         ]
       }
-    },
-    sessionsWithShowinCalTag: function() {
-      return this.getDates.filter(session => session.showInCal)
-    },
-    sessionsToShow: function() {
-      return this.filterCourseType(
-        this.filterLang(this.sessionsWithShowinCalTag, this.getLanguage),
-        this.filterCat
-      )
     }
   },
   methods: {
-    filterLang: function(sessions, lang) {
-      if (lang) {
-        return sessions.filter(session => {
-          return session.sessionLang === lang
-        })
-      } else return sessions
-    },
     filterCourseType: function(sessions, coursetype) {
       if (coursetype) {
         // console.log(
@@ -212,13 +196,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 @media (max-width: 767px) {
   .filter {
     margin-top: 30px;
   }
 }
 
-@media (max-width: 555px) {
+@media (max-width: 482px) {
   .filter {
     margin-top: 60px;
   }
@@ -228,7 +213,7 @@ export default {
 }
 
 .border {
-  border-width: 1px !important;
+  border-width: 3px !important;
   border-color: #c39e00 !important;
   transition: box-shadow 0.2s cubic-bezier(0, 0.7, 0.38, 1.06);
   &:hover {
@@ -253,17 +238,5 @@ export default {
   filter: gray;
   -webkit-filter: grayscale(1);
   opacity: 0.9;
-}
-
-.kalendar {
-  color: #e0d7d6;
-  font-weight: bold;
-  font-size: 50px;
-}
-
-@media (max-width: 576px) {
-  .kalendar {
-    font-size: 35px;
-  }
 }
 </style>
