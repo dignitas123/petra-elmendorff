@@ -10,6 +10,26 @@
         </h4>
       </div>
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
+        <!-- erster termin  -->
+        <div v-if="dieTermine.length">
+            {{ $t(ab) }}
+            <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
+              dieTermine[0].desc
+            }}</span>
+            <span v-if="selLanguage == 'de'">{{ dieTermine[0].from | de }}</span>
+            <span v-else>{{ dieTermine[0].from | en }}</span>
+            <span v-if="selLanguage == 'de' && dieTermine[0].to">
+              - {{ dieTermine[0].to | de }}</span
+            >
+            <span v-if="selLanguage == 'en' && dieTermine[0].to">
+              - {{ dieTermine[0].to | en }}</span
+            >
+            <span v-if="derOrt">
+              | <b> {{ $t(derOrt) }}</b></span
+            >
+          </div>
+          <br>
+
         <block-content
           v-if="$t(content)"
           :blocks="$t(content)"
