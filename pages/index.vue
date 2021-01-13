@@ -56,7 +56,7 @@
         <b-row cols="1" cols-md="2" cols-xl="4">
           <b-col
             v-for="course in previewCourses"
-            v-bind:key="course.title"
+            v-bind:key="course.title.titel"
             class="mb-3"
           >
             <nuxt-link
@@ -66,9 +66,9 @@
               class="text-dec-none"
             >
               <div class="text-center color-dark-grey">
-                <h4>{{ course.title }}</h4>
+                <h4>{{ course.title.titel }}</h4>
               </div>
-              <h4 class="text-center color-grey">
+              <h5 class="text-center color-grey">
                 <div>
                   {{ $t(course.ort) }}
                 </div>
@@ -85,7 +85,7 @@
                 <span v-else-if="selLanguage == 'en'">{{
                   course.date.to | en
                 }}</span>
-              </h4>
+              </h5>
             </nuxt-link>
           </b-col>
         </b-row>
