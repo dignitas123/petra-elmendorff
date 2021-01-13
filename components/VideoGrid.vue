@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <ul v-if="" class="sessionGrid videoGrid">
+    <ul v-if="sessions.length" class="sessionGrid videoGrid">
       <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
       <h3 v-if="onlyVideoCourses">{{ $t(onlyVideoCoursesTitle) }}</h3>
       <!-- <div
@@ -28,13 +28,13 @@
                   <b-row
                     ><b-col class="my-auto">
                       <h3
-                        v-if="session.date && selLanguage == 'de'"
+                        v-if="session.dates && selLanguage == 'de'"
                         class="date"
                       >
-                        {{ session.date.from | de }}
+                        {{ session.dates[0].from | de }}
                       </h3>
-                      <h3 v-else-if="selLanguage == 'en'">
-                        {{ session.date.from | en }}
+                      <h3 v-else-if="session.dates &&selLanguage == 'en'">
+                        {{ session.dates[0].from | en }}
                       </h3></b-col
                     ></b-row
                   >
@@ -84,42 +84,6 @@
           </b-container>
         <!-- </div>
       </div> -->
-      <!-- <div v-if="videoCourses.length > 0" class="yearWrap">
-        <div class="monthSign">
-          {{ $t(videoCourseTitle) }}
-        </div>
-        <ul class="list-unstyled">
-          <b-media
-            v-for="session in videoCourses"
-            :key="session._id"
-            tag="li"
-            class="mb-3"
-          >
-            <template #aside>
-              <b-img
-                :src="courseThumbnail[session.sessionType]"
-                class="border border-dark"
-                rounded="circle"
-                width="64"
-                alt="placeholder"
-              ></b-img>
-            </template>
-            <nuxt-link
-              :to="
-                `/${currentSlug}/${session.sessionType}/${session.slug.current}`
-              "
-            >
-              <h5 class="mt-0 mb-1">{{ session.title }}</h5>
-              <p class="mb-0">
-                {{ session.summary }}
-                <span v-if="session.ort"
-                  ><b>{{ $t(session.ort) }}</b></span
-                >
-              </p>
-            </nuxt-link>
-          </b-media>
-        </ul>
-      </div> -->
     </ul>
   </transition>
 </template>
@@ -127,11 +91,12 @@
 <script>
 // import { dateFilter } from 'vue-date-fns'
 import { createDateFilter } from 'vue-date-fns'
-import { de } from 'date-fns/locale'
+// import { de } from 'date-fns/locale'
+import locale from 'date-fns/locale/de'
 
 export default {
   filters: {
-    de: createDateFilter('DD. MMMM', { locale: de }),
+    de: createDateFilter('DD. MMMM', { locale }),
     en: createDateFilter('MM/DD/YYYY')
   },
   props: {
@@ -220,32 +185,7 @@ export default {
   computed: {
     filteredSessions: props => {
       return props.sessions
-    },
-    // courses packed like obj[year][month] (unsorted obj keys)
-    sessionsByMonth: props => {
-      let months = {}
-      props.sessions.forEach(session => {
-        if (session.date) {
-          // pack sessions by month and year
-          let fromDate = session.date.from.split('T')[0].split('-')
-          let year = fromDate[0]
-          let month = fromDate[1]
-          if (months[year]) {
-            if (months[year][month]) months[year][month].push(session)
-            else months[year][month] = [session]
-          } else {
-            months[year] = {}
-            months[year][month] = [session]
-          }
-        }
-      })
-      return months
-    },
-    // videoCourses: props => {
-    //   return props.sessions.filter(
-    //     session => session.sessionType == 'online-kurse'
-    //   )
-    // }
+    }
   },
   methods: {
     calculatemonthName(m) {

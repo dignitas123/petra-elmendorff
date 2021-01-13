@@ -2,7 +2,6 @@
   <transition name="fade">
     <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
       <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
-      <h3 v-if="onlyVideoCourses">{{ $t(onlyVideoCoursesTitle) }}</h3>
       <div
         v-for="year in Object.keys(this.sessionsByMonth).sort()"
         :key="year"
@@ -13,13 +12,13 @@
           :key="month"
           class="monthWrap"
         >
-          <!-- <div class="monthSign mb-3">
+          <div class="monthSign mb-3">
             {{ $t(monthName)[month - 1] }} {{ year }}
-          </div> -->
+          </div>
 
           <b-container>
             <b-row
-              v-for="session in sessionsByMonth[year][month]"
+              v-for="session in sessionsByMonth[year][month].sort((a,b) => a.date.from > b.date.from ? 1 : - 1)"
               :key="session._id"
               class="mb-3"
             >
@@ -84,42 +83,6 @@
           </b-container>
         </div>
       </div>
-      <!-- <div v-if="videoCourses.length > 0" class="yearWrap">
-        <div class="monthSign">
-          {{ $t(videoCourseTitle) }}
-        </div>
-        <ul class="list-unstyled">
-          <b-media
-            v-for="session in videoCourses"
-            :key="session._id"
-            tag="li"
-            class="mb-3"
-          >
-            <template #aside>
-              <b-img
-                :src="courseThumbnail[session.sessionType]"
-                class="border border-dark"
-                rounded="circle"
-                width="64"
-                alt="placeholder"
-              ></b-img>
-            </template>
-            <nuxt-link
-              :to="
-                `/${currentSlug}/${session.sessionType}/${session.slug.current}`
-              "
-            >
-              <h5 class="mt-0 mb-1">{{ session.title }}</h5>
-              <p class="mb-0">
-                {{ session.summary }}
-                <span v-if="session.ort"
-                  ><b>{{ $t(session.ort) }}</b></span
-                >
-              </p>
-            </nuxt-link>
-          </b-media>
-        </ul>
-      </div> -->
     </ul>
   </transition>
 </template>
@@ -227,9 +190,9 @@ export default {
       props.sessions.forEach(session => {
         if (session.date) {
           // pack sessions by month and year
-          let fromDate = session.date.from.split('T')[0].split('-')
-          let year = fromDate[0]
-          let month = fromDate[1]
+          let fromDate = new Date(session.date.from)
+          let year = fromDate.getFullYear()
+          let month = fromDate.getMonth()
           if (months[year]) {
             if (months[year][month]) months[year][month].push(session)
             else months[year][month] = [session]
