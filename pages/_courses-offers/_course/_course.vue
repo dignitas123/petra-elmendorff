@@ -3,32 +3,46 @@
     <Navbar />
     <div class="container-text">
       <b-breadcrumb :items="$t(items)" class="breadcrumb"></b-breadcrumb>
-      <h1>{{ title }}</h1>
-      <block-content
-        v-if="$t(content)"
-        :blocks="$t(content)"
-        :serializers="serializers"
-        projectId="ie6m0uwl"
-        dataset="production"
-      />
-      <div v-if="dieTermine" class="mb-3">
-        <div v-for="dasDatum in dieTermine" v-bind:key='dasDatum.from'>
-          <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{ dasDatum.desc }}</span>
-          <span v-if="selLanguage == 'de'">{{ dasDatum.from | de }}</span>
-          <span v-else>{{ dasDatum.from | en }}</span>
-          <span v-if="selLanguage == 'de' && dasDatum.to"> - {{ dasDatum.to | de}}</span>
-          <span v-if="selLanguage == 'en' && dasDatum.to"> - {{ dasDatum.to | en }}</span>
-        </div>
+      <div class="header-background py-2">
+        <h1>{{ title.titel }}</h1>
+        <h4 v-if="title.untertitel" class="text-center">
+          {{ title.untertitel }}
+        </h4>
       </div>
-        <span v-if="derOrt">
-          | <b> {{ $t(derOrt) }}</b></span
-        >
-      <div class="d-flex">
-        <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
-        <div v-if="derAnmeldelink" class="ml-auto">
-          <a :href="courseLink" class="float-right">
-            <input class="btn btn-secondary" :value="$t(anmelden)"
-          /></a>
+      <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
+        <block-content
+          v-if="$t(content)"
+          :blocks="$t(content)"
+          :serializers="serializers"
+          projectId="ie6m0uwl"
+          dataset="production"
+        />
+        <div v-if="dieTermine" class="mb-3">
+          <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
+            <!-- {{ $t(ab) }} -->
+            <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
+              dasDatum.desc
+            }}</span>
+            <span v-if="selLanguage == 'de'">{{ dasDatum.from | de }}</span>
+            <span v-else>{{ dasDatum.from | en }}</span>
+            <span v-if="selLanguage == 'de' && dasDatum.to">
+              - {{ dasDatum.to | de }}</span
+            >
+            <span v-if="selLanguage == 'en' && dasDatum.to">
+              - {{ dasDatum.to | en }}</span
+            >
+          </div>
+          <span v-if="derOrt">
+            <b> {{ $t(derOrt) }}</b></span
+          >
+        </div>
+        <div class="d-flex">
+          <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
+          <div v-if="derAnmeldelink" class="ml-auto">
+            <a :href="courseLink" class="float-right">
+              <input class="btn btn-secondary" :value="$t(anmelden)"
+            /></a>
+          </div>
         </div>
       </div>
     </div>
@@ -54,8 +68,8 @@ export default {
     SanityImage
   },
   filters: {
-    de: createDateFilter('DD.MM.YYYY'),
-    en: createDateFilter('MM/DD/YYYY')
+    de: createDateFilter('DD. MMMM hh:mm'),
+    en: createDateFilter('MM/DD/YYYY hh:mm')
   },
   data() {
     return {
@@ -67,6 +81,10 @@ export default {
       place: {
         de: 'Ort',
         en: 'Place'
+      },
+      ab: {
+        de: 'ab',
+        en: 'from'
       },
       serializers: {
         types: {
@@ -120,7 +138,7 @@ export default {
             href: '/kurse-angebote/' + this.sessionType
           },
           {
-            text: this.title,
+            text: this.title.titel,
             active: true
           }
         ],
@@ -134,7 +152,7 @@ export default {
             href: '/kurse-angebote/' + this.sessionType
           },
           {
-            text: this.title,
+            text: this.title.titel,
             active: true
           }
         ]
@@ -147,6 +165,24 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
+
+.btn-secondary {
+  background: #593f4c;
+  border-color: #593f4c;
+}
+
+.btn-secondary:hover {
+  color: #593f4c;
+  border-color: #593f4c;
+}
+
+h1 {
+  color: #593f4c;
+}
+
+h4 {
+  color: #593f4c;
+}
 
 .breadcrumb {
   text-transform: capitalize;
@@ -271,5 +307,9 @@ input {
   .ml-auto {
     margin: 0 auto;
   }
+}
+
+.header-background {
+  background: #f5f1f0;
 }
 </style>

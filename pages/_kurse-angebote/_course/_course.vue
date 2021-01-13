@@ -10,9 +10,16 @@
         </h4>
       </div>
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
+        <block-content
+          v-if="$t(content)"
+          :blocks="$t(content)"
+          :serializers="serializers"
+          projectId="ie6m0uwl"
+          dataset="production"
+        />
         <div v-if="dieTermine" class="mb-3">
           <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
-            {{ $t(ab) }}
+            <!-- {{ $t(ab) }} -->
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
               dasDatum.desc
             }}</span>
@@ -24,18 +31,11 @@
             <span v-if="selLanguage == 'en' && dasDatum.to">
               - {{ dasDatum.to | en }}</span
             >
-            <span v-if="derOrt">
-              | <b> {{ $t(derOrt) }}</b></span
-            >
           </div>
+          <span v-if="derOrt">
+            <b> {{ $t(derOrt) }}</b></span
+          >
         </div>
-        <block-content
-          v-if="$t(content)"
-          :blocks="$t(content)"
-          :serializers="serializers"
-          projectId="ie6m0uwl"
-          dataset="production"
-        />
         <div class="d-flex">
           <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
           <div v-if="derAnmeldelink" class="ml-auto">
@@ -68,8 +68,8 @@ export default {
     SanityImage
   },
   filters: {
-    de: createDateFilter('DD. MMMM'),
-    en: createDateFilter('MM/DD/YYYY')
+    de: createDateFilter('DD. MMMM hh:mm'),
+    en: createDateFilter('MM/DD/YYYY hh:mm')
   },
   data() {
     return {
