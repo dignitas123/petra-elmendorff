@@ -8,12 +8,12 @@
         class="yearWrap"
       >
         <div
-          v-for="month in Object.keys(sessionsByMonth[year]).sort()"
+          v-for="month in Object.keys(sessionsByMonth[year]).sort((a,b) => a - b)"
           :key="month"
           class="monthWrap"
         >
           <div class="monthSign mb-3">
-            {{ $t(monthName)[month - 1] }} {{ year }}
+            {{ $t(monthName)[month] }} {{ year }}
           </div>
 
           <b-container>
@@ -21,7 +21,7 @@
               v-for="session in sessionsByMonth[year][month].sort((a,b) => a.date.from > b.date.from ? 1 : - 1)"
               :key="session._id"
               class="mb-3"
-              v-bind:class="{ oneOfManyEvents: session.dates.length > 5 }" 
+              v-bind:class="{ oneOfToManyEvents: session.dates.length > 5 }" 
             >
               <b-col class="my-auto">
                 <b-container>
@@ -194,7 +194,7 @@ export default {
           // pack sessions by month and year
           let fromDate = new Date(session.date.from)
           let year = fromDate.getFullYear()
-          let month = fromDate.getMonth()
+          let month = parseInt(fromDate.getMonth() + 1)
           if (months[year]) {
             if (months[year][month]) months[year][month].push(session)
             else months[year][month] = [session]
@@ -248,6 +248,7 @@ div.monthSign {
   padding: 11px 17px 10px 17px;
   color: #593f4c;
   font-family: 'GillSans';
+  opacity: 0;
 }
 
 .color-grey {
@@ -324,10 +325,6 @@ span.type {
   color: var(--color-gray);
 }
 
-.session.oneOfManyEvents {
-  border-left: 1px solid yellow;
-}
-
 .media {
   transition: all 0.2s cubic-bezier(0, 0.7, 0.38, 1.06);
 }
@@ -340,6 +337,18 @@ h3 {
   margin: 30px 0px 15px 0px;
   color: rgb(53, 53, 53);
 }
+
+// .oneOfToManyEvents {
+//   .course-text {
+//     padding: 0px;
+//     h3,h5 {
+//       display: inline;
+//       font-size: 1rem;
+//       margin: 0px 0px 0px 0px;
+//     }
+//   }
+  
+// }
 
 @media (max-width: 576px) {
   .yearWrap {
