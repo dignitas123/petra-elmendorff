@@ -12,12 +12,12 @@
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
-            {{ $t(ab) }}
-            <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
+            <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> <!-- wenn es mehrere termine gibt ein ab -->
+            <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
               dieTermine[0].desc
-            }}</span>
+            }}</span> -->
             <span v-if="selLanguage == 'de'">{{ dieTermine[0].from | de }}</span>
-            <span v-else>{{ dieTermine[0].from | en }}</span>
+                <span v-else>{{ dieTermine[0].from | en }}</span>
             <span v-if="selLanguage == 'de' && dieTermine[0].to">
               - {{ dieTermine[0].to | de }}</span
             >
@@ -28,6 +28,7 @@
               | <b> {{ $t(derOrt) }}</b></span
             >
           </div>
+          <br>
 
         <block-content
           v-if="$t(content)"
@@ -36,7 +37,8 @@
           projectId="ie6m0uwl"
           dataset="production"
         />
-        <div v-if="dieTermine" class="mb-3">
+        
+        <div v-if="dieTermine.length > 1" class="mb-3">
           <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
             <!-- {{ $t(ab) }} -->
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
