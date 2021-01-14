@@ -21,6 +21,7 @@
               v-for="session in sessionsByMonth[year][month].sort((a,b) => a.date.from > b.date.from ? 1 : - 1)"
               :key="session._id"
               class="mb-3"
+              v-bind:class="{ oneOfManyEvents: session.dates.length > 5 }" 
             >
               <b-col class="my-auto">
                 <b-container>
@@ -64,16 +65,17 @@
                 >
                   <h3 class="mt-0 mb-1 color-normal">
                     {{ session.title.titel }}
-                    <!-- <span
-                    v-if="session.date && session.date.desc"
-                    class="termintitel"
-                  >
-                    - {{ session.date.desc }}</span
-                  > -->
                   </h3>
-                  <div v-if="session.title.untertitel">
-                    <h5 class="untertitle">{{ session.title.untertitel }}</h5>
-                  </div>
+                  <h5 class="untertitle" v-if="session.title.untertitel">
+                    {{ session.title.untertitel }}
+                  </h5>
+                  <h6 
+                    v-if="session.date && session.date.desc"
+                    class="untertitel termintitel"
+                    >
+                    {{ session.date.desc }}
+                    
+                  </h6>
                   <!-- <p class="mb-0">
                   {{ session.summary }}
                 </p> -->
@@ -320,6 +322,10 @@ span.type {
   line-height: var(--font-small-line-height);
   margin-top: 0;
   color: var(--color-gray);
+}
+
+.session.oneOfManyEvents {
+  border-left: 1px solid yellow;
 }
 
 .media {
