@@ -2,6 +2,7 @@
   <div>
     <nuxt />
     <Footer />
+    <scroll-to-top-arrow />
   </div>
 </template>
 
