@@ -17,7 +17,7 @@
       </div>
     </section>
     <section class="content">
-      <b-container class="container1">
+      <b-container class="max-width-container">
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
@@ -247,6 +247,10 @@ export default {
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
 
+.landing-page {
+  height: 100vh;
+}
+
 .image-container {
   position: relative;
   width: 50%;
@@ -337,6 +341,10 @@ export default {
 
 .plus-calendar svg {
   margin-bottom: 5px;
+}
+
+.max-width-container {
+  max-width: 950px;
 }
 
 .title + p + .dates {
