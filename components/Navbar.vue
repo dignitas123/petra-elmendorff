@@ -23,7 +23,7 @@
       <div class="language-switch mt-2">
         <span
           class="lang d-inline-block mr-2"
-          :class="underlineIfLang('de')"
+          :class="boldIfLang('de')"
           right
           @click="changeLanguage('de')"
           >D</span
@@ -31,7 +31,7 @@
         <div id="langSeperator" class="d-inline-block"></div>
         <span
           class="lang d-inline-block ml-1"
-          :class="underlineIfLang('en')"
+          :class="boldIfLang('en')"
           right
           @click="changeLanguage('en')"
           >E</span
@@ -40,10 +40,10 @@
     </div>
     <NavCard :display="displayNavbar" :menuelinks="headermenue" />
     <div class="language-mobile">
-      <span :class="underlineIfLang('de')" right @click="changeLanguage('de')"
+      <span :class="boldIfLang('de')" right @click="changeLanguage('de')"
         >D</span
       >
-      <span :class="underlineIfLang('en')" right @click="changeLanguage('en')"
+      <span :class="boldIfLang('en')" right @click="changeLanguage('en')"
         >E</span
       >
     </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 import DoubleCheeseBurger from './icons/DoubleCheeseBurger.vue'
 import NavCard from '~/components/NavCard.vue'
 
@@ -74,15 +74,19 @@ export default {
   },
   methods: {
     changeLanguage: function(lang) {
-      console.log('changed language', lang)
+      // console.log('changed language', lang)
       this.$store.commit('setLanguage', lang)
+      this.$cookies.set('lang', this.$store.getters.getLanguage, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7 // 1 week
+      })
       if (this.currentSlug) {
         this.$router.push({
           path: '/' + this.$t(this.currentSlug).current
         })
       }
     },
-    underlineIfLang: function(lang) {
+    boldIfLang: function(lang) {
       return lang == this.$store.getters.getLanguage ? 'bolder' : ''
     }
   },

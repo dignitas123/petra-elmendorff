@@ -40,9 +40,12 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
-      { 'http-equiv': 'Cache-Control', content: 'no-cache, no-store, must-revalidate'},
-      { 'http-equiv': 'Pragma', content: 'no-cache'},
-      { 'http-equiv': 'Expires', content: '0'}
+      {
+        'http-equiv': 'Cache-Control',
+        content: 'no-cache, no-store, must-revalidate'
+      },
+      { 'http-equiv': 'Pragma', content: 'no-cache' },
+      { 'http-equiv': 'Expires', content: '0' }
     ]
     //link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
@@ -67,7 +70,7 @@ export default {
    */
 
   // don't need PWA `'@nuxtjs/pwa'`
-  modules: ['bootstrap-vue/nuxt', 'vue-scrollto/nuxt'],
+  modules: ['bootstrap-vue/nuxt', 'vue-scrollto/nuxt', 'cookie-universal-nuxt'],
 
   /*
    ** Set global info from sanity document

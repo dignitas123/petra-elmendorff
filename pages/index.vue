@@ -96,13 +96,14 @@
 
 <script>
 import { dateFilter } from 'vue-date-fns'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import { createDateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
 import DownArrow from '~/components/icons/DownArrow'
 import SanityImage from '~/components/SanityImage'
 import Navbar from '~/components/Navbar'
 import Plus from '~/components/icons/Plus'
+import isNode from 'detect-node'
 
 const query = `
 {
@@ -163,7 +164,7 @@ export default {
         course.date = course.dates[0]
         return course
       })
-    },
+    }
   },
   data() {
     return {
@@ -183,7 +184,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setCurrentSlug']),
+    ...mapMutations(['setCurrentSlug', 'setLanguage']),
+    ...mapGetters(['getLanguage']),
     scrollContent: function() {
       this.$scrollTo('.content')
     },
@@ -220,6 +222,23 @@ export default {
   },
   created() {
     this.setCurrentSlug(false)
+    if (!isNode) {
+      let langCooky = this.$cookies.get('lang')
+      console.log("langCooky:", langCooky)
+      if (!langCooky) {
+        let userLang = navigator.language || navigator.userLanguage
+        console.log('The language is: ' + userLang)
+        if (userLang.includes('de')) {
+          this.setLanguage('de')
+        } else {
+          this.setLanguage('en')
+        }
+        this.$cookies.set('lang', this.getLanguage(), {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7 // 1 week
+        })
+      }
+    }
   }
 }
 </script>
