@@ -3,6 +3,7 @@
     <nuxt />
     <Footer />
     <scroll-to-top-arrow />
+    <div class="gap"> </div>
   </div>
 </template>
 
@@ -30,6 +31,10 @@ export default {
 @import '../styles/custom-properties.css';
 @import '../styles/custom-media.css';
 
+.gap {
+  height: 15px;
+}
+
 html,
 body,
 #__nuxt,
@@ -45,10 +50,6 @@ body,
   line-height: var(--font-title2-line-height);
   margin-bottom: 0.25rem;
   padding-bottom: 0;
-
-  // @nest & strong {
-  //   background: #fe0;
-  // }
 
   @media (--media-min-medium) {
     font-size: var(--font-title1-size);

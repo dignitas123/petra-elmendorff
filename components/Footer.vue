@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <client-only>
-      <b-container>
+      <b-container class="footer-container">
         <b-row class="align-items-center">
           <!-- <b-col>
             <h3>{{ $t(kontakt) }}</h3>
@@ -147,13 +147,8 @@ export default {
   padding: 15px 100px;
   color: var(--color-dark-gray);
   background-color: var(--color-background);
-  max-width: 1140px;
-  margin-right: auto;
-  margin-left: auto;
-  width: 100% h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-  }
+  margin-right: 15px;
+  margin-left: 15px;
   ul {
     padding: 0;
     list-style: none;
@@ -200,6 +195,9 @@ export default {
     a {
       color: var(--color-dark-gray);
     }
+  }
+  .footer-container {
+    max-width: 1140px;
   }
 }
 

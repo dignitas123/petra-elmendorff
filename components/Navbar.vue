@@ -191,7 +191,8 @@ export default {
 }
 
 .brand-sign {
-  margin-top: 75px;
+  // margin-top: 75px;
+  margin-top: 10px;
   margin-left: 12%;
 }
 
