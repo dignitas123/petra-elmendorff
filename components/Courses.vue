@@ -179,9 +179,9 @@ export default {
       return sessions.filter(session => {
         if (!session.date.from) return noDate
 
-        let from = new Date(session.date.from.split('T')[0].split('-'))
+        let from = new Date(session.date.from)
         let to = session.date.to
-          ? new Date(session.date.to.split('T')[0].split('-'))
+          ? new Date(session.date.to)
           : from
 
         let isPast = to < now
