@@ -248,7 +248,7 @@ export default {
 @import '~/styles/custom-properties';
 
 .landing-page {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .image-container {
