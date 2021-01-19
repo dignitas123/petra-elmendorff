@@ -8,7 +8,9 @@
         class="yearWrap"
       >
         <div
-          v-for="month in Object.keys(sessionsByMonth[year]).sort((a,b) => a - b)"
+          v-for="month in Object.keys(sessionsByMonth[year]).sort(
+            (a, b) => a - b
+          )"
           :key="month"
           class="monthWrap"
         >
@@ -18,10 +20,12 @@
 
           <b-container>
             <b-row
-              v-for="session in sessionsByMonth[year][month].sort((a,b) => a.date.from > b.date.from ? 1 : - 1)"
+              v-for="session in sessionsByMonth[year][month].sort((a, b) =>
+                a.date.from > b.date.from ? 1 : -1
+              )"
               :key="session._id"
               class="mb-3"
-              v-bind:class="{ oneOfToManyEvents: session.dates.length > 5 }" 
+              v-bind:class="{ oneOfToManyEvents: session.dates.length > 5 }"
             >
               <b-col class="my-auto">
                 <b-container>
@@ -31,10 +35,10 @@
                         v-if="session.date && selLanguage == 'de'"
                         class="date"
                       >
-                        {{ session.date.from | de }}
+                        {{ toLocaleDateString(session.date.from) }}
                       </h3>
                       <h3 v-else-if="selLanguage == 'en'">
-                        {{ session.date.from | en }}
+                        {{ toLocaleDateString(session.date.from) }}
                       </h3></b-col
                     ></b-row
                   >
@@ -69,12 +73,11 @@
                   <h5 class="untertitle" v-if="session.title.untertitel">
                     {{ session.title.untertitel }}
                   </h5>
-                  <h6 
+                  <h6
                     v-if="session.date && session.date.desc"
                     class="untertitel termintitel"
-                    >
+                  >
                     {{ session.date.desc }}
-                    
                   </h6>
                   <!-- <p class="mb-0">
                   {{ session.summary }}
@@ -97,7 +100,7 @@ import { de } from 'date-fns/locale'
 export default {
   filters: {
     de: createDateFilter('DD. MMMM', { locale: de }),
-    en: createDateFilter('MM/DD/YYYY')
+    en: createDateFilter('DD. MMMM')
   },
   props: {
     sessions: {
@@ -205,7 +208,7 @@ export default {
         }
       })
       return months
-    },
+    }
     // videoCourses: props => {
     //   return props.sessions.filter(
     //     session => session.sessionType == 'online-kurse'
@@ -217,6 +220,19 @@ export default {
       return new Date(null, m, null).toLocaleDateString('default', {
         month: 'long'
       })
+    },
+    toLocaleDateString(date) {
+      if (this.selLanguage == 'de') {
+        return new Date(date).toLocaleDateString('de-DE', {
+          month: 'long',
+          day: 'numeric'
+        })
+      } else {
+        return new Date(date).toLocaleDateString('en-EN', {
+          month: 'long',
+          day: 'numeric'
+        })
+      }
     }
   }
 }
@@ -347,7 +363,7 @@ h3 {
 //       margin: 0px 0px 0px 0px;
 //     }
 //   }
-  
+
 // }
 
 @media (max-width: 576px) {

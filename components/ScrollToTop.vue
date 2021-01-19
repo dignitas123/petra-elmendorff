@@ -36,8 +36,8 @@ export default {
 <style scoped>
 .bottom-right {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 60px;
+  right: 40px;
   cursor: pointer;
 }
 </style>

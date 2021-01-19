@@ -3,17 +3,81 @@
     <section class="landing-page">
       <Navbar />
       <div class="header-content">
-        <SanityImage
-          :image="home.image"
-          :width="1563"
-          :height="470"
-          class="mainImage"
-        />
-        <hr class="image-sep" />
-        <div class="text-center mt-3 quote-block">
-          <h3 class="quote mx-3 py-5">‚{{ $t(home.image.zitat) }}‘</h3>
+        <div class="position-relative">
+          <div
+            class="quote-block letter-spacing-0 text-center position-absolute my-2 pt-1"
+          >
+            <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3>
+          </div>
+          <SanityImage
+            :image="home.image"
+            :width="1920"
+            :height="679"
+            class="mainImage"
+          />
         </div>
-        <DownArrow @arrow-click="scrollContent" />
+        <hr class="image-sep" />
+        <b-container class="container2">
+          <div class="kalendar-link position-fixed">
+            <nuxt-link :to="$t(angebote)">
+              <h4 class="kalender medium-font color-dark-grey float-right mb-0 p-1">
+                {{ $t(kalender)
+                }}<span class="plus-calendar d-block ml-1 float-right"
+                  ><Plus width="13"
+                /></span>
+              </h4>
+            </nuxt-link>
+          </div>
+          <b-row align-h="between">
+            <b-col>
+              <h1 class="aktuelle-termine bold-font letter-spacing-more">
+                {{ $t(termine) }}
+              </h1>
+            </b-col>
+          </b-row>
+          <b-row cols="1" cols-md="2" cols-xl="4">
+            <b-col
+              v-for="course in previewCourses"
+              v-bind:key="course.title.titel"
+              class="mb-3"
+            >
+              <nuxt-link
+                :to="
+                  $t(angebote) + `/${course.sessionType}/${course.slug.current}`
+                "
+                class="text-dec-none letter-spacing-0"
+              >
+                <div class="text-center color-dark-grey max-width-div">
+                  <h4 class="medium-font">
+                    {{ course.title.titel }}<br /><span
+                      v-if="course.title.untertitel"
+                      >{{ course.title.untertitel }}</span
+                    >
+                  </h4>
+                </div>
+                <h5 class="locale-to-course text-center color-grey medium-font">
+                  <div>
+                    {{ $t(course.ort) }}
+                  </div>
+                  <span v-if="course.date && selLanguage == 'de'">{{
+                    toLocaleDateString(course.date.from)
+                  }}</span>
+                  <span v-else-if="selLanguage == 'en'">{{
+                    toLocaleDateString(course.date.from)
+                  }}</span>
+                  -
+                  <span v-if="course.date && selLanguage == 'de'">{{
+                    toLocaleDateString(course.date.to)
+                  }}</span>
+                  <span v-else-if="selLanguage == 'en'">{{
+                    toLocaleDateString(course.date.to)
+                  }}</span>
+                </h5>
+              </nuxt-link>
+            </b-col>
+          </b-row>
+        </b-container>
+        <DownArrowSharp @arrow-click="scrollContent" />
       </div>
     </section>
     <section class="content">
@@ -26,7 +90,7 @@
                 <SanityImage
                   :image="preview.previewImage2"
                   :alt="$t(preview.previewImage2.alt)"
-                  class="grid-image mb-5"
+                  class="grid-image mb-3"
                 />
                 <div class="middle">
                   <div class="text">{{ $t(preview.title) }}</div>
@@ -37,69 +101,16 @@
           </template>
         </b-row>
       </b-container>
-      <b-container class="container2">
-        <b-row align-h="between">
-          <b-col>
-            <h1 class="aktuelle-termine">{{ $t(termine) }}</h1>
-          </b-col>
-          <b-col>
-            <nuxt-link :to="$t(angebote)">
-              <h2 class="kalender color-dark-grey float-right">
-                {{ $t(kalender)
-                }}<span class="plus-calendar d-block ml-1 float-right"
-                  ><Plus width="15"
-                /></span>
-              </h2>
-            </nuxt-link>
-          </b-col>
-        </b-row>
-        <b-row cols="1" cols-md="2" cols-xl="4">
-          <b-col
-            v-for="course in previewCourses"
-            v-bind:key="course.title.titel"
-            class="mb-3"
-          >
-            <nuxt-link
-              :to="
-                $t(angebote) + `/${course.sessionType}/${course.slug.current}`
-              "
-              class="text-dec-none"
-            >
-              <div class="text-center color-dark-grey">
-                <h4>{{ course.title.titel }}</h4>
-              </div>
-              <h5 class="text-center color-grey">
-                <div>
-                  {{ $t(course.ort) }}
-                </div>
-                <span v-if="course.date && selLanguage == 'de'">{{
-                  course.date.from | de
-                }}</span>
-                <span v-else-if="selLanguage == 'en'">{{
-                  course.date.from | en
-                }}</span>
-                -
-                <span v-if="course.date && selLanguage == 'de'">{{
-                  course.date.to | de
-                }}</span>
-                <span v-else-if="selLanguage == 'en'">{{
-                  course.date.to | en
-                }}</span>
-              </h5>
-            </nuxt-link>
-          </b-col>
-        </b-row>
-      </b-container>
     </section>
   </section>
 </template>
 
 <script>
-import { dateFilter } from 'vue-date-fns'
+// import { dateFilter } from 'vue-date-fns'
 import { mapMutations, mapGetters } from 'vuex'
-import { createDateFilter } from 'vue-date-fns'
+// import { createDateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
-import DownArrow from '~/components/icons/DownArrow'
+import DownArrowSharp from '~/components/icons/DownArrowSharp'
 import SanityImage from '~/components/SanityImage'
 import Navbar from '~/components/Navbar'
 import Plus from '~/components/icons/Plus'
@@ -144,16 +155,16 @@ const query = `
 
 export default {
   components: {
-    DownArrow,
+    DownArrowSharp,
     Navbar,
     SanityImage,
     Plus
   },
-  filters: {
-    dateFilter,
-    de: createDateFilter('DD.MM.YYYY'),
-    en: createDateFilter('MM/DD/YYYY')
-  },
+  // filters: {
+  //   dateFilter,
+  //   de: createDateFilter('DD. MMMM'),
+  //   en: createDateFilter('DD. MMMM')
+  // },
   computed: {
     sitetitle: function() {
       return this.$store.state.siteSettings.title
@@ -193,6 +204,19 @@ export default {
       if (slug === 'kurse') return 'kurse-angebote'
       if (slug === 'courses') return 'courses-offers'
       return slug
+    },
+    toLocaleDateString(date) {
+      if (this.selLanguage == 'de') {
+        return new Date(date).toLocaleDateString('de-DE', {
+          month: 'long',
+          day: 'numeric'
+        })
+      } else {
+        return new Date(date).toLocaleDateString('en-EN', {
+          month: 'long',
+          day: 'numeric'
+        })
+      }
     }
   },
   async asyncData() {
@@ -224,7 +248,7 @@ export default {
     this.setCurrentSlug(false)
     if (!isNode) {
       let langCooky = this.$cookies.get('lang')
-      console.log("langCooky:", langCooky)
+      console.log('langCooky:', langCooky)
       if (!langCooky) {
         let userLang = navigator.language || navigator.userLanguage
         console.log('The language is: ' + userLang)
@@ -248,6 +272,7 @@ export default {
 @import '~/styles/custom-properties';
 
 .landing-page {
+  margin-top: 1rem;
   min-height: 100vh;
 }
 
@@ -269,8 +294,21 @@ export default {
   opacity: 1;
 }
 
+.quote-block {
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.letter-spacing-0 {
+  letter-spacing: 0;
+}
+
+.letter-spacing-more {
+  letter-spacing: 1px;
+}
+
 .kalender {
-  font-weight: bold;
+  font-size: 22px;
 }
 
 .middle {
@@ -293,8 +331,21 @@ export default {
   color: var(--color-gray);
 }
 
+.max-width-div {
+  max-width: 66%;
+  margin: 0 auto;
+}
+
 .grid-row {
   margin: 0 auto;
+}
+
+.medium-font {
+  font-family: var(--font-family-sans-medium) !important;
+}
+
+.bold-font {
+  font-family: var(--font-family-sans-medium) !important;
 }
 
 .grid-image {
@@ -308,18 +359,23 @@ export default {
   width: 500px !important;
 }
 
+.locale-to-course {
+  margin-top: -8px;
+}
+
 .container2 {
   background: white;
 }
 
 .image-sep {
   border: 0;
-  height: 8px;
+  height: 4px;
+  margin-top: 6px;
   background: #dacf3d;
 }
 
 .container {
-  padding-top: 2rem;
+  padding-top: 0.75rem;
   box-sizing: border-box;
   min-height: calc(100% - 72px - 216px);
 }
@@ -332,7 +388,7 @@ export default {
 
 .aktuelle-termine {
   color: #e0d7d6;
-  font-weight: bold;
+  font-size: 49px;
 }
 
 .content {
@@ -350,6 +406,10 @@ export default {
 .title + p + .dates {
   margin-bottom: 0;
   font-weight: 600;
+}
+
+.max-width-row {
+  max-width: 100px;
 }
 
 .title + p + .dates + .venue {
@@ -371,6 +431,16 @@ figcaption {
 .mainImage {
   width: 100%;
   vertical-align: top;
+}
+
+.kalendar-link {
+  right: 8px;
+  bottom: 0;
+  z-index: 3;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  vertical-align: middle;
+  margin-bottom: 0 !important;
 }
 
 .sessionListTitle {
@@ -399,6 +469,8 @@ figcaption {
 
 .grid-image-caption {
   display: none;
+  color: #e0d7d6;
+  font-size: 49px !important;
 }
 
 @media (max-width: 972px) {
@@ -409,13 +481,17 @@ figcaption {
 
 @media (max-width: 620px) {
   .quote {
-    font-size: 17px;
+    font-size: 12px;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 472px) {
   .quote {
-    font-size: 13px;
+    font-size: 12px;
+  }
+  .container {
+    padding-left: 7px;
+    padding-right: 7px;
   }
 }
 

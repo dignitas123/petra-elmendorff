@@ -3,7 +3,7 @@
     <div class="brand-sign">
       <h1 id="headerText">
         <nuxt-link to="/"
-          >Petra Elmendo<span class="wider-ls">rff</span></nuxt-link
+          >Pet<span style="letter-spacing: 0.5px;">ra</span> Elmendo<span style="letter-spacing: 1px;">rff</span></nuxt-link
         >
       </h1>
       <h2 id="subHeaderText">
@@ -145,8 +145,12 @@ export default {
   }
   font-size: var(--font-logo-size);
   color: var(--color-gray);
-  font-weight: bold;
   text-align: left;
+  letter-spacing: -3px;
+  // --font-family-sans: 'GillSans';
+  // --font-family-sans-thin: 'GillSansLight';
+  // --font-family-sans-bold: 'GillSansBold';
+  font-family: var(--font-family-sans-medium);
 }
 
 #subHeaderTextHeading {
@@ -176,10 +180,6 @@ export default {
 .navbar.navbar-light.navbar-expand-md {
   text-align: center;
   margin: 0 auto;
-}
-
-.wider-ls {
-  letter-spacing: 5px;
 }
 
 .menue-container {
@@ -274,27 +274,26 @@ export default {
 
 @media (max-width: 482px) {
   #headerText {
-    font-size: 35px;
+    font-size: 43px;
+    padding-top: 5px;
   }
-  .wider-ls {
-    letter-spacing: 2px;
+  .brand-sign {
+    padding-left: 8%;
   }
   #subHeaderTextHeading {
-    font-size: 19px;
-    margin-top: 4px;
+    font-size: 21px;
+    margin-top: -4px;
+    margin-left: 0.5px;
   }
   #chineseSign {
-    height: 40px;
-    margin-top: -5px;
+    height: 30px;
+    margin-top: -6px;
   }
   .smaller-unit {
-    font-size: 15px;
+    font-size: 9px;
   }
   .menue-container {
     right: 5px;
-  }
-  #headerText {
-    padding-top: 5px;
   }
 }
 </style>
