@@ -196,7 +196,7 @@ export default {
 .brand-sign {
   // margin-top: 75px;
   margin-top: 10px;
-  margin-left: 12%;
+  margin-left: 8%;
 }
 
 .smaller-unit {
@@ -226,6 +226,16 @@ export default {
 }
 
 @media (max-width: 767px) {
+  .language-switch {
+    margin-top: 15px !important;
+    .lang {
+      width: 0;
+      margin-left: 0 !important;
+    }
+  }
+  .menue-content-mobile {
+    margin-top: -15px;
+  }
   #headerText {
     font-size: 55px;
   }
@@ -250,7 +260,6 @@ export default {
   .language-switch {
     font-size: 12px;
     font-weight: 100;
-    margin-top: -5px !important;
   }
   .lang {
     padding-right: 1px;

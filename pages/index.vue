@@ -46,7 +46,7 @@
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4">
+          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5">
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
@@ -87,8 +87,8 @@
               </nuxt-link>
             </b-col>
           </b-row>
+          <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" />
         </b-container>
-        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" />
       </div>
     </section>
     <section class="content">
