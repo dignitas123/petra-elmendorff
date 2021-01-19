@@ -5,9 +5,18 @@
       <div class="header-content">
         <div class="position-relative">
           <div
-            class="quote-block letter-spacing-0 text-center position-absolute my-2 pt-1"
+            class="quote-block medium-font letter-spacing-0 text-center position-absolute my-2 py-2"
           >
-            <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3>
+            <block-content
+              v-if="$t(home.image.zitat)"
+              :blocks="$t(home.image.zitat)"
+              :serializers="serializers"
+              projectId="ie6m0uwl"
+              dataset="production"
+              class="quote px-3 my-1"
+            />
+
+            <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
           </div>
           <SanityImage
             :image="home.image"
@@ -17,10 +26,12 @@
           />
         </div>
         <hr class="image-sep" />
-        <b-container class="container2">
-          <div class="kalendar-link position-fixed">
+        <b-container class="container2 position-relative">
+          <div class="kalendar-link position-absolute">
             <nuxt-link :to="$t(angebote)">
-              <h4 class="kalender medium-font color-dark-grey float-right mb-0 p-1">
+              <h4
+                class="kalender medium-font color-dark-grey float-right mb-0 p-1"
+              >
                 {{ $t(kalender)
                 }}<span class="plus-calendar d-block ml-1 float-right"
                   ><Plus width="13"
@@ -48,12 +59,12 @@
                 class="text-dec-none letter-spacing-0"
               >
                 <div class="text-center color-dark-grey max-width-div">
-                  <h4 class="medium-font">
+                  <h5 class="medium-font">
                     {{ course.title.titel }}<br /><span
                       v-if="course.title.untertitel"
                       >{{ course.title.untertitel }}</span
                     >
-                  </h4>
+                  </h5>
                 </div>
                 <h5 class="locale-to-course text-center color-grey medium-font">
                   <div>
@@ -77,7 +88,7 @@
             </b-col>
           </b-row>
         </b-container>
-        <DownArrowSharp @arrow-click="scrollContent" />
+        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" />
       </div>
     </section>
     <section class="content">
@@ -115,6 +126,7 @@ import SanityImage from '~/components/SanityImage'
 import Navbar from '~/components/Navbar'
 import Plus from '~/components/icons/Plus'
 import isNode from 'detect-node'
+import BlockContent from 'sanity-blocks-vue-component'
 
 const query = `
 {
@@ -158,7 +170,8 @@ export default {
     DownArrowSharp,
     Navbar,
     SanityImage,
-    Plus
+    Plus,
+    BlockContent
   },
   // filters: {
   //   dateFilter,
@@ -191,7 +204,8 @@ export default {
       kalender: {
         de: 'Kalender',
         en: 'Calendar'
-      }
+      },
+      serializers: {}
     }
   },
   methods: {
@@ -299,6 +313,14 @@ export default {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.quote-block {
+  width: 100%;
+  margin: 0 auto;
+  p {
+    margin: 0;
+  }
+}
+
 .letter-spacing-0 {
   letter-spacing: 0;
 }
@@ -332,7 +354,7 @@ export default {
 }
 
 .max-width-div {
-  max-width: 66%;
+  max-width: 50%;
   margin: 0 auto;
 }
 
@@ -388,7 +410,7 @@ export default {
 
 .aktuelle-termine {
   color: #e0d7d6;
-  font-size: 49px;
+  font-size: 38px;
 }
 
 .content {
@@ -435,12 +457,13 @@ figcaption {
 
 .kalendar-link {
   right: 8px;
-  bottom: 0;
-  z-index: 3;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.7);
-  vertical-align: middle;
-  margin-bottom: 0 !important;
+  bottom: -2px;
+  padding-top: 2px;
+  // z-index: 3;
+  // border-radius: 8px;
+  // background-color: rgba(255, 255, 255, 0.7);
+  // vertical-align: middle;
+  // margin-bottom: 0 !important;
 }
 
 .sessionListTitle {
@@ -473,25 +496,22 @@ figcaption {
   font-size: 49px !important;
 }
 
+.quote-block > div > p {
+  font-size: 35px;
+}
+
+@media (max-width: 1241px) {
+  .quote-block > div > p {
+    font-size: 27px;
+  }
+}
+
 @media (max-width: 972px) {
   .quote {
     font-size: 20px;
   }
-}
-
-@media (max-width: 620px) {
-  .quote {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 472px) {
-  .quote {
-    font-size: 12px;
-  }
-  .container {
-    padding-left: 7px;
-    padding-right: 7px;
+  .quote-block > div > p {
+    font-size: 21px;
   }
 }
 
@@ -503,11 +523,39 @@ figcaption {
   .header-content {
     margin-top: 0;
   }
+  .quote-block > div > p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .quote {
+    font-size: 12px;
+  }
+  .quote-block > div > p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 472px) {
+  .quote {
+    font-size: 12px;
+  }
+  .container {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .quote-block > div > p {
+    font-size: 11px;
+  }
 }
 
 @media (max-width: 393px) {
   .grid-image {
     width: 100%;
+  }
+  .quote-block > div > p {
+    font-size: 9px;
   }
 }
 </style>

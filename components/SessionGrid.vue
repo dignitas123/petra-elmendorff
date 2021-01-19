@@ -94,14 +94,14 @@
 
 <script>
 // import { dateFilter } from 'vue-date-fns'
-import { createDateFilter } from 'vue-date-fns'
-import { de } from 'date-fns/locale'
+// import { createDateFilter } from 'vue-date-fns'
+// import { de } from 'date-fns/locale'
 
 export default {
-  filters: {
-    de: createDateFilter('DD. MMMM', { locale: de }),
-    en: createDateFilter('DD. MMMM')
-  },
+  // filters: {
+  //   de: createDateFilter('DD. MMMM', { locale: de }),
+  //   en: createDateFilter('DD. MMMM')
+  // },
   props: {
     sessions: {
       type: Array,

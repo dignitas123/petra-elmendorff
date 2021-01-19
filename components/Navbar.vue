@@ -3,7 +3,10 @@
     <div class="brand-sign">
       <h1 id="headerText">
         <nuxt-link to="/"
-          >Pet<span style="letter-spacing: 0.5px;">ra</span> Elmendo<span style="letter-spacing: 1px;">rff</span></nuxt-link
+          >Pet<span style="letter-spacing: 0.5px;">ra</span> Elmendo<span
+            style="letter-spacing: 1px;"
+            >rff</span
+          ></nuxt-link
         >
       </h1>
       <h2 id="subHeaderText">
@@ -155,18 +158,18 @@ export default {
 
 #subHeaderTextHeading {
   font-family: var(--font-family-sans-thin);
-  font-size: calc(44 / var(--unit) * 1rem);
+  font-size: 42px;
   display: inline-block;
   vertical-align: middle;
   color: var(--color-golden);
-  margin-top: -6px;
+  margin-top: -15px;
   margin-left: 5px;
 }
 
 #chineseSign {
-  height: 90px;
+  height: 55px;
   padding-bottom: 5px;
-  margin-top: -25px;
+  margin-top: -19px;
 }
 
 #subHeaderText {
@@ -197,7 +200,7 @@ export default {
 }
 
 .smaller-unit {
-  font-size: var(--font-title2-size);
+  font-size: 20px;
 }
 
 // .border-right-v {
@@ -216,20 +219,9 @@ export default {
   }
 }
 
-@media (max-width: 542px) {
-  #headerText {
-    padding-left: 25px;
-    font-size: var(--font-title2-size);
-  }
-}
-
 @media (max-width: 991px) {
   .lang {
     display: none;
-  }
-  .brand-sign {
-    margin-top: 0;
-    margin-left: 0;
   }
 }
 
@@ -239,10 +231,15 @@ export default {
   }
   #subHeaderTextHeading {
     font-size: 28px;
+    margin-left: 1px;
+    margin-top: -9px;
+  }
+  .smaller-unit {
+    font-size: 14px;
   }
   #chineseSign {
-    height: 60px;
-    margin-top: -15px;
+    height: 37px;
+    margin-top: -10px;
   }
   .menue-content-mobile {
     display: block;
@@ -268,7 +265,17 @@ export default {
 
 @media (max-width: 542px) {
   #headerText {
-    padding-left: 0;
+    font-size: 45px;
+  }
+  #chineseSign {
+    height: 30px;
+    margin-top: -7px;
+  }
+  #subHeaderTextHeading {
+    font-size: 22px;
+    .smaller-unit {
+      font-size: 12px;
+    }
   }
 }
 
@@ -276,9 +283,6 @@ export default {
   #headerText {
     font-size: 43px;
     padding-top: 5px;
-  }
-  .brand-sign {
-    padding-left: 8%;
   }
   #subHeaderTextHeading {
     font-size: 21px;
@@ -294,6 +298,21 @@ export default {
   }
   .menue-container {
     right: 5px;
+  }
+}
+
+@media (max-width: 404px) {
+  .brand-sign {
+    margin-left: 8%;
+  }
+  #headerText {
+    font-size: 35px;
+  }
+  #subHeaderTextHeading {
+    font-size: 16px;
+  }
+  #chineseSign {
+    height: 25px;
   }
 }
 </style>
