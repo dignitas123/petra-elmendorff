@@ -23,6 +23,7 @@
     <div class="menue-container position-absolute">
       <DoubleCheeseBurger />
       <DoubleCheeseBurgerSmall />
+      <DoubleCheeseBurgerVerySmall />
       <div class="language-switch mt-2 mr-1">
         <span
           class="lang lang-left d-inline-block"
@@ -114,6 +115,10 @@ export default {
 }
 
 .menue-content-mobile {
+  display: none;
+}
+
+.menue-content-mobile-2 {
   display: none;
 }
 
@@ -237,9 +242,6 @@ export default {
       margin-right: 10px;
     }
   }
-  .menue-content-mobile {
-    margin-top: -15px;
-  }
   #headerText {
     font-size: 55px;
   }
@@ -257,6 +259,7 @@ export default {
   }
   .menue-content-mobile {
     display: block;
+    margin-top: -15px;
   }
   .menue-content {
     display: none;
@@ -315,6 +318,12 @@ export default {
 }
 
 @media (max-width: 404px) {
+  .menue-content-mobile {
+    display: none;
+  }
+  .menue-content-mobile-2 {
+    display: block;
+  }
   .brand-sign {
     margin-left: 8%;
   }
@@ -326,6 +335,9 @@ export default {
   }
   #chineseSign {
     height: 25px;
+  }
+  .menue-container {
+    top: -7px;
   }
 }
 </style>

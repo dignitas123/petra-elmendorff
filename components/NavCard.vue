@@ -4,7 +4,7 @@
       v-if="display"
       no-body
       border-variant="light"
-      style="max-width: 290px; float: right; position: absolute; right: 0; top: 0; background: #f4f1f0;"
+      style="max-width: 290px; float: right; position: absolute; right: 0; background: #f4f1f0;"
       class="nav-card overflow-hidden"
       id="navCard"
       @mouseleave="$nuxt.$emit('nav-card-out')"
@@ -108,6 +108,16 @@ export default {
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+#navCard {
+  top: 0;
+}
+
+@media (max-width: 766px) {
+  #navCard {
+    top: -16px !important;
+  }
 }
 
 @media (max-width: 690px) {

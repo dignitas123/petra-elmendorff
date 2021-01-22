@@ -46,7 +46,7 @@
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5">
+          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5 aktuelle-termine">
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
@@ -87,10 +87,11 @@
               </nuxt-link>
             </b-col>
           </b-row>
-          
-
         </b-container>
-        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" style="bottom: 5px;"/>
+        <DownArrowSharp
+          @arrow-click="scrollContent"
+          style="bottom: 5px;"
+        />
       </div>
     </section>
     <section class="content">
@@ -189,24 +190,28 @@ export default {
     },
     previewCourses: function() {
       // zeige angepinnte Kurse und upcoming courses (anzahl auch aus sanity)
-      return this.home.courses.filter(ses => ses.sessionLang == this.getLanguage).map(course => {
-        // preview immer zum ersten termin, ist leider etwas doof
-        course.date = course.dates[0]
-        return course
-      }).concat(this.upcomingCourses)
+      return this.home.courses
+        .filter(ses => ses.sessionLang == this.getLanguage)
+        .map(course => {
+          // preview immer zum ersten termin, ist leider etwas doof
+          course.date = course.dates[0]
+          return course
+        })
+        .concat(this.upcomingCourses)
     },
     upcomingCourses: function() {
       let now = new Date()
-      let maxNumberOfitems = this.home.numberUpcomingPreview;
+      let maxNumberOfitems = this.home.numberUpcomingPreview
 
       // show sessions only once
       let alreadyinList = []
       return this.getDates.filter(session => {
         if (
-          alreadyinList.length >= maxNumberOfitems 
-          || !session.date.from
-          || session.sessionLang != this.getLanguage
-        ) return false
+          alreadyinList.length >= maxNumberOfitems ||
+          !session.date.from ||
+          session.sessionLang != this.getLanguage
+        )
+          return false
 
         let from = new Date(session.date.from)
         let to = session.date.to ? new Date(session.date.to) : from
@@ -214,11 +219,10 @@ export default {
         let isPast = to < now
         // let isOngoing = to > now && from < now
         // let isFuture = from > now
-        if (!isPast && !alreadyinList.includes(session.originalSessionObj)){
+        if (!isPast && !alreadyinList.includes(session.originalSessionObj)) {
           alreadyinList.push(session.originalSessionObj)
           return true
-        }
-        else return false
+        } else return false
       })
     }
   },
@@ -341,11 +345,9 @@ export default {
 }
 
 .quote-block {
+    color: #5f4142;
   bottom: 0;
   background: rgba(255, 255, 255, 0.7);
-}
-
-.quote-block {
   width: 100%;
   margin: 0 auto;
   p {
@@ -443,6 +445,7 @@ export default {
 .aktuelle-termine {
   color: #e0d7d6;
   font-size: 38px;
+  letter-spacing: -0.5px;
 }
 
 .content {
@@ -525,16 +528,52 @@ figcaption {
 .grid-image-caption {
   display: none;
   color: #e0d7d6;
-  font-size: 49px !important;
+  font-size: 45px !important;
 }
 
 .quote-block > div > p {
   font-size: 35px;
 }
 
-@media (max-width: 1241px) {
+.image-container a:hover {
+  text-decoration: none;
+}
+
+.kalendar-link, .quote-block {
+  letter-spacing: -1px;
+}
+
+.aktuelle-termine {
+  h5 {
+    letter-spacing: -1px;
+  }
+}
+
   .quote-block > div > p {
     font-size: 27px;
+  }
+
+.max-width-div {
+  max-width: 100%;
+}
+
+@media (min-width: 1203px) {
+  .image-sep {
+    height: 8px;
+  }
+  .aktuelle-termine {
+    text-align: left;
+    font-size: 45px;
+  }
+  .kalender {
+    margin-top: -230px;
+  }
+}
+
+@media (max-width: 993px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -548,15 +587,30 @@ figcaption {
 }
 
 @media (max-width: 766px) {
+  .grid-image {
+    width: 100%;
+  }
   .grid-image-caption {
     display: block;
-    font-size: 30px;
+    font-size: 39px;
   }
   .header-content {
     margin-top: 0;
   }
   .quote-block > div > p {
     font-size: 16px;
+  }
+  .landing-page {
+    margin-top: 1.5rem;
+  }
+  .max-width-container {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 667px) {
+  .grid-image-caption {
+    font-size: 30px !important;
   }
 }
 
@@ -569,15 +623,10 @@ figcaption {
   }
 }
 
-
-@media (max-width: 993px) {
-  .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
 @media (max-width: 472px) {
+  .grid-image-caption {
+    font-size: 22px !important;
+  }
   .quote {
     font-size: 12px;
   }
@@ -590,12 +639,53 @@ figcaption {
   }
 }
 
-@media (max-width: 393px) {
-  .grid-image {
-    width: 100%;
+@media (max-width: 452px) {
+  .aktuelle-termine {
+    h5 {
+      font-size: 18px;
+    }
   }
+}
+
+@media (max-width: 404px) {
+  .landing-page {
+    margin-top: 0.5rem;
+  }
+  .aktuelle-termine {
+    h5 {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 393px) {
   .quote-block > div > p {
     font-size: 9px;
+  }
+  .grid-image-caption {
+    font-size: 20px !important;
+  }
+}
+@media (max-width: 349px) {
+  .quote-block > div > p {
+    font-size: 9px;
+  }
+  .grid-image-caption {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 339px) {
+  .grid-image-caption {
+    font-size: 18px !important;
+  }
+  .aktuelle-termine {
+    h5 {
+      font-size: 14px;
+    }
+  }
+  .kalender {
+    font-size: 14px;
   }
 }
 </style>
