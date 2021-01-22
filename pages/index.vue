@@ -139,8 +139,10 @@ const query = `
       ort,
       dates,
       sessionType,
+      sessionLang,
       slug { current, }
-    }
+    },
+    numberUpcomingPreview
   }[0],
   "previews": [
     *[_type == "page" && slug.de.current == "jin-shin-jyutsu"] {
@@ -181,14 +183,42 @@ export default {
   //   en: createDateFilter('DD. MMMM')
   // },
   computed: {
+    ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
     sitetitle: function() {
       return this.$store.state.siteSettings.title
     },
     previewCourses: function() {
-      return this.home.courses.map(course => {
+      // zeige angepinnte Kurse und upcoming courses (anzahl auch aus sanity)
+      return this.home.courses.filter(ses => ses.sessionLang == this.getLanguage).map(course => {
         // preview immer zum ersten termin, ist leider etwas doof
         course.date = course.dates[0]
         return course
+      }).concat(this.upcomingCourses)
+    },
+    upcomingCourses: function() {
+      let now = new Date()
+      let maxNumberOfitems = this.home.numberUpcomingPreview;
+
+      // show sessions only once
+      let alreadyinList = []
+      return this.getDates.filter(session => {
+        if (
+          alreadyinList.length >= maxNumberOfitems 
+          || !session.date.from
+          || session.sessionLang != this.getLanguage
+        ) return false
+
+        let from = new Date(session.date.from)
+        let to = session.date.to ? new Date(session.date.to) : from
+
+        let isPast = to < now
+        // let isOngoing = to > now && from < now
+        // let isFuture = from > now
+        if (!isPast && !alreadyinList.includes(session.originalSessionObj)){
+          alreadyinList.push(session.originalSessionObj)
+          return true
+        }
+        else return false
       })
     }
   },
