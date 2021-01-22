@@ -26,15 +26,16 @@ export const getters = {
           let dummySession = Object.assign({}, sessi) 
           // set old api stzle date
           dummySession.date = otherDate
+          dummySession.originalSessionObj = sessi
           dates.push(dummySession)
         })
       }
     })
+    dates.sort((a, b) =>
+      a.date.from > b.date.from ? 1 : -1
+    )
     return dates
   },
-  // getProgram(state) {
-  //   return state.program
-  // },
   getLanguage (state) {
     return state.language
   },
