@@ -21,7 +21,7 @@
           <SanityImage
             :image="home.image"
             :width="1920"
-            :height="679"
+            :height="612"
             class="mainImage"
           />
         </div>
@@ -87,8 +87,10 @@
               </nuxt-link>
             </b-col>
           </b-row>
-          <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" />
+          
+
         </b-container>
+        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" style="bottom: 5px;"/>
       </div>
     </section>
     <section class="content">
@@ -286,7 +288,7 @@ export default {
 @import '~/styles/custom-properties';
 
 .landing-page {
-  margin-top: 1rem;
+  margin-top: 3.5rem;
   min-height: 100vh;
 }
 
@@ -405,7 +407,7 @@ export default {
 .header-content {
   text-align: center;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 55px;
 }
 
 .aktuelle-termine {
@@ -534,6 +536,14 @@ figcaption {
   }
   .quote-block > div > p {
     font-size: 13px;
+  }
+}
+
+
+@media (max-width: 993px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 

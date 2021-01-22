@@ -23,9 +23,9 @@
     <div class="menue-container position-absolute">
       <DoubleCheeseBurger />
       <DoubleCheeseBurgerSmall />
-      <div class="language-switch mt-2">
+      <div class="language-switch mt-2 mr-1">
         <span
-          class="lang d-inline-block mr-2"
+          class="lang lang-left d-inline-block"
           :class="boldIfLang('de')"
           right
           @click="changeLanguage('de')"
@@ -33,7 +33,7 @@
         >
         <div id="langSeperator" class="d-inline-block"></div>
         <span
-          class="lang d-inline-block ml-1"
+          class="lang d-inline-block"
           :class="boldIfLang('en')"
           right
           @click="changeLanguage('en')"
@@ -127,6 +127,7 @@ export default {
 .language-switch {
   font-size: 16px;
   font-weight: 100;
+  margin-top: 30px !important;
 }
 
 .language-mobile {
@@ -209,10 +210,10 @@ export default {
 
 .lang {
   color: var(--color-dark-gray);
-  padding-right: 5px;
-  padding-left: 5px;
+  // padding-right: 5px;
+  // padding-left: 5px;
   font-family: var(--font-family-sans-light);
-  width: 20px;
+  // width: 20px;
   &:hover {
     cursor: pointer;
     font-family: var(--font-family-sans-bold);
@@ -231,6 +232,9 @@ export default {
     .lang {
       width: 0;
       margin-left: 0 !important;
+    }
+    .lang-left {
+      margin-right: 10px;
     }
   }
   .menue-content-mobile {

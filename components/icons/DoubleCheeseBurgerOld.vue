@@ -1,8 +1,8 @@
 <template>
   <div class="menue-content" @mouseover="$nuxt.$emit('menu-hover')">
-    <!-- <div class="d-grid">
+    <div class="d-grid">
       Menue
-    </div> -->
+    </div>
     <div class="d-grid">
       <svg
         aria-hidden="true"
@@ -20,7 +20,6 @@
         <rect y="13" width="50" height="1" />
         <rect y="23" width="50" height="1" />
         <rect y="33" width="50" height="1" />
-        <rect y="43" width="50" height="1" />
       </svg>
     </div>
   </div>

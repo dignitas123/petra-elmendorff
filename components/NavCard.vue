@@ -4,8 +4,9 @@
       v-if="display"
       no-body
       border-variant="light"
-      style="max-width: 290px; float: right; position: absolute; right: 0; background: #f4f1f0;"
+      style="max-width: 290px; float: right; position: absolute; right: 0; top: 0; background: #f4f1f0;"
       class="nav-card overflow-hidden"
+      id="navCard"
       @mouseleave="$nuxt.$emit('nav-card-out')"
     >
       <b-row no-gutters>
@@ -109,9 +110,17 @@ export default {
   opacity: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 690px) {
   .image-col {
     display: none;
   }
+  // .nav-card {
+  //   top: -200px !important;
+  //   background: red;
+  // }
+  // #navCard {
+  //   position: fixed !important;
+  //   top: -200px !important;
+  // }
 }
 </style>

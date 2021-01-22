@@ -57,6 +57,11 @@ body,
   }
 }
 
+.container {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
 .title + p {
   font-size: var(--font-large-size);
   line-height: var(--font-large-line-height);
