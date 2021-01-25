@@ -4,20 +4,6 @@
       <Navbar />
       <div class="header-content">
         <div class="position-relative">
-          <div
-            class="quote-block medium-font letter-spacing-0 text-center position-absolute my-2 py-2"
-          >
-            <block-content
-              v-if="$t(home.image.zitat)"
-              :blocks="$t(home.image.zitat)"
-              :serializers="serializers"
-              projectId="ie6m0uwl"
-              dataset="production"
-              class="quote px-3 my-1"
-            />
-
-            <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
-          </div>
           <SanityImage
             :image="home.image"
             :width="1920"
@@ -26,6 +12,17 @@
           />
         </div>
         <hr class="image-sep" />
+        <div class="quote-block medium-font letter-spacing-0 text-center">
+          <block-content
+            v-if="$t(home.image.zitat)"
+            :blocks="$t(home.image.zitat)"
+            :serializers="serializers"
+            projectId="ie6m0uwl"
+            dataset="production"
+            class="quote px-3 my-1"
+          />
+          <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
+        </div>
         <b-container class="container2 position-relative">
           <div class="kalendar-link position-absolute">
             <nuxt-link :to="$t(angebote)">
@@ -39,63 +36,87 @@
               </h4>
             </nuxt-link>
           </div>
-          <b-row align-h="between">
+          <b-row
+            align-h="between"
+            class="position-fixed"
+            style="left: 50%; transform: translateX(-50%); width: 500px; top: 50%; z-index: -2;"
+          >
             <b-col>
-              <h1 class="aktuelle-termine bold-font letter-spacing-more">
+              <h1 class="aktuelle-termine medium-font letter-spacing-more position-relative" style="z-index: -1;">
                 {{ $t(termine) }}
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5 aktuelle-termine">
+          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5 aktuelle-termine position-absolute" style="z-index: -1;">
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
               class="mb-3"
             >
-              <nuxt-link
-                :to="
-                  $t(angebote) + `/${course.sessionType}/${course.slug.current}`
-                "
-                class="text-dec-none letter-spacing-0"
-              >
-                <div class="text-center color-dark-grey max-width-div">
-                  <h5 class="medium-font">
-                    {{ course.title.titel }}<br /><span
-                      v-if="course.title.untertitel"
-                      >{{ course.title.untertitel }}</span
-                    >
+              <b-row cols="2">
+                <b-col>
+                  <h5
+                    v-if="course.sessionType == 'online-seminare'"
+                    class="medium-font color-golden-2"
+                  >
+                    Online
                   </h5>
-                </div>
-                <h5 class="locale-to-course text-center color-grey medium-font">
-                  <div>
+                  <h5 v-else class="medium-font color-golden-2">
                     {{ $t(course.ort) }}
-                  </div>
-                  <span v-if="course.date && selLanguage == 'de'">{{
-                    toLocaleDateString(course.date.from)
-                  }}</span>
-                  <span v-else-if="selLanguage == 'en'">{{
-                    toLocaleDateString(course.date.from)
-                  }}</span>
-                  -
-                  <span v-if="course.date && selLanguage == 'de'">{{
-                    toLocaleDateString(course.date.to)
-                  }}</span>
-                  <span v-else-if="selLanguage == 'en'">{{
-                    toLocaleDateString(course.date.to)
-                  }}</span>
-                </h5>
-              </nuxt-link>
+                  </h5></b-col
+                >
+                <b-col>
+                  <nuxt-link
+                    :to="
+                      $t(angebote) +
+                        `/${course.sessionType}/${course.slug.current}`
+                    "
+                    class="text-dec-none letter-spacing-0"
+                  >
+                    <div class="text-center color-dark-grey max-width-div">
+                      <h5 class="medium-font">
+                        {{ course.title.titel }}<br /><span
+                          class="light-font"
+                          v-if="course.title.untertitel"
+                          >{{ course.title.untertitel }}</span
+                        >
+                      </h5>
+                    </div>
+                    <h5
+                      class="locale-to-course text-center color-grey light-font"
+                    >
+                      <div v-if="course.displayDate">
+                        {{ course.displayDate }}
+                      </div>
+                      <div v-else>
+                        <span v-if="course.date && selLanguage == 'de'">{{
+                          toLocaleDateString(course.date.from)
+                        }}</span>
+                        <span v-else-if="selLanguage == 'en'">{{
+                          toLocaleDateString(course.date.from)
+                        }}</span>
+                        <span v-if="course.date.to && selLanguage == 'de'"
+                          >- {{ toLocaleDateString(course.date.to) }}</span
+                        >
+                        <span v-else-if="selLanguage == 'en'"
+                          >- {{ toLocaleDateString(course.date.to) }}</span
+                        >
+                      </div>
+                    </h5>
+                    <h5 v-if="course.frequency" class="color-grey">
+                      {{ course.frequency }}
+                    </h5>
+                  </nuxt-link></b-col
+                ></b-row
+              >
             </b-col>
           </b-row>
         </b-container>
-        <DownArrowSharp
-          @arrow-click="scrollContent"
-          style="bottom: 5px;"
-        />
+        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" style="bottom: 5px;" />
       </div>
     </section>
     <section class="content">
-      <b-container class="max-width-container">
+      <b-container class="max-width-container position-relative" style="z-index: 9999;">
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
@@ -345,7 +366,7 @@ export default {
 }
 
 .quote-block {
-    color: #5f4142;
+  color: #5f4142;
   bottom: 0;
   background: rgba(255, 255, 255, 0.7);
   width: 100%;
@@ -387,6 +408,10 @@ export default {
   color: var(--color-gray);
 }
 
+.color-golden-2 {
+  color: var(--color-golden-2);
+}
+
 .max-width-div {
   max-width: 50%;
   margin: 0 auto;
@@ -394,16 +419,6 @@ export default {
 
 .grid-row {
   margin: 0 auto;
-}
-
-.medium-font {
-  // font-family: var(--font-family-sans-medium) !important;
-  font-family: "GillSansNewMedium";
-}
-
-.bold-font {
-  // font-family: var(--font-family-sans-medium) !important;
-  font-family: "GillSansNewBold";
 }
 
 .grid-image {
@@ -428,7 +443,7 @@ export default {
 .image-sep {
   border: 0;
   height: 4px;
-  margin-top: 6px;
+  // margin-top: 6px;
   background: #dacf3d;
 }
 
@@ -541,7 +556,8 @@ figcaption {
   text-decoration: none;
 }
 
-.kalendar-link, .quote-block {
+.kalendar-link,
+.quote-block {
   letter-spacing: -1px;
 }
 
@@ -551,9 +567,9 @@ figcaption {
   }
 }
 
-  .quote-block > div > p {
-    font-size: 27px;
-  }
+.quote-block > div > p {
+  font-size: 27px;
+}
 
 .max-width-div {
   max-width: 100%;
@@ -626,6 +642,11 @@ figcaption {
 }
 
 @media (max-width: 472px) {
+  .image-sep {
+    height: 3.5px;
+    margin-top: 3.5px;
+    margin-bottom: 7px;
+  }
   .grid-image-caption {
     font-size: 22px !important;
   }
@@ -637,7 +658,7 @@ figcaption {
     padding-right: 7px;
   }
   .quote-block > div > p {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 

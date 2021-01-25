@@ -5,14 +5,15 @@
   --font-family-sans-medium: 'GillSansMedium';
 
   --color-black: #202123;
-  --color-dark-gray: #593f4c;
-  --color-gray: #656263;
+  --color-dark-gray: #5f4142;
+  --color-gray: #717174;
   --color-light-gray: #b4bcc7;
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
   --color-accent: #ae5f87;
   --color-background: #d6c9c9;
   --color-golden: #a5831d;
+  --color-golden-2: #b29029;
 
   /* Typography */
   --unit: 16;

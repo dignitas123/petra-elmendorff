@@ -56,3 +56,18 @@ $spacer: 1rem;
 
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
+
+.medium-font {
+  // font-family: var(--font-family-sans-medium) !important;
+  font-family: 'GillSansNewMedium';
+}
+
+.bold-font {
+  // font-family: var(--font-family-sans-medium) !important;
+  font-family: 'GillSansNewBold';
+}
+
+.light-font {
+  // font-family: var(--font-family-sans-medium) !important;
+  font-family: 'GillSansNewLight';
+}
