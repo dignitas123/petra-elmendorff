@@ -1,5 +1,5 @@
 // Quicksand Import
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
 @font-face {
   font-family: 'GillSans';
@@ -20,6 +20,21 @@
 @font-face {
   font-family: 'GillSansMedium';
   src: url('~assets/fonts/GillSansMedium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GillSansNewBold';
+  src: url('~assets/fonts/GillSansNewBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GillSansNewLight';
+  src: url('~assets/fonts/GillSansNewLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GillSansNewMedium';
+  src: url('~assets/fonts/GillSansNewMedium.ttf') format('truetype');
 }
 
 

@@ -104,7 +104,7 @@
                 <SanityImage
                   :image="preview.previewImage2"
                   :alt="$t(preview.previewImage2.alt)"
-                  class="grid-image mb-3"
+                  class="grid-image mb-5"
                 />
                 <div class="middle">
                   <div class="text">{{ $t(preview.title) }}</div>
@@ -397,11 +397,13 @@ export default {
 }
 
 .medium-font {
-  font-family: var(--font-family-sans-medium) !important;
+  // font-family: var(--font-family-sans-medium) !important;
+  font-family: "GillSansNewMedium";
 }
 
 .bold-font {
-  font-family: var(--font-family-sans-medium) !important;
+  // font-family: var(--font-family-sans-medium) !important;
+  font-family: "GillSansNewBold";
 }
 
 .grid-image {

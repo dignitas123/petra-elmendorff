@@ -11,7 +11,7 @@
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
               <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/d7b7aa64c770be829f9b2ab5be077eefe1ca542a-308x308.png?h=128"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/08adb0dc609005383c88be7afe1b979693379478-440x437.png?h=128"
                 class="border border-dark"
                 width="150"
                 alt="Jin Shin Jyutsu"
