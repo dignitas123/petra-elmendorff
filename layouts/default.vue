@@ -42,6 +42,7 @@ body,
 #__layout > div {
   height: 100%;
   letter-spacing: 0.03rem;
+  margin-top: 1.25rem;
 }
 
 .title {

@@ -166,11 +166,11 @@ export default {
 #chineseSign {
   height: 55px;
   padding-bottom: 5px;
-  margin-top: -19px;
+  margin-top: -12px;
 }
 
 #subHeaderText {
-  margin-top: -16px;
+  margin-top: -11px;
 }
 
 .navbar-light .navbar-toggler {
@@ -191,8 +191,6 @@ export default {
 }
 
 .brand-sign {
-  // margin-top: 75px;
-  margin-top: 10px;
   margin-left: 8%;
 }
 
