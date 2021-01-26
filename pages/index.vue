@@ -11,7 +11,10 @@
             class="mainImage"
           />
         </div>
-        <hr class="image-sep" />
+        <hr
+          class="image-sep"
+          style="margin-top: 5px; margin-bottom: 7px;"
+        />
         <div class="quote-block medium-font letter-spacing-0 text-center">
           <block-content
             v-if="$t(home.image.zitat)"
@@ -51,7 +54,7 @@
               class="mb-3"
             >
               <b-row cols="2" align-h="center">
-                <b-col style="max-width: 20%;">
+                <b-col class="locale-col" style="max-width: 20%;">
                   <h5
                     v-if="course.sessionType == 'online-seminare'"
                     class="text-left medium-font color-golden-2"
@@ -451,7 +454,6 @@ export default {
 .image-sep {
   border: 0;
   height: 4px;
-  // margin-top: 6px;
   background: #dacf3d;
 }
 
@@ -546,7 +548,7 @@ figcaption {
 
 .grid-image-caption {
   display: none;
-  color: #e0d7d6;
+  color: #ada2a1;
   font-size: 45px !important;
 }
 
@@ -580,6 +582,9 @@ figcaption {
 @media (min-width: 1203px) {
   .image-sep {
     height: 8px;
+  }
+  .locale-col {
+    min-width: 100px;
   }
   .aktuelle-termine {
     text-align: left;
@@ -639,15 +644,13 @@ figcaption {
     font-size: 12px;
   }
   .quote-block > div > p {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 472px) {
   .image-sep {
     height: 3.5px;
-    margin-top: 3.5px;
-    margin-bottom: 7px;
   }
   .grid-image-caption {
     font-size: 22px !important;
@@ -660,7 +663,7 @@ figcaption {
     padding-right: 7px;
   }
   .quote-block > div > p {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -670,7 +673,6 @@ figcaption {
       font-size: 18px;
     }
   }
-  
 }
 
 @media (max-width: 404px) {
