@@ -51,7 +51,7 @@
               class="mb-3"
             >
               <b-row cols="2" align-h="center">
-                <b-col style="max-width: 75px;">
+                <b-col style="max-width: 20%;">
                   <h5
                     v-if="course.sessionType == 'online-seminare'"
                     class="text-left medium-font color-golden-2"
@@ -344,7 +344,7 @@ export default {
         } else {
           this.setLanguage('en')
         }
-        this.$cookies.set('lang', this.getLanguage(), {
+        this.$cookies.set('lang', this.getLanguage, {
           path: '/',
           maxAge: 60 * 60 * 24 * 7 // 1 week
         })
@@ -670,6 +670,7 @@ figcaption {
       font-size: 18px;
     }
   }
+  
 }
 
 @media (max-width: 404px) {
