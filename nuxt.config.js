@@ -84,6 +84,8 @@ export default {
    ** Generate dynamic routes from data from sanity.
    ** Used only for generating static served HTML files
    */
+
+  /*
   generate: {
     routes: () => {
       console.log('sanity fetch config generate', routesQuery)
@@ -95,6 +97,7 @@ export default {
       })
     }
   },
+  */
 
   /*
    ** Build configuration
