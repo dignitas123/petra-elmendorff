@@ -26,16 +26,15 @@
           />
           <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
         </div>
-        <b-container class="container2 position-relative">
+        <b-container class="container2">
           <b-row
             align-h="between"
-            class="position-fixed"
-            style="left: 50%; transform: translateX(-50%); width: 500px; top: 50%; z-index: -2;"
+            style=""
           >
+            <!-- style="left: 50%; transform: translateX(-50%); width: 500px; top: 50%; z-index: -2;" -->
             <b-col>
               <h1
-                class="aktuelle-termine medium-font letter-spacing-more position-relative"
-                style="z-index: -1;"
+                class="aktuelle-termine medium-font letter-spacing-more"
               >
                 {{ $t(termine) }}
               </h1>
@@ -45,8 +44,7 @@
             cols="1"
             cols-md="2"
             cols-xl="4"
-            class="pb-5 aktuelle-termine position-absolute"
-            style="z-index: -1;"
+            class="aktuelle-termine"
           >
             <b-col
               v-for="course in previewCourses"
@@ -112,7 +110,7 @@
             </b-col>
           </b-row>
         </b-container>
-        <div class="kalendar-link position-absolute">
+        <div class="kalendar-link">
           <nuxt-link :to="$t(angebote)">
             <h4
               class="kalender medium-font color-dark-grey float-right mb-0 p-1"
@@ -126,15 +124,14 @@
         </div>
       </div>
     </section>
-    <b-row class="text-center">
+    <b-row class="text-center" style="clear:both">
       <b-col>
         <DownArrowSharp @arrow-click="scrollContent" />
       </b-col>
     </b-row>
     <section class="content">
       <b-container
-        class="max-width-container position-relative"
-        style="z-index: 9999;"
+        class="max-width-container"
       >
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
@@ -363,7 +360,7 @@ export default {
 
 .landing-page {
   margin-top: 3.5rem;
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 .image-container {
