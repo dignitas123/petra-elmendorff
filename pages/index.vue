@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <section class="landing-page">
-      <Navbar />
+      <!-- <Navbar /> -->
       <div class="header-content">
         <div class="position-relative">
           <SanityImage

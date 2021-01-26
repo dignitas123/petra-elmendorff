@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <Navbar />
+    <!-- <Navbar /> -->
     <Courses
       v-if="
         $route.params.page == 'kurse-angebote' ||

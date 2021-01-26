@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <section class="container">
-      <Navbar />
+      <!-- <Navbar /> -->
       <b-breadcrumb :items="$t(items)" class="mt-5 breadcrumb"></b-breadcrumb>
       <Courses :filterCat="$router.history.current.params.coursetype" />
     </section>

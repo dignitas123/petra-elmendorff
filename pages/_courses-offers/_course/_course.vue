@@ -1,6 +1,6 @@
 <template>
   <section class="container mb-3">
-    <Navbar />
+    <!-- <Navbar /> -->
     <div class="container-text">
       <b-breadcrumb :items="$t(items)" class="breadcrumb"></b-breadcrumb>
       <div class="header-background py-2">

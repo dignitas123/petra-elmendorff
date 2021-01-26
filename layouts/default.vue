@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar />
     <nuxt />
     <Footer />
     <scroll-to-top-arrow />
