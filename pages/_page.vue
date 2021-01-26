@@ -102,7 +102,6 @@ export default {
 .title + p + .dates + .venue {
   font-size: var(--font-small-size);
   line-height: var(--font-small-line-height);
-  margin-bottom: 5rem;
 }
 
 figure {

@@ -358,11 +358,6 @@ export default {
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
 
-.landing-page {
-  margin-top: 3.5rem;
-  // min-height: 100vh;
-}
-
 .image-container {
   position: relative;
   width: 50%;
@@ -622,9 +617,6 @@ figcaption {
   .quote-block > div > p {
     font-size: 16px;
   }
-  .landing-page {
-    margin-top: 1.5rem;
-  }
   .max-width-container {
     max-width: 50%;
   }
@@ -673,9 +665,6 @@ figcaption {
 }
 
 @media (max-width: 404px) {
-  .landing-page {
-    margin-top: 0.5rem;
-  }
   .aktuelle-termine {
     h5 {
       font-size: 15px;
