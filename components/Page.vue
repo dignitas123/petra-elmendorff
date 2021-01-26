@@ -55,7 +55,7 @@ export default {
 
 <style scoped>
 .page-content {
-  max-width: 800px;
+  max-width: 840px;
   margin: 0 auto;
 }
 
@@ -64,7 +64,7 @@ h1, figure {
 }
 
 .content {
-  margin-top: 100px;
+  margin: 100px 20px 0px 20px;
 }
 
 @media (max-width: 657px) {
@@ -72,8 +72,8 @@ h1, figure {
     width: 100%;
   }
   .content {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 </style>
