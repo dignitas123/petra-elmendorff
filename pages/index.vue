@@ -24,44 +24,41 @@
           <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
         </div>
         <b-container class="container2 position-relative">
-          <div class="kalendar-link position-absolute">
-            <nuxt-link :to="$t(angebote)">
-              <h4
-                class="kalender medium-font color-dark-grey float-right mb-0 p-1"
-              >
-                {{ $t(kalender)
-                }}<span class="plus-calendar d-block ml-1 float-right"
-                  ><Plus width="13"
-                /></span>
-              </h4>
-            </nuxt-link>
-          </div>
           <b-row
             align-h="between"
             class="position-fixed"
             style="left: 50%; transform: translateX(-50%); width: 500px; top: 50%; z-index: -2;"
           >
             <b-col>
-              <h1 class="aktuelle-termine medium-font letter-spacing-more position-relative" style="z-index: -1;">
+              <h1
+                class="aktuelle-termine medium-font letter-spacing-more position-relative"
+                style="z-index: -1;"
+              >
                 {{ $t(termine) }}
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4" class="pb-5 aktuelle-termine position-absolute" style="z-index: -1;">
+          <b-row
+            cols="1"
+            cols-md="2"
+            cols-xl="4"
+            class="pb-5 aktuelle-termine position-absolute"
+            style="z-index: -1;"
+          >
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
               class="mb-3"
             >
-              <b-row cols="2">
-                <b-col>
+              <b-row cols="2" align-h="center">
+                <b-col style="max-width: 75px;">
                   <h5
                     v-if="course.sessionType == 'online-seminare'"
-                    class="medium-font color-golden-2"
+                    class="text-left medium-font color-golden-2"
                   >
                     Online
                   </h5>
-                  <h5 v-else class="medium-font color-golden-2">
+                  <h5 v-else class="text-left medium-font color-golden-2">
                     {{ $t(course.ort) }}
                   </h5></b-col
                 >
@@ -73,7 +70,7 @@
                     "
                     class="text-dec-none letter-spacing-0"
                   >
-                    <div class="text-center color-dark-grey max-width-div">
+                    <div class="text-left color-dark-grey max-width-div">
                       <h5 class="medium-font">
                         {{ course.title.titel }}<br /><span
                           class="light-font"
@@ -83,7 +80,7 @@
                       </h5>
                     </div>
                     <h5
-                      class="locale-to-course text-center color-grey light-font"
+                      class="text-left locale-to-course color-grey light-font"
                     >
                       <div v-if="course.displayDate">
                         {{ course.displayDate }}
@@ -102,9 +99,9 @@
                           >- {{ toLocaleDateString(course.date.to) }}</span
                         >
                       </div>
-                    </h5>
-                    <h5 v-if="course.frequency" class="color-grey">
-                      {{ course.frequency }}
+                      <div v-if="course.frequency" class="text-left color-grey">
+                        {{ course.frequency }}
+                      </div>
                     </h5>
                   </nuxt-link></b-col
                 ></b-row
@@ -112,11 +109,30 @@
             </b-col>
           </b-row>
         </b-container>
-        <DownArrowSharp @arrow-click="scrollContent" class="position-absolute" style="bottom: 5px;" />
+        <div class="kalendar-link position-absolute">
+          <nuxt-link :to="$t(angebote)">
+            <h4
+              class="kalender medium-font color-dark-grey float-right mb-0 p-1"
+            >
+              {{ $t(kalender)
+              }}<span class="plus-calendar d-block ml-1 float-right"
+                ><Plus width="13"
+              /></span>
+            </h4>
+          </nuxt-link>
+        </div>
       </div>
     </section>
+    <b-row class="text-center">
+      <b-col>
+        <DownArrowSharp @arrow-click="scrollContent" />
+      </b-col>
+    </b-row>
     <section class="content">
-      <b-container class="max-width-container position-relative" style="z-index: 9999;">
+      <b-container
+        class="max-width-container position-relative"
+        style="z-index: 9999;"
+      >
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
@@ -376,14 +392,6 @@ export default {
   }
 }
 
-.letter-spacing-0 {
-  letter-spacing: 0;
-}
-
-.letter-spacing-more {
-  letter-spacing: 1px;
-}
-
 .kalender {
   font-size: 22px;
 }
@@ -461,7 +469,7 @@ export default {
 
 .aktuelle-termine {
   color: #e0d7d6;
-  font-size: 38px;
+  font-size: 28px;
   letter-spacing: -0.5px;
 }
 
@@ -508,14 +516,8 @@ figcaption {
 }
 
 .kalendar-link {
-  right: 8px;
-  bottom: -2px;
-  padding-top: 2px;
-  // z-index: 3;
-  // border-radius: 8px;
-  // background-color: rgba(255, 255, 255, 0.7);
-  // vertical-align: middle;
-  // margin-bottom: 0 !important;
+  right: 5%;
+  bottom: 5%;
 }
 
 .sessionListTitle {
@@ -683,7 +685,7 @@ figcaption {
 
 @media (max-width: 393px) {
   .quote-block > div > p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .grid-image-caption {
     font-size: 20px !important;
@@ -691,7 +693,7 @@ figcaption {
 }
 @media (max-width: 349px) {
   .quote-block > div > p {
-    font-size: 9px;
+    font-size: 11px;
   }
   .grid-image-caption {
     font-size: 20px !important;

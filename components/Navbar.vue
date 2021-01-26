@@ -1,12 +1,9 @@
 <template>
   <header class="nav-header text-center position-relative">
     <div class="brand-sign">
-      <h1 id="headerText">
+      <h1 id="headerText" class="medium-font letter-spacing-less">
         <nuxt-link to="/"
-          >Pet<span style="letter-spacing: 0.5px;">ra</span> Elmendo<span
-            style="letter-spacing: 1px;"
-            >rff</span
-          ></nuxt-link
+          >Petra Elmendorff</nuxt-link
         >
       </h1>
       <h2 id="subHeaderText">
@@ -16,7 +13,7 @@
           class="float-left"
         />
       </h2>
-      <h2 id="subHeaderTextHeading" class="float-left">
+      <h2 id="subHeaderTextHeading" class="float-left light-font">
         Jin Shin Jyutsu <span class="smaller-unit">&amp;</span> AstroMatrix
       </h2>
     </div>
@@ -155,15 +152,9 @@ export default {
   font-size: var(--font-logo-size);
   color: var(--color-gray);
   text-align: left;
-  letter-spacing: -3px;
-  // --font-family-sans: 'GillSans';
-  // --font-family-sans-thin: 'GillSansLight';
-  // --font-family-sans-bold: 'GillSansBold';
-  font-family: var(--font-family-sans-medium);
 }
 
 #subHeaderTextHeading {
-  font-family: var(--font-family-sans-thin);
   font-size: 42px;
   display: inline-block;
   vertical-align: middle;

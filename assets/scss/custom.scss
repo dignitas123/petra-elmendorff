@@ -71,3 +71,19 @@ $spacer: 1rem;
   // font-family: var(--font-family-sans-medium) !important;
   font-family: 'GillSansNewLight';
 }
+
+.max-width-70 {
+  max-width: 70% !important;
+}
+
+.letter-spacing-0 {
+  letter-spacing: 0;
+}
+
+.letter-spacing-more {
+  letter-spacing: 1px;
+}
+
+.letter-spacing-less {
+  letter-spacing: -1px;
+}
