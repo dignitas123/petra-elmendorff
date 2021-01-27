@@ -6,16 +6,27 @@
         <div class="position-relative">
           <SanityImage
             :image="home.image"
-            :width="1920"
-            :height="612"
+            :width="1614"
+            :height="516"
             class="mainImage"
           />
+          <div
+            class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
+          >
+            <block-content
+              v-if="$t(home.image.zitat)"
+              :blocks="$t(home.image.zitat)"
+              :serializers="serializers"
+              projectId="ie6m0uwl"
+              dataset="production"
+              class="quote px-3 my-1"
+            />
+          </div>
         </div>
-        <hr
-          class="image-sep"
-          style="margin-top: 5px; margin-bottom: 7px;"
-        />
-        <div class="quote-block medium-font letter-spacing-0 text-center">
+        <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+        <div
+          class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center"
+        >
           <block-content
             v-if="$t(home.image.zitat)"
             :blocks="$t(home.image.zitat)"
@@ -24,42 +35,33 @@
             dataset="production"
             class="quote px-3 my-1"
           />
-          <!-- <h3 class="quote px-3 my-1">‚{{ $t(home.image.zitat) }}‘</h3> -->
         </div>
         <b-container class="container2">
-          <b-row
-            align-h="between"
-            style=""
-          >
-            <!-- style="left: 50%; transform: translateX(-50%); width: 500px; top: 50%; z-index: -2;" -->
+          <b-row align-h="between" style="">
             <b-col>
-              <h1
-                class="aktuelle-termine medium-font letter-spacing-more"
-              >
+              <h1 class="aktuelle-termine medium-font letter-spacing-more">
                 {{ $t(termine) }}
               </h1>
             </b-col>
           </b-row>
-          <b-row
-            cols="1"
-            cols-md="2"
-            cols-xl="4"
-            class="aktuelle-termine"
-          >
+          <b-row cols="1" cols-md="2" cols-xl="4" class="aktuelle-termine">
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
               class="mb-3"
             >
-              <b-row cols="2" align-h="center">
-                <b-col class="locale-col" style="max-width: 20%;">
+              <b-row cols="2" cols-xl="1" align-h="center">
+                <b-col class="locale-col" style="max-width: 25%;">
                   <h5
                     v-if="course.sessionType == 'online-seminare'"
-                    class="text-left medium-font color-golden-2"
+                    class="text-responsive medium-font color-golden-2 letter-spacing-more"
                   >
                     Online
                   </h5>
-                  <h5 v-else class="text-left medium-font color-golden-2">
+                  <h5
+                    v-else
+                    class="text-responsive medium-font color-golden-2 letter-spacing-more"
+                  >
                     {{ $t(course.ort) }}
                   </h5></b-col
                 >
@@ -71,7 +73,7 @@
                     "
                     class="text-dec-none letter-spacing-0"
                   >
-                    <div class="text-left color-dark-grey max-width-div">
+                    <div class="text-responsive color-dark-grey max-width-div">
                       <h5 class="medium-font">
                         {{ course.title.titel }}<br /><span
                           class="light-font"
@@ -81,7 +83,7 @@
                       </h5>
                     </div>
                     <h5
-                      class="text-left locale-to-course color-grey light-font"
+                      class="text-responsive locale-to-course color-grey light-font"
                     >
                       <div v-if="course.displayDate">
                         {{ course.displayDate }}
@@ -100,7 +102,10 @@
                           >- {{ toLocaleDateString(course.date.to) }}</span
                         >
                       </div>
-                      <div v-if="course.frequency" class="text-left color-grey">
+                      <div
+                        v-if="course.frequency"
+                        class="text-responsive color-grey"
+                      >
                         {{ course.frequency }}
                       </div>
                     </h5>
@@ -130,9 +135,7 @@
       </b-col>
     </b-row>
     <section class="content">
-      <b-container
-        class="max-width-container"
-      >
+      <b-container class="max-width-container">
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
@@ -215,11 +218,6 @@ export default {
     Plus,
     BlockContent
   },
-  // filters: {
-  //   dateFilter,
-  //   de: createDateFilter('DD. MMMM'),
-  //   en: createDateFilter('DD. MMMM')
-  // },
   computed: {
     ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
     sitetitle: function() {
@@ -379,12 +377,15 @@ export default {
 .quote-block {
   color: #5f4142;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
   width: 100%;
   margin: 0 auto;
   p {
     margin: 0;
   }
+}
+
+.quote-block-desktop {
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .kalender {
@@ -450,7 +451,7 @@ export default {
 }
 
 .container {
-  padding-top: 0.75rem;
+  padding-top: 1.75rem;
   box-sizing: border-box;
   min-height: calc(100% - 72px - 216px);
 }
@@ -463,8 +464,10 @@ export default {
 
 .aktuelle-termine {
   color: #e0d7d6;
-  font-size: 28px;
-  letter-spacing: -0.5px;
+  font-size: 75px;
+  h5 {
+    font-size: 27px;
+  }
 }
 
 .content {
@@ -557,12 +560,6 @@ figcaption {
   letter-spacing: -1px;
 }
 
-.aktuelle-termine {
-  h5 {
-    letter-spacing: -1px;
-  }
-}
-
 .quote-block > div > p {
   font-size: 27px;
 }
@@ -571,19 +568,40 @@ figcaption {
   max-width: 100%;
 }
 
-@media (min-width: 1203px) {
-  .image-sep {
-    height: 8px;
+.text-responsive {
+  text-align: center;
+}
+.image-sep {
+  margin-top: 12px !important;
+  height: 8px;
+}
+.locale-col {
+  min-width: 100px;
+}
+
+.quote-block-mobile {
+  display: none;
+}
+
+@media (max-width: 1203px) {
+  .quote-block-mobile {
+    display: block;
   }
-  .locale-col {
-    min-width: 100px;
+  .quote-block-desktop {
+    display: none;
+  }
+  .text-responsive {
+    text-align: left;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .aktuelle-termine {
-    text-align: left;
-    font-size: 45px;
-  }
-  .kalender {
-    margin-top: -230px;
+    font-size: 48px;
+    h5 {
+      font-size: 20px;
+    }
   }
 }
 
@@ -591,6 +609,12 @@ figcaption {
   .container {
     padding-left: 15px;
     padding-right: 15px;
+  }
+  .aktuelle-termine {
+    font-size: 48px;
+    h5 {
+      font-size: 20px;
+    }
   }
 }
 
@@ -600,6 +624,12 @@ figcaption {
   }
   .quote-block > div > p {
     font-size: 21px;
+  }
+  .aktuelle-termine {
+    font-size: 46px;
+    h5 {
+      font-size: 20px;
+    }
   }
 }
 
@@ -620,11 +650,23 @@ figcaption {
   .max-width-container {
     max-width: 50%;
   }
+  .aktuelle-termine {
+    font-size: 46px;
+    h5 {
+      font-size: 20px;
+    }
+  }
 }
 
 @media (max-width: 667px) {
   .grid-image-caption {
     font-size: 30px !important;
+  }
+  .aktuelle-termine {
+    font-size: 44px;
+    h5 {
+      font-size: 19px;
+    }
   }
 }
 
@@ -635,9 +677,18 @@ figcaption {
   .quote-block > div > p {
     font-size: 15px;
   }
+  .aktuelle-termine {
+    font-size: 36px;
+    h5 {
+      font-size: 18px;
+    }
+  }
 }
 
 @media (max-width: 472px) {
+  .aktuelle-termine {
+    font-size: 34px;
+  }
   .image-sep {
     height: 3.5px;
   }
@@ -658,16 +709,27 @@ figcaption {
 
 @media (max-width: 452px) {
   .aktuelle-termine {
+    font-size: 18px;
+  }
+  .quote-block > div > p {
+    font-size: 12px;
+  }
+  .aktuelle-termine {
+    font-size: 32px;
     h5 {
       font-size: 18px;
     }
+  }
+  .quote-block > div > p {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 404px) {
   .aktuelle-termine {
+    font-size: 31px;
     h5 {
-      font-size: 15px;
+      font-size: 17px;
     }
   }
 }
@@ -678,6 +740,12 @@ figcaption {
   }
   .grid-image-caption {
     font-size: 20px !important;
+  }
+  .aktuelle-termine {
+    font-size: 28px;
+    h5 {
+      font-size: 16px;
+    }
   }
 }
 @media (max-width: 349px) {
@@ -694,6 +762,7 @@ figcaption {
     font-size: 18px !important;
   }
   .aktuelle-termine {
+    font-size: 25px;
     h5 {
       font-size: 14px;
     }

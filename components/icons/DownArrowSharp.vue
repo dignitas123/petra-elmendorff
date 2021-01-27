@@ -25,4 +25,11 @@
 #downarrow:hover {
   cursor: pointer;
 }
+
+
+@media (min-width: 994px) {
+  #downarrow {
+    width: 45px;
+  }
+}
 </style>

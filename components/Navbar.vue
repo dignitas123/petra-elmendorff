@@ -155,16 +155,16 @@ export default {
 }
 
 #subHeaderTextHeading {
-  font-size: 42px;
+  font-size: 50px;
   display: inline-block;
   vertical-align: middle;
   color: var(--color-golden);
-  margin-top: -15px;
-  margin-left: 5px;
+  margin-top: -9px;
+  margin-left: 10px;
 }
 
 #chineseSign {
-  height: 55px;
+  height: 80px;
   padding-bottom: 5px;
   margin-top: -12px;
 }
@@ -184,39 +184,36 @@ export default {
 
 .menue-container {
   right: 20px;
-  top: 0;
+  top: 20px;
   &:hover {
     cursor: pointer;
   }
 }
 
 .brand-sign {
-  margin-left: 8%;
+  margin-left: 15%;
 }
 
 .smaller-unit {
-  font-size: 20px;
+  font-size: 24px;
 }
-
-// .border-right-v {
-//   border-right: 1px solid var(--color-dark-gray);
-// }
 
 .lang {
   color: var(--color-dark-gray);
-  // padding-right: 5px;
-  // padding-left: 5px;
   font-family: var(--font-family-sans-light);
-  // width: 20px;
   &:hover {
     cursor: pointer;
     font-family: var(--font-family-sans-bold);
   }
 }
 
-@media (max-width: 991px) {
+@media (min-width: 994px) {
   .lang {
     display: none;
+  }
+  .nav-header {
+    margin-right: 40px;
+    margin-left: 40px;
   }
 }
 

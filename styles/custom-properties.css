@@ -34,7 +34,7 @@
   --font-title1-size: calc(49 / var(--unit) * 1rem); /* 49px */
   --font-title1-line-height: calc(57 / 49); /* 57px */
 
-  --font-logo-size: calc(80 / var(--unit) * 1rem); /* 67px */
+  --font-logo-size: calc(94 / var(--unit) * 1rem); /* 67px */
 
   /* Widths */
   --width-x-small: 20em;
