@@ -25,7 +25,7 @@
         </div>
         <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
         <div
-          class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center"
+          class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
         >
           <block-content
             v-if="$t(home.image.zitat)"
@@ -135,7 +135,7 @@
       </b-col>
     </b-row>
     <section class="content">
-      <b-container class="max-width-container">
+      <b-container class="max-width-container pt-3">
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">
@@ -281,7 +281,6 @@ export default {
   },
   methods: {
     ...mapMutations(['setCurrentSlug', 'setLanguage']),
-    ...mapGetters(['getLanguage']),
     scrollContent: function() {
       this.$scrollTo('.content')
     },
@@ -386,6 +385,8 @@ export default {
 
 .quote-block-desktop {
   background: rgba(255, 255, 255, 0.7);
+  padding-right: 20%;
+  padding-left: 20%;
 }
 
 .kalender {
@@ -547,7 +548,7 @@ figcaption {
   font-size: 45px !important;
 }
 
-.quote-block > div > p {
+.quote-block > p {
   font-size: 35px;
 }
 
@@ -560,7 +561,7 @@ figcaption {
   letter-spacing: -1px;
 }
 
-.quote-block > div > p {
+.quote-block > p {
   font-size: 27px;
 }
 
@@ -571,10 +572,12 @@ figcaption {
 .text-responsive {
   text-align: center;
 }
+
 .image-sep {
   margin-top: 12px !important;
   height: 8px;
 }
+
 .locale-col {
   min-width: 100px;
 }
@@ -583,7 +586,15 @@ figcaption {
   display: none;
 }
 
+.aktuelle-termine {
+  text-align: left;
+}
+
 @media (max-width: 1203px) {
+  .aktuelle-termine {
+    text-align: center;
+  }
+
   .quote-block-mobile {
     display: block;
   }
@@ -608,7 +619,17 @@ figcaption {
   }
 }
 
+@media (max-width: 1495px) {
+  .quote-block-desktop {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
 @media (max-width: 993px) {
+  .image-sep {
+    margin-top: 5px !important;
+  }
   .container {
     padding-left: 15px;
     padding-right: 15px;
@@ -626,7 +647,7 @@ figcaption {
   .quote {
     font-size: 20px;
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 21px;
   }
   .aktuelle-termine {
@@ -638,6 +659,9 @@ figcaption {
 }
 
 @media (max-width: 766px) {
+  .image-sep {
+    height: 3.5px;
+  }
   .grid-image {
     width: 100%;
   }
@@ -648,7 +672,7 @@ figcaption {
   .header-content {
     margin-top: 0;
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 16px;
   }
   .max-width-container {
@@ -678,7 +702,7 @@ figcaption {
   .quote {
     font-size: 12px;
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 15px;
   }
   .aktuelle-termine {
@@ -693,9 +717,6 @@ figcaption {
   .aktuelle-termine {
     font-size: 34px;
   }
-  .image-sep {
-    height: 3.5px;
-  }
   .grid-image-caption {
     font-size: 22px !important;
   }
@@ -706,7 +727,7 @@ figcaption {
     padding-left: 7px;
     padding-right: 7px;
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 15px;
   }
 }
@@ -715,7 +736,7 @@ figcaption {
   .aktuelle-termine {
     font-size: 18px;
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 12px;
   }
   .aktuelle-termine {
@@ -724,7 +745,7 @@ figcaption {
       font-size: 18px;
     }
   }
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 14px;
   }
 }
@@ -739,7 +760,7 @@ figcaption {
 }
 
 @media (max-width: 393px) {
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 12px;
   }
   .grid-image-caption {
@@ -753,7 +774,7 @@ figcaption {
   }
 }
 @media (max-width: 349px) {
-  .quote-block > div > p {
+  .quote-block > p {
     font-size: 11px;
   }
   .grid-image-caption {

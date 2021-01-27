@@ -2,13 +2,15 @@
   <div>
     <navbar />
     <nuxt />
-    <footer />
+    <Footer />
     <scroll-to-top-arrow />
     <div class="gap"> </div>
   </div>
 </template>
 
 <script>
+import Footer from '~/components/Footer.vue'
+
 export default {
   computed: {
     title: function() {
@@ -40,6 +42,9 @@ body,
   max-width: 1614px;
   margin-right: auto;
   margin-left: auto;
+  @media (--media-max-mid-small) {
+      margin-top: 0.45rem;
+  }
 }
 
 .title {

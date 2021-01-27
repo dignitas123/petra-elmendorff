@@ -147,8 +147,8 @@ export default {
   padding: 15px 100px;
   color: var(--color-dark-gray);
   background-color: var(--color-background);
-  margin-right: 15px;
-  margin-left: 15px;
+  margin-right: 40px;
+  margin-left: 40px;
   ul {
     padding: 0;
     list-style: none;
@@ -206,6 +206,20 @@ export default {
   padding-left: 10px;
   &:not(:last-child) {
     border-right: 1px solid var(--color-dark-gray);
+  }
+}
+
+@media (max-width: 472px) {
+  .footer {
+    margin-left: 7px !important;
+    margin-right: 7px !important;
+  }
+}
+
+@media (max-width: 1203px) {
+  .footer {
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 

@@ -217,6 +217,27 @@ export default {
   }
 }
 
+@media (max-width: 921px) {
+  #headerText {
+    font-size: 72px;
+  }
+  #subHeaderTextHeading {
+    font-size: 38px;
+    margin-left: 5px;
+    margin-top: -7px;
+  }
+  .smaller-unit {
+    font-size: 14px;
+  }
+  #chineseSign {
+    height: 55px;
+    margin-top: -7px;
+  }
+  .language-switch {
+    margin-top: 16px !important;
+  }
+}
+
 @media (max-width: 767px) {
   .language-switch {
     margin-top: 15px !important;
@@ -232,16 +253,16 @@ export default {
     font-size: 55px;
   }
   #subHeaderTextHeading {
-    font-size: 28px;
-    margin-left: 1px;
-    margin-top: -9px;
+    font-size: 29px;
+    margin-left: 3px;
+    margin-top: -7px;
   }
   .smaller-unit {
     font-size: 14px;
   }
   #chineseSign {
-    height: 37px;
-    margin-top: -10px;
+    height: 44px;
+    margin-top: -7px;
   }
   .menue-content-mobile {
     display: block;
@@ -278,6 +299,9 @@ export default {
     .smaller-unit {
       font-size: 12px;
     }
+  }
+  .language-switch {
+    margin-top: 5px !important;
   }
 }
 
