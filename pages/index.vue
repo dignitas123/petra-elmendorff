@@ -281,7 +281,6 @@ export default {
   },
   methods: {
     ...mapMutations(['setCurrentSlug', 'setLanguage']),
-    ...mapGetters(['getLanguage']),
     scrollContent: function() {
       this.$scrollTo('.content')
     },

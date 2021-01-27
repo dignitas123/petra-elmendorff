@@ -2,13 +2,15 @@
   <div>
     <navbar />
     <nuxt />
-    <footer />
+    <Footer />
     <scroll-to-top-arrow />
     <div class="gap"> </div>
   </div>
 </template>
 
 <script>
+import Footer from '~/components/Footer.vue'
+
 export default {
   computed: {
     title: function() {
