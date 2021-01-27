@@ -389,7 +389,7 @@ export default {
 }
 
 .kalender {
-  font-size: 22px;
+  font-size: 27px;
 }
 
 .middle {
@@ -603,12 +603,16 @@ figcaption {
       font-size: 20px;
     }
   }
+  .kalender {
+    font-size: 22px;
+  }
 }
 
 @media (max-width: 993px) {
   .container {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 0;
   }
   .aktuelle-termine {
     font-size: 48px;

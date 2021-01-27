@@ -45,7 +45,6 @@ export default {
       serializers: {
         types: {}
       },
-      // selLanguage: '',
       image: '',
       slug: {}
     }
