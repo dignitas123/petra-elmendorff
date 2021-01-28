@@ -43,7 +43,7 @@
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/online-seminare'"
               ><b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/3a6d02a99b9df315d7ecef8d28efa159797f0e83-308x308.jpg?h=128"
+                src="https://cdn.sanity.io/images/ie6m0uwl/production/da0dffd3daf43d3e1e84bdec323d206f956a3ee5-308x308.jpg?h=128"
                 class="border border-dark"
                 width="150"
                 alt="Online Seminare"
