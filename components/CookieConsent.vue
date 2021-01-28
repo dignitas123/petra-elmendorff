@@ -75,7 +75,6 @@ export default {
   bottom: 0;
   left: 0;
   background: rgba(238, 238, 239, 0.86);
-  margin: 0 auto;
   width: 100%;
   padding: 20px;
   text-align: center;
@@ -84,7 +83,7 @@ export default {
 .btn {
   border-radius: 0;
   max-height: 30px;
-  &:active,
+  &:hover,
   &:active,
   &:focus {
     text-decoration: none;

@@ -1,7 +1,6 @@
 <template>
-  <a @click="scrollTop" v-show="visible" class="bottom-right">
-    <slot></slot>
-  </a>
+  <div @click="scrollTop" v-show="visible" class="bottom-right">
+  </div>
 </template>
 
 <script>

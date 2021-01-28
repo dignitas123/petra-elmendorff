@@ -3,15 +3,7 @@
     <client-only>
       <b-container class="footer-container">
         <b-row class="align-items-center">
-          <!-- <b-col>
-            <h3>{{ $t(kontakt) }}</h3>
-            <p>{{ block.children[0] }}</p>
-            <PortableText :blocks="blocks" />
-            <SanityContent :blocks="block.children[0]" />
-            <DivBlockContent v-for="block in blocks" :key="block._id" />
-          </b-col> -->
           <b-col>
-            <!-- <h3 id="socialMediaText">Social Media</h3> -->
             <div class="social-media-buttons align-items-center text-center">
               <a :href="youtubeLink">
                 <YouTubeCornered />
