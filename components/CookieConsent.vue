@@ -73,6 +73,7 @@ export default {
   z-index: 999;
   position: fixed;
   bottom: 0;
+  left: 0;
   background: rgba(238, 238, 239, 0.86);
   margin: 0 auto;
   width: 100%;
