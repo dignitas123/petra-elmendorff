@@ -76,18 +76,9 @@ export default {
       selLanguage: this.$store.state.language,
       youtubeLink: this.$store.state.siteSettings.youtube,
       facebookLink: this.$store.state.siteSettings.facebook,
-      emailAddress: this.$store.state.siteSettings.email
-      // kontakt: {
-      //   en: 'Contact',
-      //   de: 'Kontakt'
-      // }
+      emailAddress: this.$store.state.siteSettings.email,
     }
   }
-  // computed: {
-  //   blocks: function() {
-  //     return this.$store.state.siteSettings.footerAddress
-  //   }
-  // }
 }
 </script>
 
