@@ -25,7 +25,7 @@
 .back-to-top {
   border-radius: 8px;
   background-color:rgba(89, 63, 76, 0.1);
-  padding: 10px 5px 10px 5px;
+  padding: 5px 5px 5px 5px;
   color: #593f4c;
   &:hover {
     background-color: rgba(89, 63, 76, 0.5);

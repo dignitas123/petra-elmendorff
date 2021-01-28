@@ -1,6 +1,7 @@
 <template>
-  <div @click="scrollTop" v-show="visible" class="bottom-right">
-  </div>
+  <a @click="scrollTop" v-show="visible" class="bottom-right">
+    <slot></slot>
+  </a>
 </template>
 
 <script>
@@ -35,8 +36,8 @@ export default {
 <style scoped>
 .bottom-right {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 50px;
+  right: 50px;
   cursor: pointer;
 }
 </style>
