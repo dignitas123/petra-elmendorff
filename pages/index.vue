@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <section class="landing-page">
-      <!-- <Navbar /> -->
+      <newsletter-modal ref="newsletterpopup" />
       <div class="header-content">
         <div class="position-relative">
           <SanityImage
@@ -378,8 +378,9 @@ export default {
     let cooky = this.$cookies.get('cookie-cookie')
     // console.log('cookie-cookie:', cooky)
     if (!cooky) {
-      this.cookieShow = true;
+      this.cookieShow = true
     }
+    this.$refs.newsletterpopup.$bvModal.show('modal-ns')
   }
 }
 </script>

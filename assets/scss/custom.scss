@@ -54,6 +54,8 @@ a {
 
 $spacer: 1rem;
 
+$dark: #d6c9c9;
+
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
 
@@ -86,4 +88,13 @@ $spacer: 1rem;
 
 .letter-spacing-less {
   letter-spacing: -1px;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.modal-header {
+  border-bottom: 0;
+  border-radius: 0;
 }
