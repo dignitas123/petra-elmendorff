@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer mb-4">
     <client-only>
       <b-container class="footer-container">
         <b-row class="align-items-center">
