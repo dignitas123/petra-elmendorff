@@ -2,87 +2,34 @@
   <transition name="fade">
     <ul v-if="sessions.length" class="sessionGrid videoGrid">
       <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
-      <h3 v-if="onlyVideoCourses">{{ $t(onlyVideoCoursesTitle) }}</h3>
-      <!-- <div
-        v-for="year in Object.keys(this.sessionsByMonth).sort()"
-        :key="year"
-        class="yearWrap"
-      >
-        <div
-          v-for="month in Object.keys(sessionsByMonth[year]).sort()"
-          :key="month"
-          class="monthWrap"
-        > -->
-          <!-- <div class="monthSign mb-3">
-            {{ $t(monthName)[month - 1] }} {{ year }}
-          </div> -->
-
-          <b-container>
-            <b-row
-              v-for="session in sessions"
-              :key="session._id"
-              class="mb-3"
+      <b-container>
+        <b-row v-for="session in sessions" :key="session._id" class="mb-3">
+          <b-col class="my-auto py-3 mx-5 course-text text-center">
+            <nuxt-link
+              :to="
+                `/${currentSlug}/${session.sessionType}/${session.slug.current}`
+              "
             >
-              <b-col class="my-auto">
-                <b-container>
-                  <b-row
-                    ><b-col class="my-auto">
-                      <h3
-                        v-if="session.dates && selLanguage == 'de'"
-                        class="date"
-                      >
-                        {{ session.dates[0].from | de }}
-                      </h3>
-                      <h3 v-else-if="session.dates &&selLanguage == 'en'">
-                        {{ session.dates[0].from | en }}
-                      </h3></b-col
-                    ></b-row
-                  >
-                  <b-row
-                    ><b-col class="max-width-class">
-                      <template
-                        v-if="
-                          session.sessionType == 'online-seminare' ||
-                            session.sessionType == 'online-kurse'
-                        "
-                      >
-                        <span class="color-grey">Online</span>
-                      </template>
-                      <template v-else>
-                        <span v-if="session.ort" class="color-grey">{{
-                          $t(session.ort)
-                        }}</span>
-                      </template>
-                    </b-col></b-row
-                  >
-                </b-container>
-              </b-col>
-              <b-col cols="8" class="my-auto py-3 course-text text-center">
-                <nuxt-link
-                  :to="
-                    `/${currentSlug}/${session.sessionType}/${session.slug.current}`
-                  "
-                >
-                  <h3 class="mt-0 mb-1 color-normal">
-                    {{ session.title.titel }}
-                    <!-- <span
+              <h3 class="mt-2 mb-1 color-normal">
+                {{ session.title.titel }}
+                <!-- <span
                     v-if="session.date && session.date.desc"
                     class="termintitel"
                   >
                     - {{ session.date.desc }}</span
                   > -->
-                  </h3>
-                  <div v-if="session.title.untertitel">
-                    <h5 class="untertitle">{{ session.title.untertitel }}</h5>
-                  </div>
-                  <!-- <p class="mb-0">
+              </h3>
+              <div v-if="session.title.untertitel">
+                <h5 class="untertitle">{{ session.title.untertitel }}</h5>
+              </div>
+              <!-- <p class="mb-0">
                   {{ session.summary }}
                 </p> -->
-                </nuxt-link>
-              </b-col>
-            </b-row>
-          </b-container>
-        <!-- </div>
+            </nuxt-link>
+          </b-col>
+        </b-row>
+      </b-container>
+      <!-- </div>
       </div> -->
     </ul>
   </transition>
@@ -132,14 +79,14 @@ export default {
         de: 'Ort',
         en: 'Place'
       },
-      pastCoursesTitle: {
-        de: 'Vergangene Kurse',
-        en: 'Past Classes'
-      },
-      onlyVideoCoursesTitle: {
-        de: 'Online Video Kurse',
-        en: 'Online Video Classes'
-      },
+      // pastCoursesTitle: {
+      //   de: 'Vergangene Kurse',
+      //   en: 'Past Classes'
+      // },
+      // onlyVideoCoursesTitle: {
+      //   de: 'Online Video Kurse',
+      //   en: 'Online Video Classes'
+      // },
       courseThumbnail: {
         'online-kurse':
           'https://cdn.sanity.io/images/ie6m0uwl/production/4ce5d6fcdb6f31ee4d4b3b0a32d2ae2df62c1d3f-169x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format',
@@ -223,6 +170,7 @@ div.monthSign {
   padding: 11px 17px 10px 17px;
   color: #593f4c;
   font-family: 'GillSans';
+  opacity: 0;
 }
 
 .color-grey {
@@ -253,15 +201,17 @@ li.session {
 }
 
 .date {
-  font-family: 'GillSansMedium';
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   color: #593f4c;
 }
 
+.termintitel {
+  margin-bottom: 0;
+}
+
 .color-normal {
   color: #593f4c;
-  font-family: 'GillSansMedium';
 }
 
 .sessionGrid a {
@@ -312,18 +262,39 @@ h3 {
   color: rgb(53, 53, 53);
 }
 
-@media (max-width: 576px) {
+// .oneOfToManyEvents {
+//   .course-text {
+//     padding: 0px;
+//     h3,h5 {
+//       display: inline;
+//       font-size: 1rem;
+//       margin: 0px 0px 0px 0px;
+//     }
+//   }
+
+// }
+
+@media (max-width: 650px) {
+  .event-row {
+    margin-left: -10px;
+  }
+  .yearWrap {
+    margin: 0;
+  }
+  .container {
+    padding-right: 15px;
+  }
   .yearWrap {
     margin: 5px;
-  }
-  .date {
-    font-size: 15px;
   }
   .color-normal {
     font-size: 15px;
   }
   .untertitle {
     font-size: 15px;
+  }
+  .termintitel {
+    font-size: 12px;
   }
   .color-grey {
     font-size: 15px;
@@ -337,9 +308,6 @@ h3 {
 }
 
 @media (max-width: 337px) {
-  .date {
-    font-size: 12px;
-  }
   .color-normal {
     font-size: 12px;
   }

@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
-      <h3 v-if="onlyPast">{{ $t(pastCoursesTitle) }}</h3>
+      <h3 v-if="onlyPast" class="ml-3 mb-4">{{ $t(pastCoursesTitle) }}</h3>
       <div
         v-for="year in Object.keys(this.sessionsByMonth).sort()"
         :key="year"
@@ -14,9 +14,9 @@
           :key="month"
           class="monthWrap"
         >
-          <div class="monthSign mb-3">
+          <!-- <div class="monthSign mb-3">
             {{ $t(monthName)[month] }} {{ year }}
-          </div>
+          </div> -->
 
           <b-container>
             <b-row
@@ -348,7 +348,7 @@ span.type {
 }
 
 .max-width-class {
-  max-width: 500px;
+  max-width: 100px;
 }
 
 h3 {
@@ -367,6 +367,24 @@ h3 {
 //   }
 
 // }
+
+@media (max-width: 862px) {
+  .date {
+    font-size: 17px;
+  }
+  .maintitle {
+    font-size: 17px;
+  }
+  .untertitle {
+    font-size: 17px;
+  }
+  .termintitel {
+    font-size: 17px;
+  }
+  .max-width-class {
+    max-width: 50px;
+  }
+}
 
 @media (max-width: 650px) {
   .event-row {

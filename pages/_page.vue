@@ -1,23 +1,24 @@
 <template>
   <section class="container">
-    <!-- <Navbar /> -->
     <Courses
       v-if="
         $route.params.page == 'kurse-angebote' ||
           $route.params.page == 'courses-offers'
       "
     />
+    <Shop v-else-if="$route.params.page == 'shop'" />
     <Page v-else :content="content" />
   </section>
 </template>
 
 <script>
-import BlockContent from 'sanity-blocks-vue-component'
+// import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 // import SanityImage from '~/components/SanityImage'
 import Courses from '~/components/Courses'
 import Page from '~/components/Page'
+import Shop from '~/components/Shop'
 
 const query = groq`
   *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
@@ -32,7 +33,8 @@ const query = groq`
 export default {
   components: {
     Courses,
-    Page
+    Page,
+    Shop
   },
   data() {
     return {
