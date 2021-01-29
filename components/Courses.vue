@@ -1,13 +1,18 @@
 <template>
   <div class="sessionGridContainer">
     <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
+      <b-breadcrumb
+        v-if="breadCrumb"
+        :items="$t(items)"
+        class="ml-5"
+      ></b-breadcrumb>
       <b-row>
         <b-col>
-          <h1 class="kalendar">{{ $t(kalender) }}</h1>
+          <h1 class="kalendar medium-font">{{ $t(kalender) }}</h1>
         </b-col>
       </b-row>
-      <b-row>
-        <b-col
+      <b-row class="preview-grid">
+        <b-col class="preview-grid-col"
           ><figure class="figure">
             <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
               <b-img
@@ -57,7 +62,6 @@
         >
       </b-row>
     </b-container>
-    <!-- <b-breadcrumb :items="$t(items)"></b-breadcrumb> -->
 
     <SessionGrid
       :sessions="filterTime(sessionsToShow, false, true, true, true)"
@@ -86,12 +90,21 @@ import VideoGrid from '~/components/VideoGrid'
 
 export default {
   components: {
-    SessionGrid
+    SessionGrid,
+    VideoGrid
   },
   props: {
     filterCat: {
       type: String,
       default: ''
+    },
+    breadCrumb: {
+      type: Boolean,
+      default: false
+    },
+    items: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -123,24 +136,24 @@ export default {
     //   }
     // }
     ...mapGetters(['currentSlug', 'getDates', 'getSessions', 'getLanguage']),
-    items: function() {
-      return {
-        de: [
-          {
-            text: 'Alle Kurse',
-            href: '/kurse-angebote',
-            active: true
-          }
-        ],
-        en: [
-          {
-            text: 'All Classes',
-            href: '/courses-offers',
-            active: true
-          }
-        ]
-      }
-    },
+    // items: function() {
+    //   return {
+    //     de: [
+    //       {
+    //         text: 'Alle Kurse',
+    //         href: '/kurse-angebote',
+    //         active: true
+    //       }
+    //     ],
+    //     en: [
+    //       {
+    //         text: 'All Classes',
+    //         href: '/courses-offers',
+    //         active: true
+    //       }
+    //     ]
+    //   }
+    // },
     sessionsWithShowinCalTag: function() {
       return this.getDates.filter(session => session.showInCal)
     },
@@ -180,9 +193,7 @@ export default {
         if (!session.date.from) return noDate
 
         let from = new Date(session.date.from)
-        let to = session.date.to
-          ? new Date(session.date.to)
-          : from
+        let to = session.date.to ? new Date(session.date.to) : from
 
         let isPast = to < now
         let isOngoing = to > now && from < now
@@ -218,7 +229,10 @@ export default {
   }
 }
 
-@media (max-width: 555px) {
+@media (max-width: 590px) {
+  .kalendar {
+    font-size: 35px;
+  }
   .filter {
     margin-top: 60px;
   }
@@ -257,13 +271,21 @@ export default {
 
 .kalendar {
   color: #e0d7d6;
-  font-weight: bold;
   font-size: 50px;
 }
 
-@media (max-width: 576px) {
-  .kalendar {
-    font-size: 35px;
+@media (max-width: 355px) {
+  .preview-grid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .preview-grid-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .pictures {
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
 </style>

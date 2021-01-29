@@ -24,7 +24,7 @@
                 a.date.from > b.date.from ? 1 : -1
               )"
               :key="session._id"
-              class="mb-3"
+              class="mb-3 event-row"
               v-bind:class="{ oneOfToManyEvents: session.dates.length > 5 }"
             >
               <b-col class="my-auto">
@@ -53,7 +53,7 @@
                         <span class="color-grey">Online</span>
                       </template>
                       <template v-else>
-                        <span v-if="session.ort" class="color-grey">{{
+                        <span v-if="session.ort" class="color-grey place">{{
                           $t(session.ort)
                         }}</span>
                       </template>
@@ -67,7 +67,7 @@
                     `/${currentSlug}/${session.sessionType}/${session.slug.current}`
                   "
                 >
-                  <h3 class="mt-0 mb-1 color-normal">
+                  <h3 class="mt-0 mb-1 color-normal maintitle">
                     {{ session.title.titel }}
                   </h3>
                   <h5 class="untertitle" v-if="session.title.untertitel">
@@ -276,18 +276,18 @@ div.monthSign {
   background: #f4f1f0;
 }
 
-.course-text:hover {
-  background: #a5831d;
-  a {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  h3 {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  transition: background 1s;
-}
+// .course-text:hover {
+//   background: #a5831d;
+//   a {
+//     color: #fff !important;
+//     transition: color 1s;
+//   }
+//   h3 {
+//     color: #fff !important;
+//     transition: color 1s;
+//   }
+//   transition: background 1s;
+// }
 
 li.session {
   list-style: none;
@@ -295,15 +295,17 @@ li.session {
 }
 
 .date {
-  font-family: 'GillSansMedium';
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   color: #593f4c;
 }
 
+.termintitel {
+  margin-bottom: 0;
+}
+
 .color-normal {
   color: #593f4c;
-  font-family: 'GillSansMedium';
 }
 
 .sessionGrid a {
@@ -366,7 +368,16 @@ h3 {
 
 // }
 
-@media (max-width: 576px) {
+@media (max-width: 650px) {
+  .event-row {
+    margin-left: -10px;
+  }
+  .yearWrap {
+    margin: 0;
+  }
+  .container {
+    padding-right: 15px;
+  }
   .yearWrap {
     margin: 5px;
   }
@@ -378,6 +389,9 @@ h3 {
   }
   .untertitle {
     font-size: 15px;
+  }
+  .termintitel {
+    font-size: 12px;
   }
   .color-grey {
     font-size: 15px;

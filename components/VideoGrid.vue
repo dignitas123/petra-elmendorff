@@ -234,18 +234,18 @@ div.monthSign {
   background: #f4f1f0;
 }
 
-.course-text:hover {
-  background: #a5831d;
-  a {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  h3 {
-    color: #fff !important;
-    transition: color 1s;
-  }
-  transition: background 1s;
-}
+// .course-text:hover {
+//   background: #a5831d;
+//   a {
+//     color: #fff !important;
+//     transition: color 1s;
+//   }
+//   h3 {
+//     color: #fff !important;
+//     transition: color 1s;
+//   }
+//   transition: background 1s;
+// }
 
 li.session {
   list-style: none;
