@@ -27,7 +27,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.7",
     "sanity-blocks-vue-component": "^0.1.0",
-    "vue-date-fns": "^1.0.0",
+    "vue-date-fns": "^2.0.1",
     "vue-scrollto": "^2.20.0",
     "yarn": "^1.22.10"
   },
