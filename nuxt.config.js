@@ -75,9 +75,12 @@ export default {
     'vue-scrollto/nuxt',
     'cookie-universal-nuxt',
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/google-analytics'
   ],
-
+  googleAnalytics: {
+    id: 'G-424846Z637'
+  },
   sitemap: {
     // hostname: 'https://example.com',
     gzip: true,
