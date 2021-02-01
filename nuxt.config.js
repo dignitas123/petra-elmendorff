@@ -74,7 +74,8 @@ export default {
     'bootstrap-vue/nuxt',
     'vue-scrollto/nuxt',
     'cookie-universal-nuxt',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
 
   sitemap: {
