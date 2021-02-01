@@ -70,7 +70,47 @@ export default {
    */
 
   // don't need PWA `'@nuxtjs/pwa'`
-  modules: ['bootstrap-vue/nuxt', 'vue-scrollto/nuxt', 'cookie-universal-nuxt'],
+  modules: [
+    'bootstrap-vue/nuxt',
+    'vue-scrollto/nuxt',
+    'cookie-universal-nuxt',
+    '@nuxtjs/sitemap'
+  ],
+
+  sitemap: {
+    // hostname: 'https://example.com',
+    gzip: true,
+    // exclude: [
+    //   '/secret',
+    //   '/admin/**'
+    // ],
+    routes: [
+      {
+        url: '/',
+        changefreq: 'daily',
+        priority: 1,
+        lastmod: '2021-01-02T13:30:00.000Z'
+      },
+      {
+        url: '/jin-shin-jyutsu',
+        changefreq: 'weekly',
+        priority: 4,
+        lastmod: '2021-01-02T13:30:00.000Z'
+      },
+      {
+        url: '/astromatrix',
+        changefreq: 'weekly',
+        priority: 3,
+        lastmod: '2021-01-02T13:30:00.000Z'
+      },
+      {
+        url: '/about',
+        changefreq: 'weekly',
+        priority: 2,
+        lastmod: '2021-01-02T13:30:00.000Z'
+      }
+    ]
+  },
 
   /*
    ** Set global info from sanity document
