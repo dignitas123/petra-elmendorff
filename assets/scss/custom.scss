@@ -37,7 +37,6 @@
   src: url('~assets/fonts/GillSansNewMedium.ttf') format('truetype');
 }
 
-
 // bootstrap default overrides before importing bootstrap
 $font-family-sans-serif: 'GillSans';
 
@@ -96,5 +95,18 @@ $dark: #d6c9c9;
 
 .modal-header {
   border-bottom: 0;
+  border-radius: 0;
+}
+
+.breadcrumb {
+  background: transparent;
+  text-align: center;
+  text-transform: capitalize;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.card {
   border-radius: 0;
 }

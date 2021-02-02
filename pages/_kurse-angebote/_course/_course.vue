@@ -1,10 +1,10 @@
 <template>
   <section class="container mb-3">
-    <!-- <Navbar /> -->
+    
     <div class="container-text">
-      <b-breadcrumb :items="$t(items)" class="breadcrumb"></b-breadcrumb>
+      <b-breadcrumb :items="$t(items)"></b-breadcrumb>
       <div class="header-background py-2">
-        <h1>{{ title.titel }}</h1>
+        <h1 class="mt-3">{{ title.titel }}</h1>
         <h4 v-if="title.untertitel" class="text-center">
           {{ title.untertitel }}
         </h4>
@@ -203,12 +203,6 @@ h1 {
 
 h4 {
   color: #593f4c;
-}
-
-.breadcrumb {
-  text-transform: capitalize;
-  max-width: 800px;
-  width: 100%;
 }
 
 .container {

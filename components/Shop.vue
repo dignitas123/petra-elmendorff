@@ -1,86 +1,17 @@
 <template>
   <div class="sessionGridContainer">
     <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
-      <b-breadcrumb
-        v-if="breadCrumb"
-        :items="$t(items)"
-        class="ml-5"
-      ></b-breadcrumb>
       <b-row>
         <b-col>
-          <h1 class="kalendar medium-font">{{ $t(kalender) }}</h1>
+          <h1 class="kalendar medium-font">Shop</h1>
         </b-col>
       </b-row>
-      <b-row class="preview-grid">
-        <b-col class="preview-grid-col"
-          ><figure class="figure">
-            <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
-              <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/08adb0dc609005383c88be7afe1b979693379478-440x437.png?h=128"
-                class="border border-dark"
-                width="150"
-                alt="Jin Shin Jyutsu"
-              ></b-img
-            ></router-link>
-            <figcaption class="figure-caption mt-2">
-              Jin Shin Jyutsu
-              <!--{{ $t(courseTranslation) }} -->
-            </figcaption>
-          </figure></b-col
-        >
-        <b-col>
-          <figure class="figure">
-            <router-link :to="'/' + $t(courseLinkSlug) + '/astromatrix'">
-              <b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/e1679f6501ac1192b2e034eaed2c487873833401-308x308.png?h=128"
-                class="border border-dark float"
-                width="150"
-                alt="Astromatrix"
-              ></b-img
-            ></router-link>
-            <figcaption class="figure-caption mt-2">
-              Astromatrix
-              <!--{{ $t(courseTranslation) }} -->
-            </figcaption>
-          </figure></b-col
-        >
-        <b-col
-          ><figure class="figure">
-            <router-link :to="'/' + $t(courseLinkSlug) + '/online-seminare'"
-              ><b-img
-                src="https://cdn.sanity.io/images/ie6m0uwl/production/da0dffd3daf43d3e1e84bdec323d206f956a3ee5-308x308.jpg?h=128"
-                class="border border-dark"
-                width="150"
-                alt="Online Seminare"
-              ></b-img
-            ></router-link>
-            <figcaption class="figure-caption mt-2">
-              <!-- {{ $t(seminarTranslation) }} -->
-              Online
-            </figcaption>
-          </figure></b-col
-        >
-      </b-row>
     </b-container>
-
-    <SessionGrid
-      :sessions="filterTime(sessionsToShow, false, true, true, true)"
-      :currentSlug="$t(currentSlug).current"
-    />
-
-    <SessionGrid
-      :sessions="filterTime(sessionsToShow, true, false, false, false)"
-      :currentSlug="$t(currentSlug).current"
-      :onlyPast="true"
-      class="pastCourses"
-    />
-
-    <!--
     <VideoGrid
       :sessions="filterCourseType(getSessions, 'online-kurse')"
       :currentSlug="$t(currentSlug).current"
       :onlyVideoCourses="true"
-    /> -->
+    />
   </div>
 </template>
 
@@ -114,17 +45,9 @@ export default {
         en: 'Classes',
         de: 'Kurse'
       },
-      seminarTranslation: {
-        // en: 'Online Seminars & Video Classes',
-        // de: 'Online Seminare & Video Kurse'
-      },
       courseLinkSlug: {
         en: 'courses-offers',
         de: 'kurse-angebote'
-      },
-      kalender: {
-        de: 'Kalender',
-        en: 'Calendar'
       }
     }
   },

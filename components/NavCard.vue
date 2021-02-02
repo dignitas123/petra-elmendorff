@@ -36,6 +36,9 @@
                   :to="'/' + $t(courseLinkSlug)"
                   >{{ $t(courseLinkTitle) }}</nuxt-link
                 >
+                <nuxt-link class="nav-option" to="/shop">
+                  Shop
+                </nuxt-link>
                 <nuxt-link class="nav-option" to="/about">
                   {{ $t(about) }}
                 </nuxt-link>
