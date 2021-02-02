@@ -78,40 +78,17 @@ export default {
       show: true
     }
   },
-  methods: {
-    onSubmit(evt) {
-      evt.preventDefault()
-      this.$axios.post('https://www.algoinvest.online/mailapi/sendmessage', {
-        msg: {
-          sender: this.form.email,
-          subject: this.form.anliegen,
-          text: `Name: ${this.form.name}\n\nMail: ${this.form.email}\n\nAnliegen: \n\n${this.form.text}`
-        }
+  created() {
+    this.$nuxt.$on('newsletter-subscribed', () => {
+      this.$cookies.set('newsletter-cookie', true, {
+        maxAge: 60 * 60 * 24 * 7 * 4 * 3 // 3 month
       })
-      this.$bvToast.toast(
-        'Vielen Dank! Wir werden in Kürze mit Ihnen Kontakt aufnehmen.',
-        {
-          title: 'Ihre Nachricht wurde gesendet.',
-          toaster: 'b-toaster-bottom-center',
-          solid: true,
-          appendToast: false
-        }
-      )
-      this.$bvModal.hide('modal-ns')
-    },
-    onReset(evt) {
-      evt.preventDefault()
-      // Reset our form values
-      this.form.email = ''
-      this.form.name = ''
-      this.form.anliegen = null
-      this.form.text = ''
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
+    })
+    this.$nuxt.$on('newsletter-closed', () => {
+      this.$cookies.set('newsletter-cookie', true, {
+        maxAge: 60 * 60 * 24 // 1 day
       })
-    }
+    })
   }
 }
 </script>

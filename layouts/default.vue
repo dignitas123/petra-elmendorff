@@ -6,13 +6,7 @@
     <Footer />
     <scroll-to-top-arrow />
     <div class="gap"></div>
-    <cookie-consent
-      :message="cookie_text"
-      :acceptanceLabel="cookie_accept_text"
-      :privacyLinkLabel="policy_link_text"
-      :privacySlug="policy_link_slug"
-      :show="cookieShow"
-    />
+    <cookie-consent :show="cookieShow" />
   </div>
 </template>
 
@@ -25,25 +19,7 @@ export default {
   data() {
     return {
       cookieShow: false,
-      newsletterRender: false,
-      cookie_text: {
-        de:
-          'Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Website erhalten. Mit der Nutzung disere Webseite stimmen Sie unseren Datenschutzrechlinien zu.',
-        en:
-          'This website uses cookies to ensure you get the best experience on our website. With the use of this website you agree with our privacy policy.'
-      },
-      cookie_accept_text: {
-        de: 'Einverstanden',
-        en: 'Accept'
-      },
-      policy_link_text: {
-        de: 'Datenschutzerklärung',
-        en: 'Privacy Policy'
-      },
-      policy_link_slug: {
-        de: '/datenschutz',
-        en: '/privacy-policy'
-      }
+      newsletterRender: false
     }
   },
   computed: {
@@ -67,18 +43,6 @@ export default {
         _this.$refs.newsletterpopup.$bvModal.show('modal-ns')
       }, 20000)
     }
-  },
-  created() {
-    this.$nuxt.$on('newsletter-subscribed', () => {
-      this.$cookies.set('newsletter-cookie', true, {
-        maxAge: 60 * 60 * 24 * 7 * 4 * 3 // 3 month
-      })
-    })
-    this.$nuxt.$on('newsletter-closed', () => {
-      this.$cookies.set('newsletter-cookie', true, {
-        maxAge: 60 * 60 * 24 // 1 day
-      })
-    })
   }
 }
 </script>

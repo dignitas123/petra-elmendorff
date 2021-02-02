@@ -1,15 +1,15 @@
 <template>
   <transition>
-    <div v-if="showConsent" class="cookie-consent" role="dialog">
+    <div v-if="show" class="cookie-consent" role="dialog">
       <span class="cookie-consent-message">
-        {{ $t(message) }}
+        {{ $t(cookie_text) }}
       </span>
       <div class="buttons text-center mt-3">
-        <a :href="$t(privacySlug)">
-          <input class="btn btn-secondary" :value="$t(privacyLinkLabel)"
+        <a :href="$t(policy_link_slug)">
+          <input class="btn btn-secondary" :value="$t(policy_link_text)"
         /></a>
         <a class="ml-5" @click="dismiss">
-          <input class="btn btn-secondary" :value="$t(acceptanceLabel)"
+          <input class="btn btn-secondary" :value="$t(cookie_accept_text)"
         /></a>
       </div>
     </div>
@@ -23,35 +23,36 @@ export default {
       type: Boolean,
       default: false,
       required: true
-    },
-    message: {
-      type: Object,
-      default: () => {}
-    },
-    privacySlug: {
-      type: Object,
-      default: () => {}
-    },
-    acceptanceLabel: {
-      type: Object,
-      default: () => {}
-    },
-    privacyLinkLabel: {
-      type: Object,
-      default: () => {}
     }
   },
   data() {
     return {
-      showConsent: this.show
+      cookie_text: {
+        de:
+          'Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Website erhalten. Mit der Nutzung disere Webseite stimmen Sie unseren Datenschutzrechlinien zu.',
+        en:
+          'This website uses cookies to ensure you get the best experience on our website. With the use of this website you agree with our privacy policy.'
+      },
+      cookie_accept_text: {
+        de: 'Einverstanden',
+        en: 'Accept'
+      },
+      policy_link_text: {
+        de: 'Datenschutzerklärung',
+        en: 'Privacy Policy'
+      },
+      policy_link_slug: {
+        de: '/datenschutz',
+        en: '/privacy-policy'
+      }
     }
   },
   methods: {
     dismiss: function() {
-      this.showConsent = false
       this.$cookies.set('cookie-cookie', true, {
         maxAge: 60 * 60 * 24 * 7 * 4 // 1 month
       })
+      this.show = false
     }
   }
 }
