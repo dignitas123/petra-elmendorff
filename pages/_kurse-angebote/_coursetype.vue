@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import BlockContent from 'sanity-blocks-vue-component'
-import groq from 'groq'
-import sanityClient from '~/sanityClient'
+// import BlockContent from 'sanity-blocks-vue-component'
+// import groq from 'groq'
+// import sanityClient from '~/sanityClient'
 // import SanityImage from '~/components/SanityImage'
 import Courses from '~/components/Courses'
 import Page from '~/components/Page'
