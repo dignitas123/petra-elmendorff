@@ -97,7 +97,7 @@
                         <span v-if="course.date.to && selLanguage == 'de'"
                           >- {{ toLocaleDateString(course.date.to) }}</span
                         >
-                        <span v-else-if="selLanguage == 'en'"
+                        <span v-else-if="course.date.to && selLanguage == 'en'"
                           >- {{ toLocaleDateString(course.date.to) }}</span
                         >
                       </div>
@@ -167,7 +167,7 @@ import DownArrowSharp from '~/components/icons/DownArrowSharp'
 import SanityImage from '~/components/SanityImage'
 import Navbar from '~/components/Navbar'
 import Plus from '~/components/icons/Plus'
-import isNode from 'detect-node'
+// import isNode from 'detect-node'
 import BlockContent from 'sanity-blocks-vue-component'
 
 const query = `

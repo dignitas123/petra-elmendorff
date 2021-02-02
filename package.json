@@ -23,7 +23,6 @@
     "cookie-universal-nuxt": "^2.1.4",
     "cross-env": "^5.2.0",
     "date-fns": "^2.16.1",
-    "detect-node": "^2.0.4",
     "groq": "^0.140.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.7",
