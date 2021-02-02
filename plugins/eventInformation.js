@@ -48,7 +48,7 @@ const query = `{
 // }
 
 export default ({ store }) => {
-  console.log('sanity fetch siteinfo', query)
+  // console.log('sanity fetch siteinfo', query)
   return sanityClient.fetch(query).then(({ siteSettings, sessions }) => {
     store.commit('setSiteSettings', siteSettings)
     store.commit('setSessions', sessions)

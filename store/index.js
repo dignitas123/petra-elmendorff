@@ -74,6 +74,26 @@ export const mutations = {
   }
 }
 
+export const actions = {
+  nuxtServerInit (vuexContext, {req, redirect, params, route, query}) {
+    let headerlang = req.headers['accept-language'].split(',')[0].split('-')[0]
+    let coockielang = this.$cookies.get("lang")
+
+    if (coockielang){
+      vuexContext.commit('setLanguage', coockielang)
+    }
+    else if (headerlang == 'en') vuexContext.commit('setLanguage', 'en')
+
+    // wie kriegen wir es hin das google beide seiten indext?
+    // ist die frage ob franzosen die deutsche oder die englsiche seite sehen, irgendwie ist beides doof
+
+    console.log("request lang ", headerlang)
+    console.log("coockie", this.$cookies.get("lang"))
+    console.log("route ", query)
+
+  }
+}
+
 const deepTranslate = function (obj, lang, langDefault='de') {
   if (obj != null && Array.isArray(obj)) {
     return obj.map(val => deepTranslate(val, lang, langDefault));

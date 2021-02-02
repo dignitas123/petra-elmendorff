@@ -330,7 +330,7 @@ export default {
     }
   },
   async asyncData() {
-    console.log('sanity fetch index', query)
+    // console.log('sanity fetch index', query)
     return await sanityClient.fetch(query)
   },
   head() {
@@ -356,23 +356,23 @@ export default {
   },
   created() {
     this.setCurrentSlug(false)
-    if (!isNode) {
-      let langCooky = this.$cookies.get('lang')
-      // console.log('langCooky:', langCooky)
-      if (!langCooky) {
-        let userLang = navigator.language || navigator.userLanguage
-        // console.log('The language is: ' + userLang)
-        if (userLang.includes('de')) {
-          this.setLanguage('de')
-        } else {
-          this.setLanguage('en')
-        }
-        this.$cookies.set('lang', this.getLanguage, {
-          path: '/',
-          maxAge: 60 * 60 * 24 * 7 // 1 week
-        })
-      }
-    }
+    // if (!isNode) {
+    //   let langCooky = this.$cookies.get('lang')
+    //   // console.log('langCooky:', langCooky)
+    //   if (!langCooky) {
+    //     let userLang = navigator.language || navigator.userLanguage
+    //     // console.log('The language is: ' + userLang)
+    //     if (userLang.includes('de')) {
+    //       this.setLanguage('de')
+    //     } else {
+    //       this.setLanguage('en')
+    //     }
+    //     this.$cookies.set('lang', this.getLanguage, {
+    //       path: '/',
+    //       maxAge: 60 * 60 * 24 * 7 // 1 week
+    //     })
+    //   }
+    // }
   },
   mounted() {
     let cooky = this.$cookies.get('cookie-cookie')

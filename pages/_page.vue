@@ -58,7 +58,7 @@ export default {
       lang: kontext.store.getters.getLanguage,
       page: kontext.params.page
     }
-    console.log('sanity fetch sessions', query, params)
+    // console.log('sanity fetch sessions', query, params)
     return await sanityClient.fetch(query, params)
   },
   created() {

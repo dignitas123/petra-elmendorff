@@ -115,7 +115,7 @@ export default {
     }
   },
   async asyncData(kontext) {
-    console.log('sanity fetch sessions', query, kontext)
+    // console.log('sanity fetch sessions', query, kontext)
     let _this = this
     return await sanityClient.fetch(query, kontext.params)
   },
