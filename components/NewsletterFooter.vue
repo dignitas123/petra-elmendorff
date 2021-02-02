@@ -44,6 +44,7 @@
             type="submit"
             name="FormSubmit"
             :value="$t(submitText)"
+            @click="$nuxt.$emit('newsletter-subscribed')"
           />
         </div>
       </form>

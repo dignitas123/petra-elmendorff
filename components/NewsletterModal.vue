@@ -8,6 +8,7 @@
       hide-footer
       header-bg-variant="dark"
       body-bg-variant="dark"
+      @hide="$nuxt.$emit('newsletter-closed')"
     >
       <div class="p-4">
         <b-container class="p-4">
@@ -49,7 +50,7 @@ export default {
   data() {
     return {
       title: {
-        de: 'Verbunden bleiben.', 
+        de: 'Verbunden bleiben.',
         en: 'Stay connected.'
       },
       text: {

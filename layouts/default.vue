@@ -1,6 +1,6 @@
 <template>
   <div>
-    <newsletter-modal ref="newsletterpopup" />
+    <newsletter-modal v-if="newsletterRender" ref="newsletterpopup" />
     <navbar />
     <nuxt />
     <Footer />
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       cookieShow: false,
+      newsletterRender: false,
       cookie_text: {
         de:
           'Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Website erhalten. Mit der Nutzung disere Webseite stimmen Sie unseren Datenschutzrechlinien zu.',
@@ -54,12 +55,30 @@ export default {
     }
   },
   mounted() {
-    let cooky = this.$cookies.get('cookie-cookie')
-    // console.log('cookie-cookie:', cooky)
-    if (!cooky) {
+    let cookyCooky = this.$cookies.get('cookie-cookie')
+    let newsletterCooky = this.$cookies.get('newsletter-cookie')
+    if (!cookyCooky) {
       this.cookieShow = true
     }
-    this.$refs.newsletterpopup.$bvModal.show('modal-ns')
+    if (!newsletterCooky) {
+      this.newsletterRender = true
+      let _this = this
+      setTimeout(function() {
+        _this.$refs.newsletterpopup.$bvModal.show('modal-ns')
+      }, 20000)
+    }
+  },
+  created() {
+    this.$nuxt.$on('newsletter-subscribed', () => {
+      this.$cookies.set('newsletter-cookie', true, {
+        maxAge: 60 * 60 * 24 * 7 * 4 * 3 // 3 month
+      })
+    })
+    this.$nuxt.$on('newsletter-closed', () => {
+      this.$cookies.set('newsletter-cookie', true, {
+        maxAge: 60 * 60 * 24 // 1 day
+      })
+    })
   }
 }
 </script>
