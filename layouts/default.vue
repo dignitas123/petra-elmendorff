@@ -1,17 +1,50 @@
 <template>
   <div>
+    <newsletter-modal ref="newsletterpopup" />
     <navbar />
     <nuxt />
     <Footer />
     <scroll-to-top-arrow />
-    <div class="gap"> </div>
+    <div class="gap"></div>
+    <cookie-consent
+      :message="cookie_text"
+      :acceptanceLabel="cookie_accept_text"
+      :privacyLinkLabel="policy_link_text"
+      :privacySlug="policy_link_slug"
+      :show="cookieShow"
+    />
   </div>
 </template>
 
 <script>
-import Footer from '~/components/Footer.vue'
-
+import Footer from '~/components/Footer'
 export default {
+  components: {
+    Footer
+  },
+  data() {
+    return {
+      cookieShow: false,
+      cookie_text: {
+        de:
+          'Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung auf unserer Website erhalten. Mit der Nutzung disere Webseite stimmen Sie unseren Datenschutzrechlinien zu.',
+        en:
+          'This website uses cookies to ensure you get the best experience on our website. With the use of this website you agree with our privacy policy.'
+      },
+      cookie_accept_text: {
+        de: 'Einverstanden',
+        en: 'Accept'
+      },
+      policy_link_text: {
+        de: 'Datenschutzerklärung',
+        en: 'Privacy Policy'
+      },
+      policy_link_slug: {
+        de: '/datenschutz',
+        en: '/privacy-policy'
+      }
+    }
+  },
   computed: {
     title: function() {
       return this.$store.state.siteSettings.title
@@ -19,6 +52,14 @@ export default {
     language: function() {
       return this.$store.state.language
     }
+  },
+  mounted() {
+    let cooky = this.$cookies.get('cookie-cookie')
+    // console.log('cookie-cookie:', cooky)
+    if (!cooky) {
+      this.cookieShow = true
+    }
+    this.$refs.newsletterpopup.$bvModal.show('modal-ns')
   }
 }
 </script>
@@ -43,7 +84,7 @@ body,
   margin-right: auto;
   margin-left: auto;
   @media (--media-max-mid-small) {
-      margin-top: 0.45rem;
+    margin-top: 0.45rem;
   }
 }
 
