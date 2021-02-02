@@ -16,7 +16,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@sanity/client": "^2.0.0",
+    "@sanity/client": "^2.2.6",
     "@sanity/image-url": "^0.140.19",
     "add": "^2.0.6",
     "bootstrap-vue": "^2.19.0",
