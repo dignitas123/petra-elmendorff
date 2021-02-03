@@ -7,6 +7,21 @@
         :key="year"
         class="yearWrap"
       >
+        <b-container>
+          <b-row class="event-row">
+            <b-col class="my-auto">
+              <b-container>
+                <b-row
+                  ><b-col class="my-auto">
+                    <h2 class="yearTitle medium-font" style="color: #e5dfdd;">
+                      {{ year }}
+                    </h2></b-col
+                  >
+                </b-row>
+              </b-container>
+            </b-col>
+          </b-row>
+        </b-container>
         <div
           v-for="month in Object.keys(sessionsByMonth[year]).sort(
             (a, b) => a - b
@@ -291,6 +306,10 @@ div.monthSign {
 //   transition: background 1s;
 // }
 
+.yearTitle {
+  font-size: 48px;
+}
+
 li.session {
   list-style: none;
   margin: 1rem 0.5rem !important;
@@ -375,7 +394,6 @@ h3 {
     width: 100%;
     transform: none;
   }
-
 }
 
 @media (max-width: 862px) {
@@ -397,6 +415,9 @@ h3 {
 }
 
 @media (max-width: 650px) {
+  .yearTitle {
+    font-size: 28px;
+  }
   .event-row {
     margin-left: -10px;
   }
