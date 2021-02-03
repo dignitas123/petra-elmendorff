@@ -38,9 +38,9 @@ export default {
   },
   head() {
     return {
-      title: this.page.title,
+      title: 'Unterseite',
       htmlAttrs: {
-        lang: this.$store.getters.getLanguage()
+        lang: this.$store.state.language
       }
     }
   },
