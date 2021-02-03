@@ -84,12 +84,9 @@ export const actions = {
     }
     else if (headerlang == 'en') vuexContext.commit('setLanguage', 'en')
 
-    // wie kriegen wir es hin das google beide seiten indext?
-    // ist die frage ob franzosen die deutsche oder die englsiche seite sehen, irgendwie ist beides doof
-
-    console.log("request lang ", headerlang)
-    console.log("coockie", this.$cookies.get("lang"))
-    console.log("route ", query)
+    // console.log("request lang ", headerlang)
+    // console.log("coockie", this.$cookies.get("lang"))
+    // console.log("route ", query)
 
   }
 }

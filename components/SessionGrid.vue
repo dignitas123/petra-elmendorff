@@ -248,7 +248,9 @@ export default {
 
 .sessionGrid {
   margin: 0 auto;
+  width: 133%;
   padding: 0;
+  transform: translateX(-15%);
 }
 
 h2.sessionTitle {
@@ -348,7 +350,7 @@ span.type {
 }
 
 .max-width-class {
-  max-width: 100px;
+  max-width: 200px;
 }
 
 h3 {
@@ -367,6 +369,14 @@ h3 {
 //   }
 
 // }
+
+@media (max-width: 1010px) {
+  .sessionGrid {
+    width: 100%;
+    transform: none;
+  }
+
+}
 
 @media (max-width: 862px) {
   .date {
