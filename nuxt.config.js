@@ -1,12 +1,11 @@
-import pkg from './package'
-import sanityClient from './sanityClient'
+// import sanityClient from './sanityClient'
 
-const routesQuery = `
-  {
-    "sessions": *[_type == "session"],
-    "speakers": *[_type == "person" && defined(slug.current)]
-  }
-`
+// const routesQuery = `
+//   {
+//     "sessions": *[_type == "session"],
+//     "speakers": *[_type == "person" && defined(slug.current)]
+//   }
+// `
 
 export default {
   components: true,
@@ -20,11 +19,6 @@ export default {
     bootstrapVueCSS: false,
     icons: true
   },
-  // vue: {
-  //   config: {
-  //     devtools: true
-  //   }
-  // },
   router: {
     linkActiveClass: 'active-link'
   },
@@ -35,12 +29,10 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    titleTemplate: "Petra Elmendorff - %s",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: "google-site-verification", content: "D36OoVDoBmpv-g2aJMoAO6SCfRqSiiONBczqEn-VKNg" },
-      { hid: 'description', name: 'description', content: pkg.description },
       {
         'http-equiv': 'Cache-Control',
         content: 'no-cache, no-store, must-revalidate'

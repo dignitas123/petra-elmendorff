@@ -308,22 +308,16 @@ export default {
     return await sanityClient.fetch(query)
   },
   head() {
-    let settings = this.$store.state.siteSettings
-    if (!this || !this.home) {
-      return
-    }
     return {
-      title: settings.title,
+      title: 'Home',
+      htmlAttrs: {
+        lang: this.selLanguage
+      },
       meta: [
         {
-          hid: 'description',
           name: 'description',
-          content: settings.description
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: settings.keywords
+          content: this.$store.state.siteSettings.description[this.selLanguage],
+          hid: 'description'
         }
       ]
     }

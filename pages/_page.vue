@@ -36,6 +36,14 @@ export default {
     Page,
     Shop
   },
+  head() {
+    return {
+      title: this.page.title,
+      htmlAttrs: {
+        lang: this.$store.getters.getLanguage()
+      }
+    }
+  },
   data() {
     return {
       serializers: {
