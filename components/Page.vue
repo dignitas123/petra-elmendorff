@@ -4,10 +4,7 @@
       <!-- kommt hier noch ein header rein? -->
     </header>
     <div class="content">
-      <h3
-        v-if="heading"
-        class="medium-font color-headings mb-4 heading-main"
-      >
+      <h3 v-if="heading" class="medium-font color-headings mb-4 heading-main">
         {{ $t(heading) }}
       </h3>
       <div class="sessionContent medium-font letter-spacing-less mb-3">
@@ -27,6 +24,15 @@
           projectId="ie6m0uwl"
           dataset="production"
         />
+        <div class="kalendar-link">
+          <nuxt-link :to="$t(angebote)">
+            <h4
+              class="kalender medium-font color-yellow-golden float-right"
+            >
+              {{ $t(kalender) }}
+            </h4>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -58,7 +64,15 @@ export default {
       serializers: {
         types: {}
       },
-      slug: {}
+      slug: {},
+      angebote: {
+        de: 'kurse-angebote',
+        en: 'courses-offers'
+      },
+      kalender: {
+        de: 'Kalender',
+        en: 'Calendar'
+      }
     }
   }
 }
@@ -88,7 +102,8 @@ export default {
 }
 
 .heading-main {
-  font-size: 3rem; margin-left: 22%;
+  font-size: 3rem;
+  margin-left: 22%;
 }
 
 @media (max-width: 1055px) {
@@ -110,10 +125,10 @@ export default {
 }
 
 @media (max-width: 770px) {
-    .page-content {
+  .page-content {
     margin-top: -73px;
   }
-    .heading-main {
+  .heading-main {
     margin-left: 13%;
   }
 }
