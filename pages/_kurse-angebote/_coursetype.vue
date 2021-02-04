@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <section class="container">
-      <Courses :filterCat="$router.history.current.params.coursetype" :items="items" breadCrumb="true" />
+      <Courses :filterCat="$router.history.current.params.coursetype" :items="items" :breadCrumb="true" />
     </section>
   </transition>
 </template>
