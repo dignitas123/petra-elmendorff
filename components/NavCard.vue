@@ -8,6 +8,7 @@
       class="nav-card overflow-hidden"
       id="navCard"
       @mouseleave="$nuxt.$emit('nav-card-out')"
+      @click="$nuxt.$emit('nav-card-out')"
     >
       <b-row no-gutters>
         <b-col class="px-5 py-2">
@@ -15,7 +16,6 @@
             <div
               class="close-button position-absolute"
               style="right: 30px; top: 15px; font-size: 30px"
-              @click="$nuxt.$emit('nav-card-out')"
             >
               <b>x</b>
             </div>
