@@ -142,6 +142,11 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.$t(this.kalender) + " - "
+    }
+  },
   computed: {
     // sessionsWithoutBreak: data => {
     //   if (data.program && data.program.schedule) {

@@ -307,21 +307,6 @@ export default {
     // console.log('sanity fetch index', query)
     return await sanityClient.fetch(query)
   },
-  head() {
-    return {
-      title: 'Home',
-      htmlAttrs: {
-        lang: this.selLanguage
-      },
-      meta: [
-        {
-          name: 'description',
-          content: this.$store.state.siteSettings.description[this.selLanguage],
-          hid: 'description'
-        }
-      ]
-    }
-  },
   created() {
     this.setCurrentSlug(false)
     // if (!isNode) {

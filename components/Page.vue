@@ -4,12 +4,15 @@
       <!-- kommt hier noch ein header rein? -->
     </header>
     <div class="content">
+      <h3 v-if="title" class="medium-font color-headings mb-4 heading-main">
+        {{ $t(title) }}
+      </h3>
       <h3 v-if="heading" class="medium-font color-headings mb-4 heading-main">
         {{ $t(heading) }}
       </h3>
       <div class="sessionContent medium-font letter-spacing-less mb-3">
         <SanityImage
-          v-if="image != {}"
+          v-if="image"
           :image="image"
           :zitat="$t(image.zitat)"
           :width="150"
@@ -41,17 +44,19 @@ import BlockContent from 'sanity-blocks-vue-component'
 
 export default {
   props: {
+    title: {
+      type: Object,
+      default: () => {}
+    },
     content: {
       type: Object,
       default: () => {}
     },
     image: {
-      type: Object,
-      default: () => {}
+      default: false
     },
     heading: {
-      type: Object,
-      default: () => {}
+      default: false
     }
   },
   components: {

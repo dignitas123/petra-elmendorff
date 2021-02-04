@@ -9,9 +9,10 @@
     <Shop v-else-if="$route.params.page == 'shop'" />
     <Page
       v-else
+      :title="title"
       :content="content"
-      :image="previewImage2 ? previewImage2 : {}"
-      :heading="heading ? heading : {}"
+      :image="previewImage2"
+      :heading="heading"
     />
   </section>
 </template>
@@ -41,20 +42,14 @@ export default {
     Page,
     Shop
   },
-  head() {
-    return {
-      title: 'Unterseite',
-      htmlAttrs: {
-        lang: this.$store.state.language
-      }
-    }
-  },
   data() {
     return {
       serializers: {
         types: {}
       },
       image: '',
+      previewImage2: false,
+      heading: false,
       slug: {},
       coursesPage: false
     }
@@ -66,6 +61,11 @@ export default {
     }
     // console.log('sanity fetch sessions', query, params)
     return await sanityClient.fetch(query, params)
+  },
+  head() {
+    return {
+      title: this.$t(this.title) + " - "
+    }
   },
   created() {
     this.$store.commit('setCurrentSlug', this.slug)

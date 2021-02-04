@@ -29,7 +29,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "Petra Elmendorff - %s",
+    titleTemplate: "%sPetra Elmendorff - Jin Shin Jyutsu & AstroMatrix",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

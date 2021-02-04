@@ -29,10 +29,6 @@
           :key="month"
           class="monthWrap"
         >
-          <!-- <div class="monthSign mb-3">
-            {{ $t(monthName)[month] }} {{ year }}
-          </div> -->
-
           <b-container>
             <b-row
               v-for="session in sessionsByMonth[year][month].sort((a, b) =>
@@ -47,15 +43,13 @@
                   <b-row
                     ><b-col class="my-auto">
                       <h3
-                        v-if="session.date && selLanguage == 'de'"
+                        v-if="session.date"
                         class="date"
                       >
                         {{ toLocaleDateString(session.date.from) }}
                       </h3>
-                      <h3 v-else-if="selLanguage == 'en'">
-                        {{ toLocaleDateString(session.date.from) }}
-                      </h3></b-col
-                    ></b-row
+                    </b-col>
+                  </b-row
                   >
                   <b-row
                     ><b-col class="max-width-class">
@@ -108,15 +102,8 @@
 </template>
 
 <script>
-// import { dateFilter } from 'vue-date-fns'
-// import { createDateFilter } from 'vue-date-fns'
-// import { de } from 'date-fns/locale'
 
 export default {
-  // filters: {
-  //   de: createDateFilter('DD. MMMM', { locale: de }),
-  //   en: createDateFilter('DD. MMMM')
-  // },
   props: {
     sessions: {
       type: Array,
@@ -167,36 +154,6 @@ export default {
           'https://cdn.sanity.io/images/ie6m0uwl/production/a3c532c4fa153a1367899ca8312aba5e2ca09abc-170x166.png?rect=2,0,166,166&w=64&h=64&fit=crop&auto=format',
         'jin-shin-jyutsu':
           'https://cdn.sanity.io/images/ie6m0uwl/production/e1a2800e04c2d36dd15bc1bf8cff4e4554c3867e-252x257.png?rect=0,2,252,252&w=64&h=64&fit=crop&auto=format'
-      },
-      monthName: {
-        en: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December'
-        ],
-        de: [
-          'Januar',
-          'Februar',
-          'März',
-          'April',
-          'Mai',
-          'Juni',
-          'Juli',
-          'August',
-          'September',
-          'Oktober',
-          'November',
-          'Dezember'
-        ]
       }
     }
   },
