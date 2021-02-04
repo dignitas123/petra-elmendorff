@@ -17,12 +17,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SessionGrid from '~/components/SessionGrid'
 import VideoGrid from '~/components/VideoGrid'
 
 export default {
   components: {
-    SessionGrid,
     VideoGrid
   },
   props: {
@@ -49,6 +47,11 @@ export default {
         en: 'courses-offers',
         de: 'kurse-angebote'
       }
+    }
+  },
+  head() {
+    return {
+      title: "Shop - "
     }
   },
   computed: {

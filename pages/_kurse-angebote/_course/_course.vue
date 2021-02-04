@@ -119,6 +119,11 @@ export default {
     let _this = this
     return await sanityClient.fetch(query, kontext.params)
   },
+  head() {
+    return {
+      title: this.title.titel + " - "
+    }
+  },
   computed: {
     dateForReal: () => {
       if (typeof this.date != 'undefined') {

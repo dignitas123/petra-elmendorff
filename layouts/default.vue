@@ -12,6 +12,7 @@
 
 <script>
 import Footer from '~/components/Footer'
+
 export default {
   components: {
     Footer
@@ -20,6 +21,20 @@ export default {
     return {
       cookieShow: false,
       newsletterRender: false
+    }
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$store.state.language
+      },
+      meta: [
+        {
+          name: 'description',
+          content: this.$t(this.$store.state.siteSettings.description),
+          hid: 'description'
+        }
+      ]
     }
   },
   computed: {
