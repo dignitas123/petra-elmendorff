@@ -85,4 +85,8 @@ export default {
   padding: 20px;
   text-align: center;
 }
+
+.btn {
+  max-height: 30px;
+}
 </style>

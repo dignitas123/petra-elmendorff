@@ -7,7 +7,12 @@
       "
     />
     <Shop v-else-if="$route.params.page == 'shop'" />
-    <Page v-else :content="content" :image="previewImage2" :heading="heading" />
+    <Page
+      v-else
+      :content="content"
+      :image="previewImage2 ? previewImage2 : {}"
+      :heading="heading ? heading : {}"
+    />
   </section>
 </template>
 
