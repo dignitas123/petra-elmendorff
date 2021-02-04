@@ -1,9 +1,7 @@
 <template>
   <transition name="fade">
     <section class="container">
-      <!-- <Navbar /> -->
-      <b-breadcrumb :items="$t(items)" class="mt-5 breadcrumb"></b-breadcrumb>
-      <Courses :filterCat="$router.history.current.params.coursetype" />
+      <Courses :filterCat="$router.history.current.params.coursetype" :items="items" breadCrumb="true" />
     </section>
   </transition>
 </template>
@@ -108,11 +106,6 @@ export default {
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
-}
-
-.breadcrumb {
-  max-width: 800px;
-  width: 100%;
 }
 
 .sessionContent {

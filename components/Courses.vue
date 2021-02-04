@@ -24,7 +24,6 @@
             ></router-link>
             <figcaption class="figure-caption mt-2">
               Jin Shin Jyutsu
-              <!--{{ $t(courseTranslation) }} -->
             </figcaption>
           </figure></b-col
         >
@@ -40,7 +39,6 @@
             ></router-link>
             <figcaption class="figure-caption mt-2">
               Astromatrix
-              <!--{{ $t(courseTranslation) }} -->
             </figcaption>
           </figure></b-col
         >
@@ -55,7 +53,6 @@
               ></b-img
             ></router-link>
             <figcaption class="figure-caption mt-2">
-              <!-- {{ $t(seminarTranslation) }} -->
               Online
             </figcaption>
           </figure></b-col
@@ -69,18 +66,31 @@
     />
 
     <SessionGrid
+      v-if="$route.params.coursetype != 'online-seminare'"
       :sessions="filterTime(sessionsToShow, true, false, false, false)"
       :currentSlug="$t(currentSlug).current"
       :onlyPast="true"
       class="pastCourses"
     />
 
-    <!--
+    <div>
+      <b-container>
+        <b-row class="event-row text-center my-3">
+          <b-col class="my-auto">
+            <h2 class="yearTitle medium-font" style="color: #e5dfdd;">
+              {{ $t(onlineSeminare) }}
+            </h2></b-col
+          >
+        </b-row>
+      </b-container>
+    </div>
+
     <VideoGrid
+      v-if="$route.params.coursetype == 'online-seminare'"
       :sessions="filterCourseType(getSessions, 'online-kurse')"
       :currentSlug="$t(currentSlug).current"
       :onlyVideoCourses="true"
-    /> -->
+    />
   </div>
 </template>
 
@@ -125,6 +135,10 @@ export default {
       kalender: {
         de: 'Kalender',
         en: 'Calendar'
+      },
+      onlineSeminare: {
+        de: 'Shop für Online Seminare',
+        en: 'Shop for Online Seminars'
       }
     }
   },
