@@ -12,18 +12,15 @@
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
-            <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> <!-- wenn es mehrere termine gibt ein ab -->
+            <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> <!-- wenn es mehrere termine gibt: ein ab -->
             <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
               dieTermine[0].desc
             }}</span> -->
-            <span v-if="selLanguage == 'de'">{{ dieTermine[0].from | de }}</span>
-                <span v-else>{{ dieTermine[0].from | en }}</span>
-            <span v-if="selLanguage == 'de' && dieTermine[0].to">
-              - {{ dieTermine[0].to | de }}</span
+            <span>{{ toLocaleDateString(dieTermine[0].from) }}</span>
+            <span v-if="dieTermine[0].to">
+              - {{ toLocaleDateString(dieTermine[0].to) }}</span
             >
-            <span v-if="selLanguage == 'en' && dieTermine[0].to">
-              - {{ dieTermine[0].to | en }}</span
-            >
+
             <span v-if="derOrt">
               | <b> {{ $t(derOrt) }}</b></span
             >
@@ -44,14 +41,11 @@
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
               dasDatum.desc
             }}</span>
-            <span v-if="selLanguage == 'de'">{{ dasDatum.from | de }}</span>
-            <span v-else>{{ dasDatum.from | en }}</span>
-            <span v-if="selLanguage == 'de' && dasDatum.to">
-              - {{ dasDatum.to | de }}</span
+            <span>{{ toLocaleDateString(dasDatum.from) }}</span>
+            <span v-if="dasDatum.to">
+              - {{ toLocaleDateString(dasDatum.to) }}</span
             >
-            <span v-if="selLanguage == 'en' && dasDatum.to">
-              - {{ dasDatum.to | en }}</span
-            >
+
           </div>
           <span v-if="derOrt">
             <b> {{ $t(derOrt) }}</b></span
@@ -76,7 +70,6 @@ import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
 import PersonBlock from '~/components/blockContent/PersonBlock'
-import { createDateFilter } from 'vue-date-fns'
 
 const query = groq`
   *[_type == "session" && slug.current == $course] {
@@ -88,10 +81,7 @@ export default {
     BlockContent,
     SanityImage
   },
-  filters: {
-    de: createDateFilter('DD. MMMM hh:mm'),
-    en: createDateFilter('MM/DD/YYYY hh:mm')
-  },
+
   data() {
     return {
       selLanguage: this.$store.state.language,
@@ -182,6 +172,21 @@ export default {
             active: true
           }
         ]
+      }
+    }
+  },
+  methods: {
+    toLocaleDateString(date) {
+      if (this.selLanguage == 'de') {
+        return new Date(date).toLocaleDateString('de-DE', {
+          month: 'long',
+          day: 'numeric'
+        })
+      } else {
+        return new Date(date).toLocaleDateString('en-EN', {
+          month: 'long',
+          day: 'numeric'
+        })
       }
     }
   }

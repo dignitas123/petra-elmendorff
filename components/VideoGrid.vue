@@ -36,16 +36,8 @@
 </template>
 
 <script>
-// import { dateFilter } from 'vue-date-fns'
-import { createDateFilter } from 'vue-date-fns'
-// import { de } from 'date-fns/locale'
-import locale from 'date-fns/locale/de'
 
 export default {
-  filters: {
-    de: createDateFilter('DD. MMMM', { locale }),
-    en: createDateFilter('MM/DD/YYYY')
-  },
   props: {
     sessions: {
       type: Array,
