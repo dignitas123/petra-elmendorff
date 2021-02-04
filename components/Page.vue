@@ -9,7 +9,7 @@
       </h3>
       <div class="sessionContent medium-font letter-spacing-less mb-3">
         <SanityImage
-          v-if="image"
+          v-if="image != {}"
           :image="image"
           :zitat="$t(image.zitat)"
           :width="150"
