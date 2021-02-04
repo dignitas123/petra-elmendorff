@@ -7,7 +7,7 @@
       "
     />
     <Shop v-else-if="$route.params.page == 'shop'" />
-    <Page v-else :content="content" />
+    <Page v-else :content="content" :image="previewImage2" :heading="heading" />
   </section>
 </template>
 
