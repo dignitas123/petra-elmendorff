@@ -26,9 +26,7 @@
         />
         <div class="kalendar-link">
           <nuxt-link :to="$t(angebote)">
-            <h4
-              class="kalender medium-font color-yellow-golden float-right"
-            >
+            <h4 class="kalender medium-font color-yellow-golden float-right">
               {{ $t(kalender) }}
             </h4>
           </nuxt-link>
@@ -52,8 +50,8 @@ export default {
       default: () => {}
     },
     heading: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {}
     }
   },
   components: {

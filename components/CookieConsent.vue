@@ -6,10 +6,10 @@
       </span>
       <div class="buttons text-center mt-3">
         <a :href="$t(policy_link_slug)">
-          <input class="btn btn-secondary" :value="$t(policy_link_text)"
+          <input class="btn btn-secondary" spellcheck="false" :value="$t(policy_link_text)"
         /></a>
         <a class="ml-5" @click="dismiss">
-          <input class="btn btn-secondary" :value="$t(cookie_accept_text)"
+          <input class="btn btn-secondary" spellcheck="false" :value="$t(cookie_accept_text)"
         /></a>
       </div>
     </div>
@@ -80,20 +80,9 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: rgba(238, 238, 239, 0.86);
+  background: rgb(214 201 201);
   width: 100%;
   padding: 20px;
   text-align: center;
-}
-
-.btn {
-  border-radius: 0;
-  max-height: 30px;
-  &:hover,
-  &:active,
-  &:focus {
-    text-decoration: none;
-    border: none;
-  }
 }
 </style>

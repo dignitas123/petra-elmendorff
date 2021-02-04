@@ -54,15 +54,6 @@ export default {
       coursesPage: false
     }
   },
-  // fetch({ route }) {
-  //   let _this = this
-  //   if (
-  //     route.params.page == 'kurse-angebote' ||
-  //     route.params.page == 'courses-offers'
-  //   )
-  //     this.coursesPage = true
-  //   else this.coursesPage = false
-  // },
   async asyncData(kontext) {
     let params = {
       lang: kontext.store.getters.getLanguage,
