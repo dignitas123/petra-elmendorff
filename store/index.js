@@ -76,9 +76,8 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit (vuexContext, {req, redirect, params, route, query}) {
-    if (req.headers['accept-language']){
-      let headerlang = req.headers['accept-language'].split(',')[0].split('-')[0]
-    }
+    let headerlang = req.headers['accept-language'] ? req.headers['accept-language'].split(',')[0].split('-')[0] : false
+
     let coockielang = this.$cookies.get("lang")
 
     if (coockielang){
