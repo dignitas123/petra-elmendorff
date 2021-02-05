@@ -12,7 +12,7 @@
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
-            <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> <!-- wenn es mehrere termine gibt: ein ab -->
+            <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
             <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
               dieTermine[0].desc
             }}</span> -->
@@ -37,7 +37,6 @@
         
         <div v-if="dieTermine.length > 1" class="mb-3">
           <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
-            <!-- {{ $t(ab) }} -->
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
               dasDatum.desc
             }}</span>
@@ -92,10 +91,6 @@ export default {
       place: {
         de: 'Ort',
         en: 'Place'
-      },
-      ab: {
-        de: 'ab',
-        en: 'from'
       },
       serializers: {
         types: {

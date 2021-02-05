@@ -13,7 +13,7 @@
               <b-container>
                 <b-row
                   ><b-col class="my-auto">
-                    <h2 class="yearTitle medium-font" style="color: #e5dfdd;">
+                    <h2 class="yearTitle medium-font" style="color: #593f4c;">
                       {{ year }}
                     </h2></b-col
                   >
@@ -42,15 +42,25 @@
                 <b-container>
                   <b-row
                     ><b-col class="my-auto">
-                      <h3
-                        v-if="session.date"
-                        class="date"
-                      >
-                        {{ toLocaleDateString(session.date.from) }}
+                      <h3 v-if="session.displayDate" class="date">
+                        {{ session.displayDate }}
+                      </h3>
+                      <h3 v-else class="date">
+                        <span v-if="session.date && selLanguage == 'de'">{{
+                          toLocaleDateStringDay(session.date.from)
+                        }}</span>
+                        <span v-else-if="selLanguage == 'en'">{{
+                          toLocaleDateStringDay(session.date.from)
+                        }}</span>
+                        <span v-if="session.date.to && selLanguage == 'de'"
+                          >- {{ toLocaleDateString(session.date.to) }}</span
+                        >
+                        <span v-else-if="session.date.to && selLanguage == 'en'"
+                          >- {{ toLocaleDateString(session.date.to) }}</span
+                        >
                       </h3>
                     </b-col>
-                  </b-row
-                  >
+                  </b-row>
                   <b-row
                     ><b-col class="max-width-class">
                       <template
@@ -102,7 +112,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     sessions: {
@@ -188,11 +197,11 @@ export default {
     // }
   },
   methods: {
-    calculatemonthName(m) {
-      return new Date(null, m, null).toLocaleDateString('default', {
-        month: 'long'
-      })
-    },
+    // calculatemonthName(m) {
+    //   return new Date(null, m, null).toLocaleDateString('default', {
+    //     month: 'long'
+    //   })
+    // },
     toLocaleDateString(date) {
       if (this.selLanguage == 'de') {
         return new Date(date).toLocaleDateString('de-DE', {
@@ -205,7 +214,18 @@ export default {
           day: 'numeric'
         })
       }
-    }
+    },
+    toLocaleDateStringDay(date) {
+      if (this.selLanguage == 'de') {
+        return new Date(date).toLocaleDateString('de-DE', {
+          day: 'numeric'
+        })
+      } else {
+        return new Date(date).toLocaleDateString('en-EN', {
+          day: 'numeric'
+        })
+      }
+    },
   }
 }
 </script>

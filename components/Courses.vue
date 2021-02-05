@@ -73,24 +73,25 @@
       class="pastCourses"
     />
 
-    <div>
-      <b-container>
-        <b-row class="event-row text-center my-3">
-          <b-col class="my-auto">
-            <h2 class="yearTitle medium-font" style="color: #e5dfdd;">
-              {{ $t(onlineSeminare) }}
-            </h2></b-col
-          >
-        </b-row>
-      </b-container>
-    </div>
+    <div v-if="$route.params.coursetype == 'online-seminare'">
+      <div>
+        <b-container>
+          <b-row class="event-row text-center my-3">
+            <b-col class="my-auto">
+              <h2 class="yearTitle medium-font" style="color: #e5dfdd;">
+                {{ $t(onlineSeminare) }}
+              </h2></b-col
+            >
+          </b-row>
+        </b-container>
+      </div>
 
-    <VideoGrid
-      v-if="$route.params.coursetype == 'online-seminare'"
-      :sessions="filterCourseType(getSessions, 'online-kurse')"
-      :currentSlug="$t(currentSlug).current"
-      :onlyVideoCourses="true"
-    />
+      <VideoGrid
+        :sessions="filterCourseType(getSessions, 'online-kurse')"
+        :currentSlug="$t(currentSlug).current"
+        :onlyVideoCourses="true"
+      />
+    </div>
   </div>
 </template>
 
@@ -124,10 +125,6 @@ export default {
         en: 'Classes',
         de: 'Kurse'
       },
-      seminarTranslation: {
-        // en: 'Online Seminars & Video Classes',
-        // de: 'Online Seminare & Video Kurse'
-      },
       courseLinkSlug: {
         en: 'courses-offers',
         de: 'kurse-angebote'
@@ -144,7 +141,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t(this.kalender) + " - "
+      title: this.$t(this.kalender) + ' - '
     }
   },
   computed: {
@@ -156,24 +153,6 @@ export default {
     //   }
     // }
     ...mapGetters(['currentSlug', 'getDates', 'getSessions', 'getLanguage']),
-    // items: function() {
-    //   return {
-    //     de: [
-    //       {
-    //         text: 'Alle Kurse',
-    //         href: '/kurse-angebote',
-    //         active: true
-    //       }
-    //     ],
-    //     en: [
-    //       {
-    //         text: 'All Classes',
-    //         href: '/courses-offers',
-    //         active: true
-    //       }
-    //     ]
-    //   }
-    // },
     sessionsWithShowinCalTag: function() {
       return this.getDates.filter(session => session.showInCal)
     },
