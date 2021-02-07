@@ -373,6 +373,9 @@ h3 {
     width: 100%;
     transform: none;
   }
+  .untertitel {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 862px) {

@@ -120,7 +120,7 @@
             </b-col>
           </b-row>
         </b-container>
-        <div class="kalendar-link">
+        <div class="kalendar-link pb-3">
           <nuxt-link :to="$t(angebote)">
             <h4
               class="kalender medium-font color-dark-grey float-right mb-0 p-1"
