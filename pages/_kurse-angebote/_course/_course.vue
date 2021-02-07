@@ -1,6 +1,5 @@
 <template>
   <section class="container mb-3">
-    
     <div class="container-text">
       <b-breadcrumb :items="$t(items)"></b-breadcrumb>
       <div class="header-background py-2">
@@ -12,20 +11,20 @@
       <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
-            <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
-            <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
+          <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
+          <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
               dieTermine[0].desc
             }}</span> -->
-            <span>{{ toLocaleDateString(dieTermine[0].from) }}</span>
-            <span v-if="dieTermine[0].to">
-              - {{ toLocaleDateString(dieTermine[0].to) }}</span
-            >
+          <span>{{ toLocaleDateString(dieTermine[0].from) }}</span>
+          <span v-if="dieTermine[0].to">
+            - {{ toLocaleDateString(dieTermine[0].to) }}</span
+          >
 
-            <span v-if="derOrt">
-              | <b> {{ $t(derOrt) }}</b></span
-            >
-          </div>
-          <br>
+          <span v-if="derOrt">
+            | <b> {{ $t(derOrt) }}</b></span
+          >
+        </div>
+        <br />
 
         <block-content
           v-if="$t(content)"
@@ -34,7 +33,7 @@
           projectId="ie6m0uwl"
           dataset="production"
         />
-        
+
         <div v-if="dieTermine.length > 1" class="mb-3">
           <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
@@ -44,7 +43,6 @@
             <span v-if="dasDatum.to">
               - {{ toLocaleDateString(dasDatum.to) }}</span
             >
-
           </div>
           <span v-if="derOrt">
             <b> {{ $t(derOrt) }}</b></span
@@ -68,7 +66,7 @@ import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
-import PersonBlock from '~/components/blockContent/PersonBlock'
+import TextCenterBlock from '~/components/blockContent/TextCenterBlock'
 
 const query = groq`
   *[_type == "session" && slug.current == $course] {
@@ -78,7 +76,8 @@ const query = groq`
 export default {
   components: {
     BlockContent,
-    SanityImage
+    SanityImage,
+    TextCenterBlock
   },
 
   data() {
@@ -94,7 +93,7 @@ export default {
       },
       serializers: {
         types: {
-          personReference: PersonBlock
+          textcenter: TextCenterBlock
         }
       }
     }
@@ -106,7 +105,7 @@ export default {
   },
   head() {
     return {
-      title: this.title.titel + " - "
+      title: this.title.titel + ' - '
     }
   },
   computed: {

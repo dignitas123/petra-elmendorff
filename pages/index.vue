@@ -80,6 +80,12 @@
                           >{{ course.title.untertitel }}</span
                         >
                       </h5>
+                      <h6
+                        v-if="course.date && course.date.desc"
+                        class="untertitel termintitel"
+                      >
+                        {{ course.date.desc }}
+                      </h6>
                     </div>
                     <h5
                       class="text-responsive locale-to-course color-grey light-font"
@@ -566,7 +572,7 @@ figcaption {
 }
 
 .locale-col {
-  min-width: 100px;
+  min-width: 200px;
 }
 
 .quote-block-mobile {

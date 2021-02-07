@@ -128,3 +128,9 @@ $dark: #d6c9c9;
     border: none;
   }
 }
+
+#modal-ns {
+  transform: translateY(-27%);
+  height: 2000px;
+  overflow: scroll;
+}

@@ -86,7 +86,7 @@
                     `/${currentSlug}/${session.sessionType}/${session.slug.current}`
                   "
                 >
-                  <h3 class="mt-0 mb-1 color-normal maintitle">
+                  <h3 class="mt-0 color-normal maintitle">
                     {{ session.title.titel }}
                   </h3>
                   <h5 class="untertitle" v-if="session.title.untertitel">
@@ -232,6 +232,11 @@ export default {
 
 <style scoped lang="scss">
 @import '~/styles/custom-properties';
+
+.untertitle {
+  margin-bottom: -5px;
+  margin-top: -10px;
+}
 
 .border {
   border-width: 2px !important;
