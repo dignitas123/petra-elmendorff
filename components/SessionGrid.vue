@@ -70,11 +70,21 @@
                         "
                       >
                         <span class="color-grey">Online</span>
+                        <div v-if="session.frequency">
+                          <span class="color-grey">{{
+                            session.frequency
+                          }}</span>
+                        </div>
                       </template>
                       <template v-else>
                         <span v-if="session.ort" class="color-grey place">{{
                           $t(session.ort)
                         }}</span>
+                        <div v-if="session.frequency">
+                          <span class="color-grey">{{
+                            session.frequency
+                          }}</span>
+                        </div>
                       </template>
                     </b-col></b-row
                   >
@@ -92,12 +102,12 @@
                   <h5 class="untertitle" v-if="session.title.untertitel">
                     {{ session.title.untertitel }}
                   </h5>
-                  <h6
+                  <h5
                     v-if="session.date && session.date.desc"
-                    class="untertitel termintitel"
+                    class="untertitel"
                   >
                     {{ session.date.desc }}
-                  </h6>
+                  </h5>
                   <!-- <p class="mb-0">
                   {{ session.summary }}
                 </p> -->
@@ -225,7 +235,7 @@ export default {
           day: 'numeric'
         })
       }
-    },
+    }
   }
 }
 </script>

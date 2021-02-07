@@ -1,31 +1,33 @@
 <template>
   <section class="container mb-3">
-    
     <div class="container-text">
       <b-breadcrumb :items="$t(items)"></b-breadcrumb>
       <div class="header-background py-2">
-        <h1 class="mt-3">{{ title.titel }}</h1>
-        <h4 v-if="title.untertitel" class="text-center">
+        <h1 class="mt-3 maintitle">{{ title.titel }}</h1>
+        <h4 v-if="title.untertitel" class="text-center subtitle">
           {{ title.untertitel }}
         </h4>
       </div>
-      <div class="mt-3 ml-auto p-5 header-background" style="max-width: 600px;">
+      <div class="mt-3 ml-auto p-3 p-md-5 header-background" style="max-width: 600px;">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
-            <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
-            <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
+          <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
+          <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
               dieTermine[0].desc
             }}</span> -->
-            <span>{{ toLocaleDateString(dieTermine[0].from) }}</span>
-            <span v-if="dieTermine[0].to">
-              - {{ toLocaleDateString(dieTermine[0].to) }}</span
-            >
+          <span
+            ><b>{{ $t(dateTitle) }}</b>
+            {{ toLocaleDateString(dieTermine[0].from) }}</span
+          >
+          <span v-if="dieTermine[0].to">
+            - {{ toLocaleDateString(dieTermine[0].to) }}</span
+          >
 
-            <span v-if="derOrt">
-              | <b> {{ $t(derOrt) }}</b></span
-            >
-          </div>
-          <br>
+          <span v-if="derOrt">
+            | <b> {{ $t(derOrt) }}</b></span
+          >
+        </div>
+        <br />
 
         <block-content
           v-if="$t(content)"
@@ -34,8 +36,8 @@
           projectId="ie6m0uwl"
           dataset="production"
         />
-        
-        <div v-if="dieTermine.length > 1" class="mb-3">
+
+        <!-- <div v-if="dieTermine.length > 1" class="mb-3">
           <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
             <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
               dasDatum.desc
@@ -44,12 +46,11 @@
             <span v-if="dasDatum.to">
               - {{ toLocaleDateString(dasDatum.to) }}</span
             >
-
           </div>
           <span v-if="derOrt">
             <b> {{ $t(derOrt) }}</b></span
           >
-        </div>
+        </div> -->
         <div class="d-flex">
           <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
           <div v-if="derAnmeldelink" class="ml-auto">
@@ -68,7 +69,7 @@ import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
-import PersonBlock from '~/components/blockContent/PersonBlock'
+import TextCenterBlock from '~/components/blockContent/TextCenterBlock'
 
 const query = groq`
   *[_type == "session" && slug.current == $course] {
@@ -78,7 +79,8 @@ const query = groq`
 export default {
   components: {
     BlockContent,
-    SanityImage
+    SanityImage,
+    TextCenterBlock
   },
 
   data() {
@@ -92,9 +94,13 @@ export default {
         de: 'Ort',
         en: 'Place'
       },
+      dateTitle: {
+        de: 'Datum',
+        en: 'Date'
+      },
       serializers: {
         types: {
-          personReference: PersonBlock
+          textcenter: TextCenterBlock
         }
       }
     }
@@ -106,7 +112,7 @@ export default {
   },
   head() {
     return {
-      title: this.title.titel + " - "
+      title: this.title.titel + ' - '
     }
   },
   computed: {
@@ -316,6 +322,15 @@ input {
     color: var(--color-accent);
     background: transparent;
     border: 2px solid var(--color-accent);
+  }
+}
+
+@media (max-width: 736px) {
+  .maintitle {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
   }
 }
 

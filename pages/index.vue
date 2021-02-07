@@ -74,18 +74,18 @@
                   >
                     <div class="text-responsive color-dark-grey max-width-div">
                       <h5 class="medium-font">
-                        {{ course.title.titel }}<br /><span
+                        {{ course.title.titel
+                        }}<span
                           class="light-font"
                           v-if="course.title.untertitel"
-                          >{{ course.title.untertitel }}</span
+                          ><br />{{ course.title.untertitel }}</span
+                        >
+                        <span
+                          class="light-font"
+                          v-if="course.date && course.date.desc"
+                          ><br />{{ course.date.desc }}</span
                         >
                       </h5>
-                      <h6
-                        v-if="course.date && course.date.desc"
-                        class="untertitel termintitel"
-                      >
-                        {{ course.date.desc }}
-                      </h6>
                     </div>
                     <h5
                       class="text-responsive locale-to-course color-grey light-font"
