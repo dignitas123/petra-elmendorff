@@ -288,20 +288,23 @@ export default {
 
 @media (max-width: 542px) {
   #headerText {
-    font-size: 45px;
+    font-size: 48px;
   }
   #chineseSign {
-    height: 30px;
+    height: 38px;
     margin-top: -7px;
   }
   #subHeaderTextHeading {
-    font-size: 22px;
+    font-size: 25px;
     .smaller-unit {
-      font-size: 12px;
+      font-size: 13px;
     }
   }
   .language-switch {
     margin-top: 5px !important;
+  }
+  .brand-sign {
+    margin-left: 10%;
   }
 }
 
