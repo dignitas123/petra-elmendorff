@@ -8,7 +8,8 @@
           {{ title.untertitel }}
         </h4>
       </div>
-      <div class="mt-3 ml-auto p-3 p-md-5 header-background" style="max-width: 600px;">
+      <!-- style="max-width: 600px;" -->
+      <div class="mt-3 ml-auto p-3 p-md-5 header-background">
         <!-- erster termin  -->
         <div v-if="dieTermine.length">
           <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
