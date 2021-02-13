@@ -11,6 +11,9 @@
       v-else
       :title="title"
       :content="content"
+      :imageTitle="image"
+      :imageUnderText1="imageUnderText1"
+      :imageUnderText2="imageUnderText2"
       :image="previewImage2"
       :heading="heading"
     />

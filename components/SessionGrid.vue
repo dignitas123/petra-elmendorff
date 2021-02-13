@@ -90,7 +90,7 @@
                   >
                 </b-container>
               </b-col>
-              <b-col cols="8" class="my-auto py-3 course-text text-center">
+              <b-col cols="8" class="py-3 course-text text-center">
                 <nuxt-link
                   :to="
                     `/${currentSlug}/${session.sessionType}/${session.slug.current}`
