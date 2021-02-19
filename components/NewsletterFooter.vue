@@ -24,6 +24,7 @@
             type="text"
             name="fields[fieldFirstName]"
             value=""
+            :class="textAlignPadding ? 'py-4 text-center' : ''"
             :placeholder="$t(name)"
           />
         </div>
@@ -34,6 +35,7 @@
             name="email"
             value=""
             size="40"
+            :class="textAlignPadding ? 'py-4 text-center' : ''"
             :placeholder="$t(email)"
           />
         </div>
@@ -45,6 +47,7 @@
             name="FormSubmit"
             :value="$t(submitText)"
             @click="$nuxt.$emit('newsletter-subscribed')"
+            :style="`background: ${inputColor}; font-size: 1.5rem; padding-top: 5px;`"
           />
         </div>
       </form>
@@ -58,6 +61,14 @@
 
 <script>
 export default {
+  props: {
+    inputColor: {
+      default: '#5f4142'
+    },
+    textAlignPadding: {
+      default: false
+    }
+  },
   data() {
     return {
       name: {
@@ -69,8 +80,8 @@ export default {
         en: 'Your Emailaddress'
       },
       submitText: {
-        de: 'Eintragen',
-        en: 'Subscribe'
+        de: 'Jetzt anmelden.',
+        en: 'Subscribe now.'
       }
     }
   }
@@ -129,13 +140,12 @@ export default {
 input[type='submit'] {
   @include form-style;
   border-radius: 0;
-  background: var(--color-dark-gray);
   border: none;
   &:hover {
-    color: var(--color-dark-gray);
-    background: transparent;
-    border: 2px solid white;
-    padding-top: 8px;
+    color: var(--color-dark-gray) !important;
+    background: transparent !important;
+    border: 2px solid white !important;
+    padding-top: 5px !important;
   }
 }
 

@@ -315,12 +315,12 @@ export default {
   }
   #subHeaderTextHeading {
     font-size: 21px;
-    margin-top: -4px;
-    margin-left: 0.5px;
+    margin-top: -1px;
+    margin-left: 3px;
   }
   #chineseSign {
-    height: 30px;
-    margin-top: -6px;
+    height: 35px;
+    margin-top: -3px;
   }
   .smaller-unit {
     font-size: 9px;

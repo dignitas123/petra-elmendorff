@@ -7,25 +7,89 @@
       size="md"
       hide-footer
       header-bg-variant="dark"
-      body-bg-variant="dark"
       @hide="$nuxt.$emit('newsletter-closed')"
     >
-      <div class="p-4">
+      <div class="p-4" style="background: #ddd4d2;">
         <b-container class="p-4">
+          <b-container class="images-mod-mobile" style="top: -35%; padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0;">
+            <b-row>
+              <b-col>
+                <b-img
+                  src="@/assets/img/haende.png"
+                  width="100xp"
+                  class="mb-2"
+                ></b-img>
+              </b-col>
+              <b-col>
+                <b-img
+                  src="@/assets/img/astrokreise.png"
+                  width="100xp"
+                  class="mb-2"
+                ></b-img>
+              </b-col>
+              <b-col>
+                <b-img
+                  src="@/assets/img/derbuddha.png"
+                  width="100xp"
+                  class="mb-2"
+                ></b-img>
+              </b-col>
+            </b-row>
+          </b-container>
           <b-row class="mb-4" style="margin-top: -70px;">
-            <b-col>
-              <b-img src="@/assets/img/ModalBlüte.png" width="150xp"></b-img>
+            <b-col class="images-mod">
+              <b-row
+                ><b-col>
+                  <b-img
+                    src="@/assets/img/haende.png"
+                    width="100xp"
+                    class="mb-2"
+                  ></b-img> </b-col
+              ></b-row>
+              <b-row
+                ><b-col>
+                  <b-img
+                    src="@/assets/img/astrokreise.png"
+                    width="100xp"
+                    class="mb-2"
+                  ></b-img> </b-col
+              ></b-row>
+              <b-row
+                ><b-col>
+                  <b-img
+                    src="@/assets/img/derbuddha.png"
+                    width="100xp"
+                    class="mb-2"
+                  ></b-img> </b-col
+              ></b-row>
             </b-col>
-          </b-row>
-          <b-row class="mb-3">
             <b-col>
-              <h5 class="text-center bold-font">{{ $t(title) }}</h5>
-              <span class="text-justify">{{ $t(text) }}</span>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
-              <NewsletterFooter />
+              <b-row class="mb-3 pb-4">
+                <b-col>
+                  <h5
+                    class="text-center medium-font"
+                    style="font-size: 3rem; color: #5f4142;"
+                  >
+                    Newsletter
+                  </h5>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <NewsletterFooter
+                    inputColor="#e3d259"
+                    textAlignPadding="true"
+                  />
+                </b-col>
+              </b-row>
+              <b-row class="mb-3">
+                <b-col
+                  class="text-center medium-font mt-3"
+                  style="line-height: 1rem; font-size: 0.75rem; position: absolute;"
+                >
+                  <span class="text-justify">{{ $t(text) }}</span>
+                </b-col>
+              </b-row>
             </b-col>
           </b-row>
         </b-container>
@@ -49,15 +113,11 @@ export default {
   },
   data() {
     return {
-      title: {
-        de: 'Verbunden bleiben.',
-        en: 'Stay connected.'
-      },
       text: {
         de:
-          'Über meinen Newsletter erhalten Sie Informationen über neue Kurse und Seminare.',
+          'Deine Daten werden ausschließlich zum Zweck des Newsletterversandes gespeichert und verwendet.',
         en:
-          'You will receive information about new courses and seminars via my newsletter.'
+          'Your data will be managed and used for the purpose of sending the newsletter.'
       },
       form: {
         email: '',
@@ -93,4 +153,21 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.images-mod {
+  position: absolute;
+  left: -20%;
+}
+.images-mod-mobile {
+  display: none;
+  position: absolute;
+}
+@media (max-width: 571px) {
+  .images-mod {
+    display: none;
+  }
+  .images-mod-mobile {
+    display: block;
+  }
+}
+</style>
