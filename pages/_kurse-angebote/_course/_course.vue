@@ -8,14 +8,11 @@
           {{ title.untertitel }}
         </h4>
       </div>
-      <!-- style="max-width: 600px;" -->
-      <div class="mt-3 ml-auto p-3 p-md-5 header-background">
-        <!-- erster termin  -->
+      <div
+        class="mt-3 ml-auto p-3 p-md-5 header-background"
+        :class="imageSrc ? sessionContent : ''"
+      >
         <div v-if="dieTermine.length">
-          <!-- <span class="ab" v-if="dieTermine.length > 1"> {{ $t(ab) }} </span> -->
-          <!-- <span v-if="dieTermine[0].desc" class="termintitel font-weight-bold">{{
-              dieTermine[0].desc
-            }}</span> -->
           <span
             ><b>{{ $t(dateTitle) }}</b>
             {{ toLocaleDateString(dieTermine[0].from) }}</span
@@ -29,7 +26,7 @@
           >
         </div>
         <br />
-
+        <img v-if="imageSrc" :src="imageSrc" alt="Jin Shin Jyutsu Hände" class="mainImage2" />
         <block-content
           v-if="$t(content)"
           :blocks="$t(content)"
@@ -38,20 +35,6 @@
           dataset="production"
         />
 
-        <!-- <div v-if="dieTermine.length > 1" class="mb-3">
-          <div v-for="dasDatum in dieTermine" v-bind:key="dasDatum.from">
-            <span v-if="dasDatum.desc" class="termintitel font-weight-bold">{{
-              dasDatum.desc
-            }}</span>
-            <span>{{ toLocaleDateString(dasDatum.from) }}</span>
-            <span v-if="dasDatum.to">
-              - {{ toLocaleDateString(dasDatum.to) }}</span
-            >
-          </div>
-          <span v-if="derOrt">
-            <b> {{ $t(derOrt) }}</b></span
-          >
-        </div> -->
         <div class="d-flex">
           <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
           <div v-if="derAnmeldelink" class="ml-auto">
@@ -107,8 +90,6 @@ export default {
     }
   },
   async asyncData(kontext) {
-    // console.log('sanity fetch sessions', query, kontext)
-    let _this = this
     return await sanityClient.fetch(query, kontext.params)
   },
   head() {
@@ -117,6 +98,15 @@ export default {
     }
   },
   computed: {
+    imageSrc: function() {
+      if (this.sessionType == 'astromatrix') {
+        return 'https://cdn.sanity.io/images/ie6m0uwl/production/e1679f6501ac1192b2e034eaed2c487873833401-308x308.png?w=150&amp;h=150&amp;fit=max&amp;auto=format'
+      } else if (this.sessionType == 'jin-shin-jyutsu') {
+        return 'https://cdn.sanity.io/images/ie6m0uwl/production/38994b16abfd6894c539b46c90c5b3b9e7671c5c-440x437.png?rect=2,0,437,437&amp;w=150&amp;h=150&amp;fit=max&amp;auto=format'
+      } else {
+        return false
+      }
+    },
     dateForReal: () => {
       if (typeof this.date != 'undefined') {
         return this.date
@@ -199,6 +189,31 @@ export default {
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
 
+.mainImage2 {
+  width: 152px;
+  border: 1px solid #e3c85d;
+  position: absolute;
+  left: -11%;
+  top: 25%;
+}
+
+@media (max-width: 978px) {
+  .mainImage2 {
+    position: relative;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    border: 3px solid #e3c85d;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 415px) {
+  .mainImage2 {
+    width: 100px;
+  }
+}
+
 .btn-secondary {
   background: #593f4c;
   border-color: #593f4c;
@@ -264,11 +279,7 @@ h4 {
   line-height: var(--font-large-line-height);
   margin: 0.5rem 0 2rem;
 }
-// .sessionContent {
-//   @nest & p {
-//     margin: 1rem 0;
-//   }
-// }
+
 img {
   width: 100%;
   vertical-align: top;
@@ -301,6 +312,11 @@ img {
   /* Firefox 18- */
   color: white;
   opacity: 1;
+}
+
+.sessionContent {
+  padding-left: 15% !important;
+  position: relative;
 }
 
 input {

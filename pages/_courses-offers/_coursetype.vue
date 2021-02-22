@@ -7,23 +7,9 @@
 </template>
 
 <script>
-// import BlockContent from 'sanity-blocks-vue-component'
-// import groq from 'groq'
-// import sanityClient from '~/sanityClient'
-// import SanityImage from '~/components/SanityImage'
 import Courses from '~/components/Courses'
 import Page from '~/components/Page'
 import { mapGetters } from 'vuex'
-
-// const query = groq`
-//   *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
-//         ...,
-//         image {
-//           ...,
-//           asset->
-//         }
-//   }[0]
-// `
 
 export default {
   components: {

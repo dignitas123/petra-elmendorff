@@ -11,27 +11,27 @@
     >
       <div class="p-4" style="background: #ddd4d2;">
         <b-container class="p-4">
-          <b-container class="images-mod-mobile" style="top: -35%; padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0;">
+          <b-container class="images-mod-mobile">
             <b-row>
-              <b-col>
+              <b-col class="pl-0 pr-0">
                 <b-img
                   src="@/assets/img/haende.png"
-                  width="100xp"
-                  class="mb-2"
+                  width="100px"
+                  class="mb-2 mobile-img golden-border"
                 ></b-img>
               </b-col>
-              <b-col>
+              <b-col class="pl-0 pr-0">
                 <b-img
                   src="@/assets/img/astrokreise.png"
-                  width="100xp"
-                  class="mb-2"
+                  width="100px"
+                  class="mb-2 mobile-img golden-border"
                 ></b-img>
               </b-col>
-              <b-col>
+              <b-col class="pl-0 pr-0">
                 <b-img
                   src="@/assets/img/derbuddha.png"
-                  width="100xp"
-                  class="mb-2"
+                  width="100px"
+                  class="mb-2 mobile-img"
                 ></b-img>
               </b-col>
             </b-row>
@@ -67,7 +67,7 @@
               <b-row class="mb-3 pb-4">
                 <b-col>
                   <h5
-                    class="text-center medium-font"
+                    class="text-center medium-font newsletter-heading"
                     style="font-size: 3rem; color: #5f4142;"
                   >
                     Newsletter
@@ -161,6 +161,10 @@ export default {
 .images-mod-mobile {
   display: none;
   position: absolute;
+  top: -35%;
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 @media (max-width: 571px) {
   .images-mod {
@@ -169,5 +173,30 @@ export default {
   .images-mod-mobile {
     display: block;
   }
+  .newsletter-heading {
+    padding-top: 30px;
+  }
 }
+@media (max-width: 531px) {
+  .mobile-img {
+    width: 80px;
+  }
+  .images-mod-mobile {
+    top: -30%;
+  }
+}
+@media (max-width: 476px) {
+  .mobile-img {
+    width: 60px;
+  }
+  .images-mod-mobile {
+    top: -25%;
+  }
+}
+@media (max-width: 398px) {
+  .images-mod-mobile {
+    margin-left: -20px;
+  }
+}
+
 </style>

@@ -41,10 +41,7 @@
         {{ $t(heading) }}
       </h3>
       <div class="content">
-        <!-- <h3 v-if="title" class="medium-font color-headings mb-4 heading-main">
-        {{ $t(title) }}
-      </h3> -->
-        <div class="sessionContent medium-font letter-spacing-less mb-3">
+        <div class="sessionContent medium-font letter-spacing-less mb-3 pb-5">
           <h3
             v-if="heading"
             class="medium-font heading-main-mobile"
@@ -89,7 +86,7 @@
             <figure v-if="imageUnderText1" class="imageUnderText">
               <figcaption
                 class="medium-font"
-                style="color: #d4cac7; font-size: 1.5rem;"
+                style="color: #d4cac7; font-size: 1.5rem; width: max-content; padding-left: 0; padding-right: 0; margin: 0 auto;"
               >
                 {{ imageUnderText1.imgHeading }}
               </figcaption>
@@ -98,14 +95,14 @@
                   :image="imageUnderText1"
                   :width="100"
                   :height="100"
-                  class="golden-border-thick imageUnderTextLinks"
+                  class="golden-border imageUnderTextLinks"
                 />
               </nuxt-link>
             </figure>
             <figure v-if="imageUnderText2" class="imageUnderText">
               <figcaption
                 class="medium-font"
-                style="color: #d4cac7; font-size: 1.5rem;"
+                style="color: #d4cac7; font-size: 1.5rem; width: max-content; padding-left: 0; padding-right: 0; margin: 0 auto;"
               >
                 {{ imageUnderText2.imgHeading }}
               </figcaption>
@@ -114,7 +111,7 @@
                   :image="imageUnderText2"
                   :width="100"
                   :height="100"
-                  class="golden-border-thick imageUnderTextLinks"
+                  class="golden-border imageUnderTextLinks"
                 />
               </nuxt-link>
             </figure>
@@ -232,7 +229,7 @@ ul {
 .mainImage2 {
   border: 1px solid #e3c85d;
   position: absolute;
-  left: -10%;
+  left: -11%;
   top: 25%;
 }
 
@@ -277,11 +274,13 @@ ul {
 
 @media (max-width: 485px) {
   .imageUnderTextLinks {
-    width: 66px;
+    width: 120px !important;
   }
   .imageUnderText {
+    margin-left: 20px;
+    margin-right: 20px;
     figcaption {
-      font-size: 1.1rem !important;
+      font-size: 1.25rem !important;
     }
   }
   .imageUnderText {
@@ -577,6 +576,10 @@ figcaption {
 
 .quote-block-mobile {
   display: none;
+}
+
+.imageUnderTextLinks {
+  width: 150px;
 }
 
 @media (max-width: 1203px) {

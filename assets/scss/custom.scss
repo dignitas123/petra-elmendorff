@@ -139,6 +139,10 @@ $dark: rgb(221, 212, 210);
   border: 3px solid #e3c85d;
 }
 
+.golden-border {
+  border: 1px solid #e3c85d;
+}
+
 .modal-content {
   border: none;
   padding-left: 20%;
@@ -154,5 +158,11 @@ $dark: rgb(221, 212, 210);
   }
   .modal-header {
     margin-top: 20%;
+  }
+}
+
+@media (max-width: 531px) {
+  .modal-header {
+    margin-top: 15% !important;
   }
 }
