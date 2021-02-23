@@ -38,14 +38,14 @@
           />
         </div>
         <b-container class="container2">
-          <b-row align-h="between" style="">
+          <b-row align-h="between" class="mr-0 ml-0">
             <b-col>
               <h1 class="aktuelle-termine medium-font letter-spacing-more">
                 {{ $t(termine) }}
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4" class="aktuelle-termine">
+          <b-row cols="1" cols-md="2" cols-xl="4" class="aktuelle-termine mr-0 ml-0">
             <b-col
               v-for="course in previewCourses"
               v-bind:key="course.title.titel"
@@ -136,7 +136,7 @@
         </div>
       </div>
     </section>
-    <b-row class="text-center" style="clear:both">
+    <b-row class="text-center mr-0 ml-0" style="clear:both">
       <b-col>
         <DownArrowSharp @arrow-click="scrollContent" />
       </b-col>

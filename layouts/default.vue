@@ -75,6 +75,7 @@ body,
 #__nuxt,
 #__layout,
 #__layout > div {
+  width: auto !important;
   height: 100%;
   letter-spacing: 0.03rem;
   margin-top: 1.25rem;
