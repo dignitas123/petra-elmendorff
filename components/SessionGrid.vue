@@ -71,7 +71,7 @@
                         <span class="color-grey">Online</span>
                         <div v-if="session.frequency">
                           <span class="color-grey">{{
-                            session.frequency
+                            session.frequency.split(' ')[0]
                           }}</span>
                         </div>
                       </template>

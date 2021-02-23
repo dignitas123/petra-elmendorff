@@ -11,6 +11,7 @@
           />
           <div
             class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
+            style="letter-spacing: 0.1px;"
           >
             <block-content
               v-if="$t(home.image.zitat)"
@@ -25,6 +26,7 @@
         <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
         <div
           class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
+          style="letter-spacing: 0.1px;"
         >
           <block-content
             v-if="$t(home.image.zitat)"
@@ -231,7 +233,7 @@ export default {
     previewCourses: function() {
       // zeige angepinnte Kurse und upcoming courses (anzahl auch aus sanity)
       return this.home.courses
-        .filter(ses => ses.sessionLang == this.getLanguage)
+        // .filter(ses => ses.sessionLang == this.getLanguage)
         .map(course => {
           // preview immer zum ersten termin, ist leider etwas doof
           course.date = course.dates[0]
@@ -248,8 +250,8 @@ export default {
       return this.getDates.filter(session => {
         if (
           alreadyinList.length >= maxNumberOfitems ||
-          !session.date.from ||
-          session.sessionLang != this.getLanguage
+          !session.date.from || (session.sessionLang == 'de' && this.getLanguage == 'en') // only when english show no german courses
+          // || session.sessionLang != this.getLanguage
         )
           return false
 
@@ -351,8 +353,8 @@ export default {
 
 .quote-block-desktop {
   background: rgba(255, 255, 255, 0.7);
-  padding-right: 20%;
-  padding-left: 20%;
+  padding-right: 17%;
+  padding-left: 17%;
 }
 
 .kalender {

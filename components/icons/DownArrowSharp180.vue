@@ -8,11 +8,12 @@
     style="enable-background:new 0 0 490 490; fill: #e3d259;"
     xml:space="preserve"
     id="downarrow"
-    transform="rotate(180)"
   >
-    <path
-      d="M244.992,474.194L490,474.194z M244.995,248.759l-69.472-129.986h138.951L244.995,248.759z"
-    />
+    <g transform="rotate(180)">
+      <path
+        d="M244.992,474.194L490,474.194z M244.995,248.759l-69.472-129.986h138.951L244.995,248.759z"
+      />
+    </g>
   </svg>
 </template>
 
@@ -26,7 +27,6 @@
 #downarrow:hover {
   cursor: pointer;
 }
-
 
 @media (min-width: 994px) {
   #downarrow {

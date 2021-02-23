@@ -487,7 +487,6 @@ figure {
 .header-content {
   text-align: center;
   width: 100%;
-  margin-top: 55px;
 }
 
 .content {

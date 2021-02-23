@@ -165,7 +165,7 @@ export default {
   },
   methods: {
     filterLang: function(sessions, lang) {
-      if (lang) {
+      if (lang && lang != 'de') { // added && lang != 'de' because Petra wants also english courses shown in german calendar
         return sessions.filter(session => {
           return session.sessionLang === lang
         })
