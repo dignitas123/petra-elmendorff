@@ -109,7 +109,7 @@
                     </h5>
                     <h5
                       v-if="session.date && session.date.desc"
-                      class="untertitle"
+                      class="untertitle mt-2"
                     >
                       {{ session.date.desc }}
                     </h5>
