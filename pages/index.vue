@@ -140,7 +140,7 @@
       </b-col>
     </b-row>
     <section class="content" style="margin-bottom: 2.75rem;">
-      <b-container class="max-width-container pt-3">
+      <b-container class="max-width-container pt-5">
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
             <b-col :key="$t(preview.title)" class="image-container">

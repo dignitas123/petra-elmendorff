@@ -115,4 +115,11 @@ body,
     line-height: var(--font-title3-line-height);
   }
 }
+
+@media (max-width: 700px) {
+  .container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
 </style>

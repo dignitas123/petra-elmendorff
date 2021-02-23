@@ -36,8 +36,9 @@ export default {
 <style scoped>
 .bottom-right {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 0;
+  left: 50%;
   cursor: pointer;
+  transform: translate(-50%, -50%);
 }
 </style>

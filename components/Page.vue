@@ -1,6 +1,9 @@
 <template>
   <div>
-    <header class="header-content container">
+    <header
+      class="header-content container"
+      :style="imageTitle.asset ? '' : 'margin-top: 150px;'"
+    >
       <div class="position-relative">
         <SanityImage
           v-if="imageTitle.asset"
@@ -11,6 +14,7 @@
         />
         <div
           class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
+          style="letter-spacing: 0.1px;"
         >
           <block-content
             v-if="$t(imageTitle.zitat)"
@@ -23,8 +27,17 @@
         </div>
       </div>
       <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+      <b-breadcrumb
+        v-if="
+          $route.params.page == 'jiro-murai' ||
+            $route.params.page == 'mary-burmeister'
+        "
+        :items="items"
+        class="text-center"
+      ></b-breadcrumb>
       <div
         class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
+        style="letter-spacing: 0.1px;"
       >
         <block-content
           v-if="$t(imageTitle.zitat)"
@@ -177,6 +190,20 @@ export default {
         de: 'Kalender',
         en: 'Calendar'
       }
+    }
+  },
+  computed: {
+    items: function() {
+      return [
+        {
+          text: 'Jin Shin Jyutsu',
+          href: '/jin-shin-jyutsu'
+        },
+        {
+          text: this.$route.params.page,
+          active: true
+        }
+      ]
     }
   }
 }

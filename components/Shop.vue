@@ -6,6 +6,23 @@
           <h1 class="kalendar medium-font">Shop</h1>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col>
+          <h3 class="mt-3" style="color: #593f4c;">
+            {{ $t(maintenanceText) }}
+          </h3>
+        </b-col>
+      </b-row>
+      <b-row class="mt-4">
+        <b-col>
+          <nuxt-link
+            class="btn"
+            :title="$t(courseLinkTitle)"
+            :to="'/' + $t(courseLinkSlug)"
+            >{{ $t(courseLinkTitle) }}</nuxt-link
+          >
+        </b-col>
+      </b-row>
     </b-container>
     <VideoGrid
       :sessions="filterCourseType(getSessions, 'online-kurse')"
@@ -46,12 +63,24 @@ export default {
       courseLinkSlug: {
         en: 'courses-offers',
         de: 'kurse-angebote'
+      },
+      maintenanceText: {
+        en: 'Buyable video courses are coming soon.. ',
+        de: 'Bald kommen hier kaufbare Videokurse.. '
+      },
+      courseLinkTitle: {
+        en: 'Go Back to the Calendar',
+        de: 'Zurück zum Kalender'
+      },
+      courseLinkSlug: {
+        en: 'courses-offers',
+        de: 'kurse-angebote'
       }
     }
   },
   head() {
     return {
-      title: "Shop - "
+      title: 'Shop - '
     }
   },
   computed: {
@@ -150,6 +179,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.btn {
+  border: 1px solid black;
+  &:hover {
+    background: rgba(189, 189, 189, 0.7);
+  }
+}
+
 @media (max-width: 767px) {
   .filter {
     margin-top: 30px;

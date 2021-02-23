@@ -166,3 +166,7 @@ $dark: rgb(221, 212, 210);
     margin-top: 15% !important;
   }
 }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '|';
+}

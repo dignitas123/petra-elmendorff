@@ -36,7 +36,6 @@
               )"
               :key="session._id"
               class="mb-3 event-row"
-              v-bind:class="{ oneOfToManyEvents: session.dates.length > 5 }"
             >
               <b-col class="my-auto">
                 <b-container>
@@ -96,21 +95,33 @@
                     `/${currentSlug}/${session.sessionType}/${session.slug.current}`
                   "
                 >
-                  <h3 class="mt-0 color-normal maintitle">
-                    {{ session.title.titel }}
-                  </h3>
-                  <h5 class="untertitle" v-if="session.title.untertitel">
-                    {{ session.title.untertitel }}
-                  </h5>
-                  <h5
-                    v-if="session.date && session.date.desc"
-                    class="untertitel"
+                  <div
+                    v-if="
+                      session.title.untertitel ||
+                        (session.date && session.date.desc)
+                    "
                   >
-                    {{ session.date.desc }}
-                  </h5>
-                  <!-- <p class="mb-0">
-                  {{ session.summary }}
-                </p> -->
+                    <h3 class="mt-0 color-normal maintitle">
+                      {{ session.title.titel }}
+                    </h3>
+                    <h5 class="untertitle" v-if="session.title.untertitel">
+                      {{ session.title.untertitel }}
+                    </h5>
+                    <h5
+                      v-if="session.date && session.date.desc"
+                      class="untertitle"
+                    >
+                      {{ session.date.desc }}
+                    </h5>
+                  </div>
+                  <div v-else>
+                    <h3
+                      class="mt-0 color-normal maintitle"
+                      style="padding-top: 20px;"
+                    >
+                      {{ session.title.titel }}
+                    </h3>
+                  </div>
                 </nuxt-link>
               </b-col>
             </b-row>
@@ -355,18 +366,6 @@ h3 {
   margin: 30px 0px 15px 0px;
   color: rgb(53, 53, 53);
 }
-
-// .oneOfToManyEvents {
-//   .course-text {
-//     padding: 0px;
-//     h3,h5 {
-//       display: inline;
-//       font-size: 1rem;
-//       margin: 0px 0px 0px 0px;
-//     }
-//   }
-
-// }
 
 @media (max-width: 1010px) {
   .sessionGrid {

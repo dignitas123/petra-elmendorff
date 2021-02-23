@@ -65,15 +65,15 @@
       :currentSlug="$t(currentSlug).current"
     />
 
-    <SessionGrid
+    <!-- <SessionGrid
       v-if="$route.params.coursetype != 'online-seminare'"
       :sessions="filterTime(sessionsToShow, true, false, false, false)"
       :currentSlug="$t(currentSlug).current"
       :onlyPast="true"
       class="pastCourses"
-    />
+    /> -->
 
-    <div v-if="$route.params.coursetype == 'online-seminare'">
+    <!-- <div v-if="$route.params.coursetype == 'online-seminare'">
       <div>
         <b-container>
           <b-row class="event-row text-center my-3">
@@ -91,7 +91,7 @@
         :currentSlug="$t(currentSlug).current"
         :onlyVideoCourses="true"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 

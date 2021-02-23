@@ -3,18 +3,18 @@
     <div class="container-text">
       <b-breadcrumb :items="$t(items)"></b-breadcrumb>
       <div class="header-background py-2">
-        <h1 class="mt-3 maintitle">{{ title.titel }}</h1>
+        <h1 class="mt-3 maintitle px-3">{{ title.titel }}</h1>
         <h4 v-if="title.untertitel" class="text-center subtitle">
           {{ title.untertitel }}
         </h4>
       </div>
       <div
         class="mt-3 ml-auto p-3 p-md-5 header-background"
-        :class="imageSrc ? sessionContent : ''"
+        :class="imageSrc ? 'sessionContent' : ''"
       >
-        <div v-if="dieTermine.length">
+        <div v-if="dieTermine.length" class="termin-header">
           <span
-            ><b>{{ $t(dateTitle) }}</b>
+            ><b>{{ dieFrequency }}</b>
             {{ toLocaleDateString(dieTermine[0].from) }}</span
           >
           <span v-if="dieTermine[0].to">
@@ -26,7 +26,12 @@
           >
         </div>
         <br />
-        <img v-if="imageSrc" :src="imageSrc" alt="Jin Shin Jyutsu Hände" class="mainImage2" />
+        <img
+          v-if="imageSrc"
+          :src="imageSrc"
+          alt="Jin Shin Jyutsu Hände"
+          class="mainImage2"
+        />
         <block-content
           v-if="$t(content)"
           :blocks="$t(content)"
@@ -134,6 +139,10 @@ export default {
       if (!Array.isArray(this.dates)) return false
       else return this.dates
     },
+    dieFrequency: function() {
+      if (typeof this.frequency == 'undefined') return ''
+      else return this.frequency
+    },
     items: function() {
       return {
         de: [
@@ -214,6 +223,10 @@ export default {
   }
 }
 
+.breadcrumb-item.active {
+  text-transform: none !important;
+}
+
 .btn-secondary {
   background: #593f4c;
   border-color: #593f4c;
@@ -285,6 +298,10 @@ img {
   vertical-align: top;
 }
 
+.termin-header {
+  font-size: 2.1rem;
+}
+
 // Sign in Button
 @mixin form-style {
   width: 100%;
@@ -342,6 +359,20 @@ input {
   }
 }
 
+@media (max-width: 762px) {
+  .termin-header {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 521px) {
+  .termin-header {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 736px) {
   .maintitle {
     font-size: 2rem;
@@ -358,6 +389,9 @@ input {
   }
   .ml-auto {
     margin: 0 auto;
+  }
+  .termin-header {
+    font-size: 1.2rem;
   }
 }
 
