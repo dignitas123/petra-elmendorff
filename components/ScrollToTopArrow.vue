@@ -4,7 +4,7 @@
       <svg
         width="25px"
         role="img"
-        viewBox="220 199 50 50"
+        viewBox="0 0 490.659 490.659"
         style="enable-background:new 0 0 490 490; fill: #e3d259;"
         xml:space="preserve"
         id="downarrow"
