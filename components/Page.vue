@@ -493,8 +493,8 @@ figure {
 
 .image-sep-quote {
   border: 0;
-  background: #e0d652;
-  margin-top: 12px !important;
+  background: #a5831d;
+  margin-top: 7px !important;
   height: 8px;
 }
 

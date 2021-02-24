@@ -416,7 +416,6 @@ export default {
 .image-sep {
   border: 0;
   height: 4px;
-  background: #dacf3d;
 }
 
 .container {
