@@ -1,4 +1,8 @@
 <template>
+<div>
+      <header class="header-content container margin-top">
+      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+    </header>
   <div class="sessionGridContainer">
     <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
       <b-row>
@@ -29,6 +33,7 @@
       :currentSlug="$t(currentSlug).current"
       :onlyVideoCourses="true"
     />
+  </div>
   </div>
 </template>
 

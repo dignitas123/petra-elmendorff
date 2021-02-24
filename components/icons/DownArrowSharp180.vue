@@ -1,11 +1,10 @@
 <template>
   <svg
     @click="$emit('arrow-click')"
-    xmlns="http://www.w3.org/2000/svg"
     width="25px"
     role="img"
     viewBox="220 199 50 50"
-    style="enable-background:new 0 0 490 490; fill: #e3d259;"
+    style="fill: #e0d652;"
     xml:space="preserve"
     id="downarrow"
   >

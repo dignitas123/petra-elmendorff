@@ -11,7 +11,7 @@
           />
           <div
             class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
-            style="letter-spacing: 0.1px;"
+            style="letter-spacing: 0.3px;"
           >
             <block-content
               v-if="$t(home.image.zitat)"
@@ -26,7 +26,7 @@
         <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
         <div
           class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
-          style="letter-spacing: 0.1px;"
+          style="letter-spacing: 0.3px;"
         >
           <block-content
             v-if="$t(home.image.zitat)"
@@ -151,7 +151,7 @@
                 <SanityImage
                   :image="preview.previewImage2"
                   :alt="$t(preview.previewImage2.alt)"
-                  class="grid-image mb-5"
+                  class="grid-image mb-5 golden-border-thick"
                 />
                 <div class="middle">
                   <div class="text">{{ $t(preview.title) }}</div>

@@ -47,7 +47,7 @@
                       <h3 v-else class="date">
                         <span v-if="session.date && selLanguage == 'de'">{{
                           toLocaleDateStringDay(session.date.from)
-                        }}</span>
+                        }}.</span>
                         <span v-else-if="selLanguage == 'en'">{{
                           toLocaleDateStringDay(session.date.from)
                         }}</span>
@@ -56,6 +56,12 @@
                         >
                         <span v-else-if="session.date.to && selLanguage == 'en'"
                           >- {{ toLocaleDateString(session.date.to) }}</span
+                        >
+                        <span v-else-if="selLanguage == 'en'"
+                          >{{ toLocaleDateStringMonth(session.date.from) }}</span
+                        >
+                        <span v-else
+                          >{{ toLocaleDateStringMonth(session.date.from) }}</span
                         >
                       </h3>
                     </b-col>
@@ -101,23 +107,23 @@
                         (session.date && session.date.desc)
                     "
                   >
-                    <h3 class="mt-0 color-normal maintitle">
+                    <h3 class="mt-0 color-normal maintitle medium-font">
                       {{ session.title.titel }}
                     </h3>
-                    <h5 class="untertitle" v-if="session.title.untertitel">
+                    <h5 class="untertitle mt-1" v-if="session.title.untertitel">
                       {{ session.title.untertitel }}
                     </h5>
                     <h5
                       v-if="session.date && session.date.desc"
-                      class="untertitle mt-2"
+                      class="untertitle mt-2 mb-1"
                     >
                       {{ session.date.desc }}
                     </h5>
                   </div>
                   <div v-else>
                     <h3
-                      class="mt-0 color-normal maintitle"
-                      style="padding-top: 20px;"
+                      class="mt-0 color-normal maintitle medium-font"
+                      style="padding-top: 13px;"
                     >
                       {{ session.title.titel }}
                     </h3>
@@ -244,6 +250,17 @@ export default {
       } else {
         return new Date(date).toLocaleDateString('en-EN', {
           day: 'numeric'
+        })
+      }
+    },
+    toLocaleDateStringMonth(date) {
+      if (this.selLanguage == 'de') {
+        return new Date(date).toLocaleDateString('de-DE', {
+          month: 'long',
+        })
+      } else {
+        return new Date(date).toLocaleDateString('en-EN', {
+          month: 'long',
         })
       }
     }

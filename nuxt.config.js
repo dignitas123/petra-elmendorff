@@ -29,16 +29,16 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%sPetra Elmendorff - Jin Shin Jyutsu & AstroMatrix",
+    titleTemplate: '%sPetra Elmendorff - Jin Shin Jyutsu & AstroMatrix',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        'http-equiv': 'Cache-Control',
-        content: 'no-cache, no-store, must-revalidate'
-      },
-      { 'http-equiv': 'Pragma', content: 'no-cache' },
-      { 'http-equiv': 'Expires', content: '0' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      // {
+      //   'http-equiv': 'Cache-Control',
+      //   content: 'no-cache, no-store, must-revalidate'
+      // },
+      // { 'http-equiv': 'Pragma', content: 'no-cache' },
+      // { 'http-equiv': 'Expires', content: '0' }
     ]
     //link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
@@ -89,9 +89,9 @@ export default {
         lastmod: '2021-01-02T13:30:00.000Z'
       },
       {
-        url: '/jin-shin-jyutsu',
+        url: '/about',
         changefreq: 'weekly',
-        priority: 4,
+        priority: 2,
         lastmod: '2021-01-02T13:30:00.000Z'
       },
       {
@@ -101,9 +101,9 @@ export default {
         lastmod: '2021-01-02T13:30:00.000Z'
       },
       {
-        url: '/about',
+        url: '/jin-shin-jyutsu',
         changefreq: 'weekly',
-        priority: 2,
+        priority: 4,
         lastmod: '2021-01-02T13:30:00.000Z'
       }
     ]

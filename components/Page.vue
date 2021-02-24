@@ -2,7 +2,7 @@
   <div>
     <header
       class="header-content container"
-      :style="imageTitle.asset ? '' : 'margin-top: 150px;'"
+      :class="imageTitle.asset ? '' : 'margin-top'"
     >
       <div class="position-relative">
         <SanityImage
@@ -26,7 +26,7 @@
           />
         </div>
       </div>
-      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+      <hr class="image-sep-quote" style="margin-top: 5px; margin-bottom: 7px;" />
       <b-breadcrumb
         v-if="
           $route.params.page == 'jiro-murai' ||
@@ -62,7 +62,7 @@
           >
             {{ $t(heading) }}
           </h3>
-          <div class="kalender-link pb-3">
+          <div v-if="!['imprint', 'impressum', 'privacy-policy', 'links'].includes($route.params.page)" class="kalender-link pb-3">
             <nuxt-link :to="$t(angebote)">
               <h4
                 class="kalender medium-font color-dark-grey float-right mb-0 p-1"
@@ -194,13 +194,28 @@ export default {
   },
   computed: {
     items: function() {
+      let page = this.$route.params.page
+      let pageStripped = page.replace(/-/g, ' ')
+      let otherHref = ''
+      let otherPage = ''
+      if (page == 'jiro-murai') {
+        otherHref = 'mary-burmeister'
+        otherPage = 'Mary Burmeister'
+      } else {
+        otherHref = 'jiro-murai'
+        otherPage = 'Jiro Murai'
+      }
       return [
         {
           text: 'Jin Shin Jyutsu',
           href: '/jin-shin-jyutsu'
         },
         {
-          text: this.$route.params.page,
+          text: otherPage,
+          href: otherHref
+        },
+        {
+          text: pageStripped,
           active: true
         }
       ]
@@ -212,6 +227,10 @@ export default {
 <style scoped lang="scss">
 @import '~/styles/custom-media';
 @import '~/styles/custom-properties';
+
+.margin-top {
+  margin-top: 150px;
+}
 
 ul {
   list-style: none;
@@ -472,10 +491,11 @@ figure {
   background: white;
 }
 
-.image-sep {
+.image-sep-quote {
   border: 0;
-  height: 4px;
-  background: #dacf3d;
+  background: #e0d652;
+  margin-top: 12px !important;
+  height: 8px;
 }
 
 .container {
@@ -591,11 +611,6 @@ figcaption {
   text-align: center;
 }
 
-.image-sep {
-  margin-top: 12px !important;
-  height: 8px;
-}
-
 .locale-col {
   min-width: 200px;
 }
@@ -609,6 +624,9 @@ figcaption {
 }
 
 @media (max-width: 1203px) {
+  .margin-top {
+    margin-top: 60px;
+  }
   .quote-block-mobile {
     display: block;
   }
@@ -635,7 +653,7 @@ figcaption {
 }
 
 @media (max-width: 993px) {
-  .image-sep {
+  .image-sep-quote {
     margin-top: 5px !important;
   }
   .container {
@@ -655,8 +673,11 @@ figcaption {
 }
 
 @media (max-width: 766px) {
-  .image-sep {
+  .image-sep-quote {
     height: 3.5px;
+  }
+  .margin-top {
+        margin-top: 30px !important;
   }
   .grid-image {
     width: 100%;
@@ -692,6 +713,9 @@ figcaption {
 }
 
 @media (max-width: 472px) {
+  .breadcrumb {
+    font-size: 12px;
+  }
   .grid-image-caption {
     font-size: 22px !important;
   }
