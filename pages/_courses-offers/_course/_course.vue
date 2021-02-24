@@ -151,7 +151,7 @@ export default {
             href: '/kurse-angebote'
           },
           {
-            text: this.sessionType.replace(/-/g, ' '),
+            text: this.slugCreation(),
             href: '/kurse-angebote/' + this.sessionType
           },
           {
@@ -165,7 +165,7 @@ export default {
             href: '/courses-offers'
           },
           {
-            text: this.sessionType.replace(/-/g, ' '),
+            text: this.slugCreation(),
             href: '/kurse-angebote/' + this.sessionType
           },
           {
@@ -189,6 +189,16 @@ export default {
           day: 'numeric'
         })
       }
+    },
+    slugCreation: function() {
+      let res = this.sessionType
+        .replace(/-/g, ' ')
+        .replace(/(?:^|\s)\S/g, function(a) {
+          return a.toUpperCase()
+        })
+      if (res == 'Astromatrix') {
+        return 'AstroMatrix'
+      } else return res
     }
   }
 }

@@ -1,7 +1,11 @@
 <template>
   <transition name="fade">
     <section class="container">
-      <Courses :filterCat="$router.history.current.params.coursetype" :items="items" :breadCrumb="true" />
+      <Courses
+        :filterCat="$router.history.current.params.coursetype"
+        :items="items"
+        :breadCrumb="true"
+      />
     </section>
   </transition>
 </template>
@@ -36,11 +40,7 @@ export default {
             href: '/kurse-angebote'
           },
           {
-            text: this.$router.history.current.params.coursetype
-              .replace(/-/g, ' ')
-              .replace(/(?:^|\s)\S/g, function(a) {
-                return a.toUpperCase()
-              }),
+            text: this.slugCreation(),
             href: '/kurse-angebote/' + this.slug,
             active: true
           }
@@ -51,11 +51,7 @@ export default {
             href: '/courses-offers'
           },
           {
-            text: this.$router.history.current.params.coursetype
-              .replace(/-/g, ' ')
-              .replace(/(?:^|\s)\S/g, function(a) {
-                return a.toUpperCase()
-              }),
+            text: this.slugCreation(),
             href: '/kurse-angebote/' + this.slug,
             active: true
           }
@@ -72,6 +68,18 @@ export default {
   //     this.coursesPage = true
   //   else this.coursesPage = false
   // },
+  methods: {
+    slugCreation: function() {
+      let res = this.$router.history.current.params.coursetype
+        .replace(/-/g, ' ')
+        .replace(/(?:^|\s)\S/g, function(a) {
+          return a.toUpperCase()
+        })
+      if (res == 'Astromatrix') {
+        return 'AstroMatrix'
+      } else return res
+    }
+  },
   created() {
     this.$store.commit('setCurrentSlug', this.slug)
   }
