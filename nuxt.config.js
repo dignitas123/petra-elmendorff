@@ -62,7 +62,7 @@ export default {
     '@nuxtjs/google-analytics'
   ],
   googleAnalytics: {
-    id: 'G-424846Z637'
+    id: 'G-VL1D7XT9JW'
   },
   sitemap: {
     // hostname: 'https://example.com',
