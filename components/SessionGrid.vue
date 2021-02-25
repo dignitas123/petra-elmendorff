@@ -11,7 +11,7 @@
           <b-row class="event-row">
             <b-col class="my-auto">
               <b-container>
-                <b-row
+                <b-row class="event-row"
                   ><b-col class="my-auto">
                     <h2 class="yearTitle medium-font" style="color: #593f4c;">
                       {{ year }}
@@ -39,15 +39,15 @@
             >
               <b-col class="my-auto">
                 <b-container>
-                  <b-row
+                  <b-row class="event-row"
                     ><b-col class="my-auto">
                       <h3 v-if="session.displayDate" class="date">
                         {{ session.displayDate }}
                       </h3>
                       <h3 v-else class="date">
-                        <span v-if="session.date && selLanguage == 'de'">{{
-                          toLocaleDateStringDay(session.date.from)
-                        }}.</span>
+                        <span v-if="session.date && selLanguage == 'de'"
+                          >{{ toLocaleDateStringDay(session.date.from) }}.</span
+                        >
                         <span v-else-if="selLanguage == 'en'">{{
                           toLocaleDateStringDay(session.date.from)
                         }}</span>
@@ -57,16 +57,16 @@
                         <span v-else-if="session.date.to && selLanguage == 'en'"
                           >- {{ toLocaleDateString(session.date.to) }}</span
                         >
-                        <span v-else-if="selLanguage == 'en'"
-                          >{{ toLocaleDateStringMonth(session.date.from) }}</span
-                        >
-                        <span v-else
-                          >{{ toLocaleDateStringMonth(session.date.from) }}</span
-                        >
+                        <span v-else-if="selLanguage == 'en'">{{
+                          toLocaleDateStringMonth(session.date.from)
+                        }}</span>
+                        <span v-else>{{
+                          toLocaleDateStringMonth(session.date.from)
+                        }}</span>
                       </h3>
                     </b-col>
                   </b-row>
-                  <b-row
+                  <b-row class="event-row"
                     ><b-col class="max-width-class">
                       <template
                         v-if="
@@ -256,11 +256,11 @@ export default {
     toLocaleDateStringMonth(date) {
       if (this.selLanguage == 'de') {
         return new Date(date).toLocaleDateString('de-DE', {
-          month: 'long',
+          month: 'long'
         })
       } else {
         return new Date(date).toLocaleDateString('en-EN', {
-          month: 'long',
+          month: 'long'
         })
       }
     }
@@ -415,9 +415,6 @@ h3 {
 @media (max-width: 650px) {
   .yearTitle {
     font-size: 28px;
-  }
-  .event-row {
-    margin-left: -10px;
   }
   .yearWrap {
     margin: 0;

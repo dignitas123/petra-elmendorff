@@ -14,7 +14,7 @@
       >
         <div v-if="dieTermine.length" class="termin-header">
           <span
-            ><b>{{ dieFrequency }}</b>
+            ><b>{{ dieFrequency }}</b><br />
             {{ toLocaleDateString(dieTermine[0].from) }}</span
           >
           <span v-if="dieTermine[0].to">
