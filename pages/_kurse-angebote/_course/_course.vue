@@ -395,7 +395,7 @@ input {
 @media (max-width: 482px) {
   .breadcrumb {
     font-size: 12px;
-    margin-top: 80px;
+    margin-top: 40px;
   }
   .ml-auto {
     margin: 0 auto;

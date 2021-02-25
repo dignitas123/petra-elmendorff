@@ -4,7 +4,7 @@
       v-if="display"
       no-body
       border-variant="light"
-      style="max-width: 290px; float: right; position: absolute; right: 0; background: #f4f1f0;"
+      style="max-width: 350px; float: right; position: absolute; right: 0; background: #f4f1f0;"
       class="nav-card overflow-hidden"
       id="navCard"
       @mouseleave="$nuxt.$emit('nav-card-out')"

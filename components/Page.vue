@@ -62,7 +62,7 @@
           >
             {{ $t(heading) }}
           </h3>
-          <div v-if="!['imprint', 'impressum', 'privacy-policy', 'links'].includes($route.params.page)" class="kalender-link pb-3">
+          <div v-if="!['datenschutz', 'imprint', 'impressum', 'privacy-policy', 'links'].includes($route.params.page)" class="kalender-link pb-3">
             <nuxt-link :to="$t(angebote)">
               <h4
                 class="kalender medium-font color-dark-grey float-right mb-0 p-1"
