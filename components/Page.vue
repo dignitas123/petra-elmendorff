@@ -1,9 +1,6 @@
 <template>
   <div>
-    <header
-      class="header-content container"
-      :class="imageTitle.asset ? '' : 'margin-top'"
-    >
+    <header class="header-content container" :class="margin()">
       <div class="position-relative">
         <SanityImage
           v-if="imageTitle.asset"
@@ -26,7 +23,10 @@
           />
         </div>
       </div>
-      <hr class="image-sep-quote" style="margin-top: 5px; margin-bottom: 7px;" />
+      <hr
+        class="image-sep-quote"
+        style="margin-top: 5px; margin-bottom: 7px;"
+      />
       <b-breadcrumb
         v-if="
           $route.params.page == 'jiro-murai' ||
@@ -62,7 +62,18 @@
           >
             {{ $t(heading) }}
           </h3>
-          <div v-if="!['datenschutz', 'imprint', 'impressum', 'privacy-policy', 'links'].includes($route.params.page)" class="kalender-link pb-3">
+          <div
+            v-if="
+              ![
+                'datenschutz',
+                'imprint',
+                'impressum',
+                'privacy-policy',
+                'links'
+              ].includes($route.params.page)
+            "
+            class="kalender-link pb-3"
+          >
             <nuxt-link :to="$t(angebote)">
               <h4
                 class="kalender medium-font color-dark-grey float-right mb-0 p-1"
@@ -220,6 +231,18 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    margin: function() {
+      //console.log("THIS", this.imageTitle.zitat)
+      if (typeof this.imageTitle.asset != 'undefined') {
+        return ''
+      } else if (typeof this.imageTitle.zitat != 'undefined') {
+        return 'margin-top'
+      } else {
+        return 'margin-top2'
+      }
+    }
   }
 }
 </script>
@@ -230,6 +253,11 @@ export default {
 
 .margin-top {
   margin-top: 150px;
+}
+
+.margin-top2 {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 ul {
@@ -677,7 +705,7 @@ figcaption {
     height: 3.5px;
   }
   .margin-top {
-        margin-top: 30px !important;
+    margin-top: 30px !important;
   }
   .grid-image {
     width: 100%;
