@@ -1,7 +1,8 @@
 <template>
   <div>
     <div id="form-224136-wrapper">
-      <form
+      {{ $t(comingsoon) }}
+      <!-- <form
         id="ktv2-form-224136"
         accept-charset="UTF-8"
         method="post"
@@ -50,7 +51,7 @@
             :style="`background: ${inputColor}; font-size: 1.5rem; padding-top: 5px;`"
           />
         </div>
-      </form>
+      </form> -->
     </div>
     <script
       type="text/javascript"
@@ -82,6 +83,10 @@ export default {
       submitText: {
         de: 'Jetzt anmelden.',
         en: 'Subscribe now.'
+      },
+      comingsoon: {
+        de: 'Kommt bald...',
+        en: 'Coming soon...'
       }
     }
   }
