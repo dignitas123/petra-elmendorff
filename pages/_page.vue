@@ -1,5 +1,6 @@
 <template>
   <section class="container">
+
     <Courses
       v-if="
         $route.params.page == 'kurse-angebote' ||
@@ -67,7 +68,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t(this.title) + " - "
+      title: this.$t(this.title) + ' - '
     }
   },
   created() {

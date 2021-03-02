@@ -1,56 +1,62 @@
 <template>
-  <section class="container mb-3">
-    <div class="container-text">
-      <b-breadcrumb :items="$t(items)"></b-breadcrumb>
-      <div class="header-background py-2">
-        <h1 class="mt-3 maintitle px-3">{{ title.titel }}</h1>
-        <h4 v-if="title.untertitel" class="text-center subtitle">
-          {{ title.untertitel }}
-        </h4>
-      </div>
-      <div
-        class="mt-3 ml-auto p-3 p-md-5 header-background"
-        :class="imageSrc ? 'sessionContent' : ''"
-      >
-        <div v-if="dieTermine.length" class="termin-header">
-          <span
-            ><b>{{ dieFrequency }}</b><br />
-            {{ toLocaleDateString(dieTermine[0].from) }}</span
-          >
-          <span v-if="dieTermine[0].to">
-            - {{ toLocaleDateString(dieTermine[0].to) }}</span
-          >
-
-          <span v-if="derOrt">
-            | <b> {{ $t(derOrt) }}</b></span
-          >
+  <div>
+    <header class="header-content container margin-top">
+      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+    </header>
+    <section class="container mb-3">
+      <div class="container-text">
+        <b-breadcrumb :items="$t(items)"></b-breadcrumb>
+        <div class="header-background py-2">
+          <h1 class="mt-3 maintitle px-3">{{ title.titel }}</h1>
+          <h4 v-if="title.untertitel" class="text-center subtitle">
+            {{ title.untertitel }}
+          </h4>
         </div>
-        <br />
-        <img
-          v-if="imageSrc"
-          :src="imageSrc"
-          alt="Jin Shin Jyutsu Hände"
-          class="mainImage2"
-        />
-        <block-content
-          v-if="$t(content)"
-          :blocks="$t(content)"
-          :serializers="serializers"
-          projectId="ie6m0uwl"
-          dataset="production"
-        />
+        <div
+          class="mt-3 ml-auto p-3 p-md-5 header-background"
+          :class="imageSrc ? 'sessionContent' : ''"
+        >
+          <div v-if="dieTermine.length" class="termin-header">
+            <span
+              ><b>{{ dieFrequency }}</b
+              ><br />
+              {{ toLocaleDateString(dieTermine[0].from) }}</span
+            >
+            <span v-if="dieTermine[0].to">
+              - {{ toLocaleDateString(dieTermine[0].to) }}</span
+            >
 
-        <div class="d-flex">
-          <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
-          <div v-if="derAnmeldelink" class="ml-auto">
-            <a :href="courseLink" class="float-right">
-              <input class="btn btn-secondary" :value="$t(anmelden)"
-            /></a>
+            <span v-if="derOrt">
+              | <b> {{ $t(derOrt) }}</b></span
+            >
+          </div>
+          <br />
+          <img
+            v-if="imageSrc"
+            :src="imageSrc"
+            alt="Jin Shin Jyutsu Hände"
+            class="mainImage2"
+          />
+          <block-content
+            v-if="$t(content)"
+            :blocks="$t(content)"
+            :serializers="serializers"
+            projectId="ie6m0uwl"
+            dataset="production"
+          />
+
+          <div class="d-flex">
+            <span v-if="derPreis">Preis: {{ $t(derPreis) }}</span>
+            <div v-if="derAnmeldelink" class="ml-auto">
+              <a :href="courseLink" class="float-right">
+                <input class="btn btn-secondary" :value="$t(anmelden)"
+              /></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
