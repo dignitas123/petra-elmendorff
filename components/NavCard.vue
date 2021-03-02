@@ -11,7 +11,7 @@
       @click="$nuxt.$emit('nav-card-out')"
     >
       <b-row no-gutters>
-        <b-col class="px-5 py-2">
+        <b-col class="py-2" style="padding-left: 70px;">
           <b-card-body class="text-left">
             <div
               class="close-button position-absolute"

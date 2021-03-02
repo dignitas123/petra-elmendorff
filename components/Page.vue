@@ -69,7 +69,9 @@
                 'imprint',
                 'impressum',
                 'privacy-policy',
-                'links'
+                'links',
+                'confirmation',
+                'thank-you'
               ].includes($route.params.page)
             "
             class="kalender-link pb-3"
