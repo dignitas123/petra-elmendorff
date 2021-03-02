@@ -1,6 +1,6 @@
 <template>
   <div id="newsletterModal">
-    <!-- <b-modal
+    <b-modal
       id="modal-ns"
       class="modal custom"
       centered
@@ -94,7 +94,7 @@
           </b-row>
         </b-container>
       </div>
-    </b-modal> -->
+    </b-modal>
   </div>
 </template>
 

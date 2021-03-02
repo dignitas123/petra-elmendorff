@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="form-224136-wrapper">
-      {{ $t(comingsoon) }}
-      <!-- <form
+      <!-- {{ $t(comingsoon) }} -->
+      <form
         id="ktv2-form-224136"
         accept-charset="UTF-8"
         method="post"
@@ -12,7 +12,7 @@
           id="FormField_ApiKey"
           type="hidden"
           name="apikey"
-          value="57xvz1un2z8z964c"
+          value="5eb9z1un2z8z1dc3"
         /><input
           id="FormField_Digit"
           type="hidden"
@@ -48,10 +48,12 @@
             name="FormSubmit"
             :value="$t(submitText)"
             @click="$nuxt.$emit('newsletter-subscribed')"
-            :style="`background: ${inputColor}; font-size: 1.5rem; padding-top: 5px;`"
+            :style="
+              `background: ${inputColor}; font-size: 1.5rem; padding-top: 5px;`
+            "
           />
         </div>
-      </form> -->
+      </form>
     </div>
     <script
       type="text/javascript"
