@@ -25,7 +25,7 @@
       </div>
       <hr
         class="image-sep-quote"
-        style="margin-top: 5px; margin-bottom: 7px;"
+        style="margin-top: 5px; margin-bottom: 7px; width: 100%;"
       />
       <b-breadcrumb
         v-if="

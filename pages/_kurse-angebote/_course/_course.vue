@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="header-content container margin-top">
-      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px;" />
+      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px; width: 100%;" />
     </header>
     <section class="container mb-3">
       <div class="container-text">
@@ -18,8 +18,8 @@
         >
           <div v-if="dieTermine.length" class="termin-header">
             <span
-              ><b>{{ dieFrequency }}</b
-              ><br />
+              ><span v-if="dieFrequency"><b>{{ dieFrequency }}</b
+              ><br /></span>
               {{ toLocaleDateString(dieTermine[0].from) }}</span
             >
             <span v-if="dieTermine[0].to">
