@@ -16,10 +16,10 @@
           class="mt-3 ml-auto p-3 p-md-5 header-background"
           :class="imageSrc ? 'sessionContent' : ''"
         >
-          <div v-if="dieTermine.length" class="termin-header">
+          <div v-if="dieTermine.length && dateInCal" class="termin-header">
             <span
-              ><b>{{ dieFrequency }}</b
-              ><br />
+              ><span v-if="dieFrequency"><b>{{ dieFrequency }}</b
+              ><br /></span>
               {{ toLocaleDateString(dieTermine[0].from) }}</span
             >
             <span v-if="dieTermine[0].to">
@@ -29,8 +29,8 @@
             <span v-if="derOrt">
               | <b> {{ $t(derOrt) }}</b></span
             >
+            <br />
           </div>
-          <br />
           <img
             v-if="imageSrc"
             :src="imageSrc"
@@ -128,6 +128,10 @@ export default {
     derOrt: function() {
       if (typeof this.ort == 'undefined') return ''
       else return this.ort
+    },
+    dateInCal: function() {
+      if (typeof this.showDateInCal == 'undefined') return ''
+      else return this.showDateInCal
     },
     derPreis: function() {
       if (typeof this.price == 'undefined') return ''
