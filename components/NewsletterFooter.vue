@@ -12,7 +12,7 @@
           id="FormField_ApiKey"
           type="hidden"
           name="apikey"
-          value="5eb9z1un2z8z1dc3"
+          :value="$t(api_key)"
         /><input
           id="FormField_Digit"
           type="hidden"
@@ -89,6 +89,10 @@ export default {
       comingsoon: {
         de: 'Kommt bald...',
         en: 'Coming soon...'
+      },
+      api_key: {
+        de: '5eb9z1un2z8z1dc3',
+        en: '5gf4z1un2z8z08ca'
       }
     }
   }
