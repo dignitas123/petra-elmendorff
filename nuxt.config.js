@@ -29,8 +29,14 @@ export default {
       // },
       // { 'http-equiv': 'Pragma', content: 'no-cache' },
       // { 'http-equiv': 'Expires', content: '0' }
-    ]
+    ],
     //link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    script: [
+      {
+        src:
+          'https://klicktipp.s3.amazonaws.com/listbuildings/system/forms/scripts/protect.js'
+      }
+    ]
   },
 
   /*

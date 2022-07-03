@@ -54,16 +54,7 @@ export const mutations = {
   },
   setSessions(state, info) {
     state.sessions = info
-    // state.sessions.forEach(session => {
-    //   if (session.date) {
-    //     session.date.from = new Date(session.date.from)
-    //     session.date.to = new Date(session.date.to)
-    //   }
-    // })
   },
-  // setProgram(state, program) {
-  //   state.program = program
-  // },
   setLanguage(state, language) {
     state.language = language
   },
@@ -73,16 +64,14 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit(vuexContext, { req }) {
-    let headerlang = req.headers['accept-language']
-      ? req.headers['accept-language'].split(',')[0].split('-')[0]
-      : false
-
+  nuxtServerInit(context) {
     let coockielang = this.$cookies.get('lang')
 
     if (coockielang) {
-      vuexContext.commit('setLanguage', coockielang)
-    } else if (headerlang == 'en') vuexContext.commit('setLanguage', 'en')
+      context.commit('setLanguage', coockielang)
+    } else {
+      context.commit('setLanguage', 'de')
+    }
   }
 }
 

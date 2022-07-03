@@ -47,18 +47,14 @@
             type="submit"
             name="FormSubmit"
             :value="$t(submitText)"
-            @click="$nuxt.$emit('newsletter-subscribed')"
             :style="
-              `background: ${inputColor}; font-size: 1.5rem; padding-top: 5px;`
+              `background: ${inputColor}; font-size: 1.5rem; padding-top: 1px;`
             "
+            @click="$nuxt.$emit('newsletter-subscribed')"
           />
         </div>
       </form>
     </div>
-    <script
-      type="text/javascript"
-      src="https://klicktipp.s3.amazonaws.com/listbuildings/system/forms/scripts/protect.js"
-    ></script>
   </div>
 </template>
 
@@ -66,9 +62,11 @@
 export default {
   props: {
     inputColor: {
+      type: String,
       default: '#5f4142'
     },
     textAlignPadding: {
+      type: Boolean,
       default: false
     }
   },
@@ -156,7 +154,7 @@ input[type='submit'] {
     color: var(--color-dark-gray) !important;
     background: transparent !important;
     border: 2px solid white !important;
-    padding-top: 5px !important;
+    padding-top: 1px !important;
   }
 }
 

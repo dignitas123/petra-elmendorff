@@ -311,7 +311,7 @@ export default {
 @media (max-width: 482px) {
   #headerText {
     font-size: 43px;
-    padding-top: 5px;
+    padding-top: 1px;
   }
   #subHeaderTextHeading {
     font-size: 21px;
