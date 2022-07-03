@@ -1,6 +1,9 @@
 {
   "name": "petra-elmendorff",
   "version": "1.0.12",
+  "engines": {
+    "node": "15.x"
+  },
   "description": "Kurswebseite für Petra Elmendorff",
   "author": "Niclas Hummel & Paul Kummetz",
   "private": true,
