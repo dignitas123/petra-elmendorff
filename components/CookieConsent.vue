@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div v-if="show" class="cookie-consent" role="dialog">
+    <div v-if="showCookieConsent" class="cookie-consent" role="dialog">
       <span class="cookie-consent-message">
         {{ $t(cookie_text) }}
       </span>
@@ -21,8 +21,7 @@ export default {
   props: {
     show: {
       type: Boolean,
-      default: false,
-      required: true
+      default: true,
     }
   },
   data() {
@@ -44,15 +43,19 @@ export default {
       policy_link_slug: {
         de: '/datenschutz',
         en: '/privacy-policy'
-      }
+      },
+      showCookieConsent: true,
     }
+  },
+  mounted() {
+    this.showCookieConsent = true;
   },
   methods: {
     dismiss: function() {
       this.$cookies.set('cookie-cookie', true, {
         maxAge: 60 * 60 * 24 * 7 * 4 // 1 month
       })
-      this.show = false
+      this.showCookieConsent = false
     }
   }
 }

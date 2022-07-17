@@ -6,7 +6,7 @@
     <Footer />
     <scroll-to-top-arrow />
     <div class="gap"></div>
-    <cookie-consent :show="cookieShow" />
+    <cookie-consent />
   </div>
 </template>
 
@@ -19,7 +19,6 @@ export default {
   },
   data() {
     return {
-      cookieShow: false,
       newsletterRender: false
     }
   },

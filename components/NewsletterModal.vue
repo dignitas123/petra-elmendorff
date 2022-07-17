@@ -78,7 +78,7 @@
                 <b-col>
                   <NewsletterFooter
                     inputColor="#e3d259"
-                    textAlignPadding="true"
+                    :textAlignPadding="true"
                   />
                 </b-col>
               </b-row>

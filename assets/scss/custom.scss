@@ -244,3 +244,11 @@ $dark: rgb(221, 212, 210);
   margin-left: -15px !important;
   margin-right: -15px !important;
 }
+
+#modal-ns___BV_modal_header_ > button {
+  z-index: 999;
+}
+
+#modal-ns___BV_modal_content_ {
+  transform: translate(0, -25%);
+}
