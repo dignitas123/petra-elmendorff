@@ -226,6 +226,9 @@ $dark: rgb(221, 212, 210);
   .margin-top {
     margin-top: 30px !important;
   }
+  #modal-ns___BV_modal_content_ {
+    transform: translate(0, -35%);
+  }
 }
 
 @media (max-width: 472px) {
@@ -251,4 +254,11 @@ $dark: rgb(221, 212, 210);
 
 #modal-ns___BV_modal_content_ {
   transform: translate(0, -25%);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }

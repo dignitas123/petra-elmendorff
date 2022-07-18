@@ -22,15 +22,8 @@ export default {
     titleTemplate: '%sPetra Elmendorff - Jin Shin Jyutsu & AstroMatrix',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-      // {
-      //   'http-equiv': 'Cache-Control',
-      //   content: 'no-cache, no-store, must-revalidate'
-      // },
-      // { 'http-equiv': 'Pragma', content: 'no-cache' },
-      // { 'http-equiv': 'Expires', content: '0' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
     ],
-    //link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     script: [
       {
         src:
@@ -71,12 +64,7 @@ export default {
     id: 'G-4LS7MEP022'
   },
   sitemap: {
-    // hostname: 'https://example.com',
     gzip: true,
-    // exclude: [
-    //   '/secret',
-    //   '/admin/**'
-    // ],
     routes: [
       {
         url: '/',

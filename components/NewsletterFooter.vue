@@ -48,7 +48,7 @@
             name="FormSubmit"
             :value="$t(submitText)"
             :style="
-              `background: ${inputColor}; font-size: 1.5rem; padding-top: 1px;`
+              `background: ${inputColor}; font-size: 1.5rem; display: flex; justify-content: center; align-items: center; flex-direction: column;`
             "
             @click="$nuxt.$emit('newsletter-subscribed')"
           />
@@ -154,7 +154,6 @@ input[type='submit'] {
     color: var(--color-dark-gray) !important;
     background: transparent !important;
     border: 2px solid white !important;
-    padding-top: 1px !important;
   }
 }
 
