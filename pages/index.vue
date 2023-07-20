@@ -399,6 +399,8 @@ export default {
   height: auto;
   transition: 0.5s ease;
   backface-visibility: hidden;
+  max-height: 314px;
+  max-width: 314px;
 }
 
 .fixed-width-wide {
