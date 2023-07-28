@@ -13,11 +13,11 @@
             class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
             style="letter-spacing: 0.3px;"
           >
-            <block-content
+            <BlockContent
               v-if="$t(home.image.zitat)"
               :blocks="$t(home.image.zitat)"
               :serializers="serializers"
-              projectId="ie6m0uwl"
+              project-id="ie6m0uwl"
               dataset="production"
               class="quote px-3 my-1"
             />
@@ -28,11 +28,11 @@
           class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
           style="letter-spacing: 0.3px;"
         >
-          <block-content
+          <BlockContent
             v-if="$t(home.image.zitat)"
             :blocks="$t(home.image.zitat)"
             :serializers="serializers"
-            projectId="ie6m0uwl"
+            project-id="ie6m0uwl"
             dataset="production"
             class="quote px-3 my-1"
           />

@@ -13,11 +13,11 @@
           class="quote-block quote-block-desktop position-absolute medium-font letter-spacing-0 text-center mb-3 py-3"
           style="letter-spacing: 0.1px;"
         >
-          <block-content
+          <BlockContent
             v-if="$t(imageTitle.zitat)"
             :blocks="$t(imageTitle.zitat)"
             :serializers="serializers"
-            projectId="ie6m0uwl"
+            project-id="ie6m0uwl"
             dataset="production"
             class="quote px-3 my-1"
           />
@@ -39,11 +39,11 @@
         class="quote-block quote-block-mobile medium-font letter-spacing-0 text-center px-3"
         style="letter-spacing: 0.1px;"
       >
-        <block-content
+        <BlockContent
           v-if="$t(imageTitle.zitat)"
           :blocks="$t(imageTitle.zitat)"
           :serializers="serializers"
-          projectId="ie6m0uwl"
+          project-id="ie6m0uwl"
           dataset="production"
           class="quote px-3 my-1"
         />
@@ -54,7 +54,10 @@
         {{ $t(heading) }}
       </h3>
       <div class="content">
-        <div class="sessionContent medium-font letter-spacing-less mb-3 pb-5">
+        <div
+          class="sessionContent medium-font letter-spacing-less mb-3 pb-5"
+          :class="{ sessionContentWithNoImage: !image.asset }"
+        >
           <h3
             v-if="heading"
             class="medium-font heading-main-mobile"
@@ -88,12 +91,14 @@
             </nuxt-link>
           </div>
           <SanityImage
-            v-if="image"
+            v-if="image.asset"
             :image="image"
             :zitat="$t(image.zitat)"
-            :width="150"
-            :height="150"
+            :width="isMediumScreen ? 165 : 150"
+            :height="isMediumScreen ? 255 : 150"
             :author="image.zitatsource"
+            :crop="isMediumScreen ? '' : 'top'"
+            :fit="isMediumScreen ? 'max' : 'crop'"
             class="mainImage2"
             :class="
               $route.params.page == 'jin-shin-jyutsu'
@@ -105,7 +110,7 @@
             :v-if="$t(content)"
             :blocks="$t(content)"
             :serializers="serializers"
-            projectId="ie6m0uwl"
+            project-id="ie6m0uwl"
             dataset="production"
           />
           <div class="text-center">
@@ -160,6 +165,10 @@ import BlockContent from 'sanity-blocks-vue-component'
 import Plus from '~/components/icons/Plus'
 
 export default {
+  components: {
+    BlockContent,
+    Plus
+  },
   props: {
     title: {
       type: Object,
@@ -170,30 +179,33 @@ export default {
       default: () => {}
     },
     imageTitle: {
-      default: false
+      type: Object,
+      default: () => {}
     },
-    imageUnderText1: {
-      default: false
+    imageUnderText: {
+      type: Object,
+      default: () => {}
     },
     imageUnderText2: {
-      default: false
+      type: Object,
+      default: () => {}
     },
     image: {
-      default: false
+      type: Object,
+      default: () => {}
     },
     heading: {
-      default: false
+      type: String,
+      default: ''
     }
-  },
-  components: {
-    BlockContent,
-    Plus
   },
   data() {
     return {
       serializers: {
         types: {}
       },
+      screenWidth: 0,
+      MEDIUM_WIDTH: 979,
       slug: {},
       angebote: {
         de: 'kurse-angebote',
@@ -232,7 +244,17 @@ export default {
           active: true
         }
       ]
+    },
+    isMediumScreen: function() {
+      return this.screenWidth > this.MEDIUM_WIDTH
     }
+  },
+  mounted() {
+    this.updateScreenSize() // Call it initially to set initial values
+    window.addEventListener('resize', this.updateScreenSize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenSize)
   },
   methods: {
     margin: function() {
@@ -244,6 +266,9 @@ export default {
       } else {
         return 'margin-top2'
       }
+    },
+    updateScreenSize() {
+      this.screenWidth = window.innerWidth
     }
   }
 }
@@ -295,6 +320,10 @@ ul {
   padding-top: 5%;
   padding-left: 15%;
   padding-bottom: 5%;
+}
+
+.sessionContentWithNoImage {
+  padding-left: 5%;
 }
 
 .mainImage {

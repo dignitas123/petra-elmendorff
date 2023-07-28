@@ -23,8 +23,14 @@ export default {
       default: 'format',
       type: String
     },
+    // 'clip' | 'crop' | 'fill' | 'fillmax' | 'max' | 'scale' | 'min'
     fit: {
       default: 'max',
+      type: String
+    },
+    // 'top' | 'bottom' | 'left' | 'right' | 'center' | 'focalpoint' | 'entropy'
+    crop: {
+      default: '',
       type: String
     }
   },
@@ -33,11 +39,20 @@ export default {
       return this.$t(this.image.alt)
     },
     imageUrl: function() {
-      return builder
-        .image(this.image)
-        .size(this.width, this.height)
-        .auto(this.auto)
-        .fit(this.fit)
+      if (this.crop) {
+        return builder
+          .image(this.image)
+          .size(this.width, this.height)
+          .auto(this.auto)
+          .fit(this.fit)
+          .crop(this.crop)
+      } else {
+        return builder
+          .image(this.image)
+          .size(this.width, this.height)
+          .auto(this.auto)
+          .fit(this.fit)
+      }
     }
   }
 }

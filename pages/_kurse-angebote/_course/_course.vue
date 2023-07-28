@@ -1,7 +1,10 @@
 <template>
   <div>
     <header class="header-content container margin-top">
-      <hr class="image-sep" style="margin-top: 5px; margin-bottom: 7px; width: 100%;" />
+      <hr
+        class="image-sep"
+        style="margin-top: 5px; margin-bottom: 7px; width: 100%;"
+      />
     </header>
     <section class="container mb-3">
       <div class="container-text">
@@ -18,8 +21,10 @@
         >
           <div v-if="dieTermine.length && dateInCal" class="termin-header">
             <span
-              ><span v-if="dieFrequency"><b>{{ dieFrequency }}</b
-              ><br /></span>
+              ><span v-if="dieFrequency"
+                ><b>{{ dieFrequency }}</b
+                ><br
+              /></span>
               {{ toLocaleDateString(dieTermine[0].from) }}</span
             >
             <span v-if="dieTermine[0].to">
@@ -37,11 +42,11 @@
             alt="Jin Shin Jyutsu Hände"
             class="mainImage2"
           />
-          <block-content
+          <BlockContent
             v-if="$t(content)"
             :blocks="$t(content)"
             :serializers="serializers"
-            projectId="ie6m0uwl"
+            project-id="ie6m0uwl"
             dataset="production"
           />
 
@@ -63,7 +68,7 @@
 import BlockContent from 'sanity-blocks-vue-component'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
-import SanityImage from '~/components/SanityImage'
+// import SanityImage from '~/components/SanityImage'
 import TextCenterBlock from '~/components/blockContent/TextCenterBlock'
 
 const query = groq`
@@ -73,9 +78,9 @@ const query = groq`
 `
 export default {
   components: {
-    BlockContent,
-    SanityImage,
-    TextCenterBlock
+    BlockContent
+    // SanityImage,
+    // TextCenterBlock
   },
 
   data() {
@@ -100,14 +105,6 @@ export default {
       }
     }
   },
-  async asyncData(kontext) {
-    return await sanityClient.fetch(query, kontext.params)
-  },
-  head() {
-    return {
-      title: this.title.titel + ' - '
-    }
-  },
   computed: {
     imageSrc: function() {
       if (this.sessionType == 'astromatrix') {
@@ -122,7 +119,7 @@ export default {
       if (typeof this.date != 'undefined') {
         return this.date
       } else {
-        return { from: false, to: fales }
+        return { from: false, to: false }
       }
     },
     derOrt: function() {
@@ -184,6 +181,14 @@ export default {
           }
         ]
       }
+    }
+  },
+  async asyncData(kontext) {
+    return await sanityClient.fetch(query, kontext.params)
+  },
+  head() {
+    return {
+      title: this.title.titel + ' - '
     }
   },
   methods: {

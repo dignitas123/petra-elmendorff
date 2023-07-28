@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-
     <Courses
       v-if="
         $route.params.page == 'kurse-angebote' ||
@@ -12,9 +11,9 @@
       v-else
       :title="title"
       :content="content"
-      :imageTitle="image"
-      :imageUnderText1="imageUnderText1"
-      :imageUnderText2="imageUnderText2"
+      :image-title="image"
+      :image-under-text-1="imageUnderText1"
+      :image-under-text-2="imageUnderText2"
       :image="previewImage2"
       :heading="heading"
     />
