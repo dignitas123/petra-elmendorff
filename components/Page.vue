@@ -90,7 +90,6 @@
               </h4>
             </nuxt-link>
           </div>
-          <!-- <div>{{  }}</div> -->
           <SanityImage
             v-if="image.asset"
             :image="image"

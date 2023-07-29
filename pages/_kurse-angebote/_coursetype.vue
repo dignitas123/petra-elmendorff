@@ -2,9 +2,9 @@
   <transition name="fade">
     <section class="container">
       <Courses
-        :filterCat="$router.history.current.params.coursetype"
+        :filter-cat="$router.history.current.params.coursetype"
         :items="items"
-        :breadCrumb="true"
+        :bread-crumb="true"
       />
     </section>
   </transition>

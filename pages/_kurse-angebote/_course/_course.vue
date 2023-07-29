@@ -36,12 +36,6 @@
             >
             <br />
           </div>
-          <img
-            v-if="imageSrc"
-            :src="imageSrc"
-            alt="Jin Shin Jyutsu Hände"
-            class="mainImage2"
-          />
           <BlockContent
             v-if="$t(content)"
             :blocks="$t(content)"
@@ -357,7 +351,6 @@ img {
 }
 
 .sessionContent {
-  padding-left: 15% !important;
   position: relative;
 }
 

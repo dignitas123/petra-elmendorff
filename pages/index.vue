@@ -321,6 +321,9 @@ export default {
   created() {
     this.setCurrentSlug(false)
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenSize)
+  },
   methods: {
     ...mapMutations(['setCurrentSlug', 'setLanguage']),
     scrollContent: function() {
@@ -347,9 +350,6 @@ export default {
         })
       }
     }
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.updateScreenSize)
   }
 }
 </script>
