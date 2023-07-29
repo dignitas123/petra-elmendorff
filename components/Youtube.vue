@@ -7,44 +7,38 @@
       <b-container class="filter pictures mb-2 mt-2 text-center d-inline-block">
         <b-row>
           <b-col>
-            <h1 class="kalendar medium-font">Shop</h1>
+            <h1 class="kalendar medium-font">‚WE ARE ONE‘</h1>
+            <h4 class="mt-3" style="color: #593f4c; margin-top: -13px">
+              {{ $t(letsStartSelfHelpJustFlowAlong) }}
+            </h4>
           </b-col>
         </b-row>
         <b-row>
           <b-col>
-            <h3 class="mt-3" style="color: #593f4c;">
-              {{ $t(maintenanceText) }}
-            </h3>
+            Test
           </b-col>
-        </b-row>
-        <b-row class="mt-4">
           <b-col>
-            <nuxt-link
-              class="btn"
-              :title="$t(courseLinkTitle)"
-              :to="'/' + $t(courseLinkSlug)"
-              >{{ $t(courseLinkTitle) }}</nuxt-link
-            >
+            Test
+          </b-col>
+          <b-col>
+            Test
+          </b-col>
+          <b-col>
+            Test
+          </b-col>
+          <b-col>
+            Test
           </b-col>
         </b-row>
       </b-container>
-      <VideoGrid
-        :sessions="filterCourseType(getSessions, 'online-kurse')"
-        :current-slug="$t(currentSlug).current"
-        :only-video-courses="true"
-      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import VideoGrid from '~/components/VideoGrid'
 
 export default {
-  components: {
-    VideoGrid
-  },
   props: {
     filterCat: {
       type: String,
@@ -61,17 +55,9 @@ export default {
   },
   data() {
     return {
-      courseTranslation: {
-        en: 'Classes',
-        de: 'Kurse'
-      },
-      courseLinkSlug: {
-        en: 'courses-offers',
-        de: 'kurse-angebote'
-      },
-      maintenanceText: {
-        en: 'Buyable video courses are coming soon.. ',
-        de: 'Bald kommen hier kaufbare Videokurse.. '
+      letsStartSelfHelpJustFlowAlong: {
+        en: '‚Let´ start Selfhelp‘ - just flow along',
+        de: '‚Let´ start Selfhelp‘ - einfach Mitströmen'
       },
       courseLinkTitle: {
         en: 'Go Back to the Calendar',

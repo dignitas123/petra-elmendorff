@@ -2,11 +2,11 @@
   <transition name="fade">
     <b-card
       v-if="display"
+      id="navCard"
       no-body
       border-variant="light"
       style="max-width: 350px; float: right; right: 0; background: #f4f1f0;"
       class="nav-card overflow-hidden"
-      id="navCard"
       @mouseleave="$nuxt.$emit('nav-card-out')"
       @click="$nuxt.$emit('nav-card-out')"
     >
@@ -36,6 +36,9 @@
                   :to="'/' + $t(courseLinkSlug)"
                   >{{ $t(courseLinkTitle) }}</nuxt-link
                 >
+                <nuxt-link class="nav-option" to="/youtube">
+                  YouTube
+                </nuxt-link>
                 <nuxt-link class="nav-option" to="/shop">
                   Shop
                 </nuxt-link>

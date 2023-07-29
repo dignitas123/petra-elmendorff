@@ -63,7 +63,7 @@
           true
         )
       "
-      :currentSlug="$t(currentSlug).current"
+      :current-slug="$t(currentSlug).current"
     />
 
     <SessionGrid
@@ -76,8 +76,8 @@
           false
         )
       "
-      :currentSlug="$t(currentSlug).current"
-      :onlyPast="true"
+      :current-slug="$t(currentSlug).current"
+      :only-past="true"
       class="pastCourses"
     />
   </div>
@@ -142,6 +142,12 @@ export default {
       }
     }
   },
+  created() {
+    this.$store.commit('setCurrentSlug', {
+      en: { current: 'courses-offers' },
+      de: { current: 'kurse-angebote' }
+    })
+  },
   methods: {
     filterCourseType: function(sessions, coursetype) {
       if (coursetype) {
@@ -185,18 +191,11 @@ export default {
         )
       })
     }
-  },
-  created() {
-    this.$store.commit('setCurrentSlug', {
-      en: { current: 'courses-offers' },
-      de: { current: 'kurse-angebote' }
-    })
   }
 }
 </script>
 
 <style scoped lang="scss">
-
 @media (max-width: 767px) {
   .filter {
     margin-top: 30px;

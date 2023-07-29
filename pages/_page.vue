@@ -7,6 +7,7 @@
       "
     />
     <Shop v-else-if="$route.params.page == 'shop'" />
+    <Youtube v-else-if="$route.params.page == 'youtube'" />
     <Page
       v-else
       :title="title"
@@ -28,6 +29,7 @@ import sanityClient from '~/sanityClient'
 import Courses from '~/components/Courses'
 import Page from '~/components/Page'
 import Shop from '~/components/Shop'
+import Youtube from '~/components/Youtube'
 
 const query = groq`
   *[_type == "page" && (slug["de"].current == $page || slug["en"].current == $page)] {
@@ -43,7 +45,8 @@ export default {
   components: {
     Courses,
     Page,
-    Shop
+    Shop,
+    Youtube
   },
   data() {
     return {
