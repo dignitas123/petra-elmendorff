@@ -16,14 +16,15 @@
           </b-col>
         </b-row>
         <b-row class="preview-grid">
-          <b-col class="preview-grid-col"
+          <b-col class="preview-grid-col" @click="scrollToTarget('YearWrap')"
             ><figure class="figure">
               <router-link :to="'/' + $t(courseLinkSlug) + '/jin-shin-jyutsu'">
                 <b-img
                   src="https://cdn.sanity.io/images/ie6m0uwl/production/08adb0dc609005383c88be7afe1b979693379478-440x437.png?h=128"
                   class="border border-dark"
-                  width="150"
+                  width="200"
                   alt="Jin Shin Jyutsu"
+                  @click="scrollToTarget('YearWrap')"
                 ></b-img
               ></router-link>
               <figcaption class="figure-caption mt-2">
@@ -31,13 +32,13 @@
               </figcaption>
             </figure></b-col
           >
-          <b-col>
+          <b-col @click="scrollToTarget('YearWrap')">
             <figure class="figure">
               <router-link :to="'/' + $t(courseLinkSlug) + '/astromatrix'">
                 <b-img
                   src="https://cdn.sanity.io/images/ie6m0uwl/production/e1679f6501ac1192b2e034eaed2c487873833401-308x308.png?h=128"
                   class="border border-dark float"
-                  width="150"
+                  width="200"
                   alt="Astromatrix"
                 ></b-img
               ></router-link>
@@ -46,13 +47,13 @@
               </figcaption>
             </figure></b-col
           >
-          <b-col
+          <b-col @click="scrollToTarget('YearWrap')"
             ><figure class="figure">
               <router-link :to="'/' + $t(courseLinkSlug) + '/online-seminare'"
                 ><b-img
                   src="https://cdn.sanity.io/images/ie6m0uwl/production/da0dffd3daf43d3e1e84bdec323d206f956a3ee5-308x308.jpg?h=128"
                   class="border border-dark"
-                  width="150"
+                  width="200"
                   alt="Online Seminare"
                 ></b-img
               ></router-link>
@@ -66,7 +67,7 @@
 
       <SessionGrid
         :sessions="filterTime(sessionsToShow, false, true, true, true)"
-        :currentSlug="$t(currentSlug).current"
+        :current-slug="$t(currentSlug).current"
       />
 
       <!-- <SessionGrid
@@ -103,12 +104,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import SessionGrid from '~/components/SessionGrid'
-import VideoGrid from '~/components/VideoGrid'
+// import VideoGrid from '~/components/VideoGrid'
 
 export default {
   components: {
-    SessionGrid,
-    VideoGrid
+    SessionGrid
+    // VideoGrid
   },
   props: {
     filterCat: {
@@ -150,13 +151,6 @@ export default {
     }
   },
   computed: {
-    // sessionsWithoutBreak: data => {
-    //   if (data.program && data.program.schedule) {
-    //     return data.program.schedule.filter(
-    //       i => i.session.sessionType !== 'break'
-    //     )
-    //   }
-    // }
     ...mapGetters(['currentSlug', 'getDates', 'getSessions', 'getLanguage']),
     sessionsWithShowinCalTag: function() {
       return this.getDates.filter(session => session.showInCal)
@@ -168,7 +162,27 @@ export default {
       )
     }
   },
+  created() {
+    this.$store.commit('setCurrentSlug', {
+      en: { current: 'courses-offers' },
+      de: { current: 'kurse-angebote' }
+    })
+  },
   methods: {
+    scrollToTarget(targetId) {
+      setTimeout(() => {
+        const target = document.getElementById(targetId)
+        if (target) {
+          this.$nextTick(() => {
+            const topOffset = target.getBoundingClientRect().top
+            window.scrollBy({
+              top: topOffset,
+              behavior: 'smooth'
+            })
+          })
+        }
+      }, 500)
+    },
     filterLang: function(sessions, lang) {
       if (lang && lang != 'de') {
         // added && lang != 'de' because Petra wants also english courses shown in german calendar
@@ -179,15 +193,7 @@ export default {
     },
     filterCourseType: function(sessions, coursetype) {
       if (coursetype) {
-        // console.log(
-        //   'RETURN',
-        //   sessions.filter(session => {
-        //     console.log('SESSION TYPE', session.sessionType, coursetype)
-        //     return session.sessionType === coursetype
-        //   })
-        // )
         return sessions.filter(session => {
-          // console.log("SESSION TYPE", session.sessionType, coursetype)
           return session.sessionType === coursetype
         })
       } else return sessions
@@ -210,19 +216,11 @@ export default {
           : isFuture
           ? 'future'
           : undefined
-        // console.log("SESSION dATE", session.title, isPast, isOngoing, isFuture)
-
         return (
           (past && isPast) || (ongoing && isOngoing) || (future && isFuture)
         )
       })
     }
-  },
-  created() {
-    this.$store.commit('setCurrentSlug', {
-      en: { current: 'courses-offers' },
-      de: { current: 'kurse-angebote' }
-    })
   }
 }
 </script>

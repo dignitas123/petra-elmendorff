@@ -1,9 +1,10 @@
 <template>
   <transition name="fade">
-    <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid">
+    <ul v-if="Object.keys(sessionsByMonth).length" class="sessionGrid mt-4">
       <h3 v-if="onlyPast" class="ml-3 mb-4">{{ $t(pastCoursesTitle) }}</h3>
       <div
-        v-for="year in Object.keys(this.sessionsByMonth).sort()"
+        v-for="year in Object.keys(sessionsByMonth).sort()"
+        id="YearWrap"
         :key="year"
         class="yearWrap"
       >
@@ -110,7 +111,7 @@
                     <h3 class="mt-0 color-normal maintitle medium-font">
                       {{ session.title.titel }}
                     </h3>
-                    <h5 class="untertitle mt-1" v-if="session.title.untertitel">
+                    <h5 v-if="session.title.untertitel" class="untertitle mt-1">
                       {{ session.title.untertitel }}
                     </h5>
                     <h5
