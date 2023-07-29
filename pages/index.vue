@@ -836,8 +836,10 @@ figcaption {
 }
 </style>
 
-<style>
-.btn-secondary {
-  user-select: none;
+<style lang="scss">
+#__layout > div > div.cookie-consent > div {
+  input {
+    user-select: none;
+  }
 }
 </style>
