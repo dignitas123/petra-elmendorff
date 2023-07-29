@@ -90,15 +90,16 @@
               </h4>
             </nuxt-link>
           </div>
+          <!-- <div>{{  }}</div> -->
           <SanityImage
             v-if="image.asset"
             :image="image"
             :zitat="$t(image.zitat)"
-            :width="isMediumScreen ? 165 : 150"
-            :height="isMediumScreen ? 255 : 150"
+            :width="isMediumScreen && isPetraPortrait ? 165 : 150"
+            :height="isMediumScreen && isPetraPortrait ? 255 : 150"
             :author="image.zitatsource"
-            :crop="isMediumScreen ? '' : 'top'"
-            :fit="isMediumScreen ? 'max' : 'crop'"
+            :crop="isMediumScreen && isPetraPortrait ? '' : 'top'"
+            :fit="isMediumScreen && isPetraPortrait ? 'max' : 'crop'"
             class="mainImage2"
             :class="
               $route.params.page == 'jin-shin-jyutsu'
@@ -247,6 +248,9 @@ export default {
     },
     isMediumScreen: function() {
       return this.screenWidth > this.MEDIUM_WIDTH
+    },
+    isPetraPortrait: function() {
+      return this.image.alt.de === 'Petra Portrait'
     }
   },
   mounted() {
