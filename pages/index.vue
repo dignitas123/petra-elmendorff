@@ -152,37 +152,36 @@
         :class="{ 'p-5': isMediumScreen }"
       >
         <b-row class="text-center grid-row" cols="1" cols-md="2">
-          <template v-for="preview in previews">
-            <b-col
-              :key="$t(preview.title)"
-              class="image-container"
-              :class="{ 'large-screen': isMediumScreen }"
-              style="display: flex; justify-content: center;"
+          <b-col
+            v-for="preview in previews"
+            :key="$t(preview.title)"
+            class="image-container"
+            :class="{ 'large-screen': isMediumScreen }"
+            style="display: flex; justify-content: center;"
+          >
+            <nuxt-link
+              :to="'/' + slugLink($t(preview.slug).current)"
+              class="link-wrapper"
+              :style="isMediumScreen ? 'height: 314px;' : ''"
             >
-              <nuxt-link
-                :to="'/' + slugLink($t(preview.slug).current)"
-                class="link-wrapper"
-                :style="isMediumScreen ? 'height: 314px;' : ''"
-              >
-                <div class="grid-image-caption">
-                  <div class="mt-2">{{ $t(preview.title) }}</div>
-                </div>
-                <div class="image-wrapper">
-                  <SanityImage
-                    :image="preview.previewImage2"
-                    :alt="$t(preview.previewImage2.alt)"
-                    class="grid-image golden-border-thick"
-                    :class="{ 'mb-5': isMediumScreen }"
-                    style="width: 100%; height: 100%; object-fit: cover; object-position: top"
-                  />
-                </div>
-                <div class="middle">
-                  <div class="text">{{ $t(preview.title) }}</div>
-                  <div><Plus /></div>
-                </div>
-              </nuxt-link>
-            </b-col>
-          </template>
+              <div class="grid-image-caption">
+                <div class="mt-2">{{ $t(preview.title) }}</div>
+              </div>
+              <div class="image-wrapper">
+                <SanityImage
+                  :image="preview.previewImage2"
+                  :alt="$t(preview.previewImage2.alt)"
+                  class="grid-image golden-border-thick"
+                  :class="{ 'mb-5': isMediumScreen }"
+                  style="width: 100%; height: 100%; object-fit: cover; object-position: top"
+                />
+              </div>
+              <div class="middle">
+                <div class="text">{{ $t(preview.title) }}</div>
+                <div><Plus /></div>
+              </div>
+            </nuxt-link>
+          </b-col>
         </b-row>
       </b-container>
     </section>
