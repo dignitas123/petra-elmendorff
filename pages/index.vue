@@ -45,10 +45,15 @@
               </h1>
             </b-col>
           </b-row>
-          <b-row cols="1" cols-md="2" cols-xl="4" class="aktuelle-termine mr-0 ml-0">
+          <b-row
+            cols="1"
+            cols-md="2"
+            cols-xl="4"
+            class="aktuelle-termine mr-0 ml-0"
+          >
             <b-col
               v-for="course in previewCourses"
-              v-bind:key="course.title.titel"
+              :key="course.title.titel"
               class="mb-3"
             >
               <b-row cols="2" cols-xl="1" align-h="center">
@@ -78,13 +83,13 @@
                       <h5 class="medium-font">
                         {{ course.title.titel
                         }}<span
-                          class="light-font"
                           v-if="course.title.untertitel"
+                          class="light-font"
                           ><br />{{ course.title.untertitel }}</span
                         >
                         <span
-                          class="light-font"
                           v-if="course.date && course.date.desc"
+                          class="light-font"
                           ><br />{{ course.date.desc }}</span
                         >
                       </h5>
@@ -142,17 +147,35 @@
       </b-col>
     </b-row>
     <section class="content" style="margin-bottom: 2.75rem;">
-      <b-container class="max-width-container pt-5">
+      <b-container
+        class="max-width-container py-3"
+        :class="{ 'p-5': isMediumScreen }"
+      >
         <b-row class="text-center grid-row" cols="1" cols-md="2">
           <template v-for="preview in previews">
-            <b-col :key="$t(preview.title)" class="image-container">
-              <nuxt-link :to="'/' + slugLink($t(preview.slug).current)">
-                <div class="grid-image-caption">{{ $t(preview.title) }}</div>
-                <SanityImage
-                  :image="preview.previewImage2"
-                  :alt="$t(preview.previewImage2.alt)"
-                  class="grid-image mb-5 golden-border-thick"
-                />
+            <b-col
+              :key="$t(preview.title)"
+              class="image-container"
+              :class="{ 'large-screen': isMediumScreen }"
+              style="display: flex; justify-content: center;"
+            >
+              <nuxt-link
+                :to="'/' + slugLink($t(preview.slug).current)"
+                class="link-wrapper"
+                :style="isMediumScreen ? 'height: 314px;' : ''"
+              >
+                <div class="grid-image-caption">
+                  <div class="mt-2">{{ $t(preview.title) }}</div>
+                </div>
+                <div class="image-wrapper">
+                  <SanityImage
+                    :image="preview.previewImage2"
+                    :alt="$t(preview.previewImage2.alt)"
+                    class="grid-image golden-border-thick"
+                    :class="{ 'mb-5': isMediumScreen }"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: top"
+                  />
+                </div>
                 <div class="middle">
                   <div class="text">{{ $t(preview.title) }}</div>
                   <div><Plus /></div>
@@ -167,15 +190,11 @@
 </template>
 
 <script>
-// import { dateFilter } from 'vue-date-fns'
 import { mapMutations, mapGetters } from 'vuex'
-// import { createDateFilter } from 'vue-date-fns'
 import sanityClient from '../sanityClient'
 import DownArrowSharp from '~/components/icons/DownArrowSharp'
 import SanityImage from '~/components/SanityImage'
-import Navbar from '~/components/Navbar'
 import Plus from '~/components/icons/Plus'
-// import isNode from 'detect-node'
 import BlockContent from 'sanity-blocks-vue-component'
 
 const query = `
@@ -220,26 +239,50 @@ const query = `
 export default {
   components: {
     DownArrowSharp,
-    Navbar,
     SanityImage,
     Plus,
     BlockContent
   },
+  data() {
+    return {
+      screenWidth: 0,
+      MEDIUM_WIDTH: 767,
+      selLanguage: this.$store.state.language,
+      termine: {
+        de: 'Aktuelle Termine',
+        en: 'Upcoming Events'
+      },
+      angebote: {
+        de: 'kurse-angebote',
+        en: 'courses-offers'
+      },
+      kalender: {
+        de: 'Kalender',
+        en: 'Calendar'
+      },
+      serializers: {}
+    }
+  },
   computed: {
+    isMediumScreen: function() {
+      return this.screenWidth > this.MEDIUM_WIDTH
+    },
     ...mapGetters(['currentSlug', 'getDates', 'getLanguage']),
     sitetitle: function() {
       return this.$store.state.siteSettings.title
     },
     previewCourses: function() {
       // zeige angepinnte Kurse und upcoming courses (anzahl auch aus sanity)
-      return this.home.courses
-        // .filter(ses => ses.sessionLang == this.getLanguage)
-        .map(course => {
-          // preview immer zum ersten termin, ist leider etwas doof
-          course.date = course.dates[0]
-          return course
-        })
-        .concat(this.upcomingCourses)
+      return (
+        this.home.courses
+          // .filter(ses => ses.sessionLang == this.getLanguage)
+          .map(course => {
+            // preview immer zum ersten termin, ist leider etwas doof
+            course.date = course.dates[0]
+            return course
+          })
+          .concat(this.upcomingCourses)
+      )
     },
     upcomingCourses: function() {
       let now = new Date()
@@ -250,7 +293,8 @@ export default {
       return this.getDates.filter(session => {
         if (
           alreadyinList.length >= maxNumberOfitems ||
-          !session.date.from || (session.sessionLang == 'de' && this.getLanguage == 'en') // only when english show no german courses
+          !session.date.from ||
+          (session.sessionLang == 'de' && this.getLanguage == 'en') // only when english show no german courses
           // || session.sessionLang != this.getLanguage
         )
           return false
@@ -268,28 +312,23 @@ export default {
       })
     }
   },
-  data() {
-    return {
-      selLanguage: this.$store.state.language,
-      termine: {
-        de: 'Aktuelle Termine',
-        en: 'Upcoming Events'
-      },
-      angebote: {
-        de: 'kurse-angebote',
-        en: 'courses-offers'
-      },
-      kalender: {
-        de: 'Kalender',
-        en: 'Calendar'
-      },
-      serializers: {}
-    }
+  async asyncData() {
+    return await sanityClient.fetch(query)
+  },
+  mounted() {
+    this.updateScreenSize() // Call it initially to set initial values
+    window.addEventListener('resize', this.updateScreenSize)
+  },
+  created() {
+    this.setCurrentSlug(false)
   },
   methods: {
     ...mapMutations(['setCurrentSlug', 'setLanguage']),
     scrollContent: function() {
       this.$scrollTo('.content')
+    },
+    updateScreenSize() {
+      this.screenWidth = window.innerWidth
     },
     slugLink(slug) {
       if (slug === 'kurse') return 'kurse-angebote'
@@ -310,11 +349,8 @@ export default {
       }
     }
   },
-  async asyncData() {
-    return await sanityClient.fetch(query)
-  },
-  created() {
-    this.setCurrentSlug(false)
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenSize)
   }
 }
 </script>
@@ -326,6 +362,30 @@ export default {
 .image-container {
   position: relative;
   width: 50%;
+
+  .link-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    .image-wrapper {
+      width: 314px;
+      height: 314px;
+    }
+    @media (max-width: 657px) {
+      .image-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    @media (max-width: 449px) {
+      .image-wrapper {
+        width: 125px;
+        height: 125px;
+      }
+    }
+  }
 }
 
 .text {
@@ -366,11 +426,17 @@ export default {
   opacity: 0;
   position: absolute;
   width: 300px;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .middle {
+    top: 58%;
+  }
 }
 
 .color-dark-grey {
@@ -392,6 +458,9 @@ export default {
 
 .grid-row {
   margin: 0 auto;
+  .image-container.large-screen:nth-last-child(-n + 2) {
+    margin-top: 50px;
+  }
 }
 
 .grid-image {
@@ -627,7 +696,7 @@ figcaption {
   }
 }
 
-@media (max-width: 766px) {
+@media (max-width: 767px) {
   .image-sep {
     height: 3.5px;
   }
@@ -635,8 +704,9 @@ figcaption {
     width: 100%;
   }
   .grid-image-caption {
-    display: block;
-    font-size: 39px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px !important;
   }
   .header-content {
     margin-top: 0;
@@ -764,5 +834,11 @@ figcaption {
   .kalender {
     font-size: 14px;
   }
+}
+</style>
+
+<style>
+.btn-secondary {
+  user-select: none;
 }
 </style>
