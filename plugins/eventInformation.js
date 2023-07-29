@@ -11,6 +11,10 @@ const query = `{
   "sessions": *[ _type == "session"]{
     ...
   },
+  "youtubelinks": *[_type == "youtube"][0].videolinks[]{
+  	"title": title,
+  	"link": link
+	}
 }
 `
 // "program": *[_id == "program"][0] {
@@ -49,12 +53,12 @@ const query = `{
 
 export default ({ store }) => {
   // console.log('sanity fetch siteinfo', query)
-  return sanityClient.fetch(query).then(({ siteSettings, sessions }) => {
-    store.commit('setSiteSettings', siteSettings)
-    store.commit('setSessions', sessions)
-    // store.commit(
-    //   'setProgram',
-    //   populateWithDates(program, new Date(eventInformation.schedule.from))
-    // )
-  })
+  return sanityClient
+    .fetch(query)
+    .then(({ siteSettings, sessions, youtubelinks }) => {
+      console.log('youtube', youtubelinks)
+      store.commit('setSiteSettings', siteSettings)
+      store.commit('setSessions', sessions)
+      store.commit('setYoutubeLinks', youtubelinks)
+    })
 }

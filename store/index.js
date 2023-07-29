@@ -3,6 +3,7 @@ export const state = () => ({
     title: 'Petra Elmendorff'
   },
   siteSettings: {},
+  youtubeLinks: {},
   kurse: {},
   language: 'de',
   currentSlug: {} // save both langs of current slug/route hier
@@ -11,6 +12,9 @@ export const state = () => ({
 export const getters = {
   getSiteSettings(state) {
     return state.siteSettings
+  },
+  getYoutubeLinks(state) {
+    return state.youtubeLinks
   },
   getSessions(state) {
     return state.sessions
@@ -51,6 +55,9 @@ export const getters = {
 export const mutations = {
   setSiteSettings(state, info) {
     state.siteSettings = info
+  },
+  setYoutubeLinks(state, info) {
+    state.youtubeLinks = info
   },
   setSessions(state, info) {
     state.sessions = info

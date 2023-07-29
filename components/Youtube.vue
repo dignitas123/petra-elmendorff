@@ -8,27 +8,17 @@
         <b-row>
           <b-col>
             <h1 class="kalendar medium-font">‚WE ARE ONE‘</h1>
-            <h4 class="mt-3" style="color: #593f4c; margin-top: -13px">
+            <h4 class="mt-3 just-flow-along-h4" style="color: #593f4c">
               {{ $t(letsStartSelfHelpJustFlowAlong) }}
             </h4>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            Test
+        <b-row style="grid-gap: 25px 50px">
+          <b-col v-for="youtube in getYoutubeLinks" :key="youtube.link">
+            <YouTubeIFrame :src="youtube.link" />
+            <h5 class="youtube-title p-3">{{ youtube.title }}</h5>
           </b-col>
-          <b-col>
-            Test
-          </b-col>
-          <b-col>
-            Test
-          </b-col>
-          <b-col>
-            Test
-          </b-col>
-          <b-col>
-            Test
-          </b-col>
+          <b-col v-if="getYoutubeLinks.lenght % 2 !== 0" />
         </b-row>
       </b-container>
     </div>
@@ -37,8 +27,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import YouTubeIFrame from '~/components/YouTubeIFrame'
 
 export default {
+  components: {
+    YouTubeIFrame
+  },
   props: {
     filterCat: {
       type: String,
@@ -71,32 +65,7 @@ export default {
     }
   },
   computed: {
-    // sessionsWithoutBreak: data => {
-    //   if (data.program && data.program.schedule) {
-    //     return data.program.schedule.filter(
-    //       i => i.session.sessionType !== 'break'
-    //     )
-    //   }
-    // }
-    ...mapGetters(['currentSlug', 'getDates', 'getSessions', 'getLanguage']),
-    // items: function() {
-    //   return {
-    //     de: [
-    //       {
-    //         text: 'Alle Kurse',
-    //         href: '/kurse-angebote',
-    //         active: true
-    //       }
-    //     ],
-    //     en: [
-    //       {
-    //         text: 'All Classes',
-    //         href: '/courses-offers',
-    //         active: true
-    //       }
-    //     ]
-    //   }
-    // },
+    ...mapGetters(['getLanguage', 'getYoutubeLinks']),
     sessionsWithShowinCalTag: function() {
       return this.getDates.filter(session => session.showInCal)
     },
@@ -237,5 +206,16 @@ export default {
     padding-right: 5px;
     padding-left: 5px;
   }
+}
+
+.just-flow-along-h4 {
+  margin-top: -13px !important;
+}
+
+.youtube-title {
+  color: #593f4c;
+  background: #f2f0ef;
+  max-width: 300px;
+  margin: 0 auto;
 }
 </style>

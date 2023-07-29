@@ -36,7 +36,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     sessions: {
