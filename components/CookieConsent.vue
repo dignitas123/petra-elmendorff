@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted() {
-    this.showCookieConsent = true;
+    this.showCookieConsent = !this.$cookies.get('cookie-cookie')
   },
   methods: {
     dismiss: function() {
