@@ -107,8 +107,8 @@
             "
           />
           <BlockContent
-            :v-if="$t(content)"
-            :blocks="$t(content)"
+            v-if="contentBlocks"
+            :blocks="contentBlocks"
             :serializers="serializers"
             project-id="ie6m0uwl"
             dataset="production"
@@ -218,6 +218,12 @@ export default {
     }
   },
   computed: {
+    contentBlocks: function() {
+      const blocks = this.$t(this.content)
+      return Array.isArray(blocks)
+        ? blocks.filter(block => block._type !== 'image' || block.asset)
+        : blocks
+    },
     items: function() {
       let page = this.$route.params.page
       let pageStripped = page.replace(/-/g, ' ')
