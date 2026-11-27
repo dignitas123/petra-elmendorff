@@ -44,11 +44,8 @@ export default {
         de: '/datenschutz',
         en: '/privacy-policy'
       },
-      showCookieConsent: true,
+      showCookieConsent: !this.$cookies.get('cookie-cookie'),
     }
-  },
-  mounted() {
-    this.showCookieConsent = !this.$cookies.get('cookie-cookie')
   },
   methods: {
     dismiss: function() {
